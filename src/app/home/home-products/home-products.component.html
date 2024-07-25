@@ -36,11 +36,9 @@
                 </div>
               </div>
             </ng-template>
-            <!-- probablemente se modifique esta parte del codigo para no mostrar el span de agregado -->
             <ng-template pTemplate="footer">
-              <button class="cart-button" #cartButton>
+              <button class="cart-button" (click)="animateCartButton($event)">
                 <span class="add-to-cart">Agregar</span>
-                <span class="added">Agregado</span>
                 <i class="fas fa-shopping-cart"></i>
                 <i class="fas fa-box"></i>
               </button>
@@ -61,15 +59,10 @@
       <!-- Lo que se muestra en carrito son datos estaticos, no dinamicos, hay que hacer lo mismo para poder mostrar -->
       <p-orderList
         [value]="products.slice(22)"
-        [listStyle]="{ height: '14rem', width: '17em' }"
+        [listStyle]="{ height: '14rem', width: '16rem' }"
         filterBy="name"
         filterPlaceholder="Buscar producto:"
       >
-        <ng-template pTemplate="header">
-          <div class="orderlist-header">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-        </ng-template>
         <ng-template let-product pTemplate="item">
           <div class="flex flex-wrap p-2 align-items-center gap-3">
             <img
@@ -89,6 +82,11 @@
           </div>
         </ng-template>
       </p-orderList>
+      <div class="text-center mt-4" style="margin-left: 47px">
+        <a routerLink="/pagar-carrito" class="btn btn-success btn-lg">
+          <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Pagar
+        </a>
+      </div>
     </div>
   </div>
 </div>

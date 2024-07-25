@@ -1,90 +1,88 @@
 <div class="container">
-  <div class="card-align-items-center mt-5">
-    <div class="row">
-      <div class="col-12">
-        <p-table
-          #dt
-          [value]="lampDetail"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
-        >
-          <ng-template pTemplate="caption">
-            <div class="text-center">
-              <h3 class="mt-2">
-                <b>
-                  <!-- Reemplazar con el nombre de la lampara acorde al detalle -->
-                  <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp; Lampara
-                  Moderna
-                </b>
-              </h3>
-            </div>
-          </ng-template>
-          <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="id">
-                <div class="flex justify-content-between align-items-center">
-                  Id
-                  <p-sortIcon field="id" />
-                </div>
-              </th>
-              <th pSortableColumn="quantity">
-                <div class="flex justify-content-between align-items-center">
-                  Cantidad
-                  <p-sortIcon field="quantity" />
-                </div>
-              </th>
-              <th pSortableColumn="price">
-                <div class="flex justify-content-between align-items-center">
-                  Precio
-                  <p-sortIcon field="price" />
-                </div>
-              </th>
-              <th pSortableColumn="lote">
-                <div class="flex justify-content-between align-items-center">
-                  Lote
-                  <p-sortIcon field="lote" />
-                </div>
-              </th>
-              <th pSortableColumn="date">
-                <div class="flex justify-content-between align-items-center">
-                  Fecha Creacion
-                  <p-sortIcon field="date" />
-                </div>
-              </th>
-              <th pSortableColumn="productionCost">
-                <div class="flex justify-content-between align-items-center">
-                  Costo produccion
-                  <p-sortIcon field="productionCost" />
-                </div>
-              </th>
-              <th pSortableColumn="createdBy">
-                <div class="flex justify-content-between align-items-center">
-                  Creado por
-                  <p-sortIcon field="createdBy" />
-                </div>
-              </th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-lampDetail>
-            <tr class="p-selectable-row">
-              <td>{{ lampDetail.id }}</td>
-              <td>{{ lampDetail.quantity }}</td>
-              <td>{{ lampDetail.price }}</td>
-              <td>{{ lampDetail.lote }}</td>
-              <td>{{ lampDetail.date }}</td>
-              <td>{{ lampDetail.productionCost }}</td>
-              <td>{{ lampDetail.createdBy }}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+  <div class="row">
+    <div class="col-12 mt-5">
+      <p-table
+        #dt
+        [value]="lampDetail"
+        [scrollable]="true"
+        scrollHeight="270px"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} de {last}"
+        [filterDelay]="0"
+        [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="text-center">
+            <h3 class="mt-2">
+              <b>
+                <!-- Reemplazar con el nombre de la lampara acorde al detalle -->
+                <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp; Lampara
+                Moderna
+              </b>
+            </h3>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id">
+              <div class="flex justify-content-between align-items-center">
+                Id
+                <p-sortIcon field="id" />
+              </div>
+            </th>
+            <th pSortableColumn="quantity">
+              <div class="flex justify-content-between align-items-center">
+                Cantidad
+                <p-sortIcon field="quantity" />
+              </div>
+            </th>
+            <th pSortableColumn="price">
+              <div class="flex justify-content-between align-items-center">
+                Precio
+                <p-sortIcon field="price" />
+              </div>
+            </th>
+            <th pSortableColumn="lote">
+              <div class="flex justify-content-between align-items-center">
+                Lote
+                <p-sortIcon field="lote" />
+              </div>
+            </th>
+            <th pSortableColumn="date">
+              <div class="flex justify-content-between align-items-center">
+                Fecha Creacion
+                <p-sortIcon field="date" />
+              </div>
+            </th>
+            <th pSortableColumn="productionCost">
+              <div class="flex justify-content-between align-items-center">
+                Costo produccion
+                <p-sortIcon field="productionCost" />
+              </div>
+            </th>
+            <th pSortableColumn="createdBy">
+              <div class="flex justify-content-between align-items-center">
+                Creado por
+                <p-sortIcon field="createdBy" />
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lampDetail>
+          <tr class="p-selectable-row">
+            <td>{{ lampDetail.id }}</td>
+            <td>{{ lampDetail.quantity }}</td>
+            <td>{{ lampDetail.price }}</td>
+            <td>{{ lampDetail.lote }}</td>
+            <td>{{ lampDetail.date }}</td>
+            <td>{{ lampDetail.productionCost }}</td>
+            <td>{{ lampDetail.createdBy }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
 </div>

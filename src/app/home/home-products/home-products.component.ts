@@ -1,12 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  AfterViewInit,
-  ViewChildren,
-  QueryList,
-} from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from '../../interfaces/product';
 
 @Component({
@@ -14,7 +7,7 @@ import { Product } from '../../interfaces/product';
   templateUrl: './home-products.component.html',
   styleUrl: './home-products.component.css',
 })
-export class HomeProductsComponent implements AfterViewInit {
+export class HomeProductsComponent {
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
   products: Product[] = [
     {
@@ -201,17 +194,12 @@ export class HomeProductsComponent implements AfterViewInit {
     };
   }
 
-  ngAfterViewInit() {
-    this.cartbuttons.forEach((button) => {
-      button.nativeElement.addEventListener('click', this.cartClick.bind(this));
-    });
-  }
-
-  cartClick(event: Event) {
-    let button = event.currentTarget as HTMLElement;
+  animateCartButton(event: MouseEvent) {
+    const button = event?.currentTarget as HTMLElement;
     button.classList.add('clicked');
-  }
-  mostrarAlerta() {
-    alert('Agregado al carrito');
+
+    setTimeout(() => {
+      button.classList.remove('clicked');
+    }, 1500);
   }
 }

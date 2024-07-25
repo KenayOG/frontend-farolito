@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterLink, RouterModule, Routes } from '@angular/router';
 import { HomeProductsComponent } from './home-products/home-products.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { OrderListModule } from 'primeng/orderlist';
 import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmarCarritoComponent } from './confirmar-carrito/confirmar-carrito.component';
 
 @NgModule({
-  declarations: [HomeProductsComponent],
+  declarations: [HomeProductsComponent, ConfirmarCarritoComponent],
   imports: [
     CommonModule,
     RouterModule,
+    RouterLink,
     CardModule,
     ButtonModule,
     OrderListModule,

@@ -13,3 +13,7 @@
 svg.p-dropdown-check-icon.p-icon {
   margin-right: 10px;
 }
+
+.cdk-drop-list.p-orderlist-list {
+  margin-left: -30px;
+}

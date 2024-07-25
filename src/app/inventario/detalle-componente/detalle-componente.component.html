@@ -1,1 +1,101 @@
-<p>detalle-componente works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <p-table
+        #dt
+        [value]="componentDetail"
+        [scrollable]="true"
+        scrollHeight="270px"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} de {last}"
+        [filterDelay]="0"
+        [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="text-center">
+            <h3 class="mt-2">
+              <b>
+                <!-- Reemplazar con el nombre de la lampara acorde al detalle -->
+                <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp; Luz Led
+              </b>
+            </h3>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id">
+              <div class="flex justify-content-between align-items-center">
+                Id
+                <p-sortIcon field="id" />
+              </div>
+            </th>
+            <th pSortableColumn="quantity">
+              <div class="flex justify-content-between align-items-center">
+                Cantidad
+                <p-sortIcon field="quantity" />
+              </div>
+            </th>
+            <th pSortableColumn="expiration">
+              <div class="flex justify-content-between align-items-center">
+                Fecha Expiracion
+                <p-sortIcon field="expiration" />
+              </div>
+            </th>
+            <th pSortableColumn="brand">
+              <div class="flex justify-content-between align-items-center">
+                Marca
+                <p-sortIcon field="brand" />
+              </div>
+            </th>
+            <th pSortableColumn="lote">
+              <div class="flex justify-content-between align-items-center">
+                Lote
+                <p-sortIcon field="lote" />
+              </div>
+            </th>
+            <th pSortableColumn="purchaseDate">
+              <div class="flex justify-content-between align-items-center">
+                Fecha Compra
+                <p-sortIcon field="purchaseDate" />
+              </div>
+            </th>
+            <th pSortableColumn="purchaseCost">
+              <div class="flex justify-content-between align-items-center">
+                Costo compra
+                <p-sortIcon field="purchaseCost" />
+              </div>
+            </th>
+            <th pSortableColumn="provider">
+              <div class="flex justify-content-between align-items-center">
+                Proveedor
+                <p-sortIcon field="provider" />
+              </div>
+            </th>
+            <th pSortableColumn="phone">
+              <div class="flex justify-content-between align-items-center">
+                Telefono
+                <p-sortIcon field="phone" />
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-componentDetail>
+          <tr class="p-selectable-row">
+            <td>{{ componentDetail.id }}</td>
+            <td>{{ componentDetail.quantity }}</td>
+            <td>{{ componentDetail.expiration }}</td>
+            <td>{{ componentDetail.brand }}</td>
+            <td>{{ componentDetail.lote }}</td>
+            <td>{{ componentDetail.purchaseDate }}</td>
+            <td>{{ componentDetail.purchaseCost }}</td>
+            <td>{{ componentDetail.provider }}</td>
+            <td>{{ componentDetail.phone }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -1,33 +1,21 @@
-body,
-html {
+body {
+  background-color: #f0f0f0;
+  color: #333;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.container {
-  max-width: 100%;
-  padding: 0;
-  margin: 0 auto;
+  padding: 20px;
 }
 
 .card {
   max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
+  margin: 20px auto;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-  margin-bottom: 20px;
-}
-
-.card-title {
-  font-size: 30px;
-  font-weight: bold;
-  margin: 0;
+  background-color: black;
+  color: white;
 }
 
 .card-description {
@@ -37,6 +25,7 @@ html {
 
 .card-content {
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .label {

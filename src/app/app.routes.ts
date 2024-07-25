@@ -22,13 +22,12 @@ import { VistaDashboardComponent } from './dashboard/vista-dashboard/vista-dashb
 import { CatalogoProductosComponent } from './catalogo/catalogo-productos/catalogo-productos.component';
 import { EstatusPedidosClientesComponent } from './pedidos/estatus-pedidos-clientes/estatus-pedidos-clientes.component';
 import { AdministracionMermaComponent } from './merma/administracion-merma/administracion-merma.component';
+import { ConfirmarCarritoComponent } from './home/confirmar-carrito/confirmar-carrito.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'home',
-    component: HomeProductsComponent,
-  },
+  { path: 'home', component: HomeProductsComponent },
+  { path: 'pagar-carrito', component: ConfirmarCarritoComponent },
   { path: 'prueba', component: PruebaComponent },
   { path: 'usuarios', component: AdministrarEmpleadosComponent },
   { path: 'crear-empleado', component: CrearEmpleadoComponent },

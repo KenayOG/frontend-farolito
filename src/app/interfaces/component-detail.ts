@@ -1,7 +1,6 @@
 export interface ComponentDetail {
   id: number;
-  name: string;
-  quantity: string;
+  quantity: number;
   expiration: string;
   brand: string;
   lote: string;
