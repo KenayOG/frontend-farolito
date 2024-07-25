@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'maquetado-farolito';
+  showNavBar: boolean = true;
+  constructor(private router: Router) {
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        if (val.url == '/login' || val.url == '/signup') {
+          this.showNavBar = false;
+        } else {
+          this.showNavBar = true;
+        }
+      }
+    });
+  }
 }

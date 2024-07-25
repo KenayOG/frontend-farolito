@@ -1,0 +1,69 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.card {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-description {
+  margin: 10px 0 0;
+  color: #666;
+}
+
+.card-content {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

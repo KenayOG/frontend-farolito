@@ -1,0 +1,252 @@
+<div class="container">
+  <nav style="margin: 0 50px">
+    <div class="nav nav-tabs mt-2 custom-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="nav-lamparas-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-lamparas"
+        type="button"
+        role="tab"
+        aria-controls="nav-lamparas"
+        aria-selected="true"
+      >
+        Lamparas
+      </button>
+      <button
+        class="nav-link"
+        id="nav-componentes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-componentes"
+        type="button"
+        role="tab"
+        aria-controls="nav-componentes"
+        aria-selected="false"
+      >
+        Componentes
+      </button>
+    </div>
+  </nav>
+  <div
+    class="card align-items-center mt-1"
+    style="border: none; margin: 0 50px"
+  >
+    <div class="row tab-content" id="nav-tabContent">
+      <div
+        class="col-12 tab-pane fade show active p-3"
+        id="nav-lamparas"
+        role="tabpanel"
+        aria-labelledby="nav-lamparas-tab"
+      >
+        <p-table
+          #dt
+          [value]="lampsInventory"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Inventario
+                  Lamparas
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar Lampara:"
+                    class="mt-1"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="name">
+                <div class="flex justify-content-between align-items-center">
+                  Nombre
+                  <p-sortIcon field="name" />
+                </div>
+              </th>
+              <th pSortableColumn="quantity">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="quantity" />
+                </div>
+              </th>
+              <th pSortableColumn="price">
+                <div class="flex justify-content-between align-items-center">
+                  Precio
+                  <p-sortIcon field="price" />
+                </div>
+              </th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-lamp>
+            <tr class="p-selectable-row">
+              <td>
+                {{ lamp.id }}
+              </td>
+              <td>
+                {{ lamp.name }}
+              </td>
+              <td>
+                {{ lamp.quantity }}
+              </td>
+              <td>
+                {{ lamp.price }}
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/detalle-lampara', lamp.id]"
+                  class="btn btn-primary"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </a>
+              </td>
+              <!-- Falta agregar el modal para enviar a merma la cantidad de lamparas y la descripcion del porque se envian a merma -->
+              <td>
+                <a class="btn btn-danger" href="#">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <!-- Componentes -->
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-componentes"
+        role="tabpanel"
+        aria-labelledby="nav-componentes-tab"
+      >
+        <p-table
+          #dt
+          [value]="componentesInventory"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b
+                  ><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Inventario
+                  Componentes</b
+                >
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"></i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar componente:"
+                    class="mt-1"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="item">
+                <div class="flex justify-content-between align-items-center">
+                  Nombre
+                  <p-sortIcon field="item" />
+                </div>
+              </th>
+              <th pSortableColumn="quantity">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="quantity" />
+                </div>
+              </th>
+              <th pSortableColumn="price">
+                <div class="flex justify-content-between align-items-center">
+                  Precio
+                  <p-sortIcon field="price" />
+                </div>
+              </th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-component>
+            <tr class="p-selectable-row">
+              <td>
+                {{ component.id }}
+              </td>
+              <td>
+                {{ component.item }}
+              </td>
+              <td>
+                {{ component.quantity }}
+              </td>
+              <td>
+                {{ component.price }}
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/detalle-componente', component.id]"
+                  class="btn btn-primary"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </a>
+              </td>
+              <!-- Falta agregar el modal para enviar a merma la cantidad de componentes y la descripcion del porque se envian a merma -->
+              <td>
+                <a class="btn btn-danger" href="#">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

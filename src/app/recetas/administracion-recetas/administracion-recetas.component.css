@@ -1,0 +1,45 @@
+.textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.custom-checkbox {
+  padding: 3px;
+}
+
+.scroll {
+  max-height: 440px;
+  overflow-y: scroll;
+}
+
+.scroll-components {
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+.card-header {
+  position: sticky;
+  z-index: 100;
+  background-color: black;
+  color: white;
+  top: 0;
+}
+
+.header {
+  position: sticky;
+  z-index: 100;
+  background-color: rgb(231, 231, 228);
+  top: 0;
+  color: black;
+  width: 270px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}

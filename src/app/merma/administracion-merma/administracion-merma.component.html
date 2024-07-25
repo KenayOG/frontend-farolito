@@ -1,0 +1,273 @@
+<div class="container">
+  <nav style="margin: 0 50px">
+    <div class="nav nav-tabs mt-2 custom-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="nav-merma-lamparas-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-merma-lamparas"
+        type="button"
+        role="tab"
+        aria-controls="nav-merma-lamparas"
+        aria-selected="true"
+      >
+        Lamparas
+      </button>
+      <button
+        class="nav-link"
+        id="nav-merma-componentes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-merma-componentes"
+        type="button"
+        role="tab"
+        aria-controls="nav-merma-componentes"
+        aria-selected="false"
+      >
+        Componentes
+      </button>
+    </div>
+  </nav>
+  <div
+    class="card align-items-center mt-1"
+    style="border: none; margin: 0 50px"
+  >
+    <div class="row tab-content" id="nav-tabContent">
+      <div
+        class="col-12 tab-pane fade show active p-3"
+        id="nav-merma-lamparas"
+        role="tabpanel"
+        aria-labelledby="nav-merma-lamparas-tab"
+      >
+        <p-table
+          #dt
+          [value]="decreasedLamps"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Merma de Lamparas
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar Merma:"
+                    class="mt-1"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="productDecreased">
+                <div class="flex justify-content-between align-items-center">
+                  Nombre
+                  <p-sortIcon field="productDecreased" />
+                </div>
+              </th>
+              <th pSortableColumn="lote">
+                <div class="flex justify-content-between align-items-center">
+                  Lote
+                  <p-sortIcon field="lote" />
+                </div>
+              </th>
+              <th pSortableColumn="quantityDecrease">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="quantityDecrease" />
+                </div>
+              </th>
+              <th pSortableColumn="description">
+                <div class="flex justify-content-between align-items-center">
+                  Descripcion
+                  <p-sortIcon field="description" />
+                </div>
+              </th>
+              <th pSortableColumn="dateDecrease">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Mermado
+                  <p-sortIcon field="dateDecrease" />
+                </div>
+              </th>
+              <th pSortableColumn="decreasedBy">
+                <div class="flex justify-content-between align-items-center">
+                  Mermado por
+                  <p-sortIcon field="decreasedBy" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-decreasedlamp>
+            <tr class="p-selectable-row">
+              <td>
+                {{ decreasedlamp.id }}
+              </td>
+              <td>
+                {{ decreasedlamp.productDecreased }}
+              </td>
+              <td>
+                {{ decreasedlamp.lote }}
+              </td>
+              <td>
+                {{ decreasedlamp.quantityDecreased }}
+              </td>
+              <td>
+                {{ decreasedlamp.description }}
+              </td>
+              <td>
+                {{ decreasedlamp.dateDecrease }}
+              </td>
+              <td>
+                {{ decreasedlamp.decreasedBy }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <!-- Componentes merma -->
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-merma-componentes"
+        role="tabpanel"
+        aria-labelledby="nav-merma-componentes-tab"
+      >
+        <p-table
+          #dt
+          [value]="decreasedComponents"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Merma de
+                  Componentes
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar Merma:"
+                    class="mt-1"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="productDecreased">
+                <div class="flex justify-content-between align-items-center">
+                  Nombre
+                  <p-sortIcon field="productDecreased" />
+                </div>
+              </th>
+              <th pSortableColumn="lote">
+                <div class="flex justify-content-between align-items-center">
+                  Lote
+                  <p-sortIcon field="lote" />
+                </div>
+              </th>
+              <th pSortableColumn="quantityDecrease">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="quantityDecrease" />
+                </div>
+              </th>
+              <th pSortableColumn="description">
+                <div class="flex justify-content-between align-items-center">
+                  Descripcion
+                  <p-sortIcon field="description" />
+                </div>
+              </th>
+              <th pSortableColumn="dateDecrease">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Mermado
+                  <p-sortIcon field="dateDecrease" />
+                </div>
+              </th>
+              <th pSortableColumn="decreasedBy">
+                <div class="flex justify-content-between align-items-center">
+                  Mermado por
+                  <p-sortIcon field="decreasedBy" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-decreasedcomponent>
+            <tr class="p-selectable-row">
+              <td>
+                {{ decreasedcomponent.id }}
+              </td>
+              <td>
+                {{ decreasedcomponent.productDecreased }}
+              </td>
+              <td>
+                {{ decreasedcomponent.lote }}
+              </td>
+              <td>
+                {{ decreasedcomponent.quantityDecreased }}
+              </td>
+              <td>
+                {{ decreasedcomponent.description }}
+              </td>
+              <td>
+                {{ decreasedcomponent.dateDecrease }}
+              </td>
+              <td>
+                {{ decreasedcomponent.decreasedBy }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

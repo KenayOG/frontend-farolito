@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="card mt-4 scroll">
+        <h3 class="card-header text-center">
+          <!-- <i class="fa-solid fa-rectangle-list"></i> --><i
+            class="fa-solid fa-list"
+          ></i
+          >&nbsp;&nbsp;Administracion de Recetas
+        </h3>
+        <p-accordion [multiple]="true" class="m-3">
+          <p-accordionTab *ngFor="let recipe of recipes" [header]="recipe.name">
+            <div class="row">
+              <div
+                class="col-6 text-center"
+                style="font-size: 18px"
+                *ngIf="recipe.components"
+              >
+                <ol *ngFor="let item of recipe.components">
+                  <i
+                    class="fa-solid fa-circle fa-xs"
+                    style="margin-right: 20px"
+                  ></i>
+                  {{
+                    item
+                  }}
+                </ol>
+              </div>
+              <div class="col-6" *ngIf="recipe.image">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p-image
+                      [src]="recipe.image"
+                      alt="{{ recipe.name }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-6 text-center">
+                    <button class="btn btn-danger btn-lg">
+                      <i class="fas fa-trash"></i>&nbsp;Eliminar
+                    </button>
+                  </div>
+                  <div class="col-6 text-center">
+                    <button class="btn btn-primary btn-lg">
+                      <i class="fa-solid fa-pen"></i>&nbsp;&nbsp;Editar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card mt-4">
+        <h3 class="card-header text-center">
+          <i class="fa-solid fa-file-circle-plus"></i>&nbsp;&nbsp;Agregar Receta
+        </h3>
+        <div class="card-content m-3">
+          <form class="form-grid">
+            <div class="form-section">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Nombre:"
+                      id="nombre-receta"
+                    />
+                    <label for="floatingInput">Nombre:</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div
+                    class="card scroll-components mt-3 mb-3"
+                    style="border: none"
+                  >
+                    <div class="form-floating">
+                      <div class="flex flex-column gap-2 p-3">
+                        <label class="header mb-2"
+                          ><i class="fa-solid fa-layer-group"></i
+                          >&nbsp;&nbsp;Componentes</label
+                        >
+                        <div
+                          *ngFor="let component of components"
+                          class="field-checkbox"
+                        >
+                          <p-checkbox
+                            [label]="component.name"
+                            name="group"
+                            [value]="component"
+                            class="custom-checkbox"
+                          ></p-checkbox>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-floating mt-2">
+                    <div class="input-group-dark">
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="inputGroupFile"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-end">
+                  <div class="form-floating mt-4">
+                    <button class="btn btn-dark btn-lg">
+                      <i class="fa-solid fa-save"></i>&nbsp;&nbsp;Guardar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

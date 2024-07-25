@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+.p-orderlist-controls {
+  display: none;
+}
+
+#pn_id_1_list {
+  margin-left: -30px;
+}
+
+.p-dropdown {
+  width: 270px;
+}
+
+svg.p-dropdown-check-icon.p-icon {
+  margin-right: 10px;
+}

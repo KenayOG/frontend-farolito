@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="card align-items-center mt-5" style="border: none">
+    <div class="row">
+      <div class="col-12">
+        <p-table
+          #dt
+          [value]="sales"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b
+                  ><i class="fa-solid fa-file-invoice-dollar"></i
+                  >&nbsp;&nbsp;Administracion de Ventas
+                </b>
+              </h3>
+              <p-iconField iconPosition="left" style="margin-left: 200px">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input pInputText type="text" placeholder="Buscar Venta:" />
+              </p-iconField>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="customer">
+                <div class="flex justify-content-between align-items-center">
+                  Cliente
+                  <p-sortIcon field="customer" />
+                </div>
+              </th>
+              <th pSortableColumn="productSold">
+                <div class="flex justify-content-between align-items-center">
+                  Producto
+                  <p-sortIcon field="productSold" />
+                </div>
+              </th>
+              <th pSortableColumn="dateTime">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha y Hora
+                  <p-sortIcon field="dateTime" />
+                </div>
+              </th>
+              <th pSortableColumn="cost">
+                <div class="flex justify-content-between align-items-center">
+                  Monto
+                  <p-sortIcon field="cost" />
+                </div>
+              </th>
+              <!-- <th pSortableColumn="email">
+                <div class="flex justify-content-between align-items-center">
+                  Email
+                  <p-sortIcon field="email" />
+                </div>
+              </th> -->
+              <th pSortableColumn="paymentType">
+                <div class="flex justify-content-between align-items-center">
+                  Tipo de Pago
+                  <p-sortIcon field="paymentType" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-sale>
+            <tr class="p-selectable-row">
+              <td>
+                {{ sale.id }}
+              </td>
+              <td>
+                {{ sale.customer }}
+              </td>
+              <td>
+                {{ sale.productSold }}
+              </td>
+              <td>
+                {{ sale.dateTime }}
+              </td>
+              <td>
+                {{ sale.cost }}
+              </td>
+              <!-- <td>
+                {{ sale.email }}
+              </td> -->
+              <td>
+                {{ sale.paymentType }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

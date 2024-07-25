@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="card align-items-center mt-5" style="border: none">
+    <div class="row">
+      <div class="col-12">
+        <p-table
+          #dt
+          [value]="orders"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b
+                  ><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;Estatus
+                  de Pedidos
+                </b>
+              </h3>
+              <p-iconField iconPosition="left" style="margin-left: 200px">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input pInputText type="text" placeholder="Buscar Pedido:" />
+              </p-iconField>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="status">
+                <div class="flex justify-content-between align-items-center">
+                  Estatus
+                  <p-sortIcon field="status" />
+                </div>
+              </th>
+              <th pSortableColumn="stage">
+                <div class="flex justify-content-between align-items-center">
+                  Fase
+                  <p-sortIcon field="stage" />
+                </div>
+              </th>
+              <th pSortableColumn="dateTime">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha y Hora
+                  <p-sortIcon field="dateTime" />
+                </div>
+              </th>
+              <th pSortableColumn="details">
+                <div class="flex justify-content-between align-items-center">
+                  Detalles
+                  <p-sortIcon field="details" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-order>
+            <tr class="p-selectable-row">
+              <td>
+                {{ order.id }}
+              </td>
+              <td>
+                <span
+                  [ngClass]="{
+                    'status-sent': order.status === 'Enviado',
+                    'status-delivered': order.status === 'Entregado',
+                    'status-inprogress': order.status === 'En Proceso',
+                    'status-canceled': order.status === 'Cancelado'
+                  }"
+                  class="status-label"
+                >
+                  {{ order.status }}
+                </span>
+              </td>
+              <td>
+                {{ order.stage }}
+              </td>
+              <td>
+                {{ order.dateTime }}
+              </td>
+              <td>
+                {{ order.details }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+.custom-navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  margin-left: 35px;
+  width: 40px;
+}
+
+.nav-item {
+  margin-left: 20px;
+  padding: 0;
+  overflow: hidden;
+  transition: width 12s ease-in;
+}
+
+.nav-link {
+  font-size: 25px;
+  position: relative;
+  padding-bottom: 10px;
+  color: #b1b1b1;
+  display: flex;
+  align-items: center;
+  transition: width 12s ease-in;
+}
+
+.nav-link i {
+  margin-right: 8px;
+}
+
+.nav-link span {
+  display: none;
+  font-size: 15px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 14s ease-in;
+}
+
+.nav-link:hover span {
+  display: block;
+  opacity: 1;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  display: block;
+  right: 0;
+  background: rgb(255, 215, 0);
+  transition: width 1.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  background: rgb(255, 255, 0);
+  left: 0;
+}
+
+.no-accordion-dropdown {
+  width: auto;
+  margin-left: -5px;
+}
+
+.no-accordion {
+  width: auto;
+  margin-left: 10px;
+}
+
+.nav-item:not(.no-accordion):hover {
+  width: 130px;
+}

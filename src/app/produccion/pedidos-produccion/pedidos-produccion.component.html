@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="card align-items-center mt-5" style="border: none">
+    <div class="row">
+      <div class="col-12">
+        <p-table
+          #dt
+          [value]="productions"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b
+                  ><i class="fa-solid fa-screwdriver-wrench"></i
+                  >&nbsp;&nbsp;Administracion de Produccion</b
+                >
+              </h3>
+              <p-iconField iconPosition="left" style="margin-left: 200px">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input
+                  pInputText
+                  type="text"
+                  placeholder="Buscar produccion:"
+                />
+              </p-iconField>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="employee">
+                <div class="flex justify-content-between align-items-center">
+                  Empleado
+                  <p-sortIcon field="employee" />
+                </div>
+              </th>
+              <th pSortableColumn="date">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha
+                  <p-sortIcon field="date" />
+                </div>
+              </th>
+              <th pSortableColumn="orderOf">
+                <div class="flex justify-content-between align-items-center">
+                  Pedido de
+                  <p-sortIcon field="orderOf" />
+                </div>
+              </th>
+              <th pSortableColumn="quantity">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="quantity" />
+                </div>
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-production>
+            <tr class="p-selectable-row">
+              <td>
+                {{ production.id }}
+              </td>
+              <td>
+                {{ production.employee }}
+              </td>
+              <td>
+                {{ production.date }}
+              </td>
+              <td>
+                {{ production.orderOf }}
+              </td>
+              <td>
+                {{ production.quantity }}
+              </td>
+              <td>
+                <button class="btn btn-success">
+                  <i class="fa-solid fa-check"></i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger">
+                  <!-- <i class="fas fa-trash"></i> -->
+                  <i class="fa-solid fa-x"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.status-label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status-sent {
+  background-color: black;
+  color: white;
+}
+
+.status-delivered {
+  background-color: green;
+  color: white;
+}
+
+.status-inprogress {
+  background-color: rgba(220, 220, 220, 0.584);
+  color: black;
+}
+
+.status-canceled {
+  background-color: rgb(177, 2, 2);
+  color: white;
+}

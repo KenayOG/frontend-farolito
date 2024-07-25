@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-9 scroll">
+      <div class="row">
+        <!-- Se debe iterar en la lista de los productos de la bd, esta solo es de muestra -->
+        <div
+          *ngFor="let product of products"
+          class="col-3"
+          style="margin: 15px 0 0 40px"
+        >
+          <p-card
+            header="{{ product.name }}"
+            subheader="$ {{ product.price }}"
+            [style]="{ width: '230px', height: '390px' }"
+            styleClass="card"
+          >
+            <ng-template pTemplate="header">
+              <div class="row m-2">
+                <div class="col-2 d-flex mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-dark btn-custom-eye"
+                    [ngbPopover]="popoverContent"
+                    popoverTitle="Detalles de {{ product.name }}"
+                    [closeDelay]="2000"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <div class="col-10 mt-3">
+                  <img
+                    src="assets/images/{{ product.image }}"
+                    alt=""
+                    class="image"
+                  />
+                </div>
+              </div>
+            </ng-template>
+            <!-- probablemente se modifique esta parte del codigo para no mostrar el span de agregado -->
+            <ng-template pTemplate="footer">
+              <button class="cart-button" #cartButton>
+                <span class="add-to-cart">Agregar</span>
+                <span class="added">Agregado</span>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-box"></i>
+              </button>
+            </ng-template>
+            <!-- Esto se sustituira con los detalles del producto que se este usando -->
+            <ng-template #popoverContent>
+              <div>
+                <div *ngFor="let item of product.components">
+                  {{ item }}<br />
+                </div>
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 mt-2">
+      <!-- Lo que se muestra en carrito son datos estaticos, no dinamicos, hay que hacer lo mismo para poder mostrar -->
+      <p-orderList
+        [value]="products.slice(22)"
+        [listStyle]="{ height: '14rem', width: '17em' }"
+        filterBy="name"
+        filterPlaceholder="Buscar producto:"
+      >
+        <ng-template pTemplate="header">
+          <div class="orderlist-header">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </ng-template>
+        <ng-template let-product pTemplate="item">
+          <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <img
+              src="assets/images/{{ product.image }}"
+              [alt]="product.name"
+              class="image"
+            />
+            <div class="flex-1 flex flex-column gap-2">
+              <span class="font-bold">{{ product.name }}</span>
+              <div class="flex align-items-center gap-2">
+                <i class="pi pi-tag text-sm"></i>
+              </div>
+            </div>
+            <span class="font-bold text-900">
+              {{ "$" + product.price }}
+            </span>
+          </div>
+        </ng-template>
+      </p-orderList>
+    </div>
+  </div>
+</div>
