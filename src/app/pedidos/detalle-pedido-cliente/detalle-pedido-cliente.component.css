@@ -1,0 +1,70 @@
+.card-header {
+  background-color: black;
+  color: white;
+}
+
+.status-container {
+  display: flex;
+  justify-content: center;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.status-item i {
+  font-size: 1.3rem;
+  margin-right: 10px;
+  background-color: rgb(225, 223, 223);
+  color: black;
+  border-radius: 50%;
+  padding: 10px;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.date {
+  font-size: 1.1rem;
+}
+
+.subtitle {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.address i,
+.pay-method i {
+  font-size: 1rem;
+  background-color: rgb(225, 223, 223);
+  color: black;
+  margin-right: 10px;
+  border-radius: 50%;
+  padding: 10px;
+  width: 2.5rem;
+  height: 2.5em;
+}
+
+.data-details {
+  text-transform: uppercase;
+}
+
+.fa-lightbulb {
+  color: yellow;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background-color: black;
+  padding: 10px;
+  width: 2.8rem;
+  height: 2.8rem;
+}

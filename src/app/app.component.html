@@ -3,7 +3,17 @@
   class="navbar navbar-expand-lg navbar-light border custom-navbar justify-content-center"
 >
   <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="assets/images/logo-farolito.png" alt="Logo" class="navbar-logo" />
+    <div class="pulse">
+      <img
+        src="assets/images/logo-farolito.png"
+        alt="Logo"
+        class="navbar-logo"
+      />
+      <span style="--i: 0"></span>
+      <span style="--i: 1"></span>
+      <span style="--i: 2"></span>
+      <span style="--i: 3"></span>
+    </div>
   </a>
   <button
     class="navbar-toggler"
@@ -66,13 +76,14 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/ventas">
-          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <i class="fa-brands fa-shopify"></i>
           <span>Ventas</span>
         </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/usuarios">
-          <i class="fa-solid fa-user-large"></i>
+          <i class="fa-solid fa-address-book"></i>
+          <!-- <i class="fa-solid fa-user-large"></i> -->
           <span>Usuarios</span>
         </a>
       </li>
@@ -80,12 +91,6 @@
         <a class="nav-link" routerLink="/about">
           <i class="fa-solid fa-circle-info"></i>
           <span>Acerca de</span>
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/compras">
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span>Compras</span>
         </a>
       </li>
       <li class="nav-item active">

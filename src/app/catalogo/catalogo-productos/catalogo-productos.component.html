@@ -1,1 +1,32 @@
-<h3 class="text-center">Catalogo de productos para el cliente</h3>
+<div class="container">
+  <div class="card flex justify-content-center mt-4">
+    <h3 class="text-center card-header">
+      <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Productos Disponibles
+    </h3>
+    <p-carousel
+      [value]="products"
+      [numVisible]="1"
+      [numScroll]="1"
+      orientation="vertical"
+      verticalViewPortHeight="255px"
+    >
+      <ng-template let-product pTemplate="item">
+        <div class="d-flex flex-column align-items-center">
+          <div class="mb-1">
+            <img
+              src="assets/images/{{ product.image }}"
+              alt="product.name"
+              class="img-fluid"
+            />
+          </div>
+          <div class="text-center font-weight-bold">
+            <b>{{ product.name }}</b>
+          </div>
+          <div class="font-weight-bold text-x1 text-center">
+            {{ "$" + product.price }}
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

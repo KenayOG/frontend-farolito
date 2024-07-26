@@ -17,12 +17,13 @@ import { AdministracionRecetasComponent } from './recetas/administracion-recetas
 import { AdministracionInventarioComponent } from './inventario/administracion-inventario/administracion-inventario.component';
 import { DetalleLamparaComponent } from './inventario/detalle-lampara/detalle-lampara.component';
 import { DetalleComponenteComponent } from './inventario/detalle-componente/detalle-componente.component';
-import { ComprarComponentesComponent } from './compras/comprar-componentes/comprar-componentes.component';
 import { VistaDashboardComponent } from './dashboard/vista-dashboard/vista-dashboard.component';
 import { CatalogoProductosComponent } from './catalogo/catalogo-productos/catalogo-productos.component';
 import { EstatusPedidosClientesComponent } from './pedidos/estatus-pedidos-clientes/estatus-pedidos-clientes.component';
 import { AdministracionMermaComponent } from './merma/administracion-merma/administracion-merma.component';
 import { ConfirmarCarritoComponent } from './home/confirmar-carrito/confirmar-carrito.component';
+import { AgregarLoteComponentesComponent } from './inventario/agregar-lote-componentes/agregar-lote-componentes.component';
+import { DetallePedidoClienteComponent } from './pedidos/detalle-pedido-cliente/detalle-pedido-cliente.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -48,9 +49,10 @@ export const routes: Routes = [
   { path: 'inventario', component: AdministracionInventarioComponent },
   { path: 'detalle-lampara/:id', component: DetalleLamparaComponent },
   { path: 'detalle-componente/:id', component: DetalleComponenteComponent },
-  { path: 'compras', component: ComprarComponentesComponent },
+  { path: 'agregar-lote/:id', component: AgregarLoteComponentesComponent },
   { path: 'dashboard', component: VistaDashboardComponent },
   { path: 'catalogo', component: CatalogoProductosComponent },
   { path: 'pedidos', component: EstatusPedidosClientesComponent },
+  { path: 'detalle-pedido/:id', component: DetallePedidoClienteComponent },
   { path: 'merma', component: AdministracionMermaComponent },
 ];

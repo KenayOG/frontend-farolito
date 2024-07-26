@@ -1,1 +1,74 @@
-<p>detalle-pedido-cliente works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10 align-items-center">
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <h3 class="card-header text-center">
+              Orden&nbsp;<i class="fa-solid fa-hashtag"></i>{{ idPedido }}
+            </h3>
+            <div class="card-content m-4">
+              <h5 class="text-center">
+                <i class="fa-solid fa-lightbulb"></i>&nbsp;<b>
+                  {{ nombreProducto }}</b
+                >
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-content m-4">
+              <div class="status-container">
+                <div class="status-list">
+                  <div *ngFor="let status of estatus; let i = index">
+                    <div class="status-item">
+                      <i [ngClass]="getEstatusIcono(status)"></i>
+                      <span class="status">{{ status }}</span>
+                    </div>
+                  </div>
+                </div>
+                <p-divider layout="vertical"
+                  ><i class="fa-solid fa-timeline"></i
+                ></p-divider>
+                <div class="date-list mt-2">
+                  <div *ngFor="let fecha of fecha; let i = index">
+                    <ul class="date p-1">
+                      {{
+                        fecha
+                      }}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-content m-2">
+              <div class="details-container p-2">
+                <div class="address text-center">
+                  <p class="subtitle">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Direccion de Envio:
+                  </p>
+                  <span class="data-details">{{ direccion }}</span>
+                </div>
+                <div class="pay-method text-center mt-4">
+                  <p class="subtitle">
+                    <i [ngClass]="getMetodoPagoIcono(metodoPago)"></i
+                    >&nbsp;Metodo de Pago:
+                  </p>
+                  <span class="data-details">{{ metodoPago }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

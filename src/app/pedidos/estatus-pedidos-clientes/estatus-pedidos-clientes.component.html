@@ -1,1 +1,487 @@
-<h3 class="text-center">Modulo de realizacion de pedidos</h3>
+<div class="container">
+  <div class="card mt-3">
+    <h3 class="card-header text-center">
+      <i class="fa-solid fa-spinner"></i>&nbsp;&nbsp; Estatus de pedidos
+    </h3>
+    <p-tabView styleClass="tabview-custom">
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar icon="fa-solid fa-layer-group" shape="circle" />
+            <span class="font-bold white-space-nowrap m-0">
+              &nbsp;&nbsp;Todo </span
+            >&nbsp;
+            <p-badge [value]="orders.length"></p-badge>
+          </div>
+        </ng-template>
+        <p-accordion [multiple]="true" [activeIndex]="indexActivosTodo">
+          <p-accordionTab *ngFor="let order of orders" [header]="order.status">
+            <div class="row">
+              <div class="col-3" *ngIf="order.image">
+                <div class="row">
+                  <div class="col-6">
+                    <p-image
+                      [src]="order.image"
+                      alt="{{ order.nameProduct }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                  <div class="col-6">
+                    <p-divider layout="vertical"
+                      ><i class="fa-solid fa-arrow-right"></i
+                    ></p-divider>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-5 text-center mt-3"
+                style="font-size: 18px"
+                *ngIf="order.nameProduct"
+              >
+                <h4 style="font-weight: bold">
+                  {{ order.nameProduct }}
+                </h4>
+                <ul style="margin-left: -30px">
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Cantidad: " + order.quantity
+                  }}
+                  <hr />
+                  <i
+                    class="fa-solid fa-sack-dollar"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Precio: " + order.price
+                  }}
+                </ul>
+              </div>
+              <div class="col-4" style="font-size: 18px">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <div
+                      class="text-center"
+                      style="
+                        background-color: black;
+                        border-radius: 12px;
+                        width: auto;
+                        color: white;
+                        padding: 10px;
+                      "
+                    >
+                      <i class="fa-solid fa-file-invoice-dollar"></i
+                      >&nbsp;&nbsp;{{
+                        "Total: " + order.price * order.quantity
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <a
+                        [routerLink]="['/detalle-pedido', order.id]"
+                        class="btn btn-primary btn-lg p-2"
+                      >
+                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+      <p-tabPanel header="Header">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar icon="fa-solid fa-money-bill-transfer" shape="circle" />
+            <span class="font-bold white-space-nowrap m-0">
+              &nbsp;&nbsp;Sin pagar </span
+            >&nbsp;
+            <p-badge [value]="filtroOrdenesSinpago.length"></p-badge>
+          </div>
+        </ng-template>
+        <p-accordion [multiple]="true" [activeIndex]="indexActivosSinpago">
+          <p-accordionTab
+            *ngFor="let order of filtroOrdenesSinpago"
+            [header]="order.status"
+          >
+            <div class="row">
+              <div class="col-3" *ngIf="order.image">
+                <div class="row">
+                  <div class="col-6">
+                    <p-image
+                      [src]="order.image"
+                      alt="{{ order.nameProduct }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                  <div class="col-6">
+                    <p-divider layout="vertical"
+                      ><i class="fa-solid fa-arrow-right"></i
+                    ></p-divider>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-5 text-center mt-3"
+                style="font-size: 18px"
+                *ngIf="order.nameProduct"
+              >
+                <h4 style="font-weight: bold">
+                  {{ order.nameProduct }}
+                </h4>
+                <ul style="margin-left: -30px">
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Cantidad: " + order.quantity
+                  }}
+                  <hr />
+                  <i
+                    class="fa-solid fa-sack-dollar"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Precio: " + order.price
+                  }}
+                </ul>
+              </div>
+              <div class="col-4" style="font-size: 18px">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <div
+                      class="text-center"
+                      style="
+                        background-color: black;
+                        border-radius: 12px;
+                        width: auto;
+                        color: white;
+                        padding: 10px;
+                      "
+                    >
+                      <i class="fa-solid fa-file-invoice-dollar"></i
+                      >&nbsp;&nbsp;{{
+                        "Total: " + order.price * order.quantity
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <a
+                        [routerLink]="['/detalle-pedido', order.id]"
+                        class="btn btn-primary btn-lg p-2"
+                      >
+                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+      <p-tabPanel header="Header 3">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar icon="fa-solid fa-hourglass-start" shape="circle" />
+            <span class="font-bold white-space-nowrap m-0 margin-badge">
+              &nbsp;&nbsp;En proceso</span
+            >&nbsp;
+            <p-badge [value]="filtroOrdenesEnproceso.length"></p-badge>
+          </div>
+        </ng-template>
+        <p-accordion [multiple]="true" [activeIndex]="indexActivosEnproceso">
+          <p-accordionTab
+            *ngFor="let order of filtroOrdenesEnproceso"
+            [header]="order.status"
+          >
+            <div class="row">
+              <div class="col-3" *ngIf="order.image">
+                <div class="row">
+                  <div class="col-6">
+                    <p-image
+                      [src]="order.image"
+                      alt="{{ order.nameProduct }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                  <div class="col-6">
+                    <p-divider layout="vertical"
+                      ><i class="fa-solid fa-arrow-right"></i
+                    ></p-divider>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-5 text-center mt-3"
+                style="font-size: 18px"
+                *ngIf="order.nameProduct"
+              >
+                <h4 style="font-weight: bold">
+                  {{ order.nameProduct }}
+                </h4>
+                <ul style="margin-left: -30px">
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Cantidad: " + order.quantity
+                  }}
+                  <hr />
+                  <i
+                    class="fa-solid fa-sack-dollar"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Precio: " + order.price
+                  }}
+                </ul>
+              </div>
+              <div class="col-4" style="font-size: 18px">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <div
+                      class="text-center"
+                      style="
+                        background-color: black;
+                        border-radius: 12px;
+                        width: auto;
+                        color: white;
+                        padding: 10px;
+                      "
+                    >
+                      <i class="fa-solid fa-file-invoice-dollar"></i
+                      >&nbsp;&nbsp;{{
+                        "Total: " + order.price * order.quantity
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <a
+                        [routerLink]="['/detalle-pedido', order.id]"
+                        class="btn btn-primary btn-lg p-2"
+                      >
+                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+      <p-tabPanel header="Enviado">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar icon="fa-solid fa-paper-plane" shape="circle" />
+            <span class="font-bold white-space-nowrap m-0 margin-badge">
+              &nbsp;&nbsp;Enviado</span
+            >&nbsp;
+            <p-badge [value]="filtroOrdenesEnviadas.length"></p-badge>
+          </div>
+        </ng-template>
+        <p-accordion [multiple]="true" [activeIndex]="indexActivosEnviadas">
+          <p-accordionTab
+            *ngFor="let order of filtroOrdenesEnviadas"
+            [header]="order.status"
+          >
+            <div class="row">
+              <div class="col-3" *ngIf="order.image">
+                <div class="row">
+                  <div class="col-6">
+                    <p-image
+                      [src]="order.image"
+                      alt="{{ order.nameProduct }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                  <div class="col-6">
+                    <p-divider layout="vertical"
+                      ><i class="fa-solid fa-arrow-right"></i
+                    ></p-divider>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-5 text-center mt-3"
+                style="font-size: 18px"
+                *ngIf="order.nameProduct"
+              >
+                <h4 style="font-weight: bold">
+                  {{ order.nameProduct }}
+                </h4>
+                <ul style="margin-left: -30px">
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Cantidad: " + order.quantity
+                  }}
+                  <hr />
+                  <i
+                    class="fa-solid fa-sack-dollar"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Precio: " + order.price
+                  }}
+                </ul>
+              </div>
+              <div class="col-4" style="font-size: 18px">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <div
+                      class="text-center"
+                      style="
+                        background-color: black;
+                        border-radius: 12px;
+                        width: auto;
+                        color: white;
+                        padding: 10px;
+                      "
+                    >
+                      <i class="fa-solid fa-file-invoice-dollar"></i
+                      >&nbsp;&nbsp;{{
+                        "Total: " + order.price * order.quantity
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <a
+                        [routerLink]="['/detalle-pedido', order.id]"
+                        class="btn btn-primary btn-lg p-2"
+                      >
+                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+      <p-tabPanel header="Header 3">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar icon="fa-solid fa-circle-check" shape="circle" />
+            <span class="font-bold white-space-nowrap m-0 margin-badge">
+              &nbsp;&nbsp;Finalizado</span
+            >&nbsp;
+            <p-badge [value]="filtroOrdenesFinalizado.length"></p-badge>
+          </div>
+        </ng-template>
+        <p-accordion [multiple]="true" [activeIndex]="indexActivosFinalizado">
+          <p-accordionTab
+            *ngFor="let order of filtroOrdenesFinalizado"
+            [header]="order.status"
+          >
+            <div class="row">
+              <div class="col-3" *ngIf="order.image">
+                <div class="row">
+                  <div class="col-6">
+                    <p-image
+                      [src]="order.image"
+                      alt="{{ order.nameProduct }}"
+                      width="160"
+                    >
+                    </p-image>
+                  </div>
+                  <div class="col-6">
+                    <p-divider layout="vertical"
+                      ><i class="fa-solid fa-arrow-right"></i
+                    ></p-divider>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-5 text-center mt-3"
+                style="font-size: 18px"
+                *ngIf="order.nameProduct"
+              >
+                <h4 style="font-weight: bold">
+                  {{ order.nameProduct }}
+                </h4>
+                <ul style="margin-left: -30px">
+                  <i
+                    class="fa-solid fa-ellipsis-vertical"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Cantidad: " + order.quantity
+                  }}
+                  <hr />
+                  <i
+                    class="fa-solid fa-sack-dollar"
+                    style="margin-right: 10px"
+                  ></i>
+                  {{
+                    "Precio: " + order.price
+                  }}
+                </ul>
+              </div>
+              <div class="col-4" style="font-size: 18px">
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <div
+                      class="text-center"
+                      style="
+                        background-color: black;
+                        border-radius: 12px;
+                        width: auto;
+                        color: white;
+                        padding: 10px;
+                      "
+                    >
+                      <i class="fa-solid fa-file-invoice-dollar"></i
+                      >&nbsp;&nbsp;{{
+                        "Total: " + order.price * order.quantity
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <a
+                        [routerLink]="['/detalle-pedido', order.id]"
+                        class="btn btn-primary btn-lg p-2"
+                      >
+                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+  <br />
+</div>

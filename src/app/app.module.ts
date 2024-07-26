@@ -14,7 +14,6 @@ import { ProduccionModule } from './produccion/produccion.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RecetasModule } from './recetas/recetas.module';
 import { InventarioModule } from './inventario/inventario.module';
-import { ComprasModule } from './compras/compras.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CatalogoModule } from './catalogo/catalogo.module';
 import { MermaModule } from './merma/merma.module';
@@ -36,7 +35,6 @@ import { PedidosModule } from './pedidos/pedidos.module';
     NoopAnimationsModule,
     RecetasModule,
     InventarioModule,
-    ComprasModule,
     DashboardModule,
     CatalogoModule,
     MermaModule,
