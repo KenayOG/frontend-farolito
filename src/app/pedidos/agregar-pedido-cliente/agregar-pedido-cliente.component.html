@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-4">
+      <div class="card">
+        <h3 class="card-header text-center">
+          <i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Agregar Pedido
+        </h3>
+        <div class="card-content">
+          <form class="form-grid">
+            <div class="form-section">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-floating mt-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Cantidad:"
+                      id="cantidad"
+                    />
+                    <label for="floatingInput">Cantidad:</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-floating mt-3">
+                    <p-dropdown
+                      [options]="productos"
+                      [(ngModel)]="selectedProduct"
+                      [checkmark]="true"
+                      [showClear]="true"
+                      optionLabel="name"
+                      placeholder="Selecciona un producto:"
+                      name="rol"
+                    ></p-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-floating mt-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Direccion:"
+                      id="direccion"
+                    />
+                    <label for="floatingInput">Direccion:</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-floating mt-3">
+                    <p-dropdown
+                      [options]="metodosPago"
+                      [(ngModel)]="selectedPayMethod"
+                      [checkmark]="true"
+                      [showClear]="true"
+                      optionLabel="name"
+                      placeholder="Selecciona un Metodo de Pago:"
+                      name="pay"
+                    ></p-dropdown>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="button-container">
+            <button class="btn btn-success btn-lg">
+              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

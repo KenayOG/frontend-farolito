@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card mt-3">
+  <div class="card mt-2">
     <h3 class="card-header text-center">
       <i class="fa-solid fa-spinner"></i>&nbsp;&nbsp; Estatus de pedidos
     </h3>
@@ -14,7 +14,7 @@
             <p-badge [value]="orders.length"></p-badge>
           </div>
         </ng-template>
-        <p-accordion [multiple]="true" [activeIndex]="indexActivosTodo">
+        <p-accordion [multiple]="true">
           <p-accordionTab *ngFor="let order of orders" [header]="order.status">
             <div class="row">
               <div class="col-3" *ngIf="order.image">
@@ -95,6 +95,13 @@
               </div>
             </div>
           </p-accordionTab>
+          <div class="row mt-2">
+            <div class="col-4">
+              <a routerLink="/agregar-pedido" class="btn btn-success p-2">
+                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Agregar pedido
+              </a>
+            </div>
+          </div>
         </p-accordion>
       </p-tabPanel>
       <p-tabPanel header="Header">

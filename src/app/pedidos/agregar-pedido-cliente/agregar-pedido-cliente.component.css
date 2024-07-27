@@ -1,0 +1,58 @@
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.card {
+  max-width: 650px;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: black;
+  color: white;
+}
+
+.card-description {
+  margin: 10px 0 0;
+  color: #666;
+}
+
+.card-content {
+  margin-bottom: 20px;
+  padding: 50px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

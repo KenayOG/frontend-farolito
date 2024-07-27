@@ -9,7 +9,7 @@
 }
 
 .nav-item {
-  margin-left: 20px;
+  margin-left: 15px;
   padding: 0;
   overflow: hidden;
   transition: width 12s ease-in;
@@ -79,7 +79,6 @@
 .navbar-brand {
   justify-content: center;
   align-items: center;
-  padding-right: 40px;
   margin-left: 10px;
   animation: colorAnimate 8s linear infinite;
 }

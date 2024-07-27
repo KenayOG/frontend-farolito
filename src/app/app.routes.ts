@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 import { HomeProductsComponent } from './home/home-products/home-products.component';
-import { PruebaComponent } from './prueba/prueba/prueba.component';
+
 import { LoginComponent } from './autenticacion/login/login.component';
 import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
 import { AdministrarEmpleadosComponent } from './usuarios/administrar-empleados/administrar-empleados.component';
-import { AboutUsComponent } from './about/about-us/about-us.component';
 import { VentasComponent } from './ventas/ventas/ventas.component';
 import { CrearEmpleadoComponent } from './usuarios/crear-empleado/crear-empleado.component';
 import { AdministrarProveedoresComponent } from './proveedores/administrar-proveedores/administrar-proveedores.component';
@@ -24,12 +23,14 @@ import { AdministracionMermaComponent } from './merma/administracion-merma/admin
 import { ConfirmarCarritoComponent } from './home/confirmar-carrito/confirmar-carrito.component';
 import { AgregarLoteComponentesComponent } from './inventario/agregar-lote-componentes/agregar-lote-componentes.component';
 import { DetallePedidoClienteComponent } from './pedidos/detalle-pedido-cliente/detalle-pedido-cliente.component';
+import { AgregarPedidoClienteComponent } from './pedidos/agregar-pedido-cliente/agregar-pedido-cliente.component';
+import { AcercadeComponent } from './acercade/acercade.component';
+import { VerDatosPerfilComponent } from './perfil/ver-datos-perfil/ver-datos-perfil.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeProductsComponent },
   { path: 'pagar-carrito', component: ConfirmarCarritoComponent },
-  { path: 'prueba', component: PruebaComponent },
   { path: 'usuarios', component: AdministrarEmpleadosComponent },
   { path: 'crear-empleado', component: CrearEmpleadoComponent },
   { path: 'editar-empleado', component: EditarEmpleadoComponent },
@@ -39,7 +40,7 @@ export const routes: Routes = [
   },
   { path: 'crear-proveedor', component: CrearProveedorComponent },
   { path: 'editar-proveedor', component: EditarProveedorComponent },
-  { path: 'about', component: AboutUsComponent },
+  { path: 'acercade', component: AcercadeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'ventas', component: VentasComponent },
@@ -54,5 +55,7 @@ export const routes: Routes = [
   { path: 'catalogo', component: CatalogoProductosComponent },
   { path: 'pedidos', component: EstatusPedidosClientesComponent },
   { path: 'detalle-pedido/:id', component: DetallePedidoClienteComponent },
+  { path: 'agregar-pedido', component: AgregarPedidoClienteComponent },
   { path: 'merma', component: AdministracionMermaComponent },
+  { path: 'mi-perfil', component: VerDatosPerfilComponent },
 ];

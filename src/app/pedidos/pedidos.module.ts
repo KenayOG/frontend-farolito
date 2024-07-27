@@ -9,10 +9,15 @@ import { AccordionModule } from 'primeng/accordion';
 import { ImageModule } from 'primeng/image';
 import { DividerModule } from 'primeng/divider';
 import { RouterLink } from '@angular/router';
+import { AgregarPedidoClienteComponent } from './agregar-pedido-cliente/agregar-pedido-cliente.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     EstatusPedidosClientesComponent,
     DetallePedidoClienteComponent,
+    AgregarPedidoClienteComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +30,8 @@ import { RouterLink } from '@angular/router';
     DividerModule,
     NgFor,
     NgIf,
+    DropdownModule,
+    FormsModule,
   ],
 })
 export class PedidosModule {}

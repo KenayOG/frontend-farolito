@@ -3,10 +3,7 @@
     <div class="col-8">
       <div class="card mt-4 scroll">
         <h3 class="card-header text-center">
-          <!-- <i class="fa-solid fa-rectangle-list"></i> --><i
-            class="fa-solid fa-list"
-          ></i
-          >&nbsp;&nbsp;Administracion de Recetas
+          <i class="fa-solid fa-list"></i>&nbsp;&nbsp;Administracion de Recetas
         </h3>
         <p-accordion [multiple]="true" class="m-3">
           <p-accordionTab *ngFor="let recipe of recipes" [header]="recipe.name">

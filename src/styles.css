@@ -38,3 +38,133 @@ svg.p-dropdown-check-icon.p-icon {
 /* body {
   background-color: black;
 } */
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeinleft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeoutleft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeinright {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeoutright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes zoomin {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes flipleft {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0);
+  }
+}
+
+@keyframes flipup {
+  from {
+    transform: rotateX(-180deg);
+  }
+  to {
+    transform: rotateX(0);
+  }
+}
+
+@keyframes scalein {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.fadein {
+  animation: fadein 3s forwards;
+}
+
+.fadeout {
+  animation: fadeout 3s forwards;
+}
+
+.fadeinleft {
+  animation: fadeinleft 3s forwards;
+}
+
+.fadeoutleft {
+  animation: fadeoutleft 3s forwards;
+}
+
+.fadeinright {
+  animation: fadeinright 3s forwards;
+}
+
+.fadeoutright {
+  animation: fadeoutright 3s forwards;
+}
+
+.zoomin {
+  animation: zoomin 4s forwards;
+}
+
+.flipleft {
+  animation: flipleft 3s forwards;
+}
+
+.flipup {
+  animation: flipup 3s forwards;
+}
+
+.scalein {
+  animation: scalein 3s forwards;
+}
