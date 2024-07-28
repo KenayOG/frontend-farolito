@@ -85,7 +85,7 @@ export class AdministracionRecetasComponent implements OnInit {
         'Elemento 4',
         'Elemento 5',
       ],
-      image: 'assets/images/lampara-exteriores.jpeg',
+      image: 'assets/images/lampara-exteriores.webp',
     },
     {
       id: 4,

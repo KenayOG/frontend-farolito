@@ -44,7 +44,7 @@ export class ConfirmarCarritoComponent {
       id: 5,
       name: 'Lampara Exteriores',
       price: 399,
-      image: 'lampara-exteriores.jpeg',
+      image: 'lampara-exteriores.webp',
       quantity: 2,
       components: ['Lampara Exteriores 1', 'Lampara Exteriores 2'],
     },

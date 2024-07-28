@@ -42,7 +42,7 @@ export class HomeProductsComponent {
       id: 5,
       name: 'Lampara Exteriores',
       price: 399,
-      image: 'lampara-exteriores.jpeg',
+      image: 'lampara-exteriores.webp',
       components: ['Lampara Exteriores 1', 'Lampara Exteriores 2'],
     },
     {
@@ -84,7 +84,7 @@ export class HomeProductsComponent {
       id: 11,
       name: 'Lampara Exteriores',
       price: 399,
-      image: 'lampara-exteriores.jpeg',
+      image: 'lampara-exteriores.webp',
       components: ['Detalle 1', 'Detalle 2'],
     },
     {
@@ -126,7 +126,7 @@ export class HomeProductsComponent {
       id: 17,
       name: 'Lampara Exteriores',
       price: 399,
-      image: 'lampara-exteriores.jpeg',
+      image: 'lampara-exteriores.webp',
       components: ['Detalle 1', 'Detalle 2'],
     },
     {
@@ -168,7 +168,7 @@ export class HomeProductsComponent {
       id: 23,
       name: 'Lampara Exteriores',
       price: 399,
-      image: 'lampara-exteriores.jpeg',
+      image: 'lampara-exteriores.webp',
       components: ['Detalle 1', 'Detalle 2'],
     },
     {
