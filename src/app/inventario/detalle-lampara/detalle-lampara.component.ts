@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LampDetail } from '../../interfaces/lamp-detail';
+import { LampInventory } from '../../interfaces/lamp-inventory';
+import { InventarioLamparaService } from '../../services/inventario-lampara.service';
 
 @Component({
   selector: 'app-detalle-lampara',
@@ -8,65 +10,25 @@ import { LampDetail } from '../../interfaces/lamp-detail';
   styleUrl: './detalle-lampara.component.css',
 })
 export class DetalleLamparaComponent implements OnInit {
-  lamparaId: string | null = '';
-  constructor(private route: ActivatedRoute) {}
+  lampDetail: LampInventory | undefined;
+  nombreLampara: string = '';
+  constructor(
+    private route: ActivatedRoute,
+    private inventarioService: InventarioLamparaService
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.lamparaId = params.get('id');
-    });
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.inventarioService.getLamparaPorId(id).subscribe(
+      (lamp) => {
+        this.lampDetail = lamp;
+        this.nombreLampara =
+          this.lampDetail?.nombrelampara ||
+          'Nombre de la lampara no encontrado';
+      },
+      (error) => {
+        console.error('Error al obtener el detalle de la lampara', error);
+      }
+    );
   }
-
-  lampDetail: LampDetail[] = [
-    {
-      id: 1,
-      name: 'Lampara Moderna',
-      quantity: 23,
-      price: 234.8,
-      lote: 'LOTE01',
-      date: '2023-12-09',
-      productionCost: 234,
-      createdBy: 'Jose Angel Ramirez Almeida',
-    },
-    {
-      id: 2,
-      name: 'Lampara Moderna',
-      quantity: 23,
-      price: 234.8,
-      lote: 'LOTE02',
-      date: '2023-12-09',
-      productionCost: 234,
-      createdBy: 'Jose Angel Ramirez Almeida',
-    },
-    {
-      id: 3,
-      name: 'Lampara Moderna',
-      quantity: 23,
-      price: 234.8,
-      lote: 'LOTE03',
-      date: '2023-12-09',
-      productionCost: 234,
-      createdBy: 'Adrian Dario Bravo Luna',
-    },
-    {
-      id: 4,
-      name: 'Lampara Moderna',
-      quantity: 28,
-      price: 256.8,
-      lote: 'LOTE04',
-      date: '2023-12-09',
-      productionCost: 234,
-      createdBy: 'Angel Eduardo Juarez Alvizo',
-    },
-    {
-      id: 5,
-      name: 'Lampara Moderna',
-      quantity: 30,
-      price: 294.8,
-      lote: 'LOTE05',
-      date: '2023-12-09',
-      productionCost: 234,
-      createdBy: 'Alexa Guerrero Lopez',
-    },
-  ];
 }
