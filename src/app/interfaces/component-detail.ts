@@ -1,11 +1,7 @@
 export interface ComponentDetail {
   id: number;
-  quantity: number;
-  expiration: string;
-  brand: string;
-  lote: string;
-  purchaseDate: string;
-  purchaseCost: number;
-  provider: string;
-  phone: string;
+  cantidad: number;
+  proveedorNombre: string;
+  fechaCompra: string;
+  precioUnitario: number | null;
 }
