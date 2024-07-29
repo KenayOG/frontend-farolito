@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LampInventory } from '../interfaces/lamp-inventory';
 
 @Injectable({
@@ -16,6 +17,13 @@ export class InventarioLamparaService {
   getInventarioLampara(): Observable<LampInventory[]> {
     return this._http.get<LampInventory[]>(
       `${this.apiUrl}/inventario-lamparas`
+    );
+  }
+
+  // Metodo para obtener la lampara por ID.
+  getLamparaPorId(id: number): Observable<LampInventory | undefined> {
+    return this.getInventarioLampara().pipe(
+      map((lamparas) => lamparas.find((lamp) => lamp.id === id))
     );
   }
 }
