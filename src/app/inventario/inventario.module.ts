@@ -10,7 +10,7 @@ import { DetalleLamparaComponent } from './detalle-lampara/detalle-lampara.compo
 import { RouterLink } from '@angular/router';
 import { DetalleComponenteComponent } from './detalle-componente/detalle-componente.component';
 import { AgregarLoteComponentesComponent } from './agregar-lote-componentes/agregar-lote-componentes.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
@@ -26,6 +26,7 @@ import { AgregarLoteComponentesComponent } from './agregar-lote-componentes/agre
     InputIconModule,
     IconFieldModule,
     ButtonModule,
+    HttpClientModule,
   ],
 })
 export class InventarioModule {}
