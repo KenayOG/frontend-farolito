@@ -27,10 +27,7 @@
       </button>
     </div>
   </nav>
-  <div
-    class="card align-items-center"
-    style="border: none; margin: 0 50px"
-  >
+  <div class="card align-items-center" style="border: none; margin: 0 50px">
     <div class="row tab-content" id="nav-tabContent">
       <div
         class="col-12 tab-pane fade show active p-3"
@@ -85,24 +82,30 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="name">
+              <th pSortableColumn="nombrelampara">
                 <div class="flex justify-content-between align-items-center">
                   Nombre
-                  <p-sortIcon field="name" />
+                  <p-sortIcon field="nombrelampara" />
                 </div>
               </th>
-              <th pSortableColumn="quantity">
+              <th pSortableColumn="existencias">
                 <div class="flex justify-content-between align-items-center">
-                  Cantidad
-                  <p-sortIcon field="quantity" />
+                  Existencias
+                  <p-sortIcon field="existencias" />
                 </div>
               </th>
-              <th pSortableColumn="price">
+              <th pSortableColumn="costo">
                 <div class="flex justify-content-between align-items-center">
-                  Precio
-                  <p-sortIcon field="price" />
+                  Costo
+                  <p-sortIcon field="costo" />
                 </div>
               </th>
+              <!-- <th pSortableColumn="detalles">
+                <div class="flex justify-content-between align-items-center">
+                  Detalles
+                  <p-sortIcon field="detalles" />
+                </div>
+              </th> -->
               <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
@@ -113,13 +116,13 @@
                 {{ lamp.id }}
               </td>
               <td>
-                {{ lamp.name }}
+                {{ lamp.nombrelampara }}
               </td>
               <td>
-                {{ lamp.quantity }}
+                {{ lamp.existencias }}
               </td>
               <td>
-                {{ lamp.price }}
+                {{ lamp.costo }}
               </td>
               <td>
                 <a
@@ -193,24 +196,24 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="item">
+              <th pSortableColumn="nombre">
                 <div class="flex justify-content-between align-items-center">
                   Nombre
-                  <p-sortIcon field="item" />
+                  <p-sortIcon field="nombre" />
                 </div>
               </th>
-              <th pSortableColumn="quantity">
+              <th pSortableColumn="existencia">
                 <div class="flex justify-content-between align-items-center">
-                  Cantidad
-                  <p-sortIcon field="quantity" />
+                  Existencia
+                  <p-sortIcon field="existencia" />
                 </div>
               </th>
-              <th pSortableColumn="price">
+              <!-- <th pSortableColumn="price">
                 <div class="flex justify-content-between align-items-center">
-                  Precio
+                  
                   <p-sortIcon field="price" />
                 </div>
-              </th>
+              </th> -->
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -222,14 +225,14 @@
                 {{ component.id }}
               </td>
               <td>
-                {{ component.item }}
+                {{ component.nombre }}
               </td>
               <td>
-                {{ component.quantity }}
+                {{ component.existencia }}
               </td>
-              <td>
+              <!-- <td>
                 {{ component.price }}
-              </td>
+              </td> -->
               <td>
                 <a
                   [routerLink]="['/detalle-componente', component.id]"
