@@ -3,7 +3,7 @@
     <div class="col-12 mt-5">
       <p-table
         #dt
-        [value]="lampDetail"
+        [value]="lampDetail?.detalles || []"
         [scrollable]="true"
         scrollHeight="270px"
         [rowHover]="true"
@@ -19,8 +19,8 @@
             <h3 class="mt-2">
               <b>
                 <!-- Reemplazar con el nombre de la lampara acorde al detalle -->
-                <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp; Lampara
-                Moderna
+                <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;
+                {{ nombreLampara }}
               </b>
             </h3>
           </div>
@@ -33,53 +33,39 @@
                 <p-sortIcon field="id" />
               </div>
             </th>
-            <th pSortableColumn="quantity">
+            <th pSortableColumn="fechaProduccion">
+              <div class="flex justify-content-between align-items-center">
+                Fecha Produccion
+                <p-sortIcon field="fechaProduccion" />
+              </div>
+            </th>
+            <th pSortableColumn="usuario">
+              <div class="flex justify-content-between align-items-center">
+                Usuario
+                <p-sortIcon field="usuario" />
+              </div>
+            </th>
+            <th pSortableColumn="cantidad">
               <div class="flex justify-content-between align-items-center">
                 Cantidad
-                <p-sortIcon field="quantity" />
+                <p-sortIcon field="cantidad" />
               </div>
             </th>
-            <th pSortableColumn="price">
+            <th pSortableColumn="precio">
               <div class="flex justify-content-between align-items-center">
                 Precio
-                <p-sortIcon field="price" />
-              </div>
-            </th>
-            <th pSortableColumn="lote">
-              <div class="flex justify-content-between align-items-center">
-                Lote
-                <p-sortIcon field="lote" />
-              </div>
-            </th>
-            <th pSortableColumn="date">
-              <div class="flex justify-content-between align-items-center">
-                Fecha Creacion
-                <p-sortIcon field="date" />
-              </div>
-            </th>
-            <th pSortableColumn="productionCost">
-              <div class="flex justify-content-between align-items-center">
-                Costo produccion
-                <p-sortIcon field="productionCost" />
-              </div>
-            </th>
-            <th pSortableColumn="createdBy">
-              <div class="flex justify-content-between align-items-center">
-                Creado por
-                <p-sortIcon field="createdBy" />
+                <p-sortIcon field="precio" />
               </div>
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-lampDetail>
+        <ng-template pTemplate="body" let-detail>
           <tr class="p-selectable-row">
-            <td>{{ lampDetail.id }}</td>
-            <td>{{ lampDetail.quantity }}</td>
-            <td>{{ lampDetail.price }}</td>
-            <td>{{ lampDetail.lote }}</td>
-            <td>{{ lampDetail.date }}</td>
-            <td>{{ lampDetail.productionCost }}</td>
-            <td>{{ lampDetail.createdBy }}</td>
+            <td>{{ detail.id }}</td>
+            <td>{{ detail.fechaProduccion }}</td>
+            <td>{{ detail.usuario }}</td>
+            <td>{{ detail.cantidad }}</td>
+            <td>{{ detail.precio }}</td>
           </tr>
         </ng-template>
       </p-table>
