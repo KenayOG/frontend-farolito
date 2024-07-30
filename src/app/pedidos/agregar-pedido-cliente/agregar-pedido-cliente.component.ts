@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ProductCatalogo } from '../../interfaces/product-catalog';
 import { PayMethod } from '../../interfaces/pay-methods';
 
 @Component({
@@ -10,12 +8,12 @@ import { PayMethod } from '../../interfaces/pay-methods';
 })
 export class AgregarPedidoClienteComponent implements OnInit {
   value!: string;
-  productos: ProductCatalogo[] | undefined;
-  selectedProduct: ProductCatalogo | undefined;
+  /* productos: ProductCatalogo[] | undefined; */
+  /* selectedProduct: ProductCatalogo | undefined; */
   metodosPago: PayMethod[] | undefined;
   selectedPayMethod: PayMethod | undefined;
   ngOnInit() {
-    this.productos = [
+    /* this.productos = [
       {
         name: 'Lampara Moderna',
       },
@@ -34,7 +32,7 @@ export class AgregarPedidoClienteComponent implements OnInit {
       {
         name: 'Lampara de Piso',
       },
-    ];
+    ]; */
     this.metodosPago = [
       {
         name: 'Paypal',
