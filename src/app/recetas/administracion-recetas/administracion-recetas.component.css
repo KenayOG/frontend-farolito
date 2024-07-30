@@ -43,3 +43,20 @@
   text-transform: uppercase;
   font-weight: bold;
 }
+
+.custom-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.custom-table th,
+.custom-table td {
+  font-size: 11px;
+  text-align: center;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.custom-table td {
+  background-color: #ffffff;
+}
