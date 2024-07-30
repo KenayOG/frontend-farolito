@@ -52,32 +52,7 @@ export class EstatusPedidosClientesComponent implements OnInit {
   indexActivosEnproceso: number[] = [];
   indexActivosSinpago: number[] = [];
   indexActivosFinalizado: number[] = [];
-  recipes: Recipe[] = [
-    {
-      id: 1,
-      name: 'Lampara Moderna',
-      components: [
-        'Elemento 1',
-        'Elemento 2',
-        'Elemento 3',
-        'Elemento 4',
-        'Elemento 5',
-      ],
-      image: 'assets/images/lampara-moderna.webp',
-    },
-    {
-      id: 2,
-      name: 'Lampara Colgante',
-      components: [
-        'Elemento 1',
-        'Elemento 2',
-        'Elemento 3',
-        'Elemento 4',
-        'Elemento 5',
-      ],
-      image: 'assets/images/lampara-colgante.webp',
-    },
-  ];
+  recipes: Recipe[] = [];
 
   ngOnInit() {
     /* Filtrar y mantener indices activos para apertura de acordiones */
