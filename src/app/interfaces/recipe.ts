@@ -1,6 +1,10 @@
-export interface Recipe{
+import { ComponenteRecipe } from './component-recipe';
+
+export interface Recipe {
   id: number;
-  name: string;
-  components: string[];
-  image: string;
+  nombrelampara: string;
+  estatus: boolean;
+  costoProduccion: number;
+  imagen: string;
+  componentes: ComponenteRecipe[];
 }
