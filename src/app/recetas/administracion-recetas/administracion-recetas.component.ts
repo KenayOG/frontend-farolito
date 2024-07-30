@@ -15,24 +15,36 @@ export class AdministracionRecetasComponent implements OnInit {
   filtradosComponentes: { [key: number]: ComponenteRecipe[] } = {};
   listaComponentes: Componente[] = [];
 
-  baseUrl: string = 'assets/images/';
-  imageUrls: { [key: number]: string } = {};
   constructor(
     private recetasService: RecetasService,
     private componentesListaService: CatalogoComponentesService
-  ) {}
+  ) {
+    this.obtenerComponentes();
+    this.obtenerRecetas();
+  }
 
-  ngOnInit(): void {
-    this.recetasService.getRecetas().subscribe((data) => {
-      this.recipes = data;
-      this.filtrarComponentes();
-      this.recipes.forEach((recipe) => {
-        this.imageUrls[recipe.id] = `${this.baseUrl}${recipe.imagen}`;
-      });
+  ngOnInit(): void {}
+
+  obtenerComponentes() {
+    this.componentesListaService.getCatalogoComponentes().subscribe({
+      next: (data) => {
+        this.listaComponentes = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
+  }
 
-    this.componentesListaService.getCatalogoComponentes().subscribe((data) => {
-      this.listaComponentes = data;
+  obtenerRecetas() {
+    this.recetasService.getRecetas().subscribe({
+      next: (data) => {
+        this.recipes = data;
+        this.filtrarComponentes();
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 
