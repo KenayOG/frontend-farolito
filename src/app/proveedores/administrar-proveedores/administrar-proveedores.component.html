@@ -54,28 +54,46 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" style="min-width: 5rem">
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="name" style="min-width: 14rem">
+              <th pSortableColumn="nombreEmpresa" style="min-width: 8rem">
                 <div class="flex justify-content-between align-items-center">
                   Proveedor
-                  <p-sortIcon field="name" />
+                  <p-sortIcon field="nombreEmpresa" />
                 </div>
               </th>
-              <th pSortableColumn="phone">
+              <th pSortableColumn="dirección" style="min-width: 10rem">
+                <div class="flex justify-content-between align-items-center">
+                  Direccion
+                  <p-sortIcon field="dirección" />
+                </div>
+              </th>
+              <th pSortableColumn="teléfono" style="min-width: 10rem">
                 <div class="flex justify-content-between align-items-center">
                   Telefono
-                  <p-sortIcon field="phone" />
+                  <p-sortIcon field="teléfono" />
                 </div>
               </th>
-              <th pSortableColumn="attendedBy" style="min-width: 10rem">
+              <th pSortableColumn="nombreAtiende">
                 <div class="flex justify-content-between align-items-center">
-                  Atendido Por
-                  <p-sortIcon field="attendedBy" />
+                  Atiende
+                  <p-sortIcon field="nombreAtiende" />
+                </div>
+              </th>
+              <th pSortableColumn="apellidoP">
+                <div class="flex justify-content-between align-items-center">
+                  Apellido P
+                  <p-sortIcon field="apellidoP" />
+                </div>
+              </th>
+              <th pSortableColumn="apellidoM">
+                <div class="flex justify-content-between align-items-center">
+                  Apellido M
+                  <p-sortIcon field="apellidoM" />
                 </div>
               </th>
               <th></th>
@@ -88,16 +106,22 @@
                 {{ provider.id }}
               </td>
               <td>
-                <span class="p-column-title">Nombre</span>
-                {{ provider.name }}
+                {{ provider.nombreEmpresa }}
               </td>
               <td>
-                <span class="p-column-title">Email</span>
-                {{ provider.phone }}
+                {{ provider.direccion }}
               </td>
               <td>
-                <span class="p-column-title">Username</span>
-                {{ provider.attendedBy }}
+                {{ provider.telefono }}
+              </td>
+              <td>
+                {{ provider.nombreAtiende }}
+              </td>
+              <td>
+                {{ provider.apellidoP }}
+              </td>
+              <td>
+                {{ provider.apellidoM }}
               </td>
               <td>
                 <button class="btn btn-danger">
