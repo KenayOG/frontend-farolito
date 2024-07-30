@@ -13,7 +13,7 @@ export class RecetasService {
 
   constructor(private _http: HttpClient) {}
 
-  // Metodo para invocar el endpoint GET de recetas.
+  // Metodo para invocar el endpoint GET de recetas y catalogo.
   getRecetas(): Observable<Recipe[]> {
     return this._http.get<Recipe[]>(`${this.apiUrl}/recetas`);
   }
