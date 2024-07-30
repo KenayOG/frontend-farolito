@@ -4,9 +4,15 @@ import { CatalogoProductosComponent } from './catalogo-productos/catalogo-produc
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [CatalogoProductosComponent],
-  imports: [CommonModule, CarouselModule, TagModule, ButtonModule],
+  imports: [
+    CommonModule,
+    CarouselModule,
+    TagModule,
+    ButtonModule,
+    HttpClientModule,
+  ],
 })
 export class CatalogoModule {}
