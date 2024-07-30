@@ -1,4 +1,5 @@
 export interface Componente {
   id: number;
-  name: string;
+  nombre: string;
+  estatus: boolean;
 }
