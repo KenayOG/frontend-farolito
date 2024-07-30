@@ -4,9 +4,16 @@ import { AdministracionRecetasComponent } from './administracion-recetas/adminis
 import { AccordionModule } from 'primeng/accordion';
 import { ImageModule } from 'primeng/image';
 import { CheckboxModule } from 'primeng/checkbox';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AdministracionRecetasComponent],
-  imports: [CommonModule, AccordionModule, ImageModule, CheckboxModule],
+  imports: [
+    CommonModule,
+    AccordionModule,
+    ImageModule,
+    CheckboxModule,
+    HttpClientModule,
+  ],
 })
 export class RecetasModule {}
