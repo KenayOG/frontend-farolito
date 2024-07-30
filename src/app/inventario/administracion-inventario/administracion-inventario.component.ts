@@ -10,7 +10,7 @@ import { InventarioLamparaService } from '../../services/inventario-lampara.serv
   templateUrl: './administracion-inventario.component.html',
   styleUrl: './administracion-inventario.component.css',
 })
-export class AdministracionInventarioComponent implements OnInit {
+export class AdministracionInventarioComponent {
   componentesInventory: ComponentInventory[] = [];
 
   lampsInventory: LampInventory[] = [];
@@ -18,16 +18,30 @@ export class AdministracionInventarioComponent implements OnInit {
   constructor(
     private inventarioComponenteService: InventarioComponenteService,
     private inventarioLamparaService: InventarioLamparaService
-  ) {}
+  ) {
+    this.obtenerInventarioComponentes();
+    this.obtenerInventarioLamparas();
+  }
 
-  ngOnInit(): void {
-    this.inventarioComponenteService
-      .getInventarioComponente()
-      .subscribe((data) => {
+  obtenerInventarioLamparas() {
+    this.inventarioLamparaService.getInventarioLampara().subscribe({
+      next: (data) => {
+        this.lampsInventory = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
+  obtenerInventarioComponentes() {
+    this.inventarioComponenteService.getInventarioComponente().subscribe({
+      next: (data) => {
         this.componentesInventory = data;
-      });
-    this.inventarioLamparaService.getInventarioLampara().subscribe((data) => {
-      this.lampsInventory = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }
