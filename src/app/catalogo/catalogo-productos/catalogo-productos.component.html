@@ -26,14 +26,24 @@
         </div>
       </ng-template>
     </p-carousel>
-    <div *ngIf="cargando" class="spinner-container">
-      <p-progressSpinner
-        styleClass="w-4rem h-4rem"
-        strokeWidth="8"
-        fill="var(--surface-ground)"
-        animationDuration=".8s"
-      >
-      </p-progressSpinner>
+    <div *ngIf="cargando" class="spinner-overlay">
+      <div class="spinner-container">
+        <div class="spinner-wrapper">
+          <p-progressSpinner
+            styleClass="w-7rem h-7rem"
+            strokeWidth="6"
+            fill="var(--surface-ground)"
+            animationDuration=".8s"
+          >
+          </p-progressSpinner>
+          <img
+            src="assets/images/logo-farolito.webp"
+            alt="Logo de farolito"
+            class="spinner-logo"
+          />
+        </div>
+        <p class="spinner-message">Espere por favor...</p>
+      </div>
     </div>
   </div>
 </div>
