@@ -9,6 +9,7 @@ import { RecetasService } from '../../services/recetas.service';
 })
 export class CatalogoProductosComponent {
   products: Recipe[] = [];
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
 
   constructor(private catalogoRecetaService: RecetasService) {
@@ -27,5 +28,9 @@ export class CatalogoProductosComponent {
         this.cargando = false;
       },
     });
+  }
+
+  getImagenCatalogo(imagePath: string): string {
+    return `${this.baseUrl}${imagePath}`;
   }
 }
