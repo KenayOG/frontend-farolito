@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Production } from '../../interfaces/production';
+import { ProduccionService } from '../../services/produccion.service';
 
 @Component({
   selector: 'app-pedidos-produccion',
@@ -7,5 +8,20 @@ import { Production } from '../../interfaces/production';
   styleUrl: './pedidos-produccion.component.css',
 })
 export class PedidosProduccionComponent {
-  productions: Production[] = [];
+  solicitudesProduccion: Production[] = [];
+
+  constructor(private produccionService: ProduccionService) {
+    this.obtenerSolicitudesProduccion();
+  }
+
+  obtenerSolicitudesProduccion() {
+    this.produccionService.getSolicitudesProduccion().subscribe({
+      next: (data) => {
+        this.solicitudesProduccion = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
 }
