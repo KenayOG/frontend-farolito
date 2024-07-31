@@ -4,6 +4,7 @@
       <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Productos Disponibles
     </h3>
     <p-carousel
+      *ngIf="!cargando"
       [value]="products"
       [numVisible]="1"
       [numScroll]="1"
@@ -14,19 +15,25 @@
         <div class="d-flex flex-column align-items-center">
           <div class="mb-1">
             <img
-              src="assets/images/{{ product.image }}"
-              alt="product.name"
+              src="assets/images/{{ product.imagen }}"
+              alt="product.nombrelampara"
               class="img-fluid"
             />
           </div>
           <div class="text-center font-weight-bold">
-            <b>{{ product.name }}</b>
-          </div>
-          <div class="font-weight-bold text-x1 text-center">
-            {{ "$" + product.price }}
+            <b>{{ product.nombrelampara }}</b>
           </div>
         </div>
       </ng-template>
     </p-carousel>
+    <div *ngIf="cargando" class="spinner-container">
+      <p-progressSpinner
+        styleClass="w-4rem h-4rem"
+        strokeWidth="8"
+        fill="var(--surface-ground)"
+        animationDuration=".8s"
+      >
+      </p-progressSpinner>
+    </div>
   </div>
 </div>
