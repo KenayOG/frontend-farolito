@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LampDetail } from '../../interfaces/lamp-detail';
 import { LampInventory } from '../../interfaces/lamp-inventory';
-import { InventarioLamparaService } from '../../services/inventario-lampara.service';
+import { InventarioService } from '../../services/inventario.service';
 
 @Component({
   selector: 'app-detalle-lampara',
@@ -14,7 +14,7 @@ export class DetalleLamparaComponent implements OnInit {
   nombreLampara: string = '';
   constructor(
     private route: ActivatedRoute,
-    private inventarioService: InventarioLamparaService
+    private inventarioService: InventarioService
   ) {}
 
   ngOnInit(): void {

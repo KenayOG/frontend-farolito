@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentDetail } from '../../interfaces/component-detail';
 import { ComponentInventory } from '../../interfaces/component-inventory';
-import { InventarioComponenteService } from '../../services/inventario-componente.service';
+import { InventarioService } from '../../services/inventario.service';
 
 @Component({
   selector: 'app-detalle-componente',
@@ -14,7 +14,7 @@ export class DetalleComponenteComponent implements OnInit {
   nombreComponente: string = '';
   constructor(
     private route: ActivatedRoute,
-    private inventarioService: InventarioComponenteService
+    private inventarioService: InventarioService
   ) {}
 
   ngOnInit(): void {
