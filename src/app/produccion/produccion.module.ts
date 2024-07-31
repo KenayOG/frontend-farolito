@@ -7,7 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [PedidosProduccionComponent],
   imports: [
@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     IconFieldModule,
     ButtonModule,
     HttpClientModule,
+    ProgressSpinnerModule,
   ],
 })
 export class ProduccionModule {}
