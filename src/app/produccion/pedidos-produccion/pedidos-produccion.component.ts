@@ -9,6 +9,7 @@ import { ProduccionService } from '../../services/produccion.service';
 })
 export class PedidosProduccionComponent {
   solicitudesProduccion: Production[] = [];
+  produccionesCompletadas: [] = [];
   //cargando: boolean = true;
 
   constructor(private produccionService: ProduccionService) {
