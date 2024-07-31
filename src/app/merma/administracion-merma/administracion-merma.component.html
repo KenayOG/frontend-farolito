@@ -1,5 +1,5 @@
 <div class="container">
-  <nav style="margin: 0 50px">
+  <nav style="margin: 0 140px">
     <div class="nav nav-tabs m-1 custom-tabs" id="nav-tab" role="tablist">
       <button
         class="nav-link active"
@@ -81,40 +81,34 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="productDecreased">
+              <th pSortableColumn="lampara">
                 <div class="flex justify-content-between align-items-center">
-                  Nombre
-                  <p-sortIcon field="productDecreased" />
+                  Lampara
+                  <p-sortIcon field="lampara" />
                 </div>
               </th>
-              <th pSortableColumn="lote">
-                <div class="flex justify-content-between align-items-center">
-                  Lote
-                  <p-sortIcon field="lote" />
-                </div>
-              </th>
-              <th pSortableColumn="quantityDecrease">
+              <th pSortableColumn="cantidad">
                 <div class="flex justify-content-between align-items-center">
                   Cantidad
-                  <p-sortIcon field="quantityDecrease" />
+                  <p-sortIcon field="cantidad" />
                 </div>
               </th>
-              <th pSortableColumn="description">
+              <th pSortableColumn="descripcion">
                 <div class="flex justify-content-between align-items-center">
                   Descripcion
-                  <p-sortIcon field="description" />
+                  <p-sortIcon field="descripcion" />
                 </div>
               </th>
-              <th pSortableColumn="dateDecrease">
+              <th pSortableColumn="fecha">
                 <div class="flex justify-content-between align-items-center">
                   Fecha Mermado
-                  <p-sortIcon field="dateDecrease" />
+                  <p-sortIcon field="fecha" />
                 </div>
               </th>
-              <th pSortableColumn="decreasedBy">
+              <th pSortableColumn="usuario">
                 <div class="flex justify-content-between align-items-center">
                   Mermado por
-                  <p-sortIcon field="decreasedBy" />
+                  <p-sortIcon field="usuario" />
                 </div>
               </th>
             </tr>
@@ -125,22 +119,19 @@
                 {{ decreasedlamp.id }}
               </td>
               <td>
-                {{ decreasedlamp.productDecreased }}
+                {{ decreasedlamp.lampara }}
               </td>
               <td>
-                {{ decreasedlamp.lote }}
+                {{ decreasedlamp.cantidad }}
               </td>
               <td>
-                {{ decreasedlamp.quantityDecreased }}
+                {{ decreasedlamp.descripcion }}
               </td>
               <td>
-                {{ decreasedlamp.description }}
+                {{ decreasedlamp.fecha }}
               </td>
               <td>
-                {{ decreasedlamp.dateDecrease }}
-              </td>
-              <td>
-                {{ decreasedlamp.decreasedBy }}
+                {{ decreasedlamp.usuario }}
               </td>
             </tr>
           </ng-template>
@@ -200,40 +191,34 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="productDecreased">
+              <th pSortableColumn="componente">
                 <div class="flex justify-content-between align-items-center">
-                  Nombre
-                  <p-sortIcon field="productDecreased" />
+                  Componente
+                  <p-sortIcon field="componente" />
                 </div>
               </th>
-              <th pSortableColumn="lote">
-                <div class="flex justify-content-between align-items-center">
-                  Lote
-                  <p-sortIcon field="lote" />
-                </div>
-              </th>
-              <th pSortableColumn="quantityDecrease">
+              <th pSortableColumn="cantidad">
                 <div class="flex justify-content-between align-items-center">
                   Cantidad
-                  <p-sortIcon field="quantityDecrease" />
+                  <p-sortIcon field="cantidad" />
                 </div>
               </th>
-              <th pSortableColumn="description">
+              <th pSortableColumn="descripcion">
                 <div class="flex justify-content-between align-items-center">
                   Descripcion
-                  <p-sortIcon field="description" />
+                  <p-sortIcon field="descripcion" />
                 </div>
               </th>
-              <th pSortableColumn="dateDecrease">
+              <th pSortableColumn="fecha">
                 <div class="flex justify-content-between align-items-center">
                   Fecha Mermado
-                  <p-sortIcon field="dateDecrease" />
+                  <p-sortIcon field="fecha" />
                 </div>
               </th>
-              <th pSortableColumn="decreasedBy">
+              <th pSortableColumn="usuario">
                 <div class="flex justify-content-between align-items-center">
                   Mermado por
-                  <p-sortIcon field="decreasedBy" />
+                  <p-sortIcon field="usuario" />
                 </div>
               </th>
             </tr>
@@ -244,22 +229,19 @@
                 {{ decreasedcomponent.id }}
               </td>
               <td>
-                {{ decreasedcomponent.productDecreased }}
+                {{ decreasedcomponent.componente }}
               </td>
               <td>
-                {{ decreasedcomponent.lote }}
+                {{ decreasedcomponent.cantidad }}
               </td>
               <td>
-                {{ decreasedcomponent.quantityDecreased }}
+                {{ decreasedcomponent.descripcion }}
               </td>
               <td>
-                {{ decreasedcomponent.description }}
+                {{ decreasedcomponent.fecha }}
               </td>
               <td>
-                {{ decreasedcomponent.dateDecrease }}
-              </td>
-              <td>
-                {{ decreasedcomponent.decreasedBy }}
+                {{ decreasedcomponent.usuario }}
               </td>
             </tr>
           </ng-template>
