@@ -9,24 +9,35 @@ import { InventarioService } from '../../services/inventario.service';
   templateUrl: './detalle-componente.component.html',
   styleUrl: './detalle-componente.component.css',
 })
-export class DetalleComponenteComponent implements OnInit {
+export class DetalleComponenteComponent {
   componentDetail: ComponentInventory | undefined;
   nombreComponente: string = '';
+  //cargando: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private inventarioService: InventarioService
-  ) {}
+  ) {
+    this.obtenerDetalleComponente();
+  }
 
-  ngOnInit(): void {
+  obtenerDetalleComponente() {
+    //this.cargando = true;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.inventarioService.getComponentePorId(id).subscribe(
       (component) => {
         this.componentDetail = component;
         this.nombreComponente =
           this.componentDetail?.nombre || 'Nombre del Componente no encontrado';
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
       (error) => {
         console.error('Error al obtener el detalle del componente', error);
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       }
     );
   }
