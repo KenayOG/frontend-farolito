@@ -40,7 +40,7 @@ export class AdministracionRecetasComponent {
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
         this.recipes = data;
-        this.filtrarComponentes();
+        //this.filtrarComponentes();
         this.cargando = false;
       },
       error: (e) => {
@@ -50,7 +50,7 @@ export class AdministracionRecetasComponent {
     });
   }
 
-  filtrarComponentes(): void {
+  /* filtrarComponentes(): void {
     this.filtradosComponentes = {};
     this.recipes.forEach((recipe) => {
       if (recipe.componentes && Array.isArray(recipe.componentes)) {
@@ -59,7 +59,7 @@ export class AdministracionRecetasComponent {
         this.filtradosComponentes[recipe.id] = [];
       }
     });
-  }
+  } */
 
   getImagen(imagePath: string): string {
     return `${this.baseUrl}${imagePath}`;
