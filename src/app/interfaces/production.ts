@@ -1,7 +1,10 @@
+import { RecipeProduction } from './recipe-production';
+
 export interface Production {
   id: number;
-  employee: string;
-  date: string;
-  orderOf: string;
-  quantity: number;
+  descripcion: string;
+  cantidad: number;
+  estatus: number;
+  nombreUsuario: string;
+  receta: RecipeProduction;
 }
