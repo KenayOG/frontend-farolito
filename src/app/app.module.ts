@@ -22,7 +22,7 @@ import { CardModule } from 'primeng/card';
 import { StyleClassModule } from 'primeng/styleclass';
 
 import { PerfilModule } from './perfil/perfil.module';
-
+import { FinanzasModule } from './finanzas/finanzas.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,7 +47,7 @@ import { PerfilModule } from './perfil/perfil.module';
     MermaModule,
     PedidosModule,
     PerfilModule,
-    
+    FinanzasModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

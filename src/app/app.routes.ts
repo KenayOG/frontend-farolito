@@ -26,6 +26,7 @@ import { DetallePedidoClienteComponent } from './pedidos/detalle-pedido-cliente/
 import { AgregarPedidoClienteComponent } from './pedidos/agregar-pedido-cliente/agregar-pedido-cliente.component';
 import { AcercadeComponent } from './acercade/acercade.component';
 import { VerDatosPerfilComponent } from './perfil/ver-datos-perfil/ver-datos-perfil.component';
+import { FinanzasComparativoComponent } from './finanzas/finanzas-comparativo/finanzas-comparativo.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -58,4 +59,5 @@ export const routes: Routes = [
   { path: 'agregar-pedido', component: AgregarPedidoClienteComponent },
   { path: 'merma', component: AdministracionMermaComponent },
   { path: 'mi-perfil', component: VerDatosPerfilComponent },
+  { path: 'finanzas', component: FinanzasComparativoComponent },
 ];
