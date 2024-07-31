@@ -11,7 +11,7 @@ import { InventarioLamparaService } from '../../services/inventario-lampara.serv
 })
 export class AdministracionInventarioComponent {
   componentesInventory: ComponentInventory[] = [];
-  cargando: boolean = true;
+  //cargando: boolean = true;
 
   lampsInventory: LampInventory[] = [];
 
@@ -24,29 +24,37 @@ export class AdministracionInventarioComponent {
   }
 
   obtenerInventarioLamparas() {
-    this.cargando = true;
+    //this.cargando = true;
     this.inventarioLamparaService.getInventarioLampara().subscribe({
       next: (data) => {
         this.lampsInventory = data;
-        this.cargando = false;
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
       error: (e) => {
         console.log(e);
-        this.cargando = false;
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
     });
   }
 
   obtenerInventarioComponentes() {
-    this.cargando = true;
+    //this.cargando = true;
     this.inventarioComponenteService.getInventarioComponente().subscribe({
       next: (data) => {
         this.componentesInventory = data;
-        this.cargando = false;
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
       error: (e) => {
         console.log(e);
-        this.cargando = false;
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
     });
   }
