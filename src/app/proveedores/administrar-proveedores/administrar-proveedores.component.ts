@@ -7,13 +7,21 @@ import { ProveedoresService } from '../../services/proveedores.service';
   templateUrl: './administrar-proveedores.component.html',
   styleUrl: './administrar-proveedores.component.css',
 })
-export class AdministrarProveedoresComponent implements OnInit {
+export class AdministrarProveedoresComponent {
   providers: Provider[] = [];
 
-  constructor(private proveedoresService: ProveedoresService) {}
-  ngOnInit(): void {
-    this.proveedoresService.getProveedores().subscribe((data) => {
-      this.providers = data;
+  constructor(private proveedoresService: ProveedoresService) {
+    this.obtenerProveedor();
+  }
+
+  obtenerProveedor() {
+    this.proveedoresService.getProveedores().subscribe({
+      next: (data) => {
+        this.providers = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }
