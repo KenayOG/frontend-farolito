@@ -60,19 +60,19 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="nombreEmpresa" style="min-width: 8rem">
+              <th pSortableColumn="nombreEmpresa">
                 <div class="flex justify-content-between align-items-center">
                   Proveedor
                   <p-sortIcon field="nombreEmpresa" />
                 </div>
               </th>
-              <th pSortableColumn="dirección" style="min-width: 10rem">
+              <th pSortableColumn="dirección">
                 <div class="flex justify-content-between align-items-center">
                   Direccion
                   <p-sortIcon field="dirección" />
                 </div>
               </th>
-              <th pSortableColumn="teléfono" style="min-width: 10rem">
+              <th pSortableColumn="teléfono">
                 <div class="flex justify-content-between align-items-center">
                   Telefono
                   <p-sortIcon field="teléfono" />
@@ -82,18 +82,6 @@
                 <div class="flex justify-content-between align-items-center">
                   Atiende
                   <p-sortIcon field="nombreAtiende" />
-                </div>
-              </th>
-              <th pSortableColumn="apellidoP">
-                <div class="flex justify-content-between align-items-center">
-                  Apellido P
-                  <p-sortIcon field="apellidoP" />
-                </div>
-              </th>
-              <th pSortableColumn="apellidoM">
-                <div class="flex justify-content-between align-items-center">
-                  Apellido M
-                  <p-sortIcon field="apellidoM" />
                 </div>
               </th>
               <th></th>
@@ -115,13 +103,9 @@
                 {{ provider.telefono }}
               </td>
               <td>
-                {{ provider.nombreAtiende }}
-              </td>
-              <td>
-                {{ provider.apellidoP }}
-              </td>
-              <td>
-                {{ provider.apellidoM }}
+                {{ provider.nombreAtiende }}&nbsp;{{
+                  provider.apellidoP
+                }}&nbsp;{{ provider.apellidoM }}
               </td>
               <td>
                 <button class="btn btn-danger">
@@ -130,7 +114,7 @@
               </td>
               <td>
                 <a routerLink="/editar-proveedor" class="btn btn-primary">
-                  <i class="fa-solid fa-pen"></i>&nbsp;Editar;
+                  <i class="fa-solid fa-pen"></i>&nbsp;Editar
                 </a>
               </td>
             </tr>
