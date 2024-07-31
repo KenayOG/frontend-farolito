@@ -4,7 +4,7 @@
       <div class="col-12">
         <p-table
           #dt
-          [value]="productions"
+          [value]="solicitudesProduccion"
           [scrollable]="true"
           scrollHeight="270px"
           [rowHover]="true"
@@ -20,7 +20,7 @@
               <h3 class="mt-2">
                 <b
                   ><i class="fa-solid fa-screwdriver-wrench"></i
-                  >&nbsp;&nbsp;Administracion de Produccion</b
+                  >&nbsp;&nbsp;Administraci&oacute;n de Producci&oacute;n</b
                 >
               </h3>
               <p-iconField iconPosition="left" style="margin-left: 200px">
@@ -43,27 +43,27 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="employee">
+              <th pSortableColumn="descripcion">
                 <div class="flex justify-content-between align-items-center">
-                  Empleado
-                  <p-sortIcon field="employee" />
+                  Descripcion
+                  <p-sortIcon field="descripcion" />
                 </div>
               </th>
-              <th pSortableColumn="date">
+              <th pSortableColumn="cantidad">
                 <div class="flex justify-content-between align-items-center">
-                  Fecha
-                  <p-sortIcon field="date" />
+                  Cantidad
+                  <p-sortIcon field="cantidad" />
                 </div>
               </th>
-              <th pSortableColumn="orderOf">
+              <th pSortableColumn="nombreUsuario">
                 <div class="flex justify-content-between align-items-center">
-                  Pedido de
-                  <p-sortIcon field="orderOf" />
+                  Por:
+                  <p-sortIcon field="nombreUsuario" />
                 </div>
               </th>
               <th pSortableColumn="quantity">
                 <div class="flex justify-content-between align-items-center">
-                  Cantidad
+                  Receta
                   <p-sortIcon field="quantity" />
                 </div>
               </th>
@@ -71,23 +71,21 @@
               <th></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-production>
+          <ng-template pTemplate="body" let-solicitud>
             <tr class="p-selectable-row">
               <td>
-                {{ production.id }}
+                {{ solicitud.id }}
               </td>
               <td>
-                {{ production.employee }}
+                {{ solicitud.descripcion }}
               </td>
               <td>
-                {{ production.date }}
+                {{ solicitud.cantidad }}
               </td>
               <td>
-                {{ production.orderOf }}
+                {{ solicitud.nombreUsuario }}
               </td>
-              <td>
-                {{ production.quantity }}
-              </td>
+              <td>{{ solicitud.receta?.nombrelampara }}</td>
               <td>
                 <button class="btn btn-success">
                   <i class="fa-solid fa-check"></i>
