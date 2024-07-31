@@ -5,5 +5,6 @@ export interface LampInventory {
   nombrelampara: string;
   existencias: number;
   costo: number;
+  urlImage: string;
   detalles: LampDetail[];
 }
