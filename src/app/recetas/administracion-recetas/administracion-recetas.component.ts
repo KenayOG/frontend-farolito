@@ -15,6 +15,7 @@ export class AdministracionRecetasComponent {
   filtradosComponentes: { [key: number]: ComponenteRecipe[] } = {};
   listaComponentes: Componente[] = [];
   baseUrl: string = 'https://localhost:5000';
+  cargando: boolean = true;
   constructor(
     private recetasService: RecetasService,
     private componentesListaService: CatalogoComponentesService
@@ -35,13 +36,16 @@ export class AdministracionRecetasComponent {
   }
 
   obtenerRecetas() {
+    this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
         this.recipes = data;
         this.filtrarComponentes();
+        this.cargando = false;
       },
       error: (e) => {
         console.log(e);
+        this.cargando = false;
       },
     });
   }
