@@ -22,6 +22,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.component';
 import { EditarProveedorComponent } from './editar-proveedor/editar-proveedor.component';
 import { RouterLink } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RouterLink } from '@angular/router';
     FormsModule,
     InputNumberModule,
     HttpClientModule,
+    ProgressSpinnerModule,
   ],
 })
 export class ProveedoresModule {}
