@@ -6,6 +6,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ButtonModule } from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [PedidosProduccionComponent],
@@ -16,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     IconFieldModule,
     ButtonModule,
+    HttpClientModule,
   ],
 })
 export class ProduccionModule {}
