@@ -14,7 +14,7 @@ export class AdministracionRecetasComponent implements OnInit {
   recipes: Recipe[] = [];
   filtradosComponentes: { [key: number]: ComponenteRecipe[] } = {};
   listaComponentes: Componente[] = [];
-
+  baseUrl: string = 'https://localhost:5000';
   constructor(
     private recetasService: RecetasService,
     private componentesListaService: CatalogoComponentesService
@@ -57,5 +57,9 @@ export class AdministracionRecetasComponent implements OnInit {
         this.filtradosComponentes[recipe.id] = [];
       }
     });
+  }
+
+  getImagen(imagePath: string): string{
+    return `${this.baseUrl}${imagePath}`;
   }
 }
