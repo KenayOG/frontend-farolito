@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Decrease } from '../../interfaces/decrease';
+import { LampDecrease } from '../../interfaces/lamp-decrease';
+import { ComponenteDecrease } from '../../interfaces/component-decrease';
+import { MermaService } from '../../services/merma.service';
 
 @Component({
   selector: 'app-administracion-merma',
@@ -7,7 +9,33 @@ import { Decrease } from '../../interfaces/decrease';
   styleUrl: './administracion-merma.component.css',
 })
 export class AdministracionMermaComponent {
-  decreasedLamps: Decrease[] = [];
+  decreasedLamps: LampDecrease[] = [];
+  decreasedComponents: ComponenteDecrease[] = [];
 
-  decreasedComponents: Decrease[] = [];
+  constructor(private mermaService: MermaService) {
+    this.obtenerMermaLamparas();
+    this.obtenerMermaComponentes();
+  }
+
+  obtenerMermaLamparas() {
+    this.mermaService.getMermaLamparas().subscribe({
+      next: (data) => {
+        this.decreasedLamps = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+  obtenerMermaComponentes() {
+    this.mermaService.getMermaComponentes().subscribe({
+      next: (data) => {
+        this.decreasedComponents = data;
+        console.log(this.decreasedComponents);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
 }
