@@ -9,15 +9,20 @@ import { InventarioService } from '../../services/inventario.service';
   templateUrl: './detalle-lampara.component.html',
   styleUrl: './detalle-lampara.component.css',
 })
-export class DetalleLamparaComponent implements OnInit {
+export class DetalleLamparaComponent {
   lampDetail: LampInventory | undefined;
   nombreLampara: string = '';
+  //cargando: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private inventarioService: InventarioService
-  ) {}
+  ) {
+    this.obtenerDetalleLampara();
+  }
 
-  ngOnInit(): void {
+  obtenerDetalleLampara() {
+    //this.cargando = true;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.inventarioService.getLamparaPorId(id).subscribe(
       (lamp) => {
@@ -25,9 +30,15 @@ export class DetalleLamparaComponent implements OnInit {
         this.nombreLampara =
           this.lampDetail?.nombrelampara ||
           'Nombre de la lampara no encontrado';
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       },
       (error) => {
         console.error('Error al obtener el detalle de la lampara', error);
+        /* setTimeout(() => {
+          this.cargando = false;
+        }, 2000); */
       }
     );
   }
