@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentInventory } from '../../interfaces/component-inventory';
 import { LampInventory } from '../../interfaces/lamp-inventory';
-import { InventarioComponenteService } from '../../services/inventario-componente.service';
-import { InventarioLamparaService } from '../../services/inventario-lampara.service';
+import { InventarioService } from '../../services/inventario.service';
 
 @Component({
   selector: 'app-administracion-inventario',
@@ -15,17 +14,14 @@ export class AdministracionInventarioComponent {
 
   lampsInventory: LampInventory[] = [];
 
-  constructor(
-    private inventarioComponenteService: InventarioComponenteService,
-    private inventarioLamparaService: InventarioLamparaService
-  ) {
+  constructor(private inventarioService: InventarioService) {
     this.obtenerInventarioComponentes();
     this.obtenerInventarioLamparas();
   }
 
   obtenerInventarioLamparas() {
     //this.cargando = true;
-    this.inventarioLamparaService.getInventarioLampara().subscribe({
+    this.inventarioService.getInventarioLampara().subscribe({
       next: (data) => {
         this.lampsInventory = data;
         /* setTimeout(() => {
@@ -43,7 +39,7 @@ export class AdministracionInventarioComponent {
 
   obtenerInventarioComponentes() {
     //this.cargando = true;
-    this.inventarioComponenteService.getInventarioComponente().subscribe({
+    this.inventarioService.getInventarioComponente().subscribe({
       next: (data) => {
         this.componentesInventory = data;
         /* setTimeout(() => {
