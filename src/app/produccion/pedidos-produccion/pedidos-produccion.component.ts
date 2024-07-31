@@ -9,18 +9,22 @@ import { ProduccionService } from '../../services/produccion.service';
 })
 export class PedidosProduccionComponent {
   solicitudesProduccion: Production[] = [];
+  cargando: boolean = true;
 
   constructor(private produccionService: ProduccionService) {
     this.obtenerSolicitudesProduccion();
   }
 
   obtenerSolicitudesProduccion() {
+    this.cargando = true;
     this.produccionService.getSolicitudesProduccion().subscribe({
       next: (data) => {
         this.solicitudesProduccion = data;
+        this.cargando = false;
       },
       error: (e) => {
         console.log(e);
+        this.cargando = false;
       },
     });
   }
