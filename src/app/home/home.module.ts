@@ -7,7 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { OrderListModule } from 'primeng/orderlist';
 import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmarCarritoComponent } from './confirmar-carrito/confirmar-carrito.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [HomeProductsComponent, ConfirmarCarritoComponent],
   imports: [
@@ -18,6 +19,8 @@ import { ConfirmarCarritoComponent } from './confirmar-carrito/confirmar-carrito
     ButtonModule,
     OrderListModule,
     NgbPopoverModule,
+    HttpClientModule,
+    ProgressSpinnerModule,
   ],
   providers: [],
 })
