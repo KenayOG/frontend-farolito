@@ -10,7 +10,7 @@ import { CatalogoComponentesService } from '../../services/catalogo-componentes.
   templateUrl: './administracion-recetas.component.html',
   styleUrl: './administracion-recetas.component.css',
 })
-export class AdministracionRecetasComponent implements OnInit {
+export class AdministracionRecetasComponent {
   recipes: Recipe[] = [];
   filtradosComponentes: { [key: number]: ComponenteRecipe[] } = {};
   listaComponentes: Componente[] = [];
@@ -22,8 +22,6 @@ export class AdministracionRecetasComponent implements OnInit {
     this.obtenerComponentes();
     this.obtenerRecetas();
   }
-
-  ngOnInit(): void {}
 
   obtenerComponentes() {
     this.componentesListaService.getCatalogoComponentes().subscribe({
@@ -59,7 +57,7 @@ export class AdministracionRecetasComponent implements OnInit {
     });
   }
 
-  getImagen(imagePath: string): string{
+  getImagen(imagePath: string): string {
     return `${this.baseUrl}${imagePath}`;
   }
 }
