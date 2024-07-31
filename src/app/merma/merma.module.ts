@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
+import { HttpClientModule } from '@angular/common/http';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [AdministracionMermaComponent],
@@ -16,6 +18,8 @@ import { IconFieldModule } from 'primeng/iconfield';
     InputIconModule,
     InputTextModule,
     IconFieldModule,
+    HttpClientModule,
+    ProgressSpinnerModule,
   ],
 })
 export class MermaModule {}
