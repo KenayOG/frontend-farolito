@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { DetalleComponenteComponent } from './detalle-componente/detalle-componente.component';
 import { AgregarLoteComponentesComponent } from './agregar-lote-componentes/agregar-lote-componentes.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     IconFieldModule,
     ButtonModule,
     HttpClientModule,
+    ProgressSpinnerModule,
   ],
 })
 export class InventarioModule {}
