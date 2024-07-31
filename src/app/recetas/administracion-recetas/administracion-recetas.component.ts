@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { RecetasService } from '../../services/recetas.service';
-import { ComponenteRecipe } from '../../interfaces/component-recipe';
 import { Componente } from '../../interfaces/components';
-import { CatalogoComponentesService } from '../../services/catalogo-componentes.service';
+import { ComponentesService } from '../../services/componentes.service';
 
 @Component({
   selector: 'app-administracion-recetas',
@@ -17,7 +16,7 @@ export class AdministracionRecetasComponent {
   cargando: boolean = true;
   constructor(
     private recetasService: RecetasService,
-    private componentesListaService: CatalogoComponentesService
+    private componentesListaService: ComponentesService
   ) {
     this.obtenerComponentes();
     this.obtenerRecetas();
