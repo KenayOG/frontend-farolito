@@ -12,7 +12,6 @@ import { CatalogoComponentesService } from '../../services/catalogo-componentes.
 })
 export class AdministracionRecetasComponent {
   recipes: Recipe[] = [];
-  filtradosComponentes: { [key: number]: ComponenteRecipe[] } = {};
   listaComponentes: Componente[] = [];
   baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
