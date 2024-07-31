@@ -5,6 +5,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ImageModule } from 'primeng/image';
 import { CheckboxModule } from 'primeng/checkbox';
 import { HttpClientModule } from '@angular/common/http';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [AdministracionRecetasComponent],
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     ImageModule,
     CheckboxModule,
     HttpClientModule,
+    ProgressSpinnerModule,
   ],
 })
 export class RecetasModule {}
