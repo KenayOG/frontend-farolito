@@ -5,6 +5,8 @@ import { InventarioService } from '../../services/inventario.service';
 import { RecetasService } from '../../services/recetas.service';
 import { Recipe } from '../../interfaces/recipe';
 import { ComponenteRecipe } from '../../interfaces/component-recipe';
+import { Cart } from '../../interfaces/cart';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-home-products',
@@ -15,6 +17,7 @@ export class HomeProductsComponent {
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
   products: LampInventory[] = [];
   recipes: Recipe[] = [];
+  cartProducts: Cart[] = [];
   cargando: boolean = true;
   baseUrl: string = 'https://localhost:5000';
 
@@ -22,7 +25,8 @@ export class HomeProductsComponent {
     config: NgbPopoverConfig,
     private elementRef: ElementRef,
     private productosService: InventarioService,
-    private recetasService: RecetasService
+    private recetasService: RecetasService,
+    private carritoService: CarritoService
   ) {
     this.obtenerProductos();
     this.obtenerRecetas();
@@ -75,6 +79,17 @@ export class HomeProductsComponent {
     });
   }
 
+  obtenerCarrito() {
+    this.carritoService.getCarrito().subscribe({
+      next: (data) => {
+        this.cartProducts = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
   getComponentesProductos(productId: number): ComponenteRecipe[] {
     const recipe = this.recipes.find((r) => r.id === productId);
     return recipe ? recipe.componentes : [];
@@ -91,5 +106,6 @@ export class HomeProductsComponent {
     setTimeout(() => {
       button.classList.remove('clicked');
     }, 1500);
+    this.obtenerCarrito();
   }
 }
