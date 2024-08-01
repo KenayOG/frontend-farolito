@@ -79,71 +79,73 @@
                   <p-sortIcon field="estatus" />
                 </div>
               </th>
-              <th pSortableColumn="nombreUsuario">
+              <th pSortableColumn="nombreUsuario" style="min-width: 6rem">
                 <div class="flex justify-content-between align-items-center">
                   Usuario
                   <p-sortIcon field="nombreUsuario" />
                 </div>
               </th>
-              <th pSortableColumn="productos">
-                <div class="flex justify-content-between align-items-center">
-                  Productos
+              <th pSortableColumn="productos" style="min-width: 10rem">
+                <div class="flex justify-content-center align-items-center">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos
                   <p-sortIcon field="productos" />
                 </div>
               </th>
-              <th pSortableColumn="details">
+              <th pSortableColumn="fechaPedido">
                 <div class="flex justify-content-between align-items-center">
                   Fecha Pedido
-                  <p-sortIcon field="details" />
+                  <p-sortIcon field="fechaPedido" />
                 </div>
               </th>
-              <th pSortableColumn="details">
+              <th pSortableColumn="fechaEnvio">
                 <div class="flex justify-content-between align-items-center">
                   Fecha Envio
-                  <p-sortIcon field="details" />
+                  <p-sortIcon field="fechaEnvio" />
                 </div>
               </th>
-              <th pSortableColumn="details">
+              <th pSortableColumn="fechaEntrega">
                 <div class="flex justify-content-between align-items-center">
                   Fecha Entrega
-                  <p-sortIcon field="details" />
+                  <p-sortIcon field="fechaEntrega" />
                 </div>
               </th>
-              <th pSortableColumn="details">
+              <th pSortableColumn="fechaEntregaAprox">
                 <div class="flex justify-content-between align-items-center">
                   Entrega Aprox
-                  <p-sortIcon field="details" />
+                  <p-sortIcon field="fechaEntregaAprox" />
                 </div>
               </th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-order>
             <tr class="p-selectable-row">
-              <td>
+              <td class="text-center align-middle">
                 {{ order.id }}
               </td>
-              <td
-                [ngClass]="{
-                  'status-sent': order.estatus === 'Enviado',
-                  'status-ontheway': order.estatus === 'En Camino',
-                  'status-inprogress': order.estatus === 'En Proceso',
-                  'status-finished': order.estatus === 'Finalizado'
-                }"
-                class="status-label"
-              >
-                <span>
+              <td class="text-center align-middle">
+                <span
+                  [ngClass]="{
+                    'status-sent': order.estatus === 'Enviado',
+                    'status-ontheway': order.estatus === 'En Camino',
+                    'status-inprogress': order.estatus === 'En Proceso',
+                    'status-finished': order.estatus === 'Finalizado'
+                  }"
+                  class="status-label"
+                >
                   {{ order.estatus }}
                 </span>
               </td>
               <td>
                 {{ order.nombreUsuario }}
               </td>
-              <td>
+              <td class="text-align-start align-middle">
                 <span
                   *ngFor="let producto of order.productos"
                   style="font-size: 14px"
                 >
-                  {{ producto.Cantidad }}&nbsp;{{ producto.nombreProducto }},
+                  {{ producto.cantidad }}&nbsp;{{
+                    producto.nombreProducto + ","
+                  }}
                 </span>
               </td>
               <td>
