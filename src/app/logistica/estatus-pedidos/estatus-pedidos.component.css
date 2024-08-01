@@ -2,20 +2,21 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
+  width: 90px;
   padding: 8px;
+  margin-top: 25px;
   border-radius: 12px;
   text-align: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
 }
 
-.status-sent {
+.status-ontheway {
   background-color: black;
   color: white;
 }
 
-.status-delivered {
+.status-sent {
   background-color: green;
   color: white;
 }
@@ -25,7 +26,12 @@
   color: black;
 }
 
-.status-canceled {
+.status-finished {
   background-color: rgb(177, 2, 2);
   color: white;
+}
+
+.width-input {
+  width: 110px;
+  height: 50px;
 }
