@@ -2,7 +2,6 @@
   <div class="row mt-4">
     <div class="col-9 scroll">
       <div class="row">
-        <!-- Se debe iterar en la lista de los productos de la bd, esta solo es de muestra -->
         <div
           *ngFor="let product of products"
           class="col-3"
@@ -85,6 +84,25 @@
         <a routerLink="/pagar-carrito" class="btn btn-success btn-lg">
           <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Pagar
         </a>
+      </div>
+    </div>
+    <div *ngIf="cargando" class="spinner-overlay">
+      <div class="spinner-container">
+        <div class="spinner-wrapper">
+          <p-progressSpinner
+            styleClass="w-7rem h-7rem"
+            strokeWidth="6"
+            fill="var(--surface-ground)"
+            animationDuration=".8s"
+          >
+          </p-progressSpinner>
+          <img
+            src="assets/images/logo-farolito.webp"
+            alt="Logo de farolito"
+            class="spinner-logo"
+          />
+        </div>
+        <p class="spinner-message">Espere por favor...</p>
       </div>
     </div>
   </div>

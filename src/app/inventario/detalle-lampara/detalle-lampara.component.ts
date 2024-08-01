@@ -12,7 +12,7 @@ import { InventarioService } from '../../services/inventario.service';
 export class DetalleLamparaComponent {
   lampDetail: LampInventory | undefined;
   nombreLampara: string = '';
-  //cargando: boolean = true;
+  cargando: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class DetalleLamparaComponent {
   }
 
   obtenerDetalleLampara() {
-    //this.cargando = true;
+    this.cargando = true;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.inventarioService.getLamparaPorId(id).subscribe(
       (lamp) => {
@@ -30,15 +30,15 @@ export class DetalleLamparaComponent {
         this.nombreLampara =
           this.lampDetail?.nombrelampara ||
           'Nombre de la lampara no encontrado';
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       (error) => {
         console.error('Error al obtener el detalle de la lampara', error);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       }
     );
   }

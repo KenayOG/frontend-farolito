@@ -12,7 +12,7 @@ import { InventarioService } from '../../services/inventario.service';
 export class DetalleComponenteComponent {
   componentDetail: ComponentInventory | undefined;
   nombreComponente: string = '';
-  //cargando: boolean = true;
+  cargando: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,22 +22,22 @@ export class DetalleComponenteComponent {
   }
 
   obtenerDetalleComponente() {
-    //this.cargando = true;
+    this.cargando = true;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.inventarioService.getComponentePorId(id).subscribe(
       (component) => {
         this.componentDetail = component;
         this.nombreComponente =
           this.componentDetail?.nombre || 'Nombre del Componente no encontrado';
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       (error) => {
         console.error('Error al obtener el detalle del componente', error);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       }
     );
   }

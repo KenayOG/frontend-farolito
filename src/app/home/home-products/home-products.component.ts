@@ -15,7 +15,7 @@ export class HomeProductsComponent {
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
   products: LampInventory[] = [];
   recipes: Recipe[] = [];
-  //cargando: boolean = true;
+  cargando: boolean = true;
   baseUrl: string = 'https://localhost:5000';
 
   constructor(
@@ -40,37 +40,37 @@ export class HomeProductsComponent {
   }
 
   obtenerProductos() {
-    //this.cargando = true;
+    this.cargando = true;
     this.productosService.getInventarioLampara().subscribe({
       next: (data) => {
         this.products = data;
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }
 
   obtenerRecetas() {
-    //this.cargando = true;
+    this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
         this.recipes = data;
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }

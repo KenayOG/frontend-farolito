@@ -11,7 +11,7 @@ import { MermaService } from '../../services/merma.service';
 export class AdministracionMermaComponent {
   decreasedLamps: LampDecrease[] = [];
   decreasedComponents: ComponenteDecrease[] = [];
-  //cargando: boolean = true;
+  cargando: boolean = true;
 
   constructor(private mermaService: MermaService) {
     this.obtenerMermaLamparas();
@@ -19,36 +19,29 @@ export class AdministracionMermaComponent {
   }
 
   obtenerMermaLamparas() {
-    //this.cargando = true;
+    this.cargando = true;
     this.mermaService.getMermaLamparas().subscribe({
       next: (data) => {
         this.decreasedLamps = data;
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }
   obtenerMermaComponentes() {
-    //this.cargando = true;
     this.mermaService.getMermaComponentes().subscribe({
       next: (data) => {
         this.decreasedComponents = data;
-        /* setTimeout(() => {
-          this.cargando = false;
-        }, 2000); */
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
-          this.cargando = false;
-        }, 2000); */
       },
     });
   }

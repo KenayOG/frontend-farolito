@@ -20,15 +20,15 @@ export class AdministrarProveedoresComponent {
     this.proveedoresService.getProveedores().subscribe({
       next: (data) => {
         this.providers = data;
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }

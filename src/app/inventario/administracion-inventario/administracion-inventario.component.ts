@@ -10,7 +10,7 @@ import { InventarioService } from '../../services/inventario.service';
 })
 export class AdministracionInventarioComponent {
   componentesInventory: ComponentInventory[] = [];
-  //cargando: boolean = true;
+  cargando: boolean = true;
 
   lampsInventory: LampInventory[] = [];
 
@@ -20,37 +20,30 @@ export class AdministracionInventarioComponent {
   }
 
   obtenerInventarioLamparas() {
-    //this.cargando = true;
+    this.cargando = true;
     this.inventarioService.getInventarioLampara().subscribe({
       next: (data) => {
         this.lampsInventory = data;
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }
 
   obtenerInventarioComponentes() {
-    //this.cargando = true;
     this.inventarioService.getInventarioComponente().subscribe({
       next: (data) => {
         this.componentesInventory = data;
-        /* setTimeout(() => {
-          this.cargando = false;
-        }, 2000); */
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
-          this.cargando = false;
-        }, 2000); */
       },
     });
   }
