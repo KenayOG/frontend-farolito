@@ -10,10 +10,15 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { TagModule } from 'primeng/tag';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CrearEmpleadoComponent } from './crear-empleado/crear-empleado.component';
 import { EditarEmpleadoComponent } from './editar-empleado/editar-empleado.component';
 import { RouterLink } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,11 @@ import { RouterLink } from '@angular/router';
     DropdownModule,
     FormsModule,
     InputNumberModule,
+    ProgressSpinnerModule,
+    TagModule,
+    ToastModule,
+    ToolbarModule,
+    HttpClientModule,
   ],
 })
 export class UsuariosModule {}
