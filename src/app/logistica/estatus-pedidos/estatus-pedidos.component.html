@@ -17,18 +17,52 @@
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
-              <h3 class="mt-2">
+              <h3 class="mt-3">
                 <b
                   ><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;Estatus
                   de Pedidos
                 </b>
               </h3>
-              <p-iconField iconPosition="left" style="margin-left: 200px">
+              <p-iconField
+                iconPosition="left"
+                style="margin-left: 50px"
+                class="mt-2"
+              >
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
                 <input pInputText type="text" placeholder="Buscar Pedido:" />
               </p-iconField>
+              <select
+                name="estatusnuevo"
+                id="floatinSelect"
+                class="mt-2 form-select"
+                style="width: 120px; height: 50px; margin-left: 20px"
+              >
+                <option selected>Estatus</option>
+                <option value="">En Proceso</option>
+                <option value="">En Camino</option>
+                <option value="">Entregado</option>
+                <option value="">Finalizado</option>
+              </select>
+
+              <div class="form-floating mt-1" style="margin-left: 30px">
+                <input
+                  type="number"
+                  class="form-control width-input"
+                  placeholder="Nombre:"
+                  id="nombre-empresa"
+                />
+                <label for="floatingInput">ID:</label>
+              </div>
+              <a
+                class="btn btn-success mt-1 p-3"
+                style="width: 120px; height: 55px; margin-left: 30px"
+              >
+                <span
+                  ><i class="fa-solid fa-circle-check"></i>&nbsp;Guardar</span
+                >
+              </a>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
@@ -39,27 +73,45 @@
                   <p-sortIcon field="id" />
                 </div>
               </th>
-              <th pSortableColumn="status">
+              <th pSortableColumn="estatus">
                 <div class="flex justify-content-between align-items-center">
                   Estatus
-                  <p-sortIcon field="status" />
+                  <p-sortIcon field="estatus" />
                 </div>
               </th>
-              <th pSortableColumn="stage">
+              <th pSortableColumn="nombreUsuario">
                 <div class="flex justify-content-between align-items-center">
-                  Fase
-                  <p-sortIcon field="stage" />
+                  Usuario
+                  <p-sortIcon field="nombreUsuario" />
                 </div>
               </th>
-              <th pSortableColumn="dateTime">
+              <th pSortableColumn="productos">
                 <div class="flex justify-content-between align-items-center">
-                  Fecha y Hora
-                  <p-sortIcon field="dateTime" />
+                  Productos
+                  <p-sortIcon field="productos" />
                 </div>
               </th>
               <th pSortableColumn="details">
                 <div class="flex justify-content-between align-items-center">
-                  Detalles
+                  Fecha Pedido
+                  <p-sortIcon field="details" />
+                </div>
+              </th>
+              <th pSortableColumn="details">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Envio
+                  <p-sortIcon field="details" />
+                </div>
+              </th>
+              <th pSortableColumn="details">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Entrega
+                  <p-sortIcon field="details" />
+                </div>
+              </th>
+              <th pSortableColumn="details">
+                <div class="flex justify-content-between align-items-center">
+                  Entrega Aprox
                   <p-sortIcon field="details" />
                 </div>
               </th>
@@ -70,27 +122,41 @@
               <td>
                 {{ order.id }}
               </td>
-              <td>
-                <span
-                  [ngClass]="{
-                    'status-sent': order.status === 'Enviado',
-                    'status-delivered': order.status === 'Entregado',
-                    'status-inprogress': order.status === 'En Proceso',
-                    'status-canceled': order.status === 'Cancelado'
-                  }"
-                  class="status-label"
-                >
-                  {{ order.status }}
+              <td
+                [ngClass]="{
+                  'status-sent': order.estatus === 'Enviado',
+                  'status-ontheway': order.estatus === 'En Camino',
+                  'status-inprogress': order.estatus === 'En Proceso',
+                  'status-finished': order.estatus === 'Finalizado'
+                }"
+                class="status-label"
+              >
+                <span>
+                  {{ order.estatus }}
                 </span>
               </td>
               <td>
-                {{ order.stage }}
+                {{ order.nombreUsuario }}
               </td>
               <td>
-                {{ order.dateTime }}
+                <span
+                  *ngFor="let producto of order.productos"
+                  style="font-size: 14px"
+                >
+                  {{ producto.Cantidad }}&nbsp;{{ producto.nombreProducto }},
+                </span>
               </td>
               <td>
-                {{ order.details }}
+                {{ order.fechaPedido }}
+              </td>
+              <td>
+                {{ order.fechaEnvio }}
+              </td>
+              <td>
+                {{ order.fechaEntrega }}
+              </td>
+              <td>
+                {{ order.fechaEntregaAprox }}
               </td>
             </tr>
           </ng-template>
