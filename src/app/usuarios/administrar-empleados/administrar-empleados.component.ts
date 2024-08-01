@@ -8,39 +8,38 @@ import { UsuariosService } from '../../services/usuarios.service';
   styleUrl: './administrar-empleados.component.css',
 })
 export class AdministrarEmpleadosComponent {
-  clientes: User[] = [];
-  empleados: User[] = [];
-  //cargando: boolean = true;
+  usuarios: User[] = [];
+  cargando: boolean = true;
 
   constructor(private userService: UsuariosService) {
     this.obtenerUsuarios();
   }
 
   obtenerUsuarios() {
-    //this.cargando = true;
+    this.cargando = true;
     this.userService.getUsuarios().subscribe({
       next: (data) => {
-        this.separarUsuarios(data);
-        /* setTimeout(() => {
+        this.usuarios = data;
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
       error: (e) => {
         console.log(e);
-        /* setTimeout(() => {
+        setTimeout(() => {
           this.cargando = false;
-        }, 2000); */
+        }, 2000);
       },
     });
   }
 
-  separarUsuarios(usuarios: User[]) {
-    usuarios.forEach((usuario) => {
-      if (usuario.roles.includes('Cliente')) {
-        this.clientes.push(usuario);
-      } else {
-        this.empleados.push(usuario);
-      }
-    });
+  get empleados() {
+    return this.usuarios.filter(
+      (usuario) => !usuario.roles.includes('Cliente')
+    );
+  }
+
+  get clientes() {
+    return this.usuarios.filter((usuario) => usuario.roles.includes('Cliente'));
   }
 }
