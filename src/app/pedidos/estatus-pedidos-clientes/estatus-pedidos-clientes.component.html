@@ -15,9 +15,9 @@
           </div>
         </ng-template>
         <p-accordion [multiple]="true">
-          <p-accordionTab *ngFor="let order of orders" [header]="order.status">
+          <p-accordionTab *ngFor="let order of orders" [header]="order.estatus">
             <div class="row">
-              <div class="col-3" *ngIf="order.image">
+              <!-- <div class="col-3" *ngIf="order.image">
                 <div class="row">
                   <div class="col-6">
                     <p-image
@@ -33,8 +33,8 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div>
-              <div
+              </div> -->
+              <!-- <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
                 *ngIf="order.nameProduct"
@@ -59,8 +59,8 @@
                     "Precio: " + order.price
                   }}
                 </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
+              </div> -->
+              <!-- <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -92,7 +92,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </p-accordionTab>
           <div class="row mt-2">
@@ -107,9 +107,9 @@
       <p-tabPanel header="Header">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2">
-            <p-avatar icon="fa-solid fa-money-bill-transfer" shape="circle" />
+            <p-avatar icon="fas fa-truck" shape="circle" />
             <span class="font-bold white-space-nowrap m-0">
-              &nbsp;&nbsp;Sin pagar </span
+              &nbsp;&nbsp;En Camino </span
             >&nbsp;
             <p-badge [value]="filtroOrdenesSinpago.length"></p-badge>
           </div>
@@ -117,10 +117,10 @@
         <p-accordion [multiple]="true" [activeIndex]="indexActivosSinpago">
           <p-accordionTab
             *ngFor="let order of filtroOrdenesSinpago"
-            [header]="order.status"
+            [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.image">
+              <!-- <div class="col-3" *ngIf="order.image">
                 <div class="row">
                   <div class="col-6">
                     <p-image
@@ -136,8 +136,8 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div>
-              <div
+              </div> -->
+              <!-- <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
                 *ngIf="order.nameProduct"
@@ -162,8 +162,8 @@
                     "Precio: " + order.price
                   }}
                 </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
+              </div> -->
+              <!-- <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -195,7 +195,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -203,9 +203,9 @@
       <p-tabPanel header="Header 3">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2">
-            <p-avatar icon="fa-solid fa-hourglass-start" shape="circle" />
+            <p-avatar icon="fa-solid fa-paper-plane" shape="circle" />
             <span class="font-bold white-space-nowrap m-0 margin-badge">
-              &nbsp;&nbsp;En proceso</span
+              &nbsp;&nbsp;Enviado</span
             >&nbsp;
             <p-badge [value]="filtroOrdenesEnproceso.length"></p-badge>
           </div>
@@ -213,10 +213,10 @@
         <p-accordion [multiple]="true" [activeIndex]="indexActivosEnproceso">
           <p-accordionTab
             *ngFor="let order of filtroOrdenesEnproceso"
-            [header]="order.status"
+            [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.image">
+              <!-- <div class="col-3" *ngIf="order.image">
                 <div class="row">
                   <div class="col-6">
                     <p-image
@@ -232,8 +232,8 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div>
-              <div
+              </div> -->
+              <!-- <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
                 *ngIf="order.nameProduct"
@@ -258,8 +258,8 @@
                     "Precio: " + order.price
                   }}
                 </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
+              </div> -->
+              <!-- <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -291,7 +291,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -299,9 +299,9 @@
       <p-tabPanel header="Enviado">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2">
-            <p-avatar icon="fa-solid fa-paper-plane" shape="circle" />
+            <p-avatar icon="fa-solid fa-house-circle-check" shape="circle" />
             <span class="font-bold white-space-nowrap m-0 margin-badge">
-              &nbsp;&nbsp;Enviado</span
+              &nbsp;&nbsp;Entregado</span
             >&nbsp;
             <p-badge [value]="filtroOrdenesEnviadas.length"></p-badge>
           </div>
@@ -309,10 +309,10 @@
         <p-accordion [multiple]="true" [activeIndex]="indexActivosEnviadas">
           <p-accordionTab
             *ngFor="let order of filtroOrdenesEnviadas"
-            [header]="order.status"
+            [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.image">
+              <!-- <div class="col-3" *ngIf="order.image">
                 <div class="row">
                   <div class="col-6">
                     <p-image
@@ -328,8 +328,8 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div>
-              <div
+              </div> -->
+              <!-- <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
                 *ngIf="order.nameProduct"
@@ -354,8 +354,8 @@
                     "Precio: " + order.price
                   }}
                 </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
+              </div> -->
+              <!-- <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -387,7 +387,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -405,10 +405,10 @@
         <p-accordion [multiple]="true" [activeIndex]="indexActivosFinalizado">
           <p-accordionTab
             *ngFor="let order of filtroOrdenesFinalizado"
-            [header]="order.status"
+            [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.image">
+              <!-- <div class="col-3" *ngIf="order.image">
                 <div class="row">
                   <div class="col-6">
                     <p-image
@@ -424,8 +424,8 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div>
-              <div
+              </div> -->
+              <!-- <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
                 *ngIf="order.nameProduct"
@@ -450,8 +450,8 @@
                     "Precio: " + order.price
                   }}
                 </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
+              </div> -->
+              <!-- <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -483,7 +483,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </p-accordionTab>
         </p-accordion>
