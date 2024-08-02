@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
   snackBar = inject(MatSnackBar);
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(private authService: AuthService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -31,11 +31,11 @@ export class LoginComponent implements OnInit {
         email: this.form.get('email')?.value,
         password: this.form.get('password')?.value
       };
-      
+
       this.authService.login(loginData).subscribe(
         (response) => {
           if (response.isSuccess) {
-            this.snackBar.open('Inicio de sesión exitoso', 'Cerrar', {
+            this.snackBar.open('Haz iniciado sesión', 'Cerrar', {
               duration: 6000,
             });
             this.router.navigate(['/home']);
