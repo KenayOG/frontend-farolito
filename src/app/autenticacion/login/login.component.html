@@ -4,23 +4,24 @@
   </div>
   <h1 class="farolito-name">Farolito</h1>
   <div class="divider"></div>
-  <div class="form-floating mt-2">
-    <input type="email" class="form-control" placeholder="Email:" id="email" />
-    <label for="floatingInput">Email:</label>
-  </div>
-  <div class="form-floating mt-2">
-    <input
-      type="password"
-      class="form-control"
-      placeholder="Password:"
-      id="password"
-    />
-    <label for="floatingInput">Password:</label>
-  </div>
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <div class="form-floating mt-2">
+      <input type="email" class="form-control" placeholder="Email:" formControlName="email" id="email" />
+      <label for="email">Email:</label>
+    </div>
+    <div class="form-floating mt-2">
+      <input type="password" class="form-control" placeholder="Password:" formControlName="password" id="password" />
+      <label for="password">Password:</label>
+    </div>
+    <div class="form-floating mt-2">
+      <button type="submit" class="login-button">
+        Iniciar
+      </button>
+    </div>
+  </form>
   <div class="forgot-password">
     <a href="#">¿Olvidaste tu contrase&ntilde;a?</a>
   </div>
-  <button class="login-button">Iniciar</button>
   <p class="sign-up">
     ¿A&uacute;n no tienes una cuenta?
     <a routerLink="/signup">Registrate</a>

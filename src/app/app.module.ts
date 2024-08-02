@@ -10,7 +10,7 @@ import { VentasModule } from './ventas/ventas.module';
 import { ProveedoresModule } from './proveedores/proveedores.module';
 import { LogisticaModule } from './logistica/logistica.module';
 import { ProduccionModule } from './produccion/produccion.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RecetasModule } from './recetas/recetas.module';
 import { InventarioModule } from './inventario/inventario.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -20,14 +20,22 @@ import { PedidosModule } from './pedidos/pedidos.module';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { CardModule } from 'primeng/card';
 import { StyleClassModule } from 'primeng/styleclass';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PerfilModule } from './perfil/perfil.module';
 import { FinanzasModule } from './finanzas/finanzas.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
     AnimateOnScrollModule,
     CardModule,
     StyleClassModule,
@@ -49,7 +57,12 @@ import { FinanzasModule } from './finanzas/finanzas.module';
     PerfilModule,
     FinanzasModule,
   ],
-  providers: [],
+  providers: [AuthService, provideAnimationsAsync()],
   bootstrap: [AppComponent],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class AppModule {}
