@@ -1,9 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { LoginRequest } from '../../interfaces/login-request';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../services/auth.service';
+import { AppComponent } from '../../app.component';
+import { LoginRequest } from '../../interfaces/login-request';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
   snackBar = inject(MatSnackBar);
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private fb: FormBuilder, private appComponent: AppComponent) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -31,29 +32,30 @@ export class LoginComponent implements OnInit {
         email: this.form.get('email')?.value,
         password: this.form.get('password')?.value
       };
-
+      
       this.authService.login(loginData).subscribe(
         (response) => {
           if (response.isSuccess) {
-            this.snackBar.open('Haz iniciado sesión', 'Cerrar', {
-              duration: 6000,
+            this.snackBar.open('Inicio de sesión exitoso', 'Cerrar', {
+              duration: 3000,
             });
+            this.appComponent.showNavBar = true;
             this.router.navigate(['/home']);
           } else {
             this.snackBar.open('Error en el inicio de sesión', 'Cerrar', {
-              duration: 6000,
+              duration: 3000,
             });
           }
         },
         (error) => {
           this.snackBar.open('Error en el inicio de sesión', 'Cerrar', {
-            duration: 6000,
+            duration: 3000,
           });
         }
       );
     } else {
       this.snackBar.open('Formulario inválido', 'Cerrar', {
-        duration: 6000,
+        duration: 3000,
       });
     }
   }

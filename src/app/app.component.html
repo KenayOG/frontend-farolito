@@ -134,14 +134,14 @@
             </a>
           </li>
           <li><hr class="dropdown-divider" /></li>
-          <li class="nav-item active">
+          <li class="nav-item active" *ngIf="!isAuthenticated">
             <a class="nav-link no-accordion-dropdown" routerLink="/signup">
               <i class="fa-solid fa-file-signature"></i>
               <span>Sign Up</span>
             </a>
           </li>
           <li><hr class="dropdown-divider" /></li>
-          <li class="nav-item active">
+          <li class="nav-item active" *ngIf="!isAuthenticated">
             <a class="nav-link no-accordion-dropdown" routerLink="/login">
               <i class="fa-solid fa-door-open"></i>
               <span>Login</span>

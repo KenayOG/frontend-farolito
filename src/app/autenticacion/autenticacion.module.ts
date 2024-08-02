@@ -12,8 +12,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    SignUpComponent
   ],
   imports: [
     CommonModule,

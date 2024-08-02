@@ -27,9 +27,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
+import { LoginComponent } from './autenticacion/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

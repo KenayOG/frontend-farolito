@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment.development';
 import { LoginRequest } from '../interfaces/login-request';
 import { AuthResponse } from '../interfaces/auth-response';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -29,26 +29,26 @@ export class AuthService {
       );
   }
 
-  isLoggedIn=():boolean => {
-    const token = this.getToken;
-    if(!token) return false;
-
-    return !this.isTokenExpired();
+  isAuthenticated(): Observable<boolean> {
+    const token = this.getToken();
+    if (!token) return of(false);
+    return of(!this.isTokenExpired());
   }
 
-  private isTokenExpired() {
-    const token = this.getToken()
-    if(!token) return true;
-    const decoded = jwtDecode(token);
-    const isTokenExpired = Date.now() >= decoded['exp']! * 1000;
-    if(isTokenExpired) this.logout();
+  private isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (!token) return true;
+    const decoded: any = jwtDecode(token);
+    const isTokenExpired = Date.now() >= decoded['exp'] * 1000;
+    if (isTokenExpired) this.logout();
     return isTokenExpired;
   }
 
-  logout = (): void => {
+  logout(): void {
     localStorage.removeItem(this.tokenKey);
   }
 
-  private getToken = (): string | null => localStorage.getItem(this.tokenKey) || '';
-
+  private getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
 }
