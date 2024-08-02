@@ -27,6 +27,7 @@ import { AgregarPedidoClienteComponent } from './pedidos/agregar-pedido-cliente/
 import { AcercadeComponent } from './acercade/acercade.component';
 import { VerDatosPerfilComponent } from './perfil/ver-datos-perfil/ver-datos-perfil.component';
 import { FinanzasComparativoComponent } from './finanzas/finanzas-comparativo/finanzas-comparativo.component';
+import { ForgotPasswordComponent } from './autenticacion/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -44,6 +45,7 @@ export const routes: Routes = [
   { path: 'acercade', component: AcercadeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'ventas', component: VentasComponent },
   { path: 'logistica', component: EstatusPedidosComponent },
   { path: 'produccion', component: PedidosProduccionComponent },

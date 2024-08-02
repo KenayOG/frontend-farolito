@@ -9,9 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../services/auth.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
+  
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
