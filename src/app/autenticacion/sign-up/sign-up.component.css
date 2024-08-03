@@ -47,6 +47,10 @@ p {
   color: #666666;
 }
 
+span {
+  color: red;
+}
+
 .login-button {
   display: inline-flex;
   align-items: center;

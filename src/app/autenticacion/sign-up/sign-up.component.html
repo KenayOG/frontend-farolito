@@ -5,34 +5,31 @@
     </div>
     <h1 class="farolito-name">Farolito</h1>
     <div class="divider"></div>
-    <div class="form-floating mt-2">
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Email:"
-        id="signup-email"
-      />
-      <label for="floatingInput">Email:</label>
-    </div>
-    <div class="form-floating mt-2">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Username:"
-        id="signup-username"
-      />
-      <label for="floatingInput">Username:</label>
-    </div>
-    <div class="form-floating mt-2 mb-3">
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Password:"
-        id="signup-password"
-      />
-      <label for="floatingInput">Password:</label>
-    </div>
-    <button class="signup-button">Registrarse</button>
+    <form [formGroup]="form" (ngSubmit)="signUp()">
+      @for (error of errors; track error) {
+      <div
+        class="bg-red-100 border mb-2 flex flex-column gap-2 border-danger text-bg-danger px-4 py-4 rounded-md relative">
+        <div class="text-xs">
+          {{error.description}}
+        </div>
+      </div>
+      }
+      <div class="form-floating mt-2">
+        <input type="email" class="form-control" placeholder="Email:" id="signup-email" formControlName="email" />
+        <label for="floatingInput">Email:</label>
+      </div>
+      <div class="form-floating mt-2">
+        <input type="text" class="form-control" placeholder="Username:" id="signup-username"
+          formControlName="fullName" />
+        <label for="floatingInput">Nombre Completo:</label>
+      </div>
+      <div class="form-floating mt-2 mb-3">
+        <input type="password" class="form-control" placeholder="Password:" id="signup-password"
+          formControlName="password" />
+        <label for="floatingInput">Password:</label>
+      </div>
+      <button class="signup-button">Registrarse</button>
+    </form>
     <p class="sign-in">
       ¿Ya tienes una cuenta?
       <a routerLink="/login">Ingresar</a>

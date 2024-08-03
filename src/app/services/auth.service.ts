@@ -5,6 +5,7 @@ import { AuthResponse } from '../interfaces/auth-response';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, BehaviorSubject, of } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { Customer } from '../interfaces/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class AuthService {
           return response;
         })
       );
+  }
+
+  signUp(data: Customer): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(`${this.apiUrl}Usuario/registerClient`, data);
   }
 
   isAuthenticated(): Observable<boolean> {
