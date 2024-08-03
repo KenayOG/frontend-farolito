@@ -5,7 +5,8 @@ import { AuthResponse } from '../interfaces/auth-response';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, BehaviorSubject, of } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-import { Customer } from '../interfaces/customer';
+import { Customer, CustomerChanger, CustomerEmployee, CustomerForgotten, CustomerReset } from '../interfaces/customer';
+import { ResponsePosts } from '../interfaces/response-posts';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
     this.checkAuthentication();
   }
 
+  // Método para iniciar sesión
   login(data: LoginRequest): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>(`${this.apiUrl}Usuario/login`, data)
@@ -33,9 +35,29 @@ export class AuthService {
       );
   }
 
+  // Método para registrar usuario de tipo Cliente
   signUp(data: Customer): Observable<AuthResponse> {
-    return this.http
-      .post<AuthResponse>(`${this.apiUrl}Usuario/registerClient`, data);
+    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerClient`, data);
+  }
+
+  // Método para registrar usuario de tipo Empleado
+  signUpEmployee(data: CustomerEmployee): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerEmpl`, data);
+  }
+
+  // Método para recuperar contraseña
+  forgotPassword(data: CustomerForgotten): Observable<ResponsePosts> {
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/forgot-password`, data);
+  }
+
+  // Método para resetear la contraseña
+  resetPassword(data: CustomerReset): Observable<ResponsePosts> {
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/reset-password`, data);
+  }
+
+  // Método para cambiar la contraseña
+  changePassword(data: CustomerChanger): Observable<ResponsePosts> {
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/ChangePass`, data);
   }
 
   isAuthenticated(): Observable<boolean> {

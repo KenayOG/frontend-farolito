@@ -5,3 +5,8 @@ export interface Cart {
   cantidad: number;
   esattus: string;
 }
+
+export interface CartRequest {
+  recetaId: number;
+  cantidad: number;
+}

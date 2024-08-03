@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Recipe } from '../interfaces/recipe';
+import { Recipe, RecipeRequest } from '../interfaces/recipe';
 import { Observable } from 'rxjs';
+import { ResponsePosts } from '../interfaces/response-posts';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,14 @@ export class RecetasService {
 
   constructor(private _http: HttpClient) {}
 
-  // Metodo para invocar el endpoint GET de recetas y catalogo.
+  // Método para invocar el endpoint GET de recetas y catalogo.
   getRecetas(): Observable<Recipe[]> {
     return this._http.get<Recipe[]>(`${this.apiUrl}/recetas`);
   }
+
+  // Método para agregar Recetas
+  createRecipe(data: RecipeRequest): Observable<ResponsePosts> {
+    return this._http.post<ResponsePosts>(`${this.apiUrl}/recetas`, data);
+  }
+
 }

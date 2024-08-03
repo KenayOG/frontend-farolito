@@ -6,3 +6,14 @@ export interface ComponenteRecipe {
   precioUnitario: number;
   precioTotal: number;
 }
+
+export interface ComponenteRecipeRequest {
+  id: number;
+  cantidad: number;
+}
+
+export interface ComponentRecipeRCompra {
+  componentesId: number;
+  cantidad: number;
+  costo: number;
+}

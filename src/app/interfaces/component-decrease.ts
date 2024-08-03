@@ -6,3 +6,9 @@ export interface ComponenteDecrease {
   usuario: string;
   componente: string;
 }
+
+export interface ComponenteDecreaseRequest {
+  cantidad: number;
+  descripcion: string;
+  inventarioComponenteId: number;
+}

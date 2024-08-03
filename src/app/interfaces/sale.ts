@@ -7,3 +7,12 @@ export interface Sale {
   email: string;
   paymentType: string;
 }
+
+export interface SaleRequest {
+  id: number;
+  cantidad: number;
+}
+
+export interface SaleRequestList {
+  sales: SaleRequest[];
+}

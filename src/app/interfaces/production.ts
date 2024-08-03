@@ -8,3 +8,9 @@ export interface Production {
   nombreUsuario: string;
   receta: RecipeProduction;
 }
+
+export interface ProductionSolicitude {
+  descripcion: string;
+  cantidad: number;
+  recetaId: number;
+}

@@ -16,11 +16,10 @@ export class SignUpComponent implements OnInit {
 
   form!: FormGroup;
   router = inject(Router);
-  authServiceI = inject(AuthService);
   matSnackBar = inject(MatSnackBar);
   errors!: ValidationError[];
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private appComponent: AppComponent) { }
+  constructor(private authService: AuthService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({

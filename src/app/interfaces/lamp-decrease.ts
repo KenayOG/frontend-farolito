@@ -6,3 +6,9 @@ export interface LampDecrease {
   usuario: string;
   lampara: string;
 }
+
+export interface LampDecreaseRequest {
+  cantidad: number;
+  descripcion: string;
+  inventariolamparaId: number;
+}
