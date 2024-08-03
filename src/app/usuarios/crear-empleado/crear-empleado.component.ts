@@ -20,7 +20,7 @@ export class CrearEmpleadoComponent implements OnInit {
     { name: 'Produccion' },
     { name: 'Almacen' },
   ];
-  selectedRol: Role | undefined; // Cambiado a Role para trabajar con objetos
+  selectedRol: Role | undefined;
   formEmployee!: FormGroup;
   errors!: ValidationError[];
   value: any;

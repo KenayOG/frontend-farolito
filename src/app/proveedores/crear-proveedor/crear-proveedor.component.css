@@ -79,9 +79,54 @@ body {
 .card-footer {
   display: flex;
   justify-content: flex-end;
+  gap: 20px;
+  border-top: 1px solid #ccc;
 }
 
 .button-container {
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field-checkbox input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  margin-right: 10px;
+}
+
+.field-checkbox input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.field-checkbox input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.field-checkbox label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
 }

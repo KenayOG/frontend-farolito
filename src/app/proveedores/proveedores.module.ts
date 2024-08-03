@@ -17,12 +17,16 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.component';
 import { EditarProveedorComponent } from './editar-proveedor/editar-proveedor.component';
 import { RouterLink } from '@angular/router';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ProveedoresService } from '../services/proveedores.service';
+import { AppComponent } from '../app.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputIconModule,
     InputTextModule,
     IconFieldModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
     ButtonModule,
     DialogModule,
     RippleModule,
@@ -52,6 +58,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputNumberModule,
     HttpClientModule,
     ProgressSpinnerModule,
+    CheckboxModule,
   ],
+  providers: [
+    ProveedoresService
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: []
 })
 export class ProveedoresModule {}

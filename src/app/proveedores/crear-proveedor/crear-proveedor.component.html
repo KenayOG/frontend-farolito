@@ -6,72 +6,71 @@
           <i class="fa-solid fa-truck"></i>&nbsp;&nbsp;Registrar Proveedor
         </h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form class="form-grid" [formGroup]="formProvider" (ngSubmit)="registerProvider()">
             <div class="form-section">
               <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre:"
-                  id="nombre-empresa"
-                />
-                <label for="floatingInput">Nombre de la Empresa:</label>
+                <input formControlName="nombreEmpresa" type="text" class="form-control"
+                  placeholder="Nombre de la Empresa:" id="nombre-empresa" />
+                <label for="nombre-empresa">Nombre de la Empresa:</label>
               </div>
               <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Direccion:"
-                  id="direccion"
-                />
-                <label for="floatingInput">Direccion:</label>
+                <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion:"
+                  id="direccion" />
+                <label for="direccion">Direccion:</label>
               </div>
               <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Telefono:"
-                  id="telefono"
-                />
-                <label for="floatingInput">Telefono:</label>
+                <input formControlName="email" type="text" class="form-control" placeholder="Correo Electrónico:"
+                  id="email" />
+                <label for="email">Correo Electrónico:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input formControlName="telefono" type="text" class="form-control" placeholder="Telefono:"
+                  id="telefono" />
+                <label for="telefono">Telefono:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input formControlName="nombreAtiende" type="text" class="form-control" placeholder="Atendido por:"
+                  id="nombreAtiende" />
+                <label for="nombreAtiende">Atendido por:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input formControlName="apellidoP" type="text" class="form-control" placeholder="Primer Apellido:"
+                  id="apellidoP" />
+                <label for="apellidoP">Primer Apellido:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input formControlName="apellidoM" type="text" class="form-control" placeholder="Segundo Apellido:"
+                  id="apellidoM" />
+                <label for="apellidoM">Segundo Apellido:</label>
               </div>
             </div>
             <div class="form-section">
               <div class="form-floating mt-2">
-                <textarea
-                  id="products-services"
-                  class="textarea"
-                  rows="2"
-                  placeholder="Describe los productos o servicios a ofrecer:"
-                ></textarea>
+                <textarea formControlName="productosDescripcion" id="products-services" class="textarea" rows="2"
+                  placeholder="Describe los productos o servicios a ofrecer:"></textarea>
               </div>
-              <div class="form-floating">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email:"
-                  id="email"
-                />
-                <label for="floatingInput">Email:</label>
+              <div class="flex flex-column gap-2 p-3">
+                <label class="header mb-2">
+                  <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Componentes
+                </label>
+                <div formArrayName="componentes" *ngFor="let component of listaComponentes; let i = index"
+                  class="field-checkbox">
+                  <input type="checkbox" [formControlName]="i" [value]="component.id" id="component-{{component.id}}" />
+                  <label for="component-{{component.id}}">{{component.nombre}}</label>
+                </div>
               </div>
-              <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Atendido por:"
-                  id="atendido-por"
-                />
-                <label for="floatingInput">Atendido por:</label>
+            </div>
+            <div class="card-footer">
+              <div class="button-container">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+                <button type="button" class="btn btn-secondary btn-lg" (click)="limpiarCampos()">
+                  <i class="fa-solid fa-eraser"></i>&nbsp;&nbsp;Limpiar
+                </button>
               </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
         </div>
       </div>
     </div>
