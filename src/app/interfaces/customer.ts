@@ -11,9 +11,7 @@ export interface CustomerEmployee {
   email: string,
   fullName: string,
   password: string,
-  roles: [
-    string
-  ]
+  roles: string[]
 }
 
 export interface CustomerForgotten {

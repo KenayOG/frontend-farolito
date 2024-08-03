@@ -6,7 +6,7 @@
           <i class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;Registrar Empleado
         </h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form class="form-grid" [formGroup]="formEmployee" (ngSubmit)="signUpEmployee()">
             <div class="form-section">
               <div class="row">
                 <div class="col-4">
@@ -14,10 +14,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Nombre:"
-                      id="nombre-empresa"
+                      id="nombre"
+                      formControlName="name"
                     />
-                    <label for="floatingInput">Nombres:</label>
+                    <label for="nombre">Nombres:</label>
                   </div>
                 </div>
                 <div class="col-4">
@@ -25,10 +25,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Apellidos:"
                       id="apellido"
+                      formControlName="lastName"
                     />
-                    <label for="floatingInput">Apellidos:</label>
+                    <label for="apellido">Apellidos:</label>
                   </div>
                 </div>
                 <div class="col-4">
@@ -40,7 +40,7 @@
                       [showClear]="true"
                       optionLabel="name"
                       placeholder="Selecciona un rol:"
-                      name="rol"
+                      formControlName="roles"
                     ></p-dropdown>
                   </div>
                 </div>
@@ -51,10 +51,10 @@
                     <input
                       type="email"
                       class="form-control"
-                      placeholder="Email:"
                       id="email"
+                      formControlName="email"
                     />
-                    <label for="floatingInput">Email:</label>
+                    <label for="email">Email:</label>
                   </div>
                 </div>
                 <div class="col-4">
@@ -62,10 +62,9 @@
                     <input
                       type="tel"
                       class="form-control"
-                      placeholder="Telefono:"
                       id="telefono"
                     />
-                    <label for="floatingInput">Telefono:</label>
+                    <label for="telefono">Telefono:</label>
                   </div>
                 </div>
                 <div class="col-4">
@@ -73,10 +72,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Direccion:"
                       id="direccion"
                     />
-                    <label for="floatingInput">Direccion:</label>
+                    <label for="direccion">Direccion:</label>
                   </div>
                 </div>
               </div>
@@ -86,15 +84,15 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Username:"
                       id="username"
                     />
-                    <label for="floatingInput">Username:</label>
+                    <label for="username">Username:</label>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-floating mt-3">
-                    <p-password
+                    <p-password 
+                      formControlName="password"
                       [(ngModel)]="value"
                       [toggleMask]="true"
                       placeholder="Password"
@@ -103,14 +101,14 @@
                 </div>
               </div>
             </div>
+            <div class="card-footer">
+              <div class="button-container">
+                <button class="btn btn-success btn-lg" type="submit">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+              </div>
+            </div>
           </form>
-        </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
         </div>
       </div>
     </div>
