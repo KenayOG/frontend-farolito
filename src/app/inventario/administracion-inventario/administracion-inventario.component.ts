@@ -6,6 +6,7 @@ import { MermaService } from '../../services/merma.service'; // Importa el servi
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComponenteDecreaseRequest } from '../../interfaces/component-decrease';
 import { LampDecreaseRequest } from '../../interfaces/lamp-decrease';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-administracion-inventario',
@@ -27,7 +28,7 @@ export class AdministracionInventarioComponent {
   constructor(
     private inventarioService: InventarioService,
     private mermaService: MermaService,
-    private modalService: NgbModal
+    private matSnackBar: MatSnackBar
   ) {
     this.obtenerInventarioComponentes();
     this.obtenerInventarioLamparas();
@@ -86,9 +87,21 @@ export class AdministracionInventarioComponent {
     this.mermaService.sendMermaLamparas(requestData).subscribe({
       next: (response) => {
         console.log('Respuesta de merma lámpara:', response);
+        this.limpiarModal();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       },
-      error: (e) => {
-        console.log('Error al mermar lámpara:', e);
+      error: (err) => {
+        console.log('Error al mermar lámpara:', err);
+        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
       },
     });
   }
@@ -107,9 +120,21 @@ export class AdministracionInventarioComponent {
     this.mermaService.sendMermaComponentes(requestData).subscribe({
       next: (response) => {
         console.log('Respuesta de merma componente:', response);
+        this.limpiarModal();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       },
-      error: (e) => {
-        console.log('Error al mermar componente:', e);
+      error: (err) => {
+        console.log('Error al mermar componente:', err);
+        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
       },
     });
   }
@@ -120,5 +145,15 @@ export class AdministracionInventarioComponent {
 
   selectComponent(component: any) {
     this.selectedComponent = component;
+  }
+
+  limpiarModal() {
+    (document.getElementById('cantidadLampara') as HTMLInputElement).value = '';
+    (document.getElementById('descripcionLampara') as HTMLTextAreaElement).value = '';
+    (document.getElementById('inventariolamparaId') as HTMLInputElement).value = '';
+
+    (document.getElementById('cantidadComponente') as HTMLInputElement).value = '';
+    (document.getElementById('descripcionComponente') as HTMLTextAreaElement).value = '';
+    (document.getElementById('inventarioComponenteId') as HTMLInputElement).value = '';
   }
 }
