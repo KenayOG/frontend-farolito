@@ -15,7 +15,7 @@
   <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active"><a class="nav-link" routerLink="/home"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
-      <li *ngIf="!isAuthenticated || role === 'Cliente'" class="nav-item active"><a class="nav-link" routerLink="/pedidos"><i class="fa-solid fa-file-pen"></i><span>Pedidos</span></a></li>
+      <li *ngIf="!isAuthenticated || role === 'Cliente' || role === 'Administrador'" class="nav-item active"><a class="nav-link" routerLink="/pedidos"><i class="fa-solid fa-file-pen"></i><span>Pedidos</span></a></li>
       <li *ngIf="!isAuthenticated || role === 'Cliente'" class="nav-item active"><a class="nav-link" routerLink="/catalogo"><i class="fa-solid fa-book"></i><span>Catálogo</span></a></li>
       <li *ngIf="!isAuthenticated || role === 'Cliente'" class="nav-item active"><a class="nav-link" routerLink="/acercade"><i class="fa-solid fa-circle-info"></i><span>Acerca de</span></a></li>
       <li *ngIf="!isAuthenticated || role === 'Cliente'" class="nav-item active"><a class="nav-link" routerLink="/mi-perfil"><i class="fa-solid fa-user"></i><span>Mi Perfil</span></a></li>
