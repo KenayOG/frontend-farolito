@@ -17,6 +17,7 @@ import { MermaService } from '../services/merma.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../services/auth.service';
+import { ProveedoresService } from '../services/proveedores.service';
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
@@ -40,7 +41,7 @@ import { AuthService } from '../services/auth.service';
   providers: [
     InventarioService,
     MermaService,
-    AuthService
+    ProveedoresService
   ],
   bootstrap: [
     AppComponent

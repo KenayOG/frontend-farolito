@@ -1,7 +1,7 @@
-import { ComponentRecipeRCompra } from "./component-recipe";
+import { DetalleCompra } from "./component-recipe";
 
 export interface Purchase {
-    fecha: Date;
+    fecha: string;
     proveedorId: number;
-    detalles: ComponentRecipeRCompra[];
+    detalles: DetalleCompra[];
 }
