@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 import { AgregarPedidoClienteComponent } from './agregar-pedido-cliente/agregar-pedido-cliente.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     NgIf,
     DropdownModule,
     FormsModule,
+    ProgressSpinnerModule,
   ],
 })
 export class PedidosModule {}

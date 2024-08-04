@@ -7,7 +7,5 @@ export interface OrderCustomer {
   fechaEntrega: string;
   fechaEntregaAprox: string;
   estatus: string;
-  usuarioId: string;
-  nombreUsuario: string;
   productos: OrderProduct[];
 }

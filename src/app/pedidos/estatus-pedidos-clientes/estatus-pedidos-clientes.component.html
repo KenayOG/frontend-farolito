@@ -17,15 +17,15 @@
         <p-accordion [multiple]="true">
           <p-accordionTab *ngFor="let order of orders" [header]="order.estatus">
             <div class="row">
-              <!-- <div class="col-3" *ngIf="order.image">
+              <div class="col-3" *ngIf="order.id != 0">
                 <div class="row">
                   <div class="col-6">
-                    <p-image
-                      [src]="order.image"
-                      alt="{{ order.nameProduct }}"
+                    <img
+                      [src]="ObtenerImagen(order.productos[0].recetaId)"
+                      alt="{{ order.productos[0].nombreProducto }}"
                       width="160"
-                    >
-                    </p-image>
+                      class="img-fluid"
+                    />
                   </div>
                   <div class="col-6">
                     <p-divider layout="vertical"
@@ -33,14 +33,14 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div> -->
-              <!-- <div
+              </div>
+              <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
-                *ngIf="order.nameProduct"
+                *ngIf="order.productos[0].nombreProducto"
               >
                 <h4 style="font-weight: bold">
-                  {{ order.nameProduct }}
+                  {{ order.productos[0].nombreProducto }}
                 </h4>
                 <ul style="margin-left: -30px">
                   <i
@@ -48,7 +48,7 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Cantidad: " + order.quantity
+                    "Cantidad: " + order.productos[0].cantidad
                   }}
                   <hr />
                   <i
@@ -56,11 +56,11 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Precio: " + order.price
+                    "Precio: " + order.productos[0].precioUnitario
                   }}
                 </ul>
-              </div> -->
-              <!-- <div class="col-4" style="font-size: 18px">
+              </div>
+              <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -75,7 +75,9 @@
                     >
                       <i class="fa-solid fa-file-invoice-dollar"></i
                       >&nbsp;&nbsp;{{
-                        "Total: " + order.price * order.quantity
+                        "Total: " +
+                          order.productos[0].precioUnitario *
+                            order.productos[0].cantidad
                       }}
                     </div>
                   </div>
@@ -92,7 +94,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </p-accordionTab>
           <div class="row mt-2">
@@ -111,24 +113,24 @@
             <span class="font-bold white-space-nowrap m-0">
               &nbsp;&nbsp;En Camino </span
             >&nbsp;
-            <p-badge [value]="filtroOrdenesSinpago.length"></p-badge>
+            <p-badge [value]="filtroOrdenesCamino.length"></p-badge>
           </div>
         </ng-template>
-        <p-accordion [multiple]="true" [activeIndex]="indexActivosSinpago">
+        <p-accordion [multiple]="true">
           <p-accordionTab
-            *ngFor="let order of filtroOrdenesSinpago"
+            *ngFor="let order of filtroOrdenesCamino"
             [header]="order.estatus"
           >
             <div class="row">
-              <!-- <div class="col-3" *ngIf="order.image">
+              <div class="col-3" *ngIf="order.id != 0">
                 <div class="row">
                   <div class="col-6">
-                    <p-image
-                      [src]="order.image"
-                      alt="{{ order.nameProduct }}"
+                    <img
+                      [src]="ObtenerImagen(order.productos[0].recetaId)"
+                      alt="{{ order.productos[0].nombreProducto }}"
                       width="160"
-                    >
-                    </p-image>
+                      class="img-fluid"
+                    />
                   </div>
                   <div class="col-6">
                     <p-divider layout="vertical"
@@ -136,14 +138,14 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div> -->
-              <!-- <div
+              </div>
+              <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
-                *ngIf="order.nameProduct"
+                *ngIf="order.productos[0].nombreProducto"
               >
                 <h4 style="font-weight: bold">
-                  {{ order.nameProduct }}
+                  {{ order.productos[0].nombreProducto }}
                 </h4>
                 <ul style="margin-left: -30px">
                   <i
@@ -151,7 +153,7 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Cantidad: " + order.quantity
+                    "Cantidad: " + order.productos[0].cantidad
                   }}
                   <hr />
                   <i
@@ -159,11 +161,11 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Precio: " + order.price
+                    "Precio: " + order.productos[0].precioUnitario
                   }}
                 </ul>
-              </div> -->
-              <!-- <div class="col-4" style="font-size: 18px">
+              </div>
+              <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -178,7 +180,9 @@
                     >
                       <i class="fa-solid fa-file-invoice-dollar"></i
                       >&nbsp;&nbsp;{{
-                        "Total: " + order.price * order.quantity
+                        "Total: " +
+                          order.productos[0].precioUnitario *
+                            order.productos[0].cantidad
                       }}
                     </div>
                   </div>
@@ -195,7 +199,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -207,22 +211,23 @@
             <span class="font-bold white-space-nowrap m-0 margin-badge">
               &nbsp;&nbsp;Enviado</span
             >&nbsp;
-            <p-badge [value]="filtroOrdenesEnproceso.length"></p-badge>
+            <p-badge [value]="filtroOrdenesEnviadas.length"></p-badge>
           </div>
         </ng-template>
-        <p-accordion [multiple]="true" [activeIndex]="indexActivosEnproceso">
+        <p-accordion [multiple]="true">
           <p-accordionTab
-            *ngFor="let order of filtroOrdenesEnproceso"
+            *ngFor="let order of filtroOrdenesEnviadas"
             [header]="order.estatus"
           >
             <div class="row">
-              <!-- <div class="col-3" *ngIf="order.image">
+              <div class="col-3" *ngIf="order.id != 0">
                 <div class="row">
                   <div class="col-6">
                     <p-image
-                      [src]="order.image"
-                      alt="{{ order.nameProduct }}"
+                      [src]="ObtenerImagen(order.productos[0].recetaId)"
+                      alt="{{ order.productos[0].nombreProducto }}"
                       width="160"
+                      class="img-fluid"
                     >
                     </p-image>
                   </div>
@@ -232,14 +237,14 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div> -->
-              <!-- <div
+              </div>
+              <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
-                *ngIf="order.nameProduct"
+                *ngIf="order.productos[0].nombreProducto"
               >
                 <h4 style="font-weight: bold">
-                  {{ order.nameProduct }}
+                  {{ order.productos[0].nombreProducto }}
                 </h4>
                 <ul style="margin-left: -30px">
                   <i
@@ -247,7 +252,7 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Cantidad: " + order.quantity
+                    "Cantidad: " + order.productos[0].cantidad
                   }}
                   <hr />
                   <i
@@ -255,11 +260,11 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Precio: " + order.price
+                    "Precio: " + order.productos[0].precioUnitario
                   }}
                 </ul>
-              </div> -->
-              <!-- <div class="col-4" style="font-size: 18px">
+              </div>
+              <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -274,7 +279,9 @@
                     >
                       <i class="fa-solid fa-file-invoice-dollar"></i
                       >&nbsp;&nbsp;{{
-                        "Total: " + order.price * order.quantity
+                        "Total: " +
+                          order.productos[0].precioUnitario *
+                            order.productos[0].cantidad
                       }}
                     </div>
                   </div>
@@ -291,7 +298,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -299,28 +306,28 @@
       <p-tabPanel header="Enviado">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2">
-            <p-avatar icon="fa-solid fa-house-circle-check" shape="circle" />
+            <p-avatar icon="fa-solid fa-hourglass-half" shape="circle" />
             <span class="font-bold white-space-nowrap m-0 margin-badge">
-              &nbsp;&nbsp;Entregado</span
+              &nbsp;&nbsp;En Proceso</span
             >&nbsp;
-            <p-badge [value]="filtroOrdenesEnviadas.length"></p-badge>
+            <p-badge [value]="filtroOrdenesEnproceso.length"></p-badge>
           </div>
         </ng-template>
-        <p-accordion [multiple]="true" [activeIndex]="indexActivosEnviadas">
+        <p-accordion [multiple]="true">
           <p-accordionTab
-            *ngFor="let order of filtroOrdenesEnviadas"
+            *ngFor="let order of filtroOrdenesEnproceso"
             [header]="order.estatus"
           >
             <div class="row">
-              <!-- <div class="col-3" *ngIf="order.image">
+              <div class="col-3" *ngIf="order.id != 0">
                 <div class="row">
                   <div class="col-6">
-                    <p-image
-                      [src]="order.image"
-                      alt="{{ order.nameProduct }}"
+                    <img
+                      [src]="ObtenerImagen(order.productos[0].recetaId)"
+                      alt="{{ order.productos[0].nombreProducto }}"
                       width="160"
-                    >
-                    </p-image>
+                      class="img-fluid"
+                    />
                   </div>
                   <div class="col-6">
                     <p-divider layout="vertical"
@@ -328,14 +335,14 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div> -->
-              <!-- <div
+              </div>
+              <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
-                *ngIf="order.nameProduct"
+                *ngIf="order.productos[0].nombreProducto"
               >
                 <h4 style="font-weight: bold">
-                  {{ order.nameProduct }}
+                  {{ order.productos[0].nombreProducto }}
                 </h4>
                 <ul style="margin-left: -30px">
                   <i
@@ -343,7 +350,7 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Cantidad: " + order.quantity
+                    "Cantidad: " + order.productos[0].cantidad
                   }}
                   <hr />
                   <i
@@ -351,11 +358,11 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Precio: " + order.price
+                    "Precio: " + order.productos[0].precioUnitario
                   }}
                 </ul>
-              </div> -->
-              <!-- <div class="col-4" style="font-size: 18px">
+              </div>
+              <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -370,7 +377,9 @@
                     >
                       <i class="fa-solid fa-file-invoice-dollar"></i
                       >&nbsp;&nbsp;{{
-                        "Total: " + order.price * order.quantity
+                        "Total: " +
+                          order.productos[0].precioUnitario *
+                            order.productos[0].cantidad
                       }}
                     </div>
                   </div>
@@ -387,7 +396,7 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </p-accordionTab>
         </p-accordion>
@@ -402,19 +411,20 @@
             <p-badge [value]="filtroOrdenesFinalizado.length"></p-badge>
           </div>
         </ng-template>
-        <p-accordion [multiple]="true" [activeIndex]="indexActivosFinalizado">
+        <p-accordion [multiple]="true">
           <p-accordionTab
             *ngFor="let order of filtroOrdenesFinalizado"
             [header]="order.estatus"
           >
             <div class="row">
-              <!-- <div class="col-3" *ngIf="order.image">
+              <div class="col-3" *ngIf="order.id != 0">
                 <div class="row">
                   <div class="col-6">
                     <p-image
-                      [src]="order.image"
-                      alt="{{ order.nameProduct }}"
+                      [src]="ObtenerImagen(order.productos[0].recetaId)"
+                      alt="{{ order.productos[0].nombreProducto }}"
                       width="160"
+                      class="img-fluid"
                     >
                     </p-image>
                   </div>
@@ -424,14 +434,14 @@
                     ></p-divider>
                   </div>
                 </div>
-              </div> -->
-              <!-- <div
+              </div>
+              <div
                 class="col-5 text-center mt-3"
                 style="font-size: 18px"
-                *ngIf="order.nameProduct"
+                *ngIf="order.productos[0].nombreProducto"
               >
                 <h4 style="font-weight: bold">
-                  {{ order.nameProduct }}
+                  {{ order.productos[0].nombreProducto }}
                 </h4>
                 <ul style="margin-left: -30px">
                   <i
@@ -439,7 +449,7 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Cantidad: " + order.quantity
+                    "Cantidad: " + order.productos[0].cantidad
                   }}
                   <hr />
                   <i
@@ -447,11 +457,11 @@
                     style="margin-right: 10px"
                   ></i>
                   {{
-                    "Precio: " + order.price
+                    "Precio: " + order.productos[0].precioUnitario
                   }}
                 </ul>
-              </div> -->
-              <!-- <div class="col-4" style="font-size: 18px">
+              </div>
+              <div class="col-4" style="font-size: 18px">
                 <div class="row mt-3">
                   <div class="col-12">
                     <div
@@ -466,7 +476,9 @@
                     >
                       <i class="fa-solid fa-file-invoice-dollar"></i
                       >&nbsp;&nbsp;{{
-                        "Total: " + order.price * order.quantity
+                        "Total: " +
+                          order.productos[0].precioUnitario *
+                            order.productos[0].cantidad
                       }}
                     </div>
                   </div>
@@ -483,12 +495,31 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </p-accordionTab>
         </p-accordion>
       </p-tabPanel>
     </p-tabView>
+    <div *ngIf="cargando" class="spinner-overlay">
+      <div class="spinner-container">
+        <div class="spinner-wrapper">
+          <p-progressSpinner
+            styleClass="w-7rem h-7rem"
+            strokeWidth="6"
+            fill="var(--surface-ground)"
+            animationDuration=".8s"
+          >
+          </p-progressSpinner>
+          <img
+            src="assets/images/logo-farolito.webp"
+            alt="Logo de farolito"
+            class="spinner-logo"
+          />
+        </div>
+        <p class="spinner-message">Espere por favor...</p>
+      </div>
+    </div>
   </div>
   <br />
 </div>

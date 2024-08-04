@@ -2,51 +2,89 @@ import { Component, OnInit } from '@angular/core';
 import { OrderProduct } from '../../interfaces/order-product';
 import { Recipe } from '../../interfaces/recipe';
 import { OrderCustomer } from '../../interfaces/customer-order';
+import { PedidosService } from '../../services/pedidos.service';
+import { RecetasService } from '../../services/recetas.service';
 
 @Component({
   selector: 'app-estatus-pedidos-clientes',
   templateUrl: './estatus-pedidos-clientes.component.html',
   styleUrl: './estatus-pedidos-clientes.component.css',
 })
-export class EstatusPedidosClientesComponent implements OnInit{
+export class EstatusPedidosClientesComponent {
   orders: OrderCustomer[] = [];
 
   filtroOrdenesEnviadas: OrderCustomer[] = [];
   filtroOrdenesEnproceso: OrderCustomer[] = [];
-  filtroOrdenesSinpago: OrderCustomer[] = [];
+  filtroOrdenesCamino: OrderCustomer[] = [];
   filtroOrdenesFinalizado: OrderCustomer[] = [];
-  indexActivosTodo: number[] = [];
-  indexActivosEnviadas: number[] = [];
-  indexActivosEnproceso: number[] = [];
-  indexActivosSinpago: number[] = [];
-  indexActivosFinalizado: number[] = [];
+  filtroOrdenesEntregado: OrderCustomer[] = [];
   recipes: Recipe[] = [];
+  baseUrl: string = 'https://localhost:5000';
+  cargando: boolean = true;
 
-  ngOnInit() {
-    this.filtroOrdenesEnviadas = this.orders.filter(
-      (order) => order.estatus === 'Enviado'
-    );
-    this.indexActivosEnviadas = this.filtroOrdenesEnviadas.map(
-      (_, index) => index
-    );
-    this.filtroOrdenesFinalizado = this.orders.filter(
-      (order) => order.estatus === 'Finalizado'
-    );
-    this.indexActivosFinalizado = this.filtroOrdenesEnviadas.map(
-      (_, index) => index
-    );
-    this.filtroOrdenesEnproceso = this.orders.filter(
-      (order) => order.estatus === 'En proceso'
-    );
-    this.indexActivosEnproceso = this.filtroOrdenesEnviadas.map(
-      (_, index) => index
-    );
-    this.filtroOrdenesSinpago = this.orders.filter(
-      (order) => order.estatus === 'Sin Pagar'
-    );
-    this.indexActivosSinpago = this.filtroOrdenesEnviadas.map(
-      (_, index) => index
-    );
-    this.indexActivosTodo = this.orders.map((_, index) => index);
+  constructor(
+    private pedidosService: PedidosService,
+    private recetasService: RecetasService
+  ) {
+    this.ObtenerPedidos();
+    this.obtenerRecetas();
+  }
+
+  ObtenerPedidos() {
+    this.pedidosService.getPedidosUsuario().subscribe({
+      next: (data) => {
+        console.log('Datos recibidos:', data);
+        this.orders = data;
+        this.filtroOrdenesEnviadas = this.orders.filter(
+          (order) => order.estatus === 'Enviado'
+        );
+        this.filtroOrdenesFinalizado = this.orders.filter(
+          (order) => order.estatus === 'Finalizado'
+        );
+        this.filtroOrdenesEnproceso = this.orders.filter(
+          (order) => order.estatus === 'En Proceso'
+        );
+        this.filtroOrdenesCamino = this.orders.filter(
+          (order) => order.estatus === 'En Camino'
+        );
+        /* this.filtroOrdenesCamino = this.orders.filter(
+          (order) => order.estatus === 'Entregado'
+        ); */
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
+  obtenerRecetas() {
+    this.cargando = true;
+    this.recetasService.getRecetas().subscribe({
+      next: (data) => {
+        this.recipes = data;
+        setTimeout(() => {
+          this.cargando = false;
+        }, 2000);
+      },
+      error: (e) => {
+        console.log(e);
+        setTimeout(() => {
+          this.cargando = false;
+        }, 2000);
+      },
+    });
+  }
+
+  ObtenerImagen(recetaId: number): string | undefined {
+    const receta = this.recipes.find((r) => r.id === recetaId);
+    if (receta) {
+      return this.getImagen(receta.imagen);
+    }
+    return undefined;
+  }
+
+  getImagen(imagePath: string): string {
+    /* console.log(`${this.baseUrl}${imagePath}`); */
+    return `${this.baseUrl}${imagePath}`;
   }
 }

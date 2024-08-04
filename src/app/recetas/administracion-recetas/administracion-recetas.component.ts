@@ -10,7 +10,6 @@ import { ComponentesService } from '../../services/componentes.service';
   styleUrl: './administracion-recetas.component.css',
 })
 export class AdministracionRecetasComponent {
-  
   recipes: Recipe[] = [];
   listaComponentes: Componente[] = [];
   baseUrl: string = 'https://localhost:5000';
