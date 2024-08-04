@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h3 class="card-header text-center">
+                    <i class="fa-solid fa-truck"></i>&nbsp;&nbsp;Registrar Proveedor
+                </h3>
+                <div class="card-content">
+                    <form [formGroup]="produccionForm" (ngSubmit)="crearSolicitudProduccion()" class="form-grid">
+                        <div class="form-floating mt-2">
+                            <input formControlName="descripcion" type="text" class="form-control" placeholder="Descripción:" id="descripcion" />
+                            <label for="descripcion">Descripción:</label>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <input formControlName="cantidad" type="number" class="form-control" placeholder="Cantidad:" id="cantidad" />
+                            <label for="cantidad">Cantidad:</label>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <select formControlName="recetaId" class="form-control" id="receta">
+                                <option *ngFor="let recipe of recipes" [value]="recipe.id">{{ recipe.nombrelampara }}</option>
+                            </select>
+                            <label for="receta">Receta:</label>
+                        </div>
+                        <div class="card-footer">
+                            <div class="button-container">
+                                <button type="submit" class="btn btn-success btn-lg" [disabled]="cargando || produccionForm.invalid">
+                                    <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

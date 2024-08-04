@@ -28,6 +28,7 @@ import { AcercadeComponent } from './acercade/acercade.component';
 import { VerDatosPerfilComponent } from './perfil/ver-datos-perfil/ver-datos-perfil.component';
 import { FinanzasComparativoComponent } from './finanzas/finanzas-comparativo/finanzas-comparativo.component';
 import { ForgotPasswordComponent } from './autenticacion/forgot-password/forgot-password.component';
+import { GenerarProduccionComponent } from './produccion/generar-produccion/generar-produccion.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -62,4 +63,5 @@ export const routes: Routes = [
   { path: 'merma', component: AdministracionMermaComponent },
   { path: 'mi-perfil', component: VerDatosPerfilComponent },
   { path: 'finanzas', component: FinanzasComparativoComponent },
+  { path: 'generar-produccion', component: GenerarProduccionComponent }
 ];
