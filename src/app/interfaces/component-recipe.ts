@@ -12,7 +12,7 @@ export interface ComponenteRecipeRequest {
   cantidad: number;
 }
 
-export interface ComponentRecipeRCompra {
+export interface DetalleCompra {
   componentesId: number;
   cantidad: number;
   costo: number;

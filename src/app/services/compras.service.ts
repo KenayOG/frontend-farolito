@@ -13,10 +13,10 @@ export class ComprasService {
   private _endPoint: string = environment.endPoint;
   private apiUrl: string = this._endPoint + 'Compra';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
-// Método para agregar compras de inventario
-purchase(data: Purchase): Observable<ResponsePosts> {
-  return this._http.post<ResponsePosts>(`${this.apiUrl}/agregar-compras`, data);
-}
+  // Método para agregar compras de inventario
+  agregarLote(data: Purchase): Observable<ResponsePosts> {
+    return this._http.post<ResponsePosts>(`${this.apiUrl}/agregar-compras`, data);
+  }
 }

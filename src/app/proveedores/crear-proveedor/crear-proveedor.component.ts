@@ -6,7 +6,6 @@ import { ProveedoresService } from '../../services/proveedores.service';
 import { ValidationError } from '../../interfaces/validation-errors';
 import { ComponentesService } from '../../services/componentes.service';
 import { Componente } from '../../interfaces/components';
-import { ProductProvider } from '../../interfaces/product-provider';
 
 @Component({
   selector: 'app-crear-proveedor',

@@ -85,3 +85,10 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.readonly-input {
+  background-color: #e9ecef;
+  color: #495057;
+  opacity: 1;
+  pointer-events: none;
+}

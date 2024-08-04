@@ -6,73 +6,94 @@
           <i class="fa-solid fa-boxes-packing"></i>&nbsp;&nbsp;Agregar Lote
         </h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form class="form-grid" #form="ngForm" (ngSubmit)="agregarLote(form)">
             <div class="form-section">
               <div class="form-floating mt-2">
                 <input
+                  type="date"
+                  class="form-control readonly-input"
+                  placeholder="Fecha:"
+                  id="fecha"
+                  [(ngModel)]="fecha"
+                  [value]="fecha"
+                  readonly
+                />
+                <label for="fecha">Fecha:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input
                   type="text"
-                  class="form-control"
+                  class="form-control readonly-input"
                   placeholder="Lote:"
                   id="lote"
+                  [value]="lote"
+                  readonly
                 />
-                <label for="floatingInput">Lote:</label>
+                <label for="lote">Lote:</label>
               </div>
               <div class="form-floating mt-2">
-                <input
-                  type="text"
+                <select
                   class="form-control"
-                  placeholder="Cantidad:"
-                  id="Cantidad"
-                />
-                <label for="floatingInput">Cantidad:</label>
-              </div>
-              <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Proveedor:"
-                  id="proveedor"
-                />
-                <label for="floatingInput">Proveedor:</label>
+                  id="componentesId"
+                  [(ngModel)]="selectedComponenteId"
+                  name="componentesId"
+                  required
+                >
+                  <option *ngFor="let componente of listaComponentes" [value]="componente.id">
+                    {{ componente.nombre }}
+                  </option>
+                </select>
+                <label for="componentesId">Componente:</label>
               </div>
             </div>
             <div class="form-section">
               <div class="form-floating mt-2">
-                <input
-                  type="text"
+                <select
                   class="form-control"
-                  placeholder="costo:"
-                  id="costo"
-                />
-                <label for="floatingInput">Costo:</label>
+                  id="proveedorId"
+                  [(ngModel)]="selectedProveedorId"
+                  name="proveedorId"
+                  required
+                >
+                  <option *ngFor="let proveedor of providers" [value]="proveedor.id">
+                    {{ proveedor.nombreEmpresa }}
+                  </option>
+                </select>
+                <label for="proveedorId">Proveedor:</label>
               </div>
               <div class="form-floating">
                 <input
-                  type="email"
+                  type="number"
                   class="form-control"
-                  placeholder="Fecha de Caducidad:"
-                  id="caducidad"
+                  placeholder="Cantidad:"
+                  id="cantidad"
+                  [(ngModel)]="cantidad"
+                  name="cantidad"
+                  required
                 />
-                <label for="floatingInput">Fechad de Caducidad:</label>
+                <label for="cantidad">Cantidad:</label>
               </div>
               <div class="form-floating mt-2">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
-                  placeholder="Marca:"
-                  id="marca"
+                  placeholder="Costo:"
+                  id="costo"
+                  [(ngModel)]="costo"
+                  name="costo"
+                  required
                 />
-                <label for="floatingInput">Marca:</label>
+                <label for="costo">Costo:</label>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="button-container">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
               </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
         </div>
       </div>
     </div>
