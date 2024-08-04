@@ -12,6 +12,11 @@ import { DetalleComponenteComponent } from './detalle-componente/detalle-compone
 import { AgregarLoteComponentesComponent } from './agregar-lote-componentes/agregar-lote-componentes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { InventarioService } from '../services/inventario.service';
+import { MermaService } from '../services/merma.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from '../app.component';
+import { AuthService } from '../services/auth.service';
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
@@ -29,6 +34,17 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ButtonModule,
     HttpClientModule,
     ProgressSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
+  providers: [
+    InventarioService,
+    MermaService,
+    AuthService
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: []
 })
 export class InventarioModule {}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { LoginRequest } from '../interfaces/login-request';
 import { AuthResponse } from '../interfaces/auth-response';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { map, Observable, BehaviorSubject, of } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Customer, CustomerChanger, CustomerEmployee, CustomerForgotten, CustomerReset } from '../interfaces/customer';
@@ -81,7 +81,7 @@ export class AuthService {
     this.authSubject.next(false);
   }
 
-  private getToken(): string | null {
+  getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 

@@ -122,13 +122,19 @@
                 <a
                   [routerLink]="['/detalle-lampara', lamp.id]"
                   class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mermarLamparaModal"
                 >
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
-              <!-- Falta agregar el modal para enviar a merma la cantidad de lamparas y la descripcion del porque se envian a merma -->
               <td>
-                <a class="btn btn-danger">
+                <a
+                  class="btn btn-danger"
+                  (click)="selectLamp(lamp)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mermarLamparaModal"
+                >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -159,10 +165,10 @@
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
-                <b
-                  ><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Inventario
-                  Componentes</b
-                >
+                <b>
+                  <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Inventario
+                  Componentes
+                </b>
               </h3>
               <div
                 class="d-flex justify-content-between"
@@ -202,12 +208,6 @@
                   <p-sortIcon field="existencia" />
                 </div>
               </th>
-              <!-- <th pSortableColumn="price">
-                <div class="flex justify-content-between align-items-center">
-                  
-                  <p-sortIcon field="price" />
-                </div>
-              </th> -->
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -224,9 +224,6 @@
               <td>
                 {{ component.existencia }}
               </td>
-              <!-- <td>
-                {{ component.price }}
-              </td> -->
               <td>
                 <a
                   [routerLink]="['/detalle-componente', component.id]"
@@ -235,7 +232,6 @@
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
-              <!-- Falta agregar el modal para enviar a merma la cantidad de componentes y la descripcion del porque se envian a merma -->
               <td>
                 <a
                   class="btn btn-success"
@@ -245,7 +241,12 @@
                 </a>
               </td>
               <td>
-                <a class="btn btn-danger" href="#">
+                <a
+                  class="btn btn-danger"
+                  (click)="selectComponent(component)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mermarComponentesModal"
+                >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -271,6 +272,76 @@
           />
         </div>
         <p class="spinner-message">Espere por favor...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Lámparas -->
+<div class="modal fade" id="mermarLamparaModal" tabindex="-1" aria-labelledby="mermarLamparaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mermarLamparaModalLabel">Mermar Lámpara</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="inventariolamparaId" [(ngModel)]="selectedLamp.id" name="lampId" readonly hidden>
+          </div>
+          <div class="mb-3">
+            <label for="lampName" class="form-label">Nombre de la Lámpara</label>
+            <input type="text" class="form-control readonly-input" id="lampName" [(ngModel)]="selectedLamp.nombrelampara" name="lampName" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="lampQuantity" class="form-label">Cantidad a Mermar</label>
+            <input type="number" class="form-control" id="cantidadLampara" name="lampQuantity">
+          </div>
+          <div class="mb-3">
+            <label for="lampDescription" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcionLampara" name="lampDescription" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="mermarLampara()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Componentes -->
+<div class="modal fade" id="mermarComponentesModal" tabindex="-1" aria-labelledby="mermarComponentesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mermarComponentesModalLabel">Mermar Componente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="inventarioComponenteId" [(ngModel)]="selectedComponent.id" name="componentId" readonly hidden>
+          </div>
+          <div class="mb-3">
+            <label for="componentName" class="form-label">Nombre del Componente</label>
+            <input type="text" class="form-control readonly-input" id="componentName" [(ngModel)]="selectedComponent.nombre" name="componentName" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="componentQuantity" class="form-label">Cantidad a Mermar</label>
+            <input type="number" class="form-control" id="cantidadComponente" name="componentQuantity">
+          </div>
+          <div class="mb-3">
+            <label for="componentDescription" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcionComponente" name="componentDescription" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="mermarComponente()">Guardar Cambios</button>
       </div>
     </div>
   </div>

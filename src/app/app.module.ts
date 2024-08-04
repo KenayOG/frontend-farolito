@@ -29,6 +29,8 @@ import { AuthService } from './services/auth.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
 import { LoginComponent } from './autenticacion/login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,15 @@ import { LoginComponent } from './autenticacion/login/login.component';
     PerfilModule,
     FinanzasModule,
   ],
-  providers: [AuthService, provideAnimationsAsync()],
+  providers: [
+    AuthService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
   exports: [
     CommonModule,

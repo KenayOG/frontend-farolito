@@ -1,20 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentInventory } from '../../interfaces/component-inventory';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
+import { MermaService } from '../../services/merma.service'; // Importa el servicio
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ComponenteDecreaseRequest } from '../../interfaces/component-decrease';
+import { LampDecreaseRequest } from '../../interfaces/lamp-decrease';
 
 @Component({
   selector: 'app-administracion-inventario',
   templateUrl: './administracion-inventario.component.html',
-  styleUrl: './administracion-inventario.component.css',
+  styleUrls: ['./administracion-inventario.component.css'],
 })
 export class AdministracionInventarioComponent {
-  componentesInventory: ComponentInventory[] = [];
-  cargando: boolean = true;
 
+  componentesInventory: ComponentInventory[] = [];
   lampsInventory: LampInventory[] = [];
 
-  constructor(private inventarioService: InventarioService) {
+  cargando: boolean = true;
+  inventarioId!: number;
+  tipoInventario!: string;
+
+  selectedLamp: any = {};
+  selectedComponent: any = {};
+
+  constructor(
+    private inventarioService: InventarioService,
+    private mermaService: MermaService,
+    private modalService: NgbModal
+  ) {
     this.obtenerInventarioComponentes();
     this.obtenerInventarioLamparas();
   }
@@ -46,5 +60,65 @@ export class AdministracionInventarioComponent {
         console.log(e);
       },
     });
+  }
+
+  setInventarioId(id: number, tipo: string) {
+    this.inventarioId = id;
+    this.tipoInventario = tipo;
+    if (tipo === 'lampara') {
+      (document.getElementById('inventariolamparaId') as HTMLInputElement).value = id.toString();
+    } else if (tipo === 'componente') {
+      (document.getElementById('inventarioComponenteId') as HTMLInputElement).value = id.toString();
+    }
+  }
+
+  mermarLampara() {
+    const cantidad = (document.getElementById('cantidadLampara') as HTMLInputElement).value;
+    const descripcion = (document.getElementById('descripcionLampara') as HTMLTextAreaElement).value;
+    const id = (document.getElementById('inventariolamparaId') as HTMLInputElement).value;
+
+    const requestData: LampDecreaseRequest = {
+      cantidad: +cantidad,
+      descripcion: descripcion,
+      inventariolamparaId: +id,
+    };
+
+    this.mermaService.sendMermaLamparas(requestData).subscribe({
+      next: (response) => {
+        console.log('Respuesta de merma lámpara:', response);
+      },
+      error: (e) => {
+        console.log('Error al mermar lámpara:', e);
+      },
+    });
+  }
+
+  mermarComponente() {
+    const cantidad = (document.getElementById('cantidadComponente') as HTMLInputElement).value;
+    const descripcion = (document.getElementById('descripcionComponente') as HTMLTextAreaElement).value;
+    const id = (document.getElementById('inventarioComponenteId') as HTMLInputElement).value;
+
+    const requestData: ComponenteDecreaseRequest = {
+      cantidad: +cantidad,
+      descripcion: descripcion,
+      inventarioComponenteId: +id,
+    };
+
+    this.mermaService.sendMermaComponentes(requestData).subscribe({
+      next: (response) => {
+        console.log('Respuesta de merma componente:', response);
+      },
+      error: (e) => {
+        console.log('Error al mermar componente:', e);
+      },
+    });
+  }
+
+  selectLamp(lamp: any) {
+    this.selectedLamp = lamp;
+  }
+
+  selectComponent(component: any) {
+    this.selectedComponent = component;
   }
 }
