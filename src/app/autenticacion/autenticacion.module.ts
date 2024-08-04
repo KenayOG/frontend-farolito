@@ -20,9 +20,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, provideAnimationsAsync()],
-  bootstrap: [AppComponent],
-  exports: [
-  ]
+  providers: [
+    AuthService, provideAnimationsAsync()
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: []
 })
 export class AutenticacionModule { }

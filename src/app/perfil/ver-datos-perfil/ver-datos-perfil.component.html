@@ -5,8 +5,9 @@
         <div class="shape">
           <div class="image"></div>
         </div>
-        <h3>Dario Bravo</h3>
-        <p class="title">&commat;DaradFet</p>
+        <h3>{{ user.name }}</h3>
+        <span>{{ user.email }} </span><span class="title">- {{ user.role }}</span>
+        <br>
         <button class="btn btn-primary btn-lg">
           <i class="fa-solid fa-user-pen"></i>&nbsp;&nbsp;Editar
         </button>
@@ -24,6 +25,7 @@
                   class="form-control"
                   placeholder="Nombre:"
                   id="nombre"
+                  [value]="user.name"
                 />
                 <label for="floatingInput">Nombre:</label>
               </div>
@@ -53,6 +55,7 @@
                   class="form-control"
                   placeholder="Email:"
                   id="email"
+                  [value]="user.email"
                 />
                 <label for="floatingInput">Email:</label>
               </div>
