@@ -8,11 +8,7 @@ export interface Sale {
   paymentType: string;
 }
 
-export interface SaleRequest {
+export interface SaleRequestList {
   id: number;
   cantidad: number;
-}
-
-export interface SaleRequestList {
-  sales: SaleRequest[];
 }

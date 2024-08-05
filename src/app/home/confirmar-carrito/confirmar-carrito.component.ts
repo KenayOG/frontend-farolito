@@ -4,6 +4,9 @@ import { Cart, CartRemove } from '../../interfaces/cart';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SaleRequestList } from '../../interfaces/sale';
+import { VentaService } from '../../services/venta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmar-carrito',
@@ -19,7 +22,9 @@ export class ConfirmarCarritoComponent {
   constructor(
     private carritoService: CarritoService,
     private inventarioService: InventarioService,
-    private matSnackBar: MatSnackBar
+    private ventaService: VentaService,
+    private matSnackBar: MatSnackBar,
+    private router: Router
   ) {
     this.obtenerCarrito();
     this.obtenerProductos();
@@ -84,6 +89,28 @@ export class ConfirmarCarritoComponent {
   }
 
   confirmarPago() {
-    console.log('Pago confirmado.');
+    const saleRequestList: SaleRequestList[] = this.cartProducts.map(cartItem => ({
+      id: cartItem.lamparaId,
+      cantidad: cartItem.cantidad
+    }));
+
+    this.ventaService.createSell(saleRequestList).subscribe({
+      next: (response) => {
+        console.log('Venta creada exitosamente:', response);
+        this.obtenerCarrito();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.log('Error al crear la venta:', err);
+        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
+      }
+    });
   }
 }

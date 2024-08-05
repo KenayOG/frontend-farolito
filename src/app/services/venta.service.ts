@@ -16,7 +16,7 @@ export class VentaService {
   constructor(private _http: HttpClient) {}
  
   // Método para agregar venta
-  createSell(data: SaleRequestList): Observable<ResponsePosts> {
+  createSell(data: SaleRequestList[]): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(`${this.apiUrl}/venta-lampara`, data);
   }
 }

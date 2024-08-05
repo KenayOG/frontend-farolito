@@ -89,8 +89,8 @@ export class HomeProductsComponent {
       next: (data) => {
         this.cartProducts = data;
       },
-      error: (e) => {
-        console.log(e);
+      error: (err) => {
+        console.log(err);
       },
     });
   }
@@ -114,11 +114,12 @@ export class HomeProductsComponent {
     this.carritoService.addCarrito([cartRequest]).subscribe({
       next: (response) => {
         console.log('Producto agregado al carrito:', response);
+        this.obtenerCarrito();
+        this.obtenerProductos();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
           horizontalPosition: 'center'
         });
-        this.obtenerCarrito();
       },
       error: (err) => {
         console.log('Error al agregar producto al carrito:', err);
