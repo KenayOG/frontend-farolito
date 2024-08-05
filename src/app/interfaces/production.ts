@@ -14,3 +14,11 @@ export interface ProductionSolicitude {
   cantidad: number;
   recetaId: number;
 }
+
+export interface ProductionHechas {
+  id: number;
+  fecha: string;
+  costo: number;
+  nombreUsuario: string;
+  solicitudProduccion: Production;
+}

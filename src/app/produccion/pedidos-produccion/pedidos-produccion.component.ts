@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Production } from '../../interfaces/production';
+import { Production, ProductionHechas } from '../../interfaces/production';
 import { ProduccionService } from '../../services/produccion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RecipeProduction } from '../../interfaces/recipe-production';
 
 @Component({
   selector: 'app-pedidos-produccion',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PedidosProduccionComponent {
   solicitudesProduccion: Production[] = [];
-  produccionesCompletadas: [] = [];
+  produccionesCompletadas: ProductionHechas[] = [];
   cargando: boolean = true;
 
   constructor(
@@ -18,6 +19,7 @@ export class PedidosProduccionComponent {
     private matSnackBar: MatSnackBar
   ) {
     this.obtenerSolicitudesProduccion();
+    this.obtenerProduccionesHechas();
   }
 
   obtenerSolicitudesProduccion() {
@@ -38,6 +40,17 @@ export class PedidosProduccionComponent {
     });
   }
 
+  obtenerProduccionesHechas() {
+    this.produccionService.getCargarProducciones().subscribe({
+      next: (data) => {
+        this.produccionesCompletadas = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
   aprobarSolicitud(id: number) {
     this.cargando = true;
     this.produccionService.approveSolicitude(id).subscribe({
@@ -46,7 +59,7 @@ export class PedidosProduccionComponent {
         this.obtenerSolicitudesProduccion();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
-          horizontalPosition: 'center'
+          horizontalPosition: 'center',
         });
         setTimeout(() => {
           this.cargando = false;
@@ -54,10 +67,14 @@ export class PedidosProduccionComponent {
       },
       error: (err) => {
         console.log(err);
-        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center'
-        });
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
