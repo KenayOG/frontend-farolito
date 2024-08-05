@@ -23,7 +23,7 @@ export class ProduccionService {
   }
 
   // Método para autorizar solicitud de producción
-  approveSolicitude(data: boolean): Observable<ResponsePosts> {
+  approveSolicitude(data: number): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(`${this.apiUrl}/AutorizarSolicitud`, data);
   }
 }

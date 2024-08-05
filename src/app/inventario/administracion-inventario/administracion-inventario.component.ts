@@ -88,13 +88,11 @@ export class AdministracionInventarioComponent {
       next: (response) => {
         console.log('Respuesta de merma lámpara:', response);
         this.limpiarModal();
+        this.obtenerInventarioLamparas();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
           horizontalPosition: 'center'
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
       },
       error: (err) => {
         console.log('Error al mermar lámpara:', err);
@@ -121,13 +119,11 @@ export class AdministracionInventarioComponent {
       next: (response) => {
         console.log('Respuesta de merma componente:', response);
         this.limpiarModal();
+        this.obtenerInventarioComponentes();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
           horizontalPosition: 'center'
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
       },
       error: (err) => {
         console.log('Error al mermar componente:', err);
