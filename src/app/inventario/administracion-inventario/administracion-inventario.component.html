@@ -1,53 +1,23 @@
 <div class="container">
   <nav style="margin: 0 140px">
     <div class="nav nav-tabs m-1 custom-tabs" id="nav-tab" role="tablist">
-      <button
-        class="nav-link active"
-        id="nav-lamparas-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-lamparas"
-        type="button"
-        role="tab"
-        aria-controls="nav-lamparas"
-        aria-selected="true"
-      >
+      <button class="nav-link active" id="nav-lamparas-tab" data-bs-toggle="tab" data-bs-target="#nav-lamparas"
+        type="button" role="tab" aria-controls="nav-lamparas" aria-selected="true">
         Lamparas
       </button>
-      <button
-        class="nav-link"
-        id="nav-componentes-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-componentes"
-        type="button"
-        role="tab"
-        aria-controls="nav-componentes"
-        aria-selected="false"
-      >
+      <button class="nav-link" id="nav-componentes-tab" data-bs-toggle="tab" data-bs-target="#nav-componentes"
+        type="button" role="tab" aria-controls="nav-componentes" aria-selected="false">
         Componentes
       </button>
     </div>
   </nav>
   <div class="card align-items-center" style="border: none; margin: 0 50px">
     <div class="row tab-content" id="nav-tabContent">
-      <div
-        class="col-12 tab-pane fade show active p-3"
-        id="nav-lamparas"
-        role="tabpanel"
-        aria-labelledby="nav-lamparas-tab"
-      >
-        <p-table
-          #dt
-          [value]="lampsInventory"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
-        >
+      <div class="col-12 tab-pane fade show active p-3" id="nav-lamparas" role="tabpanel"
+        aria-labelledby="nav-lamparas-tab">
+        <p-table #dt [value]="lampsInventory" [scrollable]="true" scrollHeight="270px" [rowHover]="true" [rows]="10"
+          [showCurrentPageReport]="true" [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0" [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
@@ -56,20 +26,12 @@
                   Lamparas
                 </b>
               </h3>
-              <div
-                class="d-flex justify-content-between"
-                style="margin-left: 230px"
-              >
+              <div class="d-flex justify-content-between" style="margin-left: 230px">
                 <p-iconField iconPosition="left">
                   <p-inputIcon>
                     <i class="pi pi-search"> </i>
                   </p-inputIcon>
-                  <input
-                    pInputText
-                    type="text"
-                    placeholder="Buscar Lampara:"
-                    class="mt-1"
-                  />
+                  <input pInputText type="text" placeholder="Buscar Lampara:" class="mt-1" />
                 </p-iconField>
               </div>
             </div>
@@ -119,20 +81,13 @@
                 {{ lamp.costo | number : "1.2-2" }}
               </td>
               <td>
-                <a
-                  [routerLink]="['/detalle-lampara', lamp.id]"
-                  class="btn btn-primary"
-                >
+                <a [routerLink]="['/detalle-lampara', lamp.id]" class="btn btn-primary">
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
               <td>
-                <a
-                  class="btn btn-danger"
-                  (click)="selectLamp(lamp)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#mermarLamparaModal"
-                >
+                <a class="btn btn-danger" (click)="selectLamp(lamp)" data-bs-toggle="modal"
+                  data-bs-target="#mermarLamparaModal">
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -141,25 +96,11 @@
         </p-table>
       </div>
       <!-- Componentes -->
-      <div
-        class="col-12 tab-pane fade p-3"
-        id="nav-componentes"
-        role="tabpanel"
-        aria-labelledby="nav-componentes-tab"
-      >
-        <p-table
-          #dt
-          [value]="componentesInventory"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
-        >
+      <div class="col-12 tab-pane fade p-3" id="nav-componentes" role="tabpanel" aria-labelledby="nav-componentes-tab">
+        <p-table #dt [value]="componentesInventory" [scrollable]="true" scrollHeight="270px" [rowHover]="true"
+          [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
@@ -168,21 +109,17 @@
                   Componentes
                 </b>
               </h3>
-              <div
-                class="d-flex justify-content-between"
-                style="margin-left: 230px"
-              >
+              <div class="d-flex justify-content-between" style="margin-left: 230px">
                 <p-iconField iconPosition="left">
                   <p-inputIcon>
                     <i class="pi pi-search"></i>
                   </p-inputIcon>
-                  <input
-                    pInputText
-                    type="text"
-                    placeholder="Buscar componente:"
-                    class="mt-1"
-                  />
+                  <input pInputText type="text" placeholder="Buscar componente:" class="mt-1" />
                 </p-iconField>
+                <a routerLink="/agregar-componente" class="btn btn-success p-3" style="margin-left: 80px">
+                  <i class="fa-solid fa-circle-plus" style="margin-right: 5px"></i>
+                  Agregar
+                </a>
               </div>
             </div>
           </ng-template>
@@ -223,28 +160,18 @@
                 {{ component.existencia }}
               </td>
               <td>
-                <a
-                  [routerLink]="['/detalle-componente', component.id]"
-                  class="btn btn-primary"
-                >
+                <a [routerLink]="['/detalle-componente', component.id]" class="btn btn-primary">
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
               <td>
-                <a
-                  class="btn btn-success"
-                  [routerLink]="['/agregar-lote', component.id]"
-                >
+                <a class="btn btn-success" [routerLink]="['/agregar-lote', component.id]">
                   <i class="fa-solid fa-plus"></i>&nbsp;Agregar lote
                 </a>
               </td>
               <td>
-                <a
-                  class="btn btn-danger"
-                  (click)="selectComponent(component)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#mermarComponentesModal"
-                >
+                <a class="btn btn-danger" (click)="selectComponent(component)" data-bs-toggle="modal"
+                  data-bs-target="#mermarComponentesModal">
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -256,90 +183,12 @@
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">
         <div class="spinner-wrapper">
-          <p-progressSpinner
-            styleClass="w-7rem h-7rem"
-            strokeWidth="6"
-            fill="var(--surface-ground)"
-            animationDuration=".8s"
-          >
+          <p-progressSpinner styleClass="w-7rem h-7rem" strokeWidth="6" fill="var(--surface-ground)"
+            animationDuration=".8s">
           </p-progressSpinner>
-          <img
-            src="assets/images/logo-farolito.webp"
-            alt="Logo de farolito"
-            class="spinner-logo"
-          />
+          <img src="assets/images/logo-farolito.webp" alt="Logo de farolito" class="spinner-logo" />
         </div>
         <p class="spinner-message">Espere por favor...</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal para Lámparas -->
-<div class="modal fade" id="mermarLamparaModal" tabindex="-1" aria-labelledby="mermarLamparaModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="mermarLamparaModalLabel">Mermar Lámpara</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <input type="text" class="form-control" id="inventariolamparaId" [(ngModel)]="selectedLamp.id" name="lampId" readonly hidden>
-          </div>
-          <div class="mb-3">
-            <label for="lampName" class="form-label">Nombre de la Lámpara</label>
-            <input type="text" class="form-control readonly-input" id="lampName" [(ngModel)]="selectedLamp.nombrelampara" name="lampName" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="lampQuantity" class="form-label">Cantidad a Mermar</label>
-            <input type="number" class="form-control" id="cantidadLampara" name="lampQuantity">
-          </div>
-          <div class="mb-3">
-            <label for="lampDescription" class="form-label">Descripción</label>
-            <textarea class="form-control" id="descripcionLampara" name="lampDescription" rows="3"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="mermarLampara()">Guardar Cambios</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal para Componentes -->
-<div class="modal fade" id="mermarComponentesModal" tabindex="-1" aria-labelledby="mermarComponentesModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="mermarComponentesModalLabel">Mermar Componente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <input type="text" class="form-control" id="inventarioComponenteId" [(ngModel)]="selectedComponent.id" name="componentId" readonly hidden>
-          </div>
-          <div class="mb-3">
-            <label for="componentName" class="form-label">Nombre del Componente</label>
-            <input type="text" class="form-control readonly-input" id="componentName" [(ngModel)]="selectedComponent.nombre" name="componentName" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="componentQuantity" class="form-label">Cantidad a Mermar</label>
-            <input type="number" class="form-control" id="cantidadComponente" name="componentQuantity">
-          </div>
-          <div class="mb-3">
-            <label for="componentDescription" class="form-label">Descripción</label>
-            <textarea class="form-control" id="descripcionComponente" name="componentDescription" rows="3"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="mermarComponente()">Guardar Cambios</button>
       </div>
     </div>
   </div>

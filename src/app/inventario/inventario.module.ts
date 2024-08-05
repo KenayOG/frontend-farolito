@@ -16,14 +16,16 @@ import { InventarioService } from '../services/inventario.service';
 import { MermaService } from '../services/merma.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
-import { AuthService } from '../services/auth.service';
 import { ProveedoresService } from '../services/proveedores.service';
+import { AgregarComponenteComponent } from './agregar-componente/agregar-componente.component';
+import { ComponentesService } from '../services/componentes.service';
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
     DetalleLamparaComponent,
     DetalleComponenteComponent,
     AgregarLoteComponentesComponent,
+    AgregarComponenteComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ProveedoresService } from '../services/proveedores.service';
   providers: [
     InventarioService,
     MermaService,
-    ProveedoresService
+    ProveedoresService,
+    ComponentesService
   ],
   bootstrap: [
     AppComponent

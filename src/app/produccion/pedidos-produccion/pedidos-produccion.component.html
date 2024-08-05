@@ -1,82 +1,40 @@
 <div class="container">
   <nav style="margin: 0 140px">
     <div class="nav nav-tabs m-1 custom-tabs" id="nav-tab" role="tablist">
-      <button
-        class="nav-link active"
-        id="nav-solicitudes-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-solicitudes"
-        type="button"
-        role="tab"
-        aria-controls="nav-solicitudes"
-        aria-selected="true"
-      >
+      <button class="nav-link active" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes"
+        type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">
         Solicitudes
       </button>
-      <button
-        class="nav-link"
-        id="nav-completadas-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-completadas"
-        type="button"
-        role="tab"
-        aria-controls="nav-completadas"
-        aria-selected="false"
-      >
+      <button class="nav-link" id="nav-completadas-tab" data-bs-toggle="tab" data-bs-target="#nav-completadas"
+        type="button" role="tab" aria-controls="nav-completadas" aria-selected="false">
         Completadas
       </button>
     </div>
   </nav>
   <div class="card align-items-center mt-5" style="border: none">
     <div class="row tab-content" id="nav-tabContent">
-      <div
-        class="col-12 tab-pane fade show active"
-        id="nav-solicitudes"
-        role="tabpanel"
-        aria-labelledby="nav-solicitudes-tab"
-      >
-        <p-table
-          #dt
-          [value]="solicitudesProduccion"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
-        >
+      <div class="col-12 tab-pane fade show active" id="nav-solicitudes" role="tabpanel"
+        aria-labelledby="nav-solicitudes-tab">
+        <p-table #dt [value]="solicitudesProduccion" [scrollable]="true" scrollHeight="270px" [rowHover]="true"
+          [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
-                <b
-                  ><i class="fa-solid fa-screwdriver-wrench"></i
-                  >&nbsp;&nbsp;Administraci&oacute;n de Producci&oacute;n</b
-                >
+                <b><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Administraci&oacute;n de
+                  Producci&oacute;n</b>
               </h3>
               <p-iconField iconPosition="left" style="margin-left: 200px">
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input
-                  pInputText
-                  type="text"
-                  placeholder="Buscar produccion:"
-                />
+                <input pInputText type="text" placeholder="Buscar produccion:" />
               </p-iconField>
-              <a
-                  routerLink="/generar-produccion"
-                  class="btn btn-success p-3"
-                  style="margin-left: 80px"
-                >
-                  <i
-                    class="fa-solid fa-circle-plus"
-                    style="margin-right: 5px"
-                  ></i>
-                  Solicitar Producción
-                </a>
+              <a routerLink="/generar-produccion" class="btn btn-success p-3" style="margin-left: 80px">
+                <i class="fa-solid fa-circle-plus" style="margin-right: 5px"></i>
+                Solicitar Producción
+              </a>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
@@ -134,7 +92,7 @@
                 <button class="btn btn-success" (click)="aprobarSolicitud(solicitud.id)">
                   <i class="fa-solid fa-check"></i>
                 </button>
-              </td>              
+              </td>
               <td>
                 <button class="btn btn-danger">
                   <i class="fa-solid fa-x"></i>
@@ -144,42 +102,21 @@
           </ng-template>
         </p-table>
       </div>
-      <div
-        class="col-12 tab-pane fade"
-        id="nav-completadas"
-        role="tabpanel"
-        aria-labelledby="nav-completadas-tab"
-      >
-        <p-table
-          #dt
-          [value]="produccionesCompletadas"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
-        >
+      <div class="col-12 tab-pane fade" id="nav-completadas" role="tabpanel" aria-labelledby="nav-completadas-tab">
+        <p-table #dt [value]="produccionesCompletadas" [scrollable]="true" scrollHeight="270px" [rowHover]="true"
+          [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
-                <b
-                  ><i class="fa-solid fa-screwdriver-wrench"></i
-                  >&nbsp;&nbsp;Producci&oacute;nes con respuesta</b
-                >
+                <b><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Producci&oacute;nes con respuesta</b>
               </h3>
               <p-iconField iconPosition="left" style="margin-left: 200px">
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input
-                  pInputText
-                  type="text"
-                  placeholder="Buscar produccion:"
-                />
+                <input pInputText type="text" placeholder="Buscar produccion:" />
               </p-iconField>
             </div>
           </ng-template>
@@ -253,18 +190,10 @@
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">
         <div class="spinner-wrapper">
-          <p-progressSpinner
-            styleClass="w-7rem h-7rem"
-            strokeWidth="6"
-            fill="var(--surface-ground)"
-            animationDuration=".8s"
-          >
+          <p-progressSpinner styleClass="w-7rem h-7rem" strokeWidth="6" fill="var(--surface-ground)"
+            animationDuration=".8s">
           </p-progressSpinner>
-          <img
-            src="assets/images/logo-farolito.webp"
-            alt="Logo de farolito"
-            class="spinner-logo"
-          />
+          <img src="assets/images/logo-farolito.webp" alt="Logo de farolito" class="spinner-logo" />
         </div>
         <p class="spinner-message">Espere por favor...</p>
       </div>

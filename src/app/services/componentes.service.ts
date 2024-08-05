@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Componente } from '../interfaces/components';
+import { Componente, ComponenteRequest } from '../interfaces/components';
 import { Observable } from 'rxjs';
 import { ResponsePosts } from '../interfaces/response-posts';
 
@@ -19,7 +19,7 @@ export class ComponentesService {
   }
 
   // Método para agregar componente
-  createComponente(data: Componente): Observable<ResponsePosts>{
+  createComponente(data: ComponenteRequest): Observable<ResponsePosts>{
     return this._http.post<ResponsePosts>(`${this.apiUrl}/componente`, data);
   }
 }

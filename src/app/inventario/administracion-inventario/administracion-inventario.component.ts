@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentInventory } from '../../interfaces/component-inventory';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
-import { MermaService } from '../../services/merma.service'; // Importa el servicio
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MermaService } from '../../services/merma.service';
 import { ComponenteDecreaseRequest } from '../../interfaces/component-decrease';
 import { LampDecreaseRequest } from '../../interfaces/lamp-decrease';
 import { MatSnackBar } from '@angular/material/snack-bar';

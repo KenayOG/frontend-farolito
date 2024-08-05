@@ -3,3 +3,8 @@ export interface Componente {
   nombre: string;
   estatus: boolean;
 }
+
+export interface ComponenteRequest {
+  id: number;
+  nombre: string;
+}
