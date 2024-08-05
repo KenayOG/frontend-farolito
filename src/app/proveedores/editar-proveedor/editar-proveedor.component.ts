@@ -93,7 +93,7 @@ export class EditarProveedorComponent implements OnInit {
           })),
       };
 
-      console.log('Datos del proveedor a editar:', editProvider); // Añade este log para verificar los datos antes de enviar la solicitud
+      console.log('Datos del proveedor a editar:', editProvider);
 
       this.proveedoresService.editProveedores(editProvider).subscribe({
         next: (response) => {

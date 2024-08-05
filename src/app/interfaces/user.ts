@@ -11,3 +11,15 @@ export interface User {
   urlImage: string | null;
   direccion: string | null;
 }
+
+
+export interface UpdateCreditCard{
+  cardNumber: string;
+}
+
+export interface UpdateUserprofile{
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  direccion: string;
+}

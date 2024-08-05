@@ -1,9 +1,21 @@
 <div class="container">
   <div class="row mt-5 justify-content-center">
-    <div class="col-6 d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center mt-4">
       <div class="cont">
+        <!-- <div
+          [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }"
+        >
+          
+        </div> -->
+
         <div class="shape">
-          <div class="image"></div>
+          <!-- <div class="image"></div> -->
+          <div
+            class="image"
+            [ngStyle]="{
+              'background-image': 'url(' + backgroundImageUrl + ')'
+            }"
+          ></div>
         </div>
         <h3>{{ user.name }}</h3>
         <br />
@@ -15,7 +27,11 @@
       <div class="card">
         <h3 class="card-header text-center">Edicion de datos</h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form
+            class="form-grid"
+            [formGroup]="userFormEdit"
+            (ngSubmit)="editarPerfilUsuario()"
+          >
             <div class="form-section">
               <div class="form-floating mt-2">
                 <input
@@ -23,7 +39,8 @@
                   class="form-control"
                   placeholder="Nombre:"
                   id="nombre"
-                  [value]="user.name"
+                  [value]="userFullName"
+                  formControlName="fullName"
                 />
                 <label for="floatingInput">Nombre:</label>
               </div>
@@ -34,6 +51,7 @@
                   placeholder="Direccion:"
                   id="direccion"
                   [value]="userDireccion"
+                  formControlName="direccion"
                 />
                 <label for="floatingInput">Direccion:</label>
               </div>
@@ -45,7 +63,8 @@
                   class="form-control"
                   placeholder="Email:"
                   id="email"
-                  [value]="user.email"
+                  [value]="userEmail"
+                  formControlName="email"
                 />
                 <label for="floatingInput">Email:</label>
               </div>
@@ -56,25 +75,68 @@
                   placeholder="Telefono:"
                   id="telefono"
                   [value]="userPhoneNumber"
+                  formControlName="phoneNumber"
                 />
                 <label for="floatingInput">Telefono:</label>
               </div>
             </div>
             <div class="form-floating mt-2">
               <input
+                readonly
                 type="text"
                 class="form-control"
                 placeholder="Tarjeta:"
-                id="tarjeta"
-                [value]=""
+                id="tarjet"
+                [value]="userTarjeta"
               />
-              <label for="floatingInput">Tarjeta:</label>
+              <label for="floatingInput">Mi tarjeta:</label>
             </div>
-            <div class="card-footer">
-              <div class="button-container">
-                <button class="btn btn-success btn-lg">
-                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-                </button>
+            <div class="button-container mt-2 align-items-center">
+              <button
+                class="btn btn-primary btn-lg"
+                type="submit"
+                [disabled]="userFormEdit.invalid"
+              >
+                <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Editar perfil
+              </button>
+            </div>
+          </form>
+          <hr />
+          <form [formGroup]="tarjetaForm" (ngSubmit)="actualizarTarjeta()">
+            <div class="row mt-4">
+              <div class="col-6">
+                <div class="form-floating mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tarjeta:"
+                    id="tarjeta"
+                    formControlName="cardNumber"
+                  />
+                  <label for="floatingInput">Ingresa tu tarjeta:</label>
+                  <div
+                    *ngIf="
+                      tarjetaForm.get('cardNumber')?.invalid &&
+                      tarjetaForm.get('cardNumber')?.touched
+                    "
+                    class="text-danger"
+                    class="text-danger"
+                  >
+                    El número de tarjeta debe tener 16 dígitos.
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 mt-1">
+                <div class="button-container mt-2">
+                  <button
+                    class="btn btn-success btn-lg"
+                    type="submit"
+                    [disabled]="tarjetaForm.invalid"
+                  >
+                    <i class="fa-solid fa-credit-card"></i>&nbsp;&nbsp;Agregar
+                    tarjeta
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -83,8 +145,8 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-6 d-flex justify-content-center">
-      <div class="card-password-form">
+    <div class="col-6 d-flex justify-content-center mt-5">
+      <div class="card-password-form mb-5">
         <h3 class="card-header text-center">Cambiar password</h3>
         <div class="card-content">
           <form
@@ -136,21 +198,28 @@
         </div>
       </div>
     </div>
-    <div class="col-6 d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-center mt-5">
       <div class="card-picture-form">
         <h3 class="card-header text-center">Agregar Imagen</h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form (ngSubmit)="subirFoto()">
             <div class="form-section">
               <div class="form-floating mt-2">
-                <input type="file" class="form-control" id="foto" [value]="" />
+                <input
+                  type="file"
+                  class="form-control"
+                  id="foto"
+                  (change)="cargarFoto($event)"
+                  accept=".webp"
+                />
                 <label for="floatingInput">Foto:</label>
               </div>
             </div>
             <div class="card-footer mt-4">
               <div class="button-container">
-                <button class="btn btn-success btn-lg">
-                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                <button class="btn btn-success btn-lg" type="submit">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Agregar
+                  Imagen
                 </button>
               </div>
             </div>
