@@ -1,12 +1,16 @@
 export interface Cart {
-  lamparaid: number;
+  lamparaId: number;
   urlImage: string;
   lamparaNombre: string;
   cantidad: number;
-  esattus: string;
+  estatus: string;
 }
 
 export interface CartRequest {
   recetaId: number;
   cantidad: number;
+}
+
+export interface CartRemove {
+  id: number
 }

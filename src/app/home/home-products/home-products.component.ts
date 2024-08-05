@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { RecetasService } from '../../services/recetas.service';
@@ -11,7 +11,7 @@ import { CarritoService } from '../../services/carrito.service';
 @Component({
   selector: 'app-home-products',
   templateUrl: './home-products.component.html',
-  styleUrl: './home-products.component.css',
+  styleUrls: ['./home-products.component.css'],
 })
 export class HomeProductsComponent {
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
@@ -30,6 +30,7 @@ export class HomeProductsComponent {
   ) {
     this.obtenerProductos();
     this.obtenerRecetas();
+    this.obtenerCarrito();
     config.placement = 'end';
     config.triggers = 'hover';
 

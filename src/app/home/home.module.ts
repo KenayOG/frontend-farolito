@@ -9,6 +9,12 @@ import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmarCarritoComponent } from './confirmar-carrito/confirmar-carrito.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CarritoService } from '../services/carrito.service';
+import { VentaService } from '../services/venta.service';
+import { AppComponent } from '../app.component';
+
 @NgModule({
   declarations: [HomeProductsComponent, ConfirmarCarritoComponent],
   imports: [
@@ -21,8 +27,18 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     NgbPopoverModule,
     HttpClientModule,
     ProgressSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    CarritoService,
+    VentaService
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: []
 })
 export class HomeModule {
   constructor(config: NgbPopoverConfig) {

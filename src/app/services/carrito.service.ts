@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Cart, CartRequest } from '../interfaces/cart';
+import { Cart, CartRemove, CartRequest } from '../interfaces/cart';
 import { ResponsePosts } from '../interfaces/response-posts';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { ResponsePosts } from '../interfaces/response-posts';
 export class CarritoService {
   private _endPoint: string = environment.endPoint;
   private apiUrl: string = this._endPoint + 'Carrito';
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   // Metodo para invocar el get de carrito.
   getCarrito(): Observable<Cart[]> {
@@ -19,7 +19,15 @@ export class CarritoService {
   }
 
   // Método para agregar al carrito.
-  addCarrito(data: CartRequest): Observable<ResponsePosts> {
+  addCarrito(data: CartRequest[]): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(`${this.apiUrl}/agregar-carrito`, data);
   }
+
+  // Método para eliminar del carrito
+  deleteCarrito(data: CartRemove): Observable<ResponsePosts> {
+    return this._http.delete<ResponsePosts>(`${this.apiUrl}/eliminar-del-carrito`, {
+      body: data
+    });
+  }
+
 }
