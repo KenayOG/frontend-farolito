@@ -5,7 +5,7 @@ import { InventarioService } from '../../services/inventario.service';
 import { RecetasService } from '../../services/recetas.service';
 import { Recipe } from '../../interfaces/recipe';
 import { ComponenteRecipe } from '../../interfaces/component-recipe';
-import { Cart } from '../../interfaces/cart';
+import { Cart, CartRequest } from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class HomeProductsComponent {
   cartProducts: Cart[] = [];
   cargando: boolean = true;
   baseUrl: string = 'https://localhost:5000';
+  cantidadSeleccionada: { [key: number]: number } = {}; // Propiedad para almacenar la cantidad seleccionada
 
   constructor(
     config: NgbPopoverConfig,
@@ -91,6 +92,30 @@ export class HomeProductsComponent {
     });
   }
 
+  addToCart(productId: number) {
+    const cantidad = this.cantidadSeleccionada[productId];
+
+    if (cantidad <= 0 || !cantidad) {
+      alert('Por favor, ingrese una cantidad válida.');
+      return;
+    }
+
+    const cartRequest: CartRequest = {
+      recetaId: productId,
+      cantidad: cantidad
+    };
+
+    this.carritoService.addCarrito([cartRequest]).subscribe({
+      next: (response) => {
+        console.log('Producto agregado al carrito:', response);
+        this.obtenerCarrito();
+      },
+      error: (e) => {
+        console.log('Error al agregar producto al carrito:', e);
+      }
+    });
+  }
+
   getComponentesProductos(productId: number): ComponenteRecipe[] {
     const recipe = this.recipes.find((r) => r.id === productId);
     return recipe ? recipe.componentes : [];
@@ -98,15 +123,5 @@ export class HomeProductsComponent {
 
   getImagenProducto(imagePath: string): string {
     return `${this.baseUrl}${imagePath}`;
-  }
-
-  animateCartButton(event: MouseEvent) {
-    const button = event?.currentTarget as HTMLElement;
-    button.classList.add('clicked');
-
-    setTimeout(() => {
-      button.classList.remove('clicked');
-    }, 1500);
-    this.obtenerCarrito();
   }
 }

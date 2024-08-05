@@ -36,11 +36,23 @@
               </div>
             </ng-template>
             <ng-template pTemplate="footer">
-              <button class="cart-button" (click)="animateCartButton($event)">
-                <span class="add-to-cart">Agregar</span>
-                <i class="fas fa-shopping-cart"></i>
-                <i class="fas fa-box"></i>
-              </button>
+              <div class="d-flex justify-content-between">
+                <input
+                  type="number"
+                  [(ngModel)]="cantidadSeleccionada[product.id]"
+                  min="1"
+                  class="form-control"
+                  style="width: 60px;"
+                />
+                <button
+                  class="cart-button"
+                  (click)="addToCart(product.id)"
+                >
+                  <span class="add-to-cart">Agregar</span>
+                  <i class="fas fa-shopping-cart"></i>
+                  <i class="fas fa-box"></i>
+                </button>
+              </div>
             </ng-template>
             <ng-template #popoverContent>
               <div>
