@@ -35,4 +35,17 @@ export class UsuariosService {
     }
     return null;
   }
+
+  getRoleFromToken(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        return decodedToken.role;
+      } catch (e) {
+        console.error('Error al decodificar el token', e);
+      }
+    }
+    return null;
+  }
 }

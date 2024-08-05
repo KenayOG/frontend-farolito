@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { UsuariosService } from './services/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,28 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
+
   showNavBar: boolean = true;
   isAuthenticated: boolean = false;
+  role: string | null = null;
   private routerEventsSubscription!: Subscription;
   private authSubscription!: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private usuariosService: UsuariosService
+  ) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
       this.updateNavBarVisibility(this.router.url);
+      if (isAuthenticated) {
+        this.role = this.usuariosService.getRoleFromToken();
+      } else {
+        this.role = null;
+      }
     });
 
     this.routerEventsSubscription = this.router.events.pipe(
