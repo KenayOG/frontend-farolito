@@ -7,6 +7,7 @@ import { Recipe } from '../../interfaces/recipe';
 import { ComponenteRecipe } from '../../interfaces/component-recipe';
 import { Cart, CartRequest } from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home-products',
@@ -14,20 +15,22 @@ import { CarritoService } from '../../services/carrito.service';
   styleUrls: ['./home-products.component.css'],
 })
 export class HomeProductsComponent {
+
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
+
   products: LampInventory[] = [];
   recipes: Recipe[] = [];
   cartProducts: Cart[] = [];
   cargando: boolean = true;
   baseUrl: string = 'https://localhost:5000';
-  cantidadSeleccionada: { [key: number]: number } = {}; // Propiedad para almacenar la cantidad seleccionada
+  cantidadSeleccionada: { [key: number]: number } = {};
 
   constructor(
     config: NgbPopoverConfig,
-    private elementRef: ElementRef,
     private productosService: InventarioService,
     private recetasService: RecetasService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private matSnackBar: MatSnackBar
   ) {
     this.obtenerProductos();
     this.obtenerRecetas();
@@ -96,7 +99,10 @@ export class HomeProductsComponent {
     const cantidad = this.cantidadSeleccionada[productId];
 
     if (cantidad <= 0 || !cantidad) {
-      alert('Por favor, ingrese una cantidad válida.');
+      this.matSnackBar.open("Agrega al menos una cantidad", 'Cerrar', {
+        duration: 5000,
+        horizontalPosition: 'center'
+      });
       return;
     }
 
@@ -108,10 +114,18 @@ export class HomeProductsComponent {
     this.carritoService.addCarrito([cartRequest]).subscribe({
       next: (response) => {
         console.log('Producto agregado al carrito:', response);
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
         this.obtenerCarrito();
       },
-      error: (e) => {
-        console.log('Error al agregar producto al carrito:', e);
+      error: (err) => {
+        console.log('Error al agregar producto al carrito:', err);
+        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center'
+        });
       }
     });
   }

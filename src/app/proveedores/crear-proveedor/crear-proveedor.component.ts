@@ -23,7 +23,7 @@ export class CrearProveedorComponent implements OnInit {
     private fb: FormBuilder,
     private proveedoresService: ProveedoresService,
     private componentesService: ComponentesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formProvider = this.fb.group({
@@ -93,7 +93,7 @@ export class CrearProveedorComponent implements OnInit {
           console.error(err);
           this.matSnackBar.open(
             'Error al registrar proveedor: ' +
-              (err.error.message || 'Desconocido'),
+            (err.error.message || 'Desconocido'),
             'Cerrar',
             {
               duration: 5000,
