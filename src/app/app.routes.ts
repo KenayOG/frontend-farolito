@@ -4,7 +4,6 @@ import { HomeProductsComponent } from './home/home-products/home-products.compon
 import { LoginComponent } from './autenticacion/login/login.component';
 import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
 import { AdministrarEmpleadosComponent } from './usuarios/administrar-empleados/administrar-empleados.component';
-import { VentasComponent } from './ventas/ventas/ventas.component';
 import { CrearEmpleadoComponent } from './usuarios/crear-empleado/crear-empleado.component';
 import { AdministrarProveedoresComponent } from './proveedores/administrar-proveedores/administrar-proveedores.component';
 import { EditarEmpleadoComponent } from './usuarios/editar-empleado/editar-empleado.component';
@@ -48,7 +47,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'ventas', component: VentasComponent },
   { path: 'logistica', component: EstatusPedidosComponent },
   { path: 'produccion', component: PedidosProduccionComponent },
   { path: 'recetas', component: AdministracionRecetasComponent },
@@ -65,5 +63,5 @@ export const routes: Routes = [
   { path: 'mi-perfil', component: VerDatosPerfilComponent },
   { path: 'finanzas', component: FinanzasComparativoComponent },
   { path: 'generar-produccion', component: GenerarProduccionComponent },
-  { path: 'agregar-componente', component: AgregarComponenteComponent }
+  { path: 'agregar-componente', component: AgregarComponenteComponent },
 ];

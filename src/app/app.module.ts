@@ -6,7 +6,6 @@ import { routes } from './app.routes';
 import { HomeModule } from './home/home.module';
 import { AutenticacionModule } from './autenticacion/autenticacion.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
-import { VentasModule } from './ventas/ventas.module';
 import { ProveedoresModule } from './proveedores/proveedores.module';
 import { LogisticaModule } from './logistica/logistica.module';
 import { ProduccionModule } from './produccion/produccion.module';
@@ -52,7 +51,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importa
     HomeModule,
     AutenticacionModule,
     UsuariosModule,
-    VentasModule,
     ProveedoresModule,
     LogisticaModule,
     ProduccionModule,

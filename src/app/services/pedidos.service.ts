@@ -24,4 +24,6 @@ export class PedidosService {
   getPedidosUsuario(): Observable<OrderCustomer[]> {
     return this._http.get<OrderCustomer[]>(`${this.apiUrl}/obtener-pedidos`);
   }
+
+  // Metodo para modificar el estado del pedido para encargado de logistica
 }
