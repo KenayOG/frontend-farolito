@@ -76,12 +76,41 @@ body {
   resize: vertical;
 }
 
-.card-footer {
+/* Estilo para los labels de los checkboxes */
+.form-section .label-checkbox {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
 }
 
-.button-container {
-  display: flex;
-  justify-content: flex-end;
+/* Estilo para los checkboxes */
+.form-section input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid #007bff;
+  background-color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estilo para el estado marcado del checkbox */
+.form-section input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Estilo para el estado marcado del checkbox (cuando se hace clic en él) */
+.form-section input[type="checkbox"]:active {
+  background-color: #003d80;
+  border-color: #003d80;
+}
+
+/* Estilo para el label de los checkboxes cuando el checkbox está marcado */
+.form-section input[type="checkbox"]:checked + label {
+  color: #007bff;
 }

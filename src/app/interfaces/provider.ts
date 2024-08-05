@@ -3,8 +3,8 @@ import { ProductProvider } from './product-provider';
 export interface Provider {
   id: number;
   nombreEmpresa: string;
-  dirección: string;
-  teléfono: string;
+  direccion: string;
+  telefono: string;
   nombreAtiende: string;
   apellidoM: string;
   apellidoP: string;

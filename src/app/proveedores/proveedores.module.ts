@@ -21,7 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.component';
 import { EditarProveedorComponent } from './editar-proveedor/editar-proveedor.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProveedoresService } from '../services/proveedores.service';
 import { AppComponent } from '../app.component';
@@ -59,13 +59,10 @@ import { CheckboxModule } from 'primeng/checkbox';
     HttpClientModule,
     ProgressSpinnerModule,
     CheckboxModule,
+    RouterModule,
   ],
-  providers: [
-    ProveedoresService
-  ],
-  bootstrap: [
-    AppComponent
-  ],
-  exports: []
+  providers: [ProveedoresService],
+  bootstrap: [AppComponent],
+  exports: [],
 })
 export class ProveedoresModule {}

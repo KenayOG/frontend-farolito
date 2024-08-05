@@ -6,14 +6,19 @@
           <i class="fa-solid fa-truck"></i>&nbsp;&nbsp; Editar Proveedor
         </h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form
+            class="form-grid"
+            [formGroup]="formProvider"
+            (ngSubmit)="editarProveedor()"
+          >
             <div class="form-section">
               <div class="form-floating mt-2">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Nombre:"
-                  id="nombre-empresa"
+                  id="nombreEmpresa"
+                  formControlName="nombreEmpresa"
                 />
                 <label for="floatingInput">Nombre de la Empresa:</label>
               </div>
@@ -21,57 +26,79 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Direccion:"
                   id="direccion"
+                  placeholder="Direccion:"
+                  formControlName="direccion"
                 />
                 <label for="floatingInput">Direccion:</label>
               </div>
+
               <div class="form-floating mt-2">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Telefono:"
                   id="telefono"
+                  formControlName="telefono"
                 />
                 <label for="floatingInput">Telefono:</label>
-              </div>
-            </div>
-            <div class="form-section">
-              <div class="form-floating mt-2">
-                <textarea
-                  id="products-services"
-                  class="textarea"
-                  rows="2"
-                  placeholder="Describe los productos o servicios a ofrecer:"
-                ></textarea>
-              </div>
-              <div class="form-floating">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email:"
-                  id="email"
-                />
-                <label for="floatingInput">Email:</label>
               </div>
               <div class="form-floating mt-2">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Atendido por:"
-                  id="atendido-por"
+                  id="nombreAtiende"
+                  formControlName="nombreAtiende"
                 />
                 <label for="floatingInput">Atendido por:</label>
               </div>
+              <div class="form-floating mt-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Atendido por:"
+                  id="apellidoP"
+                  formControlName="apellidoP"
+                />
+                <label for="floatingInput">Apellido Paterno:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Atendido por:"
+                  id="apellidoM"
+                  formControlName="apellidoM"
+                />
+                <label for="floatingInput">Apellido Materno:</label>
+              </div>
+            </div>
+            <div class="form-section">
+              <label class="header">
+                <i class="fa-solid fa-layer-group"> </i>&nbsp;&nbsp;Componentes
+              </label>
+              <label
+                *ngFor="let componente of listaComponentes"
+                class="label-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  [checked]="componentesSeleccionados[componente.id]"
+                  (change)="toggleCheckbox(componente.id, $event)"
+                />
+                {{ componente.nombre }}
+              </label>
+
+              <div class="card-footer">
+                <div class="button-container">
+                  <button class="btn btn-success btn-lg" type="submit">
+                    <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                  </button>
+                </div>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,10 @@ import { VentasModule } from './ventas/ventas.module';
 import { ProveedoresModule } from './proveedores/proveedores.module';
 import { LogisticaModule } from './logistica/logistica.module';
 import { ProduccionModule } from './produccion/produccion.module';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { RecetasModule } from './recetas/recetas.module';
 import { InventarioModule } from './inventario/inventario.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -31,13 +34,10 @@ import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importar esto
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignUpComponent,
-    LoginComponent
-  ],
+  declarations: [AppComponent, SignUpComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -46,6 +46,7 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     ReactiveFormsModule,
     AnimateOnScrollModule,
     CardModule,
+    NgbModule,
     StyleClassModule,
     RouterModule.forRoot(routes),
     HomeModule,
@@ -66,19 +67,15 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     FinanzasModule,
   ],
   providers: [
-    AuthService, 
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  exports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class AppModule {}

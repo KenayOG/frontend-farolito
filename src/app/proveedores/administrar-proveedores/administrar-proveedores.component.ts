@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Provider } from '../../interfaces/provider';
 import { ProveedoresService } from '../../services/proveedores.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-administrar-proveedores',
@@ -10,8 +13,15 @@ import { ProveedoresService } from '../../services/proveedores.service';
 export class AdministrarProveedoresComponent {
   providers: Provider[] = [];
   cargando: boolean = true;
+  proveedorIdTemp: number | null = null;
+  nuevoEstatusTemp: boolean = false;
 
-  constructor(private proveedoresService: ProveedoresService) {
+  constructor(
+    private proveedoresService: ProveedoresService,
+    private router: Router,
+    private matSnackbar: MatSnackBar,
+    private modalService: NgbModal
+  ) {
     this.obtenerProveedor();
   }
 
@@ -19,7 +29,8 @@ export class AdministrarProveedoresComponent {
     this.cargando = true;
     this.proveedoresService.getProveedores().subscribe({
       next: (data) => {
-        this.providers = data;
+        //this.providers = data; //-- todos los provedores
+        this.providers = data.filter((provider) => provider.estatus === true);
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -31,5 +42,66 @@ export class AdministrarProveedoresComponent {
         }, 2000);
       },
     });
+  }
+
+  selectProvider(provider: Provider) {
+    localStorage.setItem('selectedProvider', JSON.stringify(provider));
+    this.router.navigate(['/editar-proveedor']);
+  }
+  advertenciaEstatus(
+    content: TemplateRef<any>,
+    id: number,
+    estatus: boolean
+  ): void {
+    this.proveedorIdTemp = id;
+    this.nuevoEstatusTemp = estatus;
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modalEstatusProveedor',
+    });
+  }
+
+  actualizarEstatusProveedor() {
+    if (this.proveedorIdTemp !== null && this.nuevoEstatusTemp !== null) {
+      const proveedor = this.providers.find(
+        (p) => p.id === this.proveedorIdTemp
+      );
+      if (proveedor) {
+        this.proveedoresService
+          .updateEstatusProveedor(this.proveedorIdTemp, this.nuevoEstatusTemp)
+          .subscribe({
+            next: () => {
+              proveedor.estatus = this.nuevoEstatusTemp;
+              this.modalService.dismissAll();
+              this.matSnackbar.open(
+                'Estatus actualizado exitosamente',
+                'Cerrar',
+                {
+                  duration: 4000,
+                  verticalPosition: 'top',
+                  horizontalPosition: 'center',
+                }
+              );
+              this.obtenerProveedor();
+            },
+            error: (error) => {
+              console.error('Error al actualizar el estatus', error);
+              this.modalService.dismissAll();
+              this.matSnackbar.open(
+                'Error al actualizar el estatus',
+                'Cerrar',
+                {
+                  duration: 4000,
+                  verticalPosition: 'top',
+                  horizontalPosition: 'center',
+                }
+              );
+            },
+          });
+      }
+    }
+  }
+
+  cancelarActualizacion() {
+    this.modalService.dismissAll();
   }
 }

@@ -20,6 +20,23 @@ export class ProveedoresService {
 
   // Método para registrar proveedores
   regProveedores(data: Provider): Observable<ResponsePosts> {
-    return this._http.post<ResponsePosts>(`${this.apiUrl}/regproveedores`, data);
+    return this._http.post<ResponsePosts>(
+      `${this.apiUrl}/regproveedores`,
+      data
+    );
+  }
+
+  // Metodo para editar proveedores
+  editProveedores(data: Provider): Observable<ResponsePosts> {
+    return this._http.put<ResponsePosts>(
+      `${this.apiUrl}/editproveedores`,
+      data
+    );
+  }
+
+  // Método para actualizar borrar logicamente un proveedor
+  updateEstatusProveedor(id: number, estatus: boolean): Observable<void> {
+    const payload = { id, estatus };
+    return this._http.patch<void>(`${this.apiUrl}/estatusproveedores`, payload);
   }
 }
