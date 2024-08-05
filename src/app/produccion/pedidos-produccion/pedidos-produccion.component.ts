@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Production, ProductionHechas } from '../../interfaces/production';
 import { ProduccionService } from '../../services/produccion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecipeProduction } from '../../interfaces/recipe-production';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-pedidos-produccion',
@@ -13,6 +14,8 @@ export class PedidosProduccionComponent {
   solicitudesProduccion: Production[] = [];
   produccionesCompletadas: ProductionHechas[] = [];
   cargando: boolean = true;
+  @ViewChild('dtSolicitudesProduccion') dtSolicitudesProduccion!: Table;
+  @ViewChild('dtProduccionesHechas') dtProduccionesHechas!: Table;
 
   constructor(
     private produccionService: ProduccionService,
@@ -80,5 +83,17 @@ export class PedidosProduccionComponent {
         }, 2000);
       },
     });
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtSolicitudesProduccion' && this.dtSolicitudesProduccion) {
+      this.dtSolicitudesProduccion.filterGlobal(filterValue, 'contains');
+    } else if (
+      tableId === 'dtProduccionesHechas' &&
+      this.dtProduccionesHechas
+    ) {
+      this.dtProduccionesHechas.filterGlobal(filterValue, 'contains');
+    }
   }
 }

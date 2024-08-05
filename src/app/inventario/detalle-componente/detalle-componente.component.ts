@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentDetail } from '../../interfaces/component-detail';
 import { ComponentInventory } from '../../interfaces/component-inventory';
 import { InventarioService } from '../../services/inventario.service';
-
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-detalle-componente',
   templateUrl: './detalle-componente.component.html',
@@ -13,6 +13,7 @@ export class DetalleComponenteComponent {
   componentDetail: ComponentInventory | undefined;
   nombreComponente: string = '';
   cargando: boolean = true;
+  @ViewChild('dtDetalleComponentes') dtDetalleComponentes!: Table;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,5 +41,12 @@ export class DetalleComponenteComponent {
         }, 2000);
       }
     );
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtDetalleComponentes' && this.dtDetalleComponentes) {
+      this.dtDetalleComponentes.filterGlobal(filterValue, 'contains');
+    }
   }
 }

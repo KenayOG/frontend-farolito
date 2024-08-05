@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-administrar-empleados',
   templateUrl: './administrar-empleados.component.html',
@@ -12,6 +13,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AdministrarEmpleadosComponent {
   usuarios: User[] = [];
   cargando: boolean = true;
+  @ViewChild('dtClientes') dtClientes!: Table;
+  @ViewChild('dtEmpleados') dtEmpleados!: Table;
 
   constructor(
     private userService: UsuariosService,
@@ -54,5 +57,13 @@ export class AdministrarEmpleadosComponent {
     localStorage.setItem('selectedEmployee', JSON.stringify(user));
     this.router.navigate(['/editar-empleado']);
   }
-  
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtClientes' && this.dtClientes) {
+      this.dtClientes.filterGlobal(filterValue, 'contains');
+    } else if (tableId === 'dtEmpleados' && this.dtEmpleados) {
+      this.dtEmpleados.filterGlobal(filterValue, 'contains');
+    }
+  }
 }

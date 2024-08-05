@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 mt-5">
       <p-table
-        #dt
+        #dtDetalleComponentes
         [value]="componentDetail?.detalles || []"
         [scrollable]="true"
         scrollHeight="270px"
@@ -12,27 +12,42 @@
         [paginator]="true"
         currentPageReportTemplate="Mostrando {first} de {last}"
         [filterDelay]="0"
-        [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+        [globalFilterFields]="['proveedorNombre']"
       >
         <ng-template pTemplate="caption">
           <div class="text-center">
-            <h3 class="mt-2">
-              <b>
-                <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;
-                {{ nombreComponente }}
-              </b>
-            </h3>
+            <div class="d-flex justify-content-center">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;{{
+                    nombreComponente
+                  }}
+                </b>
+              </h3>
+              <p-iconField iconPosition="left" style="margin-left: 100px">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input
+                  pInputText
+                  type="text"
+                  placeholder="Buscar por componente:"
+                  class="mt-1"
+                  (input)="applyFilterGlobal($event, 'dtDetalleComponentes')"
+                />
+              </p-iconField>
+            </div>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="id">
+            <th pSortableColumn="id" hidden>
               <div class="flex justify-content-between align-items-center">
                 Id
                 <p-sortIcon field="id" />
               </div>
             </th>
-            <th pSortableColumn="cantidad">
+            <th pSortableColumn="cantidad" style="max-width: 5rem">
               <div class="flex justify-content-between align-items-center">
                 Cantidad
                 <p-sortIcon field="cantidad" />
@@ -60,7 +75,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-detail>
           <tr class="p-selectable-row">
-            <td>{{ detail.id }}</td>
+            <td style="display: none">{{ detail.id }}</td>
             <td>{{ detail.cantidad }}</td>
             <td>{{ detail.proveedorNombre }}</td>
             <td>{{ detail.fechaCompra }}</td>

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { LampDecrease } from '../../interfaces/lamp-decrease';
 import { ComponenteDecrease } from '../../interfaces/component-decrease';
 import { MermaService } from '../../services/merma.service';
-
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-administracion-merma',
   templateUrl: './administracion-merma.component.html',
@@ -12,6 +12,8 @@ export class AdministracionMermaComponent {
   decreasedLamps: LampDecrease[] = [];
   decreasedComponents: ComponenteDecrease[] = [];
   cargando: boolean = true;
+  @ViewChild('dtMermaLamparas') dtMermaLamparas!: Table;
+  @ViewChild('dtMermaComponentes') dtMermaComponentes!: Table;
 
   constructor(private mermaService: MermaService) {
     this.obtenerMermaLamparas();
@@ -35,6 +37,7 @@ export class AdministracionMermaComponent {
       },
     });
   }
+
   obtenerMermaComponentes() {
     this.mermaService.getMermaComponentes().subscribe({
       next: (data) => {
@@ -44,5 +47,14 @@ export class AdministracionMermaComponent {
         console.log(e);
       },
     });
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtMermaLamparas' && this.dtMermaLamparas) {
+      this.dtMermaLamparas.filterGlobal(filterValue, 'contains');
+    } else if (tableId === 'dtMermaComponentes' && this.dtMermaComponentes) {
+      this.dtMermaComponentes.filterGlobal(filterValue, 'contains');
+    }
   }
 }

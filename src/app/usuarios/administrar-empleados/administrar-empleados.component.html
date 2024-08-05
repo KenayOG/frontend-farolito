@@ -39,7 +39,7 @@
         aria-labelledby="nav-empleados-tab"
       >
         <p-table
-          #dt
+          #dtEmpleados
           [value]="empleados"
           [scrollable]="true"
           scrollHeight="270px"
@@ -49,7 +49,7 @@
           [paginator]="true"
           currentPageReportTemplate="Mostrando {first} de {last}"
           [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+          [globalFilterFields]="['fullName']"
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
@@ -72,6 +72,7 @@
                     type="text"
                     placeholder="Buscar Empleado:"
                     class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtEmpleados')"
                   />
                 </p-iconField>
                 <a
@@ -90,7 +91,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -138,7 +139,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-employee>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ employee.id }}
               </td>
               <td>
@@ -181,7 +182,7 @@
         aria-labelledby="nav-clientes-tab"
       >
         <p-table
-          #dt
+          #dtClientes
           [value]="clientes"
           [scrollable]="true"
           scrollHeight="270px"
@@ -191,7 +192,7 @@
           [paginator]="true"
           currentPageReportTemplate="Mostrando {first} de {last}"
           [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+          [globalFilterFields]="['fullName']"
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
@@ -214,6 +215,7 @@
                     type="text"
                     placeholder="Buscar Cliente:"
                     class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtClientes')"
                   />
                 </p-iconField>
               </div>
@@ -221,7 +223,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -255,7 +257,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-customer>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ customer.id }}
               </td>
               <td>

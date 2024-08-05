@@ -1,23 +1,53 @@
 <div class="container">
   <nav style="margin: 0 140px">
     <div class="nav nav-tabs m-1 custom-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-lamparas-tab" data-bs-toggle="tab" data-bs-target="#nav-lamparas"
-        type="button" role="tab" aria-controls="nav-lamparas" aria-selected="true">
+      <button
+        class="nav-link active"
+        id="nav-lamparas-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-lamparas"
+        type="button"
+        role="tab"
+        aria-controls="nav-lamparas"
+        aria-selected="true"
+      >
         Lamparas
       </button>
-      <button class="nav-link" id="nav-componentes-tab" data-bs-toggle="tab" data-bs-target="#nav-componentes"
-        type="button" role="tab" aria-controls="nav-componentes" aria-selected="false">
+      <button
+        class="nav-link"
+        id="nav-componentes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-componentes"
+        type="button"
+        role="tab"
+        aria-controls="nav-componentes"
+        aria-selected="false"
+      >
         Componentes
       </button>
     </div>
   </nav>
   <div class="card align-items-center" style="border: none; margin: 0 50px">
     <div class="row tab-content" id="nav-tabContent">
-      <div class="col-12 tab-pane fade show active p-3" id="nav-lamparas" role="tabpanel"
-        aria-labelledby="nav-lamparas-tab">
-        <p-table #dt [value]="lampsInventory" [scrollable]="true" scrollHeight="270px" [rowHover]="true" [rows]="10"
-          [showCurrentPageReport]="true" [paginator]="true" currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0" [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
+      <div
+        class="col-12 tab-pane fade show active p-3"
+        id="nav-lamparas"
+        role="tabpanel"
+        aria-labelledby="nav-lamparas-tab"
+      >
+        <p-table
+          #dtInventarioLamparas
+          [value]="lampsInventory"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['nombrelampara']"
+        >
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
@@ -26,19 +56,28 @@
                   Lamparas
                 </b>
               </h3>
-              <div class="d-flex justify-content-between" style="margin-left: 230px">
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
                 <p-iconField iconPosition="left">
                   <p-inputIcon>
                     <i class="pi pi-search"> </i>
                   </p-inputIcon>
-                  <input pInputText type="text" placeholder="Buscar Lampara:" class="mt-1" />
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por lampara:"
+                    class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtInventarioLamparas')"
+                  />
                 </p-iconField>
               </div>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -68,7 +107,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-lamp>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ lamp.id }}
               </td>
               <td>
@@ -81,13 +120,20 @@
                 {{ lamp.costo | number : "1.2-2" }}
               </td>
               <td>
-                <a [routerLink]="['/detalle-lampara', lamp.id]" class="btn btn-primary">
+                <a
+                  [routerLink]="['/detalle-lampara', lamp.id]"
+                  class="btn btn-primary"
+                >
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
               <td>
-                <a class="btn btn-danger" (click)="selectLamp(lamp)" data-bs-toggle="modal"
-                  data-bs-target="#mermarLamparaModal">
+                <a
+                  class="btn btn-danger"
+                  (click)="selectLamp(lamp)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mermarLamparaModal"
+                >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -96,11 +142,25 @@
         </p-table>
       </div>
       <!-- Componentes -->
-      <div class="col-12 tab-pane fade p-3" id="nav-componentes" role="tabpanel" aria-labelledby="nav-componentes-tab">
-        <p-table #dt [value]="componentesInventory" [scrollable]="true" scrollHeight="270px" [rowHover]="true"
-          [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']">
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-componentes"
+        role="tabpanel"
+        aria-labelledby="nav-componentes-tab"
+      >
+        <p-table
+          #dtInventarioComponentes
+          [value]="componentesInventory"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['nombre']"
+        >
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
@@ -109,15 +169,33 @@
                   Componentes
                 </b>
               </h3>
-              <div class="d-flex justify-content-between" style="margin-left: 230px">
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
                 <p-iconField iconPosition="left">
                   <p-inputIcon>
                     <i class="pi pi-search"></i>
                   </p-inputIcon>
-                  <input pInputText type="text" placeholder="Buscar componente:" class="mt-1" />
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por componente:"
+                    class="mt-1"
+                    (input)="
+                      applyFilterGlobal($event, 'dtInventarioComponentes')
+                    "
+                  />
                 </p-iconField>
-                <a routerLink="/agregar-componente" class="btn btn-success p-3" style="margin-left: 80px">
-                  <i class="fa-solid fa-circle-plus" style="margin-right: 5px"></i>
+                <a
+                  routerLink="/agregar-componente"
+                  class="btn btn-success p-3"
+                  style="margin-left: 80px"
+                >
+                  <i
+                    class="fa-solid fa-circle-plus"
+                    style="margin-right: 5px"
+                  ></i>
                   Agregar
                 </a>
               </div>
@@ -125,7 +203,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -150,7 +228,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-component>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ component.id }}
               </td>
               <td>
@@ -160,18 +238,28 @@
                 {{ component.existencia }}
               </td>
               <td>
-                <a [routerLink]="['/detalle-componente', component.id]" class="btn btn-primary">
+                <a
+                  [routerLink]="['/detalle-componente', component.id]"
+                  class="btn btn-primary"
+                >
                   <i class="fa-solid fa-eye"></i>&nbsp;Detalle
                 </a>
               </td>
               <td>
-                <a class="btn btn-success" [routerLink]="['/agregar-lote', component.id]">
+                <a
+                  class="btn btn-success"
+                  [routerLink]="['/agregar-lote', component.id]"
+                >
                   <i class="fa-solid fa-plus"></i>&nbsp;Agregar lote
                 </a>
               </td>
               <td>
-                <a class="btn btn-danger" (click)="selectComponent(component)" data-bs-toggle="modal"
-                  data-bs-target="#mermarComponentesModal">
+                <a
+                  class="btn btn-danger"
+                  (click)="selectComponent(component)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mermarComponentesModal"
+                >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
@@ -183,10 +271,18 @@
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">
         <div class="spinner-wrapper">
-          <p-progressSpinner styleClass="w-7rem h-7rem" strokeWidth="6" fill="var(--surface-ground)"
-            animationDuration=".8s">
+          <p-progressSpinner
+            styleClass="w-7rem h-7rem"
+            strokeWidth="6"
+            fill="var(--surface-ground)"
+            animationDuration=".8s"
+          >
           </p-progressSpinner>
-          <img src="assets/images/logo-farolito.webp" alt="Logo de farolito" class="spinner-logo" />
+          <img
+            src="assets/images/logo-farolito.webp"
+            alt="Logo de farolito"
+            class="spinner-logo"
+          />
         </div>
         <p class="spinner-message">Espere por favor...</p>
       </div>

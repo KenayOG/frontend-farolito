@@ -1,9 +1,10 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { Provider } from '../../interfaces/provider';
 import { ProveedoresService } from '../../services/proveedores.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-administrar-proveedores',
@@ -15,6 +16,7 @@ export class AdministrarProveedoresComponent {
   cargando: boolean = true;
   proveedorIdTemp: number | null = null;
   nuevoEstatusTemp: boolean = false;
+  @ViewChild('dtProveedores') dtProveedores!: Table;
 
   constructor(
     private proveedoresService: ProveedoresService,
@@ -103,5 +105,12 @@ export class AdministrarProveedoresComponent {
 
   cancelarActualizacion() {
     this.modalService.dismissAll();
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtProveedores' && this.dtProveedores) {
+      this.dtProveedores.filterGlobal(filterValue, 'contains');
+    }
   }
 }

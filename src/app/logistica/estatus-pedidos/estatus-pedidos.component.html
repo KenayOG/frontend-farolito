@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <p-table
-          #dt
+          #dtPedidosLogistica
           [value]="orders"
           [scrollable]="true"
           scrollHeight="270px"
@@ -13,7 +13,7 @@
           [paginator]="true"
           currentPageReportTemplate="Mostrando {first} de {last}"
           [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+          [globalFilterFields]="['estatus']"
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
@@ -27,6 +27,7 @@
                 iconPosition="left"
                 style="margin-left: 50px"
                 class="mt-2"
+                (input)="applyFilterGlobal($event, 'dtPedidosLogistica')"
               >
                 <p-inputIcon>
                   <i class="pi pi-search"></i>

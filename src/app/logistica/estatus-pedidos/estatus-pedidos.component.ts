@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Order } from '../../interfaces/orders';
 import { LogisticManager } from '../../interfaces/logistic-manager';
 import { PedidosService } from '../../services/pedidos.service';
-
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-estatus-pedidos',
   templateUrl: './estatus-pedidos.component.html',
@@ -11,6 +11,7 @@ import { PedidosService } from '../../services/pedidos.service';
 export class EstatusPedidosComponent {
   orders: LogisticManager[] = [];
   cargando: boolean = true;
+  @ViewChild('dtPedidosLogistica') dtPedidosLogistica!: Table;
 
   constructor(private pedidosService: PedidosService) {
     this.obtenerPedidos();
@@ -32,5 +33,12 @@ export class EstatusPedidosComponent {
         }, 2000);
       },
     });
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtPedidosLogistica' && this.dtPedidosLogistica) {
+      this.dtPedidosLogistica.filterGlobal(filterValue, 'contains');
+    }
   }
 }

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LampDetail } from '../../interfaces/lamp-detail';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
-
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-detalle-lampara',
   templateUrl: './detalle-lampara.component.html',
@@ -13,6 +13,7 @@ export class DetalleLamparaComponent {
   lampDetail: LampInventory | undefined;
   nombreLampara: string = '';
   cargando: boolean = true;
+  @ViewChild('dtDetalleLamparas') dtDetalleLamparas!: Table;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,5 +42,12 @@ export class DetalleLamparaComponent {
         }, 2000);
       }
     );
+  }
+
+  applyFilterGlobal(event: Event, tableId: string) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (tableId === 'dtDetalleLamparas' && this.dtDetalleLamparas) {
+      this.dtDetalleLamparas.filterGlobal(filterValue, 'contains');
+    }
   }
 }

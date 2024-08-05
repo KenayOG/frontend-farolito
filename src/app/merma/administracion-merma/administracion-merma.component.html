@@ -36,7 +36,7 @@
         aria-labelledby="nav-merma-lamparas-tab"
       >
         <p-table
-          #dt
+          #dtMermaLamparas
           [value]="decreasedLamps"
           [scrollable]="true"
           scrollHeight="270px"
@@ -46,7 +46,7 @@
           [paginator]="true"
           currentPageReportTemplate="Mostrando {first} de {last}"
           [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+          [globalFilterFields]="['lampara']"
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
@@ -66,8 +66,9 @@
                   <input
                     pInputText
                     type="text"
-                    placeholder="Buscar Merma:"
+                    placeholder="Buscar por lampara:"
                     class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtMermaLamparas')"
                   />
                 </p-iconField>
               </div>
@@ -75,7 +76,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -115,7 +116,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-decreasedlamp>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ decreasedlamp.id }}
               </td>
               <td>
@@ -145,7 +146,7 @@
         aria-labelledby="nav-merma-componentes-tab"
       >
         <p-table
-          #dt
+          #dtMermaComponentes
           [value]="decreasedComponents"
           [scrollable]="true"
           scrollHeight="270px"
@@ -155,7 +156,7 @@
           [paginator]="true"
           currentPageReportTemplate="Mostrando {first} de {last}"
           [filterDelay]="0"
-          [globalFilterFields]="['id', 'name', 'email', 'username', 'password']"
+          [globalFilterFields]="['componente']"
         >
           <ng-template pTemplate="caption">
             <div class="d-flex">
@@ -176,8 +177,9 @@
                   <input
                     pInputText
                     type="text"
-                    placeholder="Buscar Merma:"
+                    placeholder="Buscar por componente:"
                     class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtMermaComponentes')"
                   />
                 </p-iconField>
               </div>
@@ -185,7 +187,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id">
+              <th pSortableColumn="id" hidden>
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -225,7 +227,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-decreasedcomponent>
             <tr class="p-selectable-row">
-              <td>
+              <td style="display: none">
                 {{ decreasedcomponent.id }}
               </td>
               <td>
