@@ -6,11 +6,9 @@
           <div class="image"></div>
         </div>
         <h3>{{ user.name }}</h3>
-        <span>{{ user.email }} </span><span class="title">- {{ user.role }}</span>
-        <br>
-        <button class="btn btn-primary btn-lg">
-          <i class="fa-solid fa-user-pen"></i>&nbsp;&nbsp;Editar
-        </button>
+        <br />
+        <span>{{ user.email }} </span
+        ><span class="title">- {{ user.role }}</span>
       </div>
     </div>
     <div class="col-6 d-flex justify-content-center">
@@ -35,17 +33,9 @@
                   class="form-control"
                   placeholder="Direccion:"
                   id="direccion"
+                  [value]="userDireccion"
                 />
                 <label for="floatingInput">Direccion:</label>
-              </div>
-              <div class="form-floating mt-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username:"
-                  id="username"
-                />
-                <label for="floatingInput">Username:</label>
               </div>
             </div>
             <div class="form-section">
@@ -65,27 +55,103 @@
                   class="form-control"
                   placeholder="Telefono:"
                   id="telefono"
+                  [value]="userPhoneNumber"
                 />
                 <label for="floatingInput">Telefono:</label>
               </div>
-              <div class="form-floating mt-2">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password:"
-                  id="password"
-                />
-                <label for="floatingInput">Password:</label>
+            </div>
+            <div class="form-floating mt-2">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Tarjeta:"
+                id="tarjeta"
+                [value]=""
+              />
+              <label for="floatingInput">Tarjeta:</label>
+            </div>
+            <div class="card-footer">
+              <div class="button-container">
+                <button class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
               </div>
             </div>
           </form>
         </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6 d-flex justify-content-center">
+      <div class="card-password-form">
+        <h3 class="card-header text-center">Cambiar password</h3>
+        <div class="card-content">
+          <form class="form-grid">
+            <div class="form-section">
+              <div class="form-floating mt-2">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password Actual:"
+                  id="passwordCurrent"
+                  name="currentPassword"
+                />
+                <label for="floatingInput">Password Actual:</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input
+                  readonly
+                  type="email"
+                  class="form-control"
+                  placeholder="Email:"
+                  id="emailPass"
+                  [value]="userEmail"
+                />
+                <input type="hidden" name="userEmail" />
+                <label for="floatingInput">Email:</label>
+              </div>
+            </div>
+            <div class="form-section">
+              <div class="form-floating mt-2">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Nuevo Password:"
+                  id="passwordNew"
+                  name="userEmail"
+                />
+                <label for="floatingInput">Nuevo Password:</label>
+              </div>
+              <div class="button-container">
+                <button class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 d-flex justify-content-center">
+      <div class="card-picture-form">
+        <h3 class="card-header text-center">Agregar Imagen</h3>
+        <div class="card-content">
+          <form class="form-grid">
+            <div class="form-section">
+              <div class="form-floating mt-2">
+                <input type="file" class="form-control" id="foto" [value]="" />
+                <label for="floatingInput">Foto:</label>
+              </div>
+            </div>
+            <div class="card-footer mt-4">
+              <div class="button-container">
+                <button class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
