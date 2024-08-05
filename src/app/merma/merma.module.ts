@@ -10,9 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
-  declarations: [
-    AdministracionMermaComponent
-  ],
+  declarations: [AdministracionMermaComponent],
   imports: [
     CommonModule,
     TableModule,

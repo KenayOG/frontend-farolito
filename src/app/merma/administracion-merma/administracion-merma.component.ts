@@ -10,14 +10,20 @@ import { Table } from 'primeng/table';
 })
 export class AdministracionMermaComponent {
   decreasedLamps: LampDecrease[] = [];
+  decreasedLampsUser: LampDecrease[] = [];
+  decreasedComponentsUser: ComponenteDecrease[] = [];
   decreasedComponents: ComponenteDecrease[] = [];
   cargando: boolean = true;
   @ViewChild('dtMermaLamparas') dtMermaLamparas!: Table;
+  @ViewChild('dtMermaLamparasUsuario') dtMermaLamparasUsuario!: Table;
   @ViewChild('dtMermaComponentes') dtMermaComponentes!: Table;
+  @ViewChild('dtMermaComponentesUsuario') dtMermaComponentesUsuario!: Table;
 
   constructor(private mermaService: MermaService) {
     this.obtenerMermaLamparas();
     this.obtenerMermaComponentes();
+    this.obtenerMermaLamparaUsuario();
+    this.obtenerMermaComponenteUsuario();
   }
 
   obtenerMermaLamparas() {
@@ -34,6 +40,28 @@ export class AdministracionMermaComponent {
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
+      },
+    });
+  }
+
+  obtenerMermaLamparaUsuario() {
+    this.mermaService.getMermaLamparasUsuario().subscribe({
+      next: (data) => {
+        this.decreasedLampsUser = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
+  obtenerMermaComponenteUsuario() {
+    this.mermaService.getMermaComponentesUsuario().subscribe({
+      next: (data) => {
+        this.decreasedComponentsUser = data;
+      },
+      error: (e) => {
+        console.log(e);
       },
     });
   }
@@ -55,6 +83,16 @@ export class AdministracionMermaComponent {
       this.dtMermaLamparas.filterGlobal(filterValue, 'contains');
     } else if (tableId === 'dtMermaComponentes' && this.dtMermaComponentes) {
       this.dtMermaComponentes.filterGlobal(filterValue, 'contains');
+    } else if (
+      tableId === 'dtMermaComponentesUsuario' &&
+      this.dtMermaComponentesUsuario
+    ) {
+      this.dtMermaComponentesUsuario.filterGlobal(filterValue, 'contains');
+    } else if (
+      tableId === 'dtMermaLamparasUsuario' &&
+      this.dtMermaLamparasUsuario
+    ) {
+      this.dtMermaLamparasUsuario.filterGlobal(filterValue, 'contains');
     }
   }
 }

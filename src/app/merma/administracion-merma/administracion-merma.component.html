@@ -11,7 +11,7 @@
         aria-controls="nav-merma-lamparas"
         aria-selected="true"
       >
-        Lamparas
+        <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Lamparas
       </button>
       <button
         class="nav-link"
@@ -23,7 +23,32 @@
         aria-controls="nav-merma-componentes"
         aria-selected="false"
       >
-        Componentes
+        <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Componentes
+      </button>
+      <button
+        class="nav-link"
+        id="nav-mis-merma-lamparas-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-mis-merma-lamparas"
+        type="button"
+        role="tab"
+        aria-controls="nav-mis-merma-lamparas"
+        aria-selected="false"
+      >
+        <i class="fa-solid fa-square-xmark"></i>&nbsp;&nbsp;Mis Lamparas
+        mermadas
+      </button>
+      <button
+        class="nav-link"
+        id="nav-mis-merma-componentes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-mis-merma-componentes"
+        type="button"
+        role="tab"
+        aria-controls="nav-mis-merma-componentes"
+        aria-selected="false"
+      >
+        <i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;Mis Componentes mermados
       </button>
     </div>
   </nav>
@@ -244,6 +269,234 @@
               </td>
               <td>
                 {{ decreasedcomponent.usuario }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Mis mermas lamparas -->
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-mis-merma-lamparas"
+        role="tabpanel"
+        aria-labelledby="nav-mis-merma-lamparas-tab"
+      >
+        <p-table
+          #dtMermaLamparasUsuario
+          [value]="decreasedLampsUser"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['lampara']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Mi merma de
+                  lamparas
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por lampara:"
+                    class="mt-1"
+                    (input)="
+                      applyFilterGlobal($event, 'dtMermaLamparasUsuario')
+                    "
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" hidden>
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="lampara">
+                <div class="flex justify-content-between align-items-center">
+                  Lampara
+                  <p-sortIcon field="lampara" />
+                </div>
+              </th>
+              <th pSortableColumn="cantidad">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="cantidad" />
+                </div>
+              </th>
+              <th pSortableColumn="descripcion">
+                <div class="flex justify-content-between align-items-center">
+                  Descripcion
+                  <p-sortIcon field="descripcion" />
+                </div>
+              </th>
+              <th pSortableColumn="fecha">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Mermado
+                  <p-sortIcon field="fecha" />
+                </div>
+              </th>
+              <th pSortableColumn="usuario">
+                <div class="flex justify-content-between align-items-center">
+                  Mermado por
+                  <p-sortIcon field="usuario" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-decreasedlampuser>
+            <tr class="p-selectable-row">
+              <td style="display: none">
+                {{ decreasedlampuser.id }}
+              </td>
+              <td>
+                {{ decreasedlampuser.lampara }}
+              </td>
+              <td>
+                {{ decreasedlampuser.cantidad }}
+              </td>
+              <td>
+                {{ decreasedlampuser.descripcion }}
+              </td>
+              <td>
+                {{ decreasedlampuser.fecha }}
+              </td>
+              <td>
+                {{ decreasedlampuser.usuario }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Mis mermas componentes -->
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-mis-merma-componentes"
+        role="tabpanel"
+        aria-labelledby="nav-mis-merma-componentes-tab"
+      >
+        <p-table
+          #dtMermaComponentesUsuario
+          [value]="decreasedComponentsUser"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['componente']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Mi merma de
+                  componentes
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por componente:"
+                    class="mt-1"
+                    (input)="
+                      applyFilterGlobal($event, 'dtMermaComponentesUsuario')
+                    "
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" hidden>
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="componente">
+                <div class="flex justify-content-between align-items-center">
+                  Componente
+                  <p-sortIcon field="componente" />
+                </div>
+              </th>
+              <th pSortableColumn="cantidad">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="cantidad" />
+                </div>
+              </th>
+              <th pSortableColumn="descripcion">
+                <div class="flex justify-content-between align-items-center">
+                  Descripcion
+                  <p-sortIcon field="descripcion" />
+                </div>
+              </th>
+              <th pSortableColumn="fecha">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha Mermado
+                  <p-sortIcon field="fecha" />
+                </div>
+              </th>
+              <th pSortableColumn="usuario">
+                <div class="flex justify-content-between align-items-center">
+                  Mermado por
+                  <p-sortIcon field="usuario" />
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-decreasedcompuser>
+            <tr class="p-selectable-row">
+              <td style="display: none">
+                {{ decreasedcompuser.id }}
+              </td>
+              <td>
+                {{ decreasedcompuser.componente }}
+              </td>
+              <td>
+                {{ decreasedcompuser.cantidad }}
+              </td>
+              <td>
+                {{ decreasedcompuser.descripcion }}
+              </td>
+              <td>
+                {{ decreasedcompuser.fecha }}
+              </td>
+              <td>
+                {{ decreasedcompuser.usuario }}
               </td>
             </tr>
           </ng-template>

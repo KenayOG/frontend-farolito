@@ -4,7 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LampDecreaseRequest, LampDecrease } from '../interfaces/lamp-decrease';
 import { ResponsePosts } from '../interfaces/response-posts';
-import { ComponenteDecrease, ComponenteDecreaseRequest } from '../interfaces/component-decrease';
+import {
+  ComponenteDecrease,
+  ComponenteDecreaseRequest,
+} from '../interfaces/component-decrease';
 
 @Injectable({
   providedIn: 'root',
@@ -22,16 +25,37 @@ export class MermaService {
 
   // Método para invocar el endPoint GET de Merma-componentes.
   getMermaComponentes(): Observable<ComponenteDecrease[]> {
-    return this._http.get<ComponenteDecrease[]>(`${this.apiUrl}/mermasComponentes`);
+    return this._http.get<ComponenteDecrease[]>(
+      `${this.apiUrl}/mermasComponentes`
+    );
   }
 
   // Método para enviar merma de inventario de componentes
-  sendMermaComponentes(data: ComponenteDecreaseRequest): Observable<ResponsePosts> {
-    return this._http.post<ResponsePosts>(`${this.apiUrl}/mermaComponente`, data);
+  sendMermaComponentes(
+    data: ComponenteDecreaseRequest
+  ): Observable<ResponsePosts> {
+    return this._http.post<ResponsePosts>(
+      `${this.apiUrl}/mermaComponente`,
+      data
+    );
   }
 
   // Método para enviar merma de inventario de lámparas
   sendMermaLamparas(data: LampDecreaseRequest): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(`${this.apiUrl}/mermaLampara`, data);
+  }
+
+  // Metodo para invocar el get de mermas de lampara por usuario
+  getMermaLamparasUsuario(): Observable<LampDecrease[]> {
+    return this._http.get<LampDecrease[]>(
+      `${this.apiUrl}/mermasLamparasUsuario`
+    );
+  }
+
+  // Metodo para invocar el get de mermas de componente por usuario
+  getMermaComponentesUsuario(): Observable<ComponenteDecrease[]> {
+    return this._http.get<ComponenteDecrease[]>(
+      `${this.apiUrl}/mermasComponentesUsuario`
+    );
   }
 }
