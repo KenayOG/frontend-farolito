@@ -87,7 +87,11 @@
       <div class="card-password-form">
         <h3 class="card-header text-center">Cambiar password</h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form
+            class="form-grid"
+            [formGroup]="profileFormPass"
+            (ngSubmit)="cambiarPass()"
+          >
             <div class="form-section">
               <div class="form-floating mt-2">
                 <input
@@ -95,20 +99,19 @@
                   class="form-control"
                   placeholder="Password Actual:"
                   id="passwordCurrent"
-                  name="currentPassword"
+                  formControlName="currentPassword"
                 />
                 <label for="floatingInput">Password Actual:</label>
               </div>
               <div class="form-floating mt-2">
                 <input
-                  readonly
                   type="email"
+                  readonly
                   class="form-control"
                   placeholder="Email:"
                   id="emailPass"
-                  [value]="userEmail"
+                  formControlName="userEmail"
                 />
-                <input type="hidden" name="userEmail" />
                 <label for="floatingInput">Email:</label>
               </div>
             </div>
@@ -119,12 +122,12 @@
                   class="form-control"
                   placeholder="Nuevo Password:"
                   id="passwordNew"
-                  name="userEmail"
+                  formControlName="newPassword"
                 />
                 <label for="floatingInput">Nuevo Password:</label>
               </div>
               <div class="button-container">
-                <button class="btn btn-success btn-lg">
+                <button class="btn btn-success btn-lg" type="submit">
                   <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
                 </button>
               </div>

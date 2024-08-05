@@ -5,21 +5,18 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { UsuariosService } from '../services/usuarios.service';
 import { AppComponent } from '../app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    VerDatosPerfilComponent
-  ],
+  declarations: [VerDatosPerfilComponent],
   imports: [
-    CommonModule, 
-    PasswordModule, 
-    InputTextModule
+    CommonModule,
+    PasswordModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [
-    UsuariosService
-  ],
-  bootstrap: [
-    AppComponent
-  ],
-  exports: []
+  providers: [UsuariosService],
+  bootstrap: [AppComponent],
+  exports: [],
 })
 export class PerfilModule {}

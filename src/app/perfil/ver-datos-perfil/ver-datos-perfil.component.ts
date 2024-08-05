@@ -31,16 +31,17 @@ export class VerDatosPerfilComponent implements OnInit {
   // Cambio de contraseña
   currentPassword: string = '';
   newPassword: string = '';
-  profileForm: FormGroup;
+  email: string = '';
+  profileFormPass: FormGroup;
 
   constructor(
     private usuariosService: UsuariosService,
     private matSnackbar: MatSnackBar,
     private fb: FormBuilder
   ) {
-    this.profileForm = this.fb.group({
+    this.profileFormPass = this.fb.group({
       currentPassword: ['', Validators.required],
-      userEmail: [{ value: this.userEmail, disabled: true }],
+      userEmail: [{ value: '', disabled: false }], // El email no se puede editar, pero se incluye en el formulario
       newPassword: ['', Validators.required],
     });
   }
@@ -72,8 +73,11 @@ export class VerDatosPerfilComponent implements OnInit {
         this.userAccessFailedCount = data.accessFailedCount;
         this.userUrlImage = data.urlImage;
         this.userDireccion = data.direccion;
-        console.log(this.userFullName);
-        console.log(this.userDireccion);
+
+        // Actualiza el valor del campo userEmail en el formulario
+        this.profileFormPass.patchValue({
+          userEmail: this.userEmail,
+        });
       },
       error: (error) => {
         console.error('Error al obtener detalles del perfil', error);
@@ -81,12 +85,41 @@ export class VerDatosPerfilComponent implements OnInit {
     });
   }
 
-  cambiarContraseñaPerfil() {
-    if (this.profileForm.valid) {
-      const formValues = this.profileForm.value;
+  cambiarPass() {
+    if (this.profileFormPass.valid) {
+      const formValues = this.profileFormPass.value;
       console.log('Current Password:', formValues.currentPassword);
       console.log('New Password:', formValues.newPassword);
       console.log('Email:', formValues.userEmail);
+      this.usuariosService
+        .changePass({
+          currentPassword: formValues.currentPassword,
+          newPassword: formValues.newPassword,
+          email: formValues.userEmail,
+        })
+        .subscribe({
+          next: () => {
+            this.matSnackbar.open(
+              'Password actualizado exitosamente',
+              'Cerrar',
+              {
+                duration: 4000,
+                verticalPosition: 'top',
+                horizontalPosition: 'center',
+              }
+            );
+          },
+          error: (error) => {
+            console.error('Error al actualizar la contraseña', error);
+            this.matSnackbar.open(
+              'Error al actualizar la contraseña',
+              'Cerrar',
+              {
+                duration: 2000,
+              }
+            );
+          },
+        });
     }
   }
 }

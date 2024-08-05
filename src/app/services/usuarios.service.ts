@@ -63,6 +63,6 @@ export class UsuariosService {
 
   // Metodo para editar un usuario empleado
   changePass(data: ChangePass): Observable<ResponsePosts> {
-    return this._http.put<ResponsePosts>(`${this.apiUrl}/ChangePass`, data);
+    return this._http.post<ResponsePosts>(`${this.apiUrl}/ChangePass`, data);
   }
 }
