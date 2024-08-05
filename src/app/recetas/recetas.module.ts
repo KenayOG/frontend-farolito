@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecetasService } from '../services/recetas.service';
 import { AppComponent } from '../app.component';
 
@@ -23,7 +23,9 @@ import { AppComponent } from '../app.component';
     ProgressSpinnerModule,
     MatSnackBarModule,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    FormsModule
   ],
   providers: [
     RecetasService

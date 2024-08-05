@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <!-- Sección de administración de recetas -->
     <div class="col-8">
       <div class="card mt-4 scroll">
         <h3 class="card-header text-center">
@@ -69,6 +70,8 @@
         </p-accordion>
       </div>
     </div>
+    
+    <!-- Sección de agregar receta -->
     <div class="col-4">
       <div class="card mt-4">
         <h3 class="card-header text-center">
@@ -77,6 +80,7 @@
         <div class="card-content m-3">
           <form class="form-grid">
             <div class="form-section">
+              <!-- Nombre de la receta -->
               <div class="row">
                 <div class="col-12">
                   <div class="form-floating">
@@ -85,11 +89,15 @@
                       class="form-control"
                       placeholder="Nombre:"
                       id="nombre-receta"
+                      [(ngModel)]="nombreReceta"
+                      name="nombreReceta"
                     />
-                    <label for="floatingInput">Nombre:</label>
+                    <label for="nombre-receta">Nombre:</label>
                   </div>
                 </div>
               </div>
+              
+              <!-- Componentes -->
               <div class="row">
                 <div class="col-12">
                   <div
@@ -98,10 +106,9 @@
                   >
                     <div class="form-floating">
                       <div class="flex flex-column gap-2 p-3">
-                        <label class="header mb-2"
-                          ><i class="fa-solid fa-layer-group"></i
-                          >&nbsp;&nbsp;Componentes</label
-                        >
+                        <label class="header mb-2">
+                          <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Componentes
+                        </label>
                         <div
                           *ngFor="let component of listaComponentes"
                           class="field-checkbox"
@@ -110,14 +117,32 @@
                             [label]="component.nombre"
                             name="group"
                             [value]="component"
+                            (onChange)="onCheckboxChange($event, component)"
                             class="custom-checkbox"
                           ></p-checkbox>
+                          <!-- Campo de cantidad -->
+                          <div *ngIf="isComponentSelected(component)">
+                            <label for="cantidad-{{component.id}}">
+                              ¿Cuánta cantidad requiere de este material?
+                            </label>
+                            <input
+                              type="number"
+                              id="cantidad-{{component.id}}"
+                              class="form-control"
+                              [(ngModel)]="cantidadRequerida[component.id]"
+                              placeholder="Cantidad"
+                              min="0"
+                              name="cantidad-{{component.id}}"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- Archivo de imagen -->
               <div class="row">
                 <div class="col-12">
                   <div class="form-floating mt-2">
@@ -131,13 +156,17 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-12 text-end">
-                  <div class="form-floating mt-4">
-                    <button class="btn btn-success btn-lg">
-                      <i class="fa-solid fa-save"></i>&nbsp;&nbsp;Guardar
-                    </button>
-                  </div>
+              
+              <!-- Botón de guardar -->
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="crearReceta()"
+                  >
+                    <i class="fa-solid fa-save"></i>&nbsp;&nbsp;Guardar Receta
+                  </button>
                 </div>
               </div>
             </div>
@@ -146,23 +175,24 @@
       </div>
     </div>
   </div>
-  <div *ngIf="cargando" class="spinner-overlay">
-    <div class="spinner-container">
-      <div class="spinner-wrapper">
-        <p-progressSpinner
-          styleClass="w-7rem h-7rem"
-          strokeWidth="6"
-          fill="var(--surface-ground)"
-          animationDuration=".8s"
-        >
-        </p-progressSpinner>
-        <img
-          src="assets/images/logo-farolito.webp"
-          alt="Logo de farolito"
-          class="spinner-logo"
-        />
-      </div>
-      <p class="spinner-message">Espere por favor...</p>
+</div>
+
+<div *ngIf="cargando" class="spinner-overlay">
+  <div class="spinner-container">
+    <div class="spinner-wrapper">
+      <p-progressSpinner
+        styleClass="w-7rem h-7rem"
+        strokeWidth="6"
+        fill="var(--surface-ground)"
+        animationDuration=".8s"
+      >
+      </p-progressSpinner>
+      <img
+        src="assets/images/logo-farolito.webp"
+        alt="Logo de farolito"
+        class="spinner-logo"
+      />
     </div>
+    <p class="spinner-message">Espere por favor...</p>
   </div>
 </div>

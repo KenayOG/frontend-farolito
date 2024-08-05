@@ -21,7 +21,7 @@ export class RecetasService {
 
   // Método para agregar Recetas
   createRecipe(data: RecipeRequest): Observable<ResponsePosts> {
-    return this._http.post<ResponsePosts>(`${this.apiUrl}/recetas`, data);
+    return this._http.post<ResponsePosts>(`${this.apiUrl}/agregar-recetas`, data);
   }
 
 }
