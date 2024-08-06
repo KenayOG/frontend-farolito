@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-agregar-lote-componentes',
   templateUrl: './agregar-lote-componentes.component.html',
-  styleUrls: ['./agregar-lote-componentes.component.css']
+  styleUrls: ['./agregar-lote-componentes.component.css'],
 })
 export class AgregarLoteComponentesComponent {
   providers: Provider[] = [];
@@ -45,10 +45,10 @@ export class AgregarLoteComponentesComponent {
     const mm = String(hoy.getMonth() + 1).padStart(2, '0');
     const dd = String(hoy.getDate()).padStart(2, '0');
     this.fecha = `${yyyy}-${mm}-${dd}`;
-  
+
     const fechaISO = new Date(this.fecha).toISOString();
     this.fecha = fechaISO.substring(0, 10);
-  
+
     this.lote = `LOT${this.generateRandomCode(10)}`;
   }
 
@@ -66,7 +66,9 @@ export class AgregarLoteComponentesComponent {
     this.cargando = true;
     this.proveedoresService.getProveedores().subscribe({
       next: (data) => {
-        this.providers = data;
+        //this.providers = data; // -- todos los proveedores
+        /* Proveedores con estatus true solamente */
+        this.providers = data.filter((provider) => provider.estatus === true);
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -83,7 +85,11 @@ export class AgregarLoteComponentesComponent {
   obtenerComponentes() {
     this.componenteService.getCatalogoComponentes().subscribe({
       next: (data) => {
-        this.listaComponentes = data;
+        //this.listaComponentes = data; // -- todos los componentes
+        /* Componentes con estatus true solamente */
+        this.listaComponentes = data.filter(
+          (catalogo) => catalogo.estatus === true
+        );
       },
       error: (e) => {
         console.log(e);
@@ -97,14 +103,14 @@ export class AgregarLoteComponentesComponent {
         {
           componentesId: this.selectedComponenteId!,
           cantidad: this.cantidad,
-          costo: this.costo
-        }
+          costo: this.costo,
+        },
       ];
 
       const purchase: Purchase = {
         fecha: this.fecha,
         proveedorId: this.selectedProveedorId!,
-        detalles: detalles
+        detalles: detalles,
       };
 
       this.comprasService.agregarLote(purchase).subscribe({
@@ -113,18 +119,23 @@ export class AgregarLoteComponentesComponent {
           this.setFechaYlote();
           this.matSnackBar.open(response.message, 'Cerrar', {
             duration: 4000,
-            horizontalPosition: 'center'
+            horizontalPosition: 'center',
           });
           this.router.navigate(['/inventario']);
         },
         error: (err) => {
           console.log('Error al agregar compra', err);
           form.resetForm();
-          this.matSnackBar.open('Error al registrar compra: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-            duration: 4000,
-            horizontalPosition: 'center'
-          });
-        }
+          this.matSnackBar.open(
+            'Error al registrar compra: ' +
+              (err.error.message || 'Desconocido'),
+            'Cerrar',
+            {
+              duration: 4000,
+              horizontalPosition: 'center',
+            }
+          );
+        },
       });
     } else {
       console.log('Formulario inválido');

@@ -32,7 +32,8 @@ export class AdministracionRecetasComponent {
   obtenerComponentes() {
     this.componentesListaService.getCatalogoComponentes().subscribe({
       next: (data) => {
-        this.listaComponentes = data;
+        //this.listaComponentes = data; // -- todos los componentes
+        this.listaComponentes = data.filter((lista) => lista.estatus === true);
       },
       error: (e) => {
         console.log(e);
@@ -61,7 +62,8 @@ export class AdministracionRecetasComponent {
   onCheckboxChange(event: any, component: any) {
     if (event.checked) {
       this.selectedComponents.add(component);
-      this.cantidadRequerida[component.id] = this.cantidadRequerida[component.id] || 0;
+      this.cantidadRequerida[component.id] =
+        this.cantidadRequerida[component.id] || 0;
     } else {
       this.selectedComponents.delete(component);
       delete this.cantidadRequerida[component.id];
@@ -73,7 +75,9 @@ export class AdministracionRecetasComponent {
   }
 
   crearReceta() {
-    const componentesSeleccionados: ComponenteRecipeRequest[] = Array.from(this.selectedComponents).map(component => ({
+    const componentesSeleccionados: ComponenteRecipeRequest[] = Array.from(
+      this.selectedComponents
+    ).map((component) => ({
       id: component.id,
       cantidad: this.cantidadRequerida[component.id] || 0,
     }));
@@ -92,15 +96,19 @@ export class AdministracionRecetasComponent {
         this.limpiarCampos();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
-          horizontalPosition: 'center'
+          horizontalPosition: 'center',
         });
       },
       error: (err) => {
         console.log('Error al crear receta:', err);
-        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center'
-        });
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
       },
     });
   }

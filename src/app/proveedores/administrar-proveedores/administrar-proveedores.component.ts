@@ -50,6 +50,7 @@ export class AdministrarProveedoresComponent {
     localStorage.setItem('selectedProvider', JSON.stringify(provider));
     this.router.navigate(['/editar-proveedor']);
   }
+
   advertenciaEstatus(
     content: TemplateRef<any>,
     id: number,
@@ -75,7 +76,7 @@ export class AdministrarProveedoresComponent {
               proveedor.estatus = this.nuevoEstatusTemp;
               this.modalService.dismissAll();
               this.matSnackbar.open(
-                'Estatus actualizado exitosamente',
+                'Proveedor eliminado exitosamente',
                 'Cerrar',
                 {
                   duration: 4000,
@@ -86,10 +87,10 @@ export class AdministrarProveedoresComponent {
               this.obtenerProveedor();
             },
             error: (error) => {
-              console.error('Error al actualizar el estatus', error);
+              console.error('Error al eliminar el proveedor', error);
               this.modalService.dismissAll();
               this.matSnackbar.open(
-                'Error al actualizar el estatus',
+                'Error al eliminar el proveedor',
                 'Cerrar',
                 {
                   duration: 4000,

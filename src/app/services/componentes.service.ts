@@ -19,7 +19,17 @@ export class ComponentesService {
   }
 
   // Método para agregar componente
-  createComponente(data: ComponenteRequest): Observable<ResponsePosts>{
+  createComponente(data: ComponenteRequest): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(`${this.apiUrl}/componente`, data);
+  }
+  // Metodo para actualizar un componente
+  updateComponente(data: ComponenteRequest): Observable<ResponsePosts> {
+    return this._http.put<ResponsePosts>(`${this.apiUrl}/componente`, data);
+  }
+
+  // Metodo para elimina logicamente un componente
+  updateEstatusComponente(id: number, estatus: boolean): Observable<void> {
+    const payload = { id, estatus };
+    return this._http.patch<void>(`${this.apiUrl}/componente`, payload);
   }
 }

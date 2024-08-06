@@ -1,6 +1,108 @@
-<div class="container" style="padding-top: 20px">
-  <div class="row">
-    <div class="col-12">
+<div class="container">
+  <div class="row justify-conten-center m-5">
+    <div class="col-12 align-items-center">
+      <p-table
+        #dtCatalogoComponentes
+        [value]="catalogoComponentes"
+        [scrollable]="true"
+        scrollHeight="270px"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} de {last}"
+        [filterDelay]="0"
+        [globalFilterFields]="['nombre']"
+      >
+        <ng-template pTemplate="caption">
+          <div class="d-flex">
+            <h3 class="mt-2">
+              <b>
+                <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Catalogo de
+                componentes
+              </b>
+            </h3>
+            <div
+              class="d-flex justify-content-between"
+              style="margin-left: 230px"
+            >
+              <p-iconField iconPosition="left">
+                <p-inputIcon>
+                  <i class="pi pi-search"> </i>
+                </p-inputIcon>
+                <input
+                  pInputText
+                  type="text"
+                  placeholder="Buscar por nombre:"
+                  class="mt-1"
+                  (input)="applyFilterGlobal($event, 'dtCatalogoComponentes')"
+                />
+              </p-iconField>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id" style="max-width: 5rem">
+              <div class="flex justify-content-between align-items-center">
+                Id
+                <p-sortIcon field="id" />
+              </div>
+            </th>
+            <th pSortableColumn="nombre" style="max-width: 5rem">
+              <div class="flex justify-content-between align-items-center">
+                Nombre
+                <p-sortIcon field="nombre" />
+              </div>
+            </th>
+            <th pSortableColumn="estatus" style="max-width: 5rem">
+              <div class="flex justify-content-between align-items-center">
+                Estatus
+                <p-sortIcon field="estatus" />
+              </div>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-componente>
+          <tr class="p-selectable-row">
+            <td>
+              {{ componente.id }}
+            </td>
+            <td>
+              {{ componente.nombre }}
+            </td>
+            <td>
+              {{ componente.estatus }}
+            </td>
+            <td>
+              <a class="btn btn-primary" (click)="selectComponente(componente)">
+                <i class="fa-solid fa-eye"></i>&nbsp;Editar
+              </a>
+            </td>
+            <td>
+              <a
+                class="btn btn-danger"
+                (click)="
+                  advertenciaEstatus(
+                    modalEstatusComponente,
+                    componente.id,
+                    !componente.estatus
+                  )
+                "
+              >
+                <i class="fa-solid fa-trash"></i>&nbsp;Eliminar
+              </a>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <hr />
+  <div class="row mt-3">
+    <div class="col-6 mt-5">
       <div class="card">
         <h3 class="card-header text-center">
           <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Crear Componente
@@ -32,5 +134,81 @@
         </div>
       </div>
     </div>
+    <div class="col-6 mt-5">
+      <div class="card">
+        <h3 class="card-header text-center">
+          <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;EditarComponente
+        </h3>
+        <div class="card-content">
+          <form
+            [formGroup]="componenteEditForm"
+            (ngSubmit)="editarComponente()"
+            class="form-grid"
+          >
+            <div class="form-floating mt-2">
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control"
+                placeholder="Nombre del Componente:"
+                id="nombre"
+              />
+              <label for="nombre">Nombre del Componente:</label>
+            </div>
+            <div style="margin-left: 140px" class="mt-2">
+              <div class="button-container">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+  <div *ngIf="cargando" class="spinner-overlay">
+    <div class="spinner-container">
+      <div class="spinner-wrapper">
+        <p-progressSpinner
+          styleClass="w-7rem h-7rem"
+          strokeWidth="6"
+          fill="var(--surface-ground)"
+          animationDuration=".8s"
+        >
+        </p-progressSpinner>
+        <img
+          src="assets/images/logo-farolito.webp"
+          alt="Logo de farolito"
+          class="spinner-logo"
+        />
+      </div>
+      <p class="spinner-message">Espere por favor...</p>
+    </div>
+  </div>
+  <br /><br /><br /><br /><br />
+  <ng-template #modalEstatusComponente let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title text-center p-2" id="exampleModalLongTitle">
+        <i class="fa-solid fa-circle-exclamation" style="color: red"></i
+        >&nbsp;&nbsp;¿Está seguro de que quiere eliminar este componente?
+      </h5>
+    </div>
+    <div class="modal-footer">
+      <button
+        (click)="cancelarActualizacion()"
+        type="button"
+        class="btn btn-danger"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="actualizarEstatusComponente()"
+        type="button"
+        class="btn btn-success"
+      >
+        Aceptar
+      </button>
+    </div>
+  </ng-template>
 </div>

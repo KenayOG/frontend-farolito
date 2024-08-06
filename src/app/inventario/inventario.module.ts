@@ -19,6 +19,7 @@ import { AppComponent } from '../app.component';
 import { ProveedoresService } from '../services/proveedores.service';
 import { AgregarComponenteComponent } from './agregar-componente/agregar-componente.component';
 import { ComponentesService } from '../services/componentes.service';
+
 @NgModule({
   declarations: [
     AdministracionInventarioComponent,
@@ -38,17 +39,15 @@ import { ComponentesService } from '../services/componentes.service';
     HttpClientModule,
     ProgressSpinnerModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     InventarioService,
     MermaService,
     ProveedoresService,
-    ComponentesService
+    ComponentesService,
   ],
-  bootstrap: [
-    AppComponent
-  ],
-  exports: []
+  bootstrap: [AppComponent],
+  exports: [],
 })
 export class InventarioModule {}

@@ -63,5 +63,5 @@ export const routes: Routes = [
   { path: 'mi-perfil', component: VerDatosPerfilComponent },
   { path: 'finanzas', component: FinanzasComparativoComponent },
   { path: 'generar-produccion', component: GenerarProduccionComponent },
-  { path: 'agregar-componente', component: AgregarComponenteComponent },
+  { path: 'catalogo-componentes', component: AgregarComponenteComponent },
 ];
