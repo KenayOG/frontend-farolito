@@ -57,7 +57,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importa
     NoopAnimationsModule,
     RecetasModule,
     InventarioModule,
-    DashboardModule,
     CatalogoModule,
     MermaModule,
     PedidosModule,

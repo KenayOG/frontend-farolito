@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.chart-container {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    text-align: center;
+    width: calc(50% - 2rem);
+    box-sizing: border-box;
+}
+
+.chart-container h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+canvas {
+    max-width: 100%;
+    height: 400px;
+}
+
+.mejor-cliente {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 1rem;
+    width: calc(50% - 2rem);
+    box-sizing: border-box;
+}
+
+.mejor-cliente h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.mejor-cliente p {
+    font-size: 0.875rem;
+    color: #666666;
+    margin: 0.5rem 0;
+}

@@ -1,1 +1,37 @@
-<h3 class="text-center">Modulo de dashboard</h3>
+<div class="container">
+    <div class="chart-container">
+        <h4>Ventas por Producto</h4>
+        <canvas id="ventasProductosChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h4>Ventas por Periodo</h4>
+        <canvas id="ventasPeriodosChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h4>Existencias de Componentes</h4>
+        <canvas id="existenciaComponentesChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h4>Existencias de Lámparas</h4>
+        <canvas id="existenciaLamparasChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h4>Compras por Periodo</h4>
+        <canvas id="comprasPeriodosChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h4>Lámparas Compradas por Cliente</h4>
+        <canvas id="lamparasClienteChart"></canvas>
+    </div>
+
+    <div class="mejor-cliente">
+        <h4>Mejor Cliente</h4>
+        <p *ngIf="mejorCliente">Nombre: {{ mejorCliente.mejorCliente }}</p>
+        <p *ngIf="mejorCliente">Total Gastado: {{ mejorCliente.totalGastado | currency }}</p>
+    </div>
+</div>

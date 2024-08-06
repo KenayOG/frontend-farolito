@@ -15,33 +15,33 @@ export class DashboardService {
   constructor(private _http: HttpClient) { }
 
   // Método para mostrar las Ventas de Productos
-  getVentasProductos(): Observable<VentasPorProducto> {
-    return this._http.get<VentasPorProducto>(`${this.apiUrl}/VentasProductos`);
+  getVentasProductos(): Observable<VentasPorProducto[]> {
+    return this._http.get<VentasPorProducto[]>(`${this.apiUrl}/VentasProductos`);
   }
 
   // Método para mostrar las Ventas de Productos por Periodos
-  getVentasProductoPeriodos(): Observable<VentasPorLote> {
-    return this._http.get<VentasPorLote>(`${this.apiUrl}/VentasProductoPeriodos`);
+  getVentasProductoPeriodos(): Observable<VentasPorLote[]> {
+    return this._http.get<VentasPorLote[]>(`${this.apiUrl}/VentasProductoPeriodos`);
   }
 
   // Método para mostrar la existencias de componentes
-  getExistenciaComponente(): Observable<InventarioMateriasPrimas> {
-    return this._http.get<InventarioMateriasPrimas>(`${this.apiUrl}/ExistenciasComponentes`);
+  getExistenciaComponente(): Observable<InventarioMateriasPrimas[]> {
+    return this._http.get<InventarioMateriasPrimas[]>(`${this.apiUrl}/ExistenciasComponentes`);
   }
   
   // Método para mostrar la existencias de lámparas
-  getExistenciaLampara(): Observable<InventarioProductosTerminados> {
-    return this._http.get<InventarioProductosTerminados>(`${this.apiUrl}/ExistenciasLampara`);
+  getExistenciaLampara(): Observable<InventarioProductosTerminados[]> {
+    return this._http.get<InventarioProductosTerminados[]>(`${this.apiUrl}/ExistenciasLampara`);
   }
 
   // Método para mostrar los periodos y sus ventas
-  getVentasPeriodos(): Observable<ComprasPorPeriodo> {
-    return this._http.get<ComprasPorPeriodo>(`${this.apiUrl}/VentasPeriodos`);
+  getVentasPeriodos(): Observable<ComprasPorPeriodo[]> {
+    return this._http.get<ComprasPorPeriodo[]>(`${this.apiUrl}/VentasPeriodos`);
   } 
   
   // Método para mostrar las lámparas vendidas por cliente
-  getLamparasCliente(): Observable<ComprasProductos> {
-    return this._http.get<ComprasProductos>(`${this.apiUrl}/LamparasCliente`);
+  getLamparasCliente(): Observable<ComprasProductos[]> {
+    return this._http.get<ComprasProductos[]>(`${this.apiUrl}/LamparasCliente`);
   }
 
   // Método para mostrar el mejor cliente
