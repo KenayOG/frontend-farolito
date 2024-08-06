@@ -2,7 +2,7 @@ export interface VentasPorProducto {
     año: number;
     mes: number;
     numeroDeVentas: number;
-    nombreLampara: string;
+    nombrelampara: string;
     total: number;
 }
 

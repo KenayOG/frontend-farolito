@@ -51,7 +51,7 @@ export class VistaDashboardComponent implements OnInit {
 
   loadVentasProductos(): void {
     this.dashboardService.getVentasProductos().subscribe((data: VentasPorProducto[]) => {
-      this.ventasProductosLabels = data.map(item => item.nombreLampara);
+      this.ventasProductosLabels = data.map(item => item.nombrelampara);
       this.ventasProductosData = data.map(item => item.total);
       this.createChart('ventasProductosChart', this.ventasProductosLabels, this.ventasProductosData, 'Ventas por Producto');
     });
