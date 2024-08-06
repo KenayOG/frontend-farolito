@@ -1,4 +1,4 @@
-body,
+/* body,
 html {
   margin: 0;
   padding: 0;
@@ -66,4 +66,137 @@ html {
   color: #495057;
   opacity: 1;
   pointer-events: none;
+}
+ */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.card {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: black;
+  color: white;
+}
+
+.card-description {
+  margin: 10px 0 0;
+  color: #666;
+}
+
+.card-content {
+  margin-bottom: 20px;
+  padding: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-section {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: grid;
+  gap: 10px;
+}
+
+.form-group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.field-checkbox input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  margin-right: 10px;
+}
+
+.field-checkbox input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.field-checkbox input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.field-checkbox label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
 }

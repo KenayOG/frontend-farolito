@@ -1,33 +1,36 @@
-<div class="container" style="padding-top: 20px;">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <h3 class="card-header text-center">
-            <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Crear Componente
-          </h3>
-          <div class="card-content">
-            <form [formGroup]="componenteForm" (ngSubmit)="createComponente()" class="form-grid">
-              <div class="form-floating mt-2">
-                <input
-                  formControlName="nombre"
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre del Componente:"
-                  id="nombre"
-                />
-                <label for="nombre">Nombre del Componente:</label>
+<div class="container" style="padding-top: 20px">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header text-center">
+          <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Crear Componente
+        </h3>
+        <div class="card-content">
+          <form
+            [formGroup]="componenteForm"
+            (ngSubmit)="createComponente()"
+            class="form-grid"
+          >
+            <div class="form-floating mt-2">
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control"
+                placeholder="Nombre del Componente:"
+                id="nombre"
+              />
+              <label for="nombre">Nombre del Componente:</label>
+            </div>
+            <div style="margin-left: 140px" class="mt-2">
+              <div class="button-container">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
               </div>
-              <div class="card-footer">
-                <div class="button-container">
-                  <button type="submit" class="btn btn-success btn-lg">
-                    <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -36,23 +36,31 @@
               </div>
             </ng-template>
             <ng-template pTemplate="footer">
-              <div class="d-flex justify-content-between">
-                <input
-                  type="number"
-                  [(ngModel)]="cantidadSeleccionada[product.id]"
-                  min="1"
-                  class="form-control"
-                  style="width: 60px;"
-                />
-                <button
-                  class="cart-button"
-                  (click)="addToCart(product.id)"
-                >
-                  <span class="add-to-cart">Agregar</span>
-                  <i class="fas fa-shopping-cart"></i>
-                  <i class="fas fa-box"></i>
-                </button>
+              <div class="d-flex">
+                <div>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    [(ngModel)]="cantidadSeleccionada[product.id]"
+                    min="1"
+                    class="form-control text-center"
+                    style="width: 60px; margin-top: -55px; margin-right: 5px"
+                  />
+                </div>
+                <div>
+                  <button
+                    class="cart-button"
+                    (click)="addToCart(product.id)"
+                    style="width: 130px"
+                  >
+                    <span class="add-to-cart">Agregar</span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-box"></i>
+                  </button>
+                </div>
               </div>
+
+              <!-- <div class="d-flex justify-content-center"></div> -->
             </ng-template>
             <ng-template #popoverContent>
               <div>
@@ -74,11 +82,19 @@
       >
         <ng-template let-product pTemplate="item">
           <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <!-- 
             <img
-              src="assets/images/{{ product.urlImage }}"
+                    [src]="getImagenProducto(product.urlImage)"
+                    alt="{{ product.nombrelampara }}"
+                    class="image"
+                  />
+            -->
+            <img
+              [src]="getImagenProducto(product.urlImage)"
               [alt]="product.lamparaNombre"
               class="image"
             />
+            <p *ngIf=""></p>
             <div class="flex-1 flex flex-column gap-2">
               <span class="font-bold">{{ product.lamparaNombre }}</span>
               <div class="flex align-items-center gap-2">
