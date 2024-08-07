@@ -9,7 +9,6 @@ import { AccordionModule } from 'primeng/accordion';
 import { ImageModule } from 'primeng/image';
 import { DividerModule } from 'primeng/divider';
 import { RouterLink } from '@angular/router';
-import { AgregarPedidoClienteComponent } from './agregar-pedido-cliente/agregar-pedido-cliente.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -18,7 +17,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   declarations: [
     EstatusPedidosClientesComponent,
     DetallePedidoClienteComponent,
-    AgregarPedidoClienteComponent,
   ],
   imports: [
     CommonModule,

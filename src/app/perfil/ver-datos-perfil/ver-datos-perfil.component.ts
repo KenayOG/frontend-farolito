@@ -197,7 +197,7 @@ export class VerDatosPerfilComponent implements OnInit {
         this.userFullName = data.fullName;
         this.userEmail = data.email;
         this.userTarjeta = data.tarjeta;
-        console.log(this.userTarjeta);
+        //console.log(this.userTarjeta);
         this.userPhoneNumber = data.phoneNumber;
         this.userTwoFactorEnabled = data.twoFactorEnabled;
         this.userPhoneNumberConfirmed = data.phoneNumberConfirmed;
