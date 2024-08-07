@@ -33,7 +33,7 @@ export class EstatusPedidosClientesComponent {
   ObtenerPedidos() {
     this.pedidosService.getPedidosUsuario().subscribe({
       next: (data) => {
-        console.log('Datos recibidos:', data);
+        //console.log('Datos recibidos:', data);
         this.orders = data;
         this.filtroOrdenesEnviadas = this.orders.filter(
           (order) => order.estatus === 'Enviado'
@@ -86,5 +86,13 @@ export class EstatusPedidosClientesComponent {
   getImagen(imagePath: string): string {
     /* console.log(`${this.baseUrl}${imagePath}`); */
     return `${this.baseUrl}${imagePath}`;
+  }
+
+  // Calcular total en el pedido
+  calculateTotal(products: any[]): number {
+    return products.reduce(
+      (sum, product) => sum + product.precioUnitario * product.cantidad,
+      0
+    );
   }
 }
