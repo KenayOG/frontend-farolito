@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, Chart, registerables } from 'chart.js';
 import { DashboardService } from '../../services/dashboard.service';
-import { ComprasPorPeriodo, ComprasProductos, InventarioMateriasPrimas, InventarioProductosTerminados, MejorCliente, VentasPorLote, VentasPorProducto } from '../../interfaces/dashboard';
+import { ExistenciasComponentes, ExistenciasLampara, LamparasCliente, MejorCliente, VentasPeriodos, VentasProductoPeriodos, VentasProductos } from '../../interfaces/dashboard';
 
 Chart.register(...registerables);
 
@@ -50,23 +50,23 @@ export class VistaDashboardComponent implements OnInit {
   }
 
   loadVentasProductos(): void {
-    this.dashboardService.getVentasProductos().subscribe((data: VentasPorProducto[]) => {
-      this.ventasProductosLabels = data.map(item => item.nombrelampara);
-      this.ventasProductosData = data.map(item => item.total);
+    this.dashboardService.getVentasProductos().subscribe((data: VentasProductos[]) => {
+      this.ventasProductosLabels = data.map(item => item.producto);
+      this.ventasProductosData = data.map(item => item.totalRecaudado);
       this.createChart('ventasProductosChart', this.ventasProductosLabels, this.ventasProductosData, 'Ventas por Producto');
     });
   }
 
   loadVentasProductoPeriodos(): void {
-    this.dashboardService.getVentasProductoPeriodos().subscribe((data: VentasPorLote[]) => {
+    this.dashboardService.getVentasProductoPeriodos().subscribe((data: VentasProductoPeriodos[]) => {
       this.ventasPeriodosLabels = data.map(item => item.producto);
-      this.ventasPeriodosData = data.map(item => item.totalRecaudado);
+      this.ventasPeriodosData = data.map(item => item.numeroDeVentas);
       this.createChart('ventasPeriodosChart', this.ventasPeriodosLabels, this.ventasPeriodosData, 'Ventas por Periodo');
     });
   }
 
   loadExistenciaComponentes(): void {
-    this.dashboardService.getExistenciaComponente().subscribe((data: InventarioMateriasPrimas[]) => {
+    this.dashboardService.getExistenciaComponente().subscribe((data: ExistenciasComponentes[]) => {
       this.existenciaComponentesLabels = data.map(item => item.componente);
       this.existenciaComponentesData = data.map(item => item.existencia);
       this.createChart('existenciaComponentesChart', this.existenciaComponentesLabels, this.existenciaComponentesData, 'Existencias de Componentes');
@@ -74,7 +74,7 @@ export class VistaDashboardComponent implements OnInit {
   }
 
   loadExistenciaLamparas(): void {
-    this.dashboardService.getExistenciaLampara().subscribe((data: InventarioProductosTerminados[]) => {
+    this.dashboardService.getExistenciaLampara().subscribe((data: ExistenciasLampara[]) => {
       this.existenciaLamparasLabels = data.map(item => item.productoTerminado);
       this.existenciaLamparasData = data.map(item => item.existencia);
       this.createChart('existenciaLamparasChart', this.existenciaLamparasLabels, this.existenciaLamparasData, 'Existencias de Lámparas');
@@ -82,7 +82,7 @@ export class VistaDashboardComponent implements OnInit {
   }
 
   loadVentasPeriodos(): void {
-    this.dashboardService.getVentasPeriodos().subscribe((data: ComprasPorPeriodo[]) => {
+    this.dashboardService.getVentasPeriodos().subscribe((data: VentasPeriodos[]) => {
       this.comprasPeriodosLabels = data.map(item => `${item.año}-${item.mes}`);
       this.comprasPeriodosData = data.map(item => item.numeroDeCompras);
       this.createChart('comprasPeriodosChart', this.comprasPeriodosLabels, this.comprasPeriodosData, 'Compras por Periodo');
@@ -90,9 +90,9 @@ export class VistaDashboardComponent implements OnInit {
   }
 
   loadLamparasCliente(): void {
-    this.dashboardService.getLamparasCliente().subscribe((data: ComprasProductos[]) => {
+    this.dashboardService.getLamparasCliente().subscribe((data: LamparasCliente[]) => {
       this.lamparasClienteLabels = data.map(item => item.cliente);
-      this.lamparasClienteData = data.map(item => item.totalGastado);
+      this.lamparasClienteData = data.map(item => item.numeroDeVentas);
       this.createChart('lamparasClienteChart', this.lamparasClienteLabels, this.lamparasClienteData, 'Lámparas Compradas por Cliente');
     });
   }
@@ -114,8 +114,8 @@ export class VistaDashboardComponent implements OnInit {
         datasets: [{
           label: label,
           data: data,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(255, 204, 102, 0.2)',
+          borderColor: 'rgba(199, 153, 60, 1)',
           borderWidth: 1
         }]
       },

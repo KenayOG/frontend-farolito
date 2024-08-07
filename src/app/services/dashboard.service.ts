@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { ComprasPorPeriodo, ComprasProductos, InventarioMateriasPrimas, InventarioProductosTerminados, MejorCliente, VentasPorLote, VentasPorProducto } from '../interfaces/dashboard';
+import { ExistenciasComponentes, ExistenciasLampara, LamparasCliente, MejorCliente, VentasPeriodos, VentasProductoPeriodos, VentasProductos } from '../interfaces/dashboard';
 
 @Injectable({
   providedIn: 'root'
@@ -15,33 +15,33 @@ export class DashboardService {
   constructor(private _http: HttpClient) { }
 
   // Método para mostrar las Ventas de Productos
-  getVentasProductos(): Observable<VentasPorProducto[]> {
-    return this._http.get<VentasPorProducto[]>(`${this.apiUrl}/VentasProductos`);
+  getVentasProductos(): Observable<VentasProductos[]> {
+    return this._http.get<VentasProductos[]>(`${this.apiUrl}/VentasProductos`);
   }
 
   // Método para mostrar las Ventas de Productos por Periodos
-  getVentasProductoPeriodos(): Observable<VentasPorLote[]> {
-    return this._http.get<VentasPorLote[]>(`${this.apiUrl}/VentasProductoPeriodos`);
+  getVentasProductoPeriodos(): Observable<VentasProductoPeriodos[]> {
+    return this._http.get<VentasProductoPeriodos[]>(`${this.apiUrl}/VentasProductoPeriodos`);
   }
 
   // Método para mostrar la existencias de componentes
-  getExistenciaComponente(): Observable<InventarioMateriasPrimas[]> {
-    return this._http.get<InventarioMateriasPrimas[]>(`${this.apiUrl}/ExistenciasComponentes`);
+  getExistenciaComponente(): Observable<ExistenciasComponentes[]> {
+    return this._http.get<ExistenciasComponentes[]>(`${this.apiUrl}/ExistenciasComponentes`);
   }
   
   // Método para mostrar la existencias de lámparas
-  getExistenciaLampara(): Observable<InventarioProductosTerminados[]> {
-    return this._http.get<InventarioProductosTerminados[]>(`${this.apiUrl}/ExistenciasLampara`);
+  getExistenciaLampara(): Observable<ExistenciasLampara[]> {
+    return this._http.get<ExistenciasLampara[]>(`${this.apiUrl}/ExistenciasLampara`);
   }
 
   // Método para mostrar los periodos y sus ventas
-  getVentasPeriodos(): Observable<ComprasPorPeriodo[]> {
-    return this._http.get<ComprasPorPeriodo[]>(`${this.apiUrl}/VentasPeriodos`);
+  getVentasPeriodos(): Observable<VentasPeriodos[]> {
+    return this._http.get<VentasPeriodos[]>(`${this.apiUrl}/VentasPeriodos`);
   } 
   
   // Método para mostrar las lámparas vendidas por cliente
-  getLamparasCliente(): Observable<ComprasProductos[]> {
-    return this._http.get<ComprasProductos[]>(`${this.apiUrl}/LamparasCliente`);
+  getLamparasCliente(): Observable<LamparasCliente[]> {
+    return this._http.get<LamparasCliente[]>(`${this.apiUrl}/LamparasCliente`);
   }
 
   // Método para mostrar el mejor cliente
