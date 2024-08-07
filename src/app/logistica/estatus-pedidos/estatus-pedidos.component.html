@@ -1,6 +1,10 @@
 <div class="container">
   <div class="card align-items-center mt-5" style="border: none">
     <div class="row">
+      <p-steps [model]="estatusSteps" [readonly]="true" />
+      <!-- Falta darle estilos -->
+    </div>
+    <div class="row">
       <div class="col-12">
         <p-table
           #dtPedidosLogistica
@@ -139,8 +143,8 @@
                   (click)="advertenciaEstatus(modalEstatusPedido, order.id)"
                 >
                   <span
-                    ><i class="fa-solid fa-circle-check"></i>&nbsp;Modificar
-                    estatus</span
+                    ><i class="fa-solid fa-forward-step"></i>&nbsp;Siguiente
+                    paso</span
                   >
                 </button>
               </td>

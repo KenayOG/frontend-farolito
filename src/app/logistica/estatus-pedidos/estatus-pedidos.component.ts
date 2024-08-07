@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LogisticSteps } from '../../interfaces/logistic-steps';
 @Component({
   selector: 'app-estatus-pedidos',
   templateUrl: './estatus-pedidos.component.html',
@@ -28,6 +29,7 @@ export class EstatusPedidosComponent implements OnInit {
   formEstatusPedido!: FormGroup;
   estatusP!: EstatusOrder;
   pedidoIdTemp!: number;
+  estatusSteps: LogisticSteps[] | undefined;
   @ViewChild('dtPedidosLogistica') dtPedidosLogistica!: Table;
 
   constructor(
@@ -40,6 +42,21 @@ export class EstatusPedidosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.estatusSteps = [
+      {
+        label: 'En Proceso',
+      },
+      {
+        label: 'Enviado',
+      },
+      {
+        label: 'En Camino',
+      },
+      {
+        label: 'Finalizado',
+      },
+    ];
+
     this.formEstatusPedido = this.fb.group({
       pedidoId: ['', Validators.required],
     });
