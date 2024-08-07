@@ -1,1 +1,113 @@
-<h3>Aqui va toda la administracion de lo vendido y comprado</h3>
+<div class="container mt-4">
+  <div class="card main-card shadow-lg">
+    <div class="card-body">
+      <h3 class="card-header text-center mb-5">Dashboard Financiero</h3>
+
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <div class="card custom-card shadow-lg">
+            <div class="card-body text-center">
+              <h5 class="card-title">Ventas</h5>
+              <p class="card-text">
+                <span class="display-6">
+                  {{ formatCurrency(capitalFarolito?.totalVentas) }}
+                </span>
+              </p>
+              <div class="card-icon">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <div class="card custom-card shadow-lg">
+            <div class="card-body text-center">
+              <h5 class="card-title">Compras</h5>
+              <p class="card-text">
+                <span class="display-6">
+                  {{ formatCurrency(capitalFarolito?.totalCompras) }}
+                </span>
+              </p>
+              <div class="card-icon">
+                <i class="fa-solid fa-box"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <div class="card custom-card shadow-lg">
+            <div class="card-body text-center">
+              <h5 class="card-title">Ganancia</h5>
+              <p class="card-text">
+                <span class="display-6">
+                  {{ formatCurrency(capitalFarolito?.ganancia) }}
+                </span>
+              </p>
+              <div class="card-icon">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <div class="card custom-card shadow-lg">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-2">Estatus</h5>
+              <p class="card-text">
+                <span class="status-text display-4">
+                  {{ capitalFarolito?.estado }}
+                </span>
+              </p>
+              <div class="card-icon">
+                <i class="fa-solid fa-info-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label for="startDate">Fecha de Inicio:</label>
+          <input
+            type="date"
+            id="startDate"
+            class="form-control"
+            (change)="cambiarFechaInicio($event)"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="endDate">Fecha de Fin:</label>
+          <input
+            type="date"
+            id="endDate"
+            class="form-control"
+            (change)="cambiarFechaFin($event)"
+          />
+        </div>
+      </div>
+      <div *ngIf="cargando" class="spinner-overlay">
+        <div class="spinner-container">
+          <div class="spinner-wrapper">
+            <p-progressSpinner
+              styleClass="w-7rem h-7rem"
+              strokeWidth="6"
+              fill="var(--surface-ground)"
+              animationDuration=".8s"
+            >
+            </p-progressSpinner>
+            <img
+              src="assets/images/logo-farolito.webp"
+              alt="Logo de farolito"
+              class="spinner-logo"
+            />
+          </div>
+          <p class="spinner-message">Espere por favor...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

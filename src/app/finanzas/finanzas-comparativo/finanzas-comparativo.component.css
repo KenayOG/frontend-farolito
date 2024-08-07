@@ -1,0 +1,120 @@
+.main-card {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.custom-card {
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  height: 250px; /* Ajusta la altura según sea necesario */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px; /* Espacio entre tarjetas */
+}
+
+.custom-card .card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-card .card-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.custom-card .card-text {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 4rem;
+  color: #007bff;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.card-icon:hover {
+  transform: scale(1.2);
+  color: #0056b3;
+}
+
+.status-text {
+  font-size: 1.5rem;
+  color: #dc3545; /* Color para mostrar el estatus en rojo si está en pérdidas */
+  font-weight: bold;
+}
+
+.icon-animation {
+  font-size: 40px;
+  color: #007bff;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.icon-animation:hover {
+  transform: scale(1.2);
+  color: #0056b3;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  width: 330px; /* Ajusta el ancho según sea necesario */
+}
+
+.card-wrapper {
+  min-width: 100%;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  transform: scale(0.8);
+  display: none;
+}
+
+.card-wrapper.active {
+  opacity: 1;
+  transform: scale(1);
+  display: block;
+}
+
+.carousel-control {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 2rem; /* Añadido */
+}
+
+.carousel-control.left {
+  left: -10px; /* Ajustado para acercar */
+}
+
+.carousel-control.right {
+  right: -10px; /* Ajustado para acercar */
+}
+
+.card-header {
+  background-color: black;
+  color: white;
+}
