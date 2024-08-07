@@ -34,6 +34,7 @@ import { LoginComponent } from './autenticacion/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importar esto
+import { ComprasModule } from './compras/compras.module';
 
 @NgModule({
   declarations: [AppComponent, SignUpComponent, LoginComponent],
@@ -62,6 +63,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importa
     PedidosModule,
     PerfilModule,
     FinanzasModule,
+    ComprasModule,
   ],
   providers: [
     AuthService,

@@ -1,0 +1,266 @@
+<div class="container">
+  <nav style="margin: 0 140px" class="mt-5">
+    <div class="nav nav-tabs m-1 custom-tabs" id="nav-tab" role="tablist">
+      <button
+        class="nav-link active"
+        id="nav-compras-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-compras"
+        type="button"
+        role="tab"
+        aria-controls="nav-compras"
+        aria-selected="true"
+      >
+        <i class="fa-brands fa-shopify"></i>&nbsp;&nbsp;Compras
+      </button>
+      <button
+        class="nav-link"
+        id="nav-compras-user-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#nav-compras-user"
+        type="button"
+        role="tab"
+        aria-controls="nav-compras-user"
+        aria-selected="false"
+      >
+        <i class="fas fa-user"></i>&nbsp;&nbsp;Mis compras
+      </button>
+    </div>
+  </nav>
+  <div class="card align-items-center" style="border: none; margin: 0 50px">
+    <div class="row tab-content" id="nav-tabContent">
+      <div
+        class="col-12 tab-pane fade show active p-3"
+        id="nav-compras"
+        role="tabpanel"
+        aria-labelledby="nav-compras-tab"
+      >
+        <p-table
+          #dtCompras
+          [value]="purchaseAll"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['usuarioNombre']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-brands fa-shopify"></i>&nbsp;&nbsp;Administracion
+                  de compras
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por usuario:"
+                    class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtCompras')"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" hidden>
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="fecha">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha
+                  <p-sortIcon field="fecha" />
+                </div>
+              </th>
+              <th pSortableColumn="usuarioNombre">
+                <div class="flex justify-content-between align-items-center">
+                  Usuario:
+                  <p-sortIcon field="usuarioNombre" />
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Costo
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Componente
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-purchaseall>
+            <tr class="p-selectable-row">
+              <td style="display: none">
+                {{ purchaseall.id }}
+              </td>
+              <td>
+                {{ purchaseall.fecha }}
+              </td>
+              <td>
+                {{ purchaseall.usuarioNombre }}
+              </td>
+              <td>
+                {{ purchaseall.detalles[0].cantidad }}
+              </td>
+              <td>
+                {{ purchaseall.detalles[0].costo }}
+              </td>
+              <td>
+                {{ purchaseall.detalles[0].nombreComponente }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div
+        class="col-12 tab-pane fade p-3"
+        id="nav-compras-user"
+        role="tabpanel"
+        aria-labelledby="nav-compras-user-tab"
+      >
+        <p-table
+          #dtComprasUsuario
+          [value]="purchaseUser"
+          [scrollable]="true"
+          scrollHeight="270px"
+          [rowHover]="true"
+          [rows]="10"
+          [showCurrentPageReport]="true"
+          [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}"
+          [filterDelay]="0"
+          [globalFilterFields]="['fecha']"
+        >
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b>
+                  <i class="fa-brands fa-shopify"></i>&nbsp;&nbsp;Mis compras
+                </b>
+              </h3>
+              <div
+                class="d-flex justify-content-between"
+                style="margin-left: 230px"
+              >
+                <p-iconField iconPosition="left">
+                  <p-inputIcon>
+                    <i class="pi pi-search"> </i>
+                  </p-inputIcon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Buscar por fecha:"
+                    class="mt-1"
+                    (input)="applyFilterGlobal($event, 'dtComprasUsuario')"
+                  />
+                </p-iconField>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" hidden>
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="fecha">
+                <div class="flex justify-content-between align-items-center">
+                  Fecha
+                  <p-sortIcon field="fecha" />
+                </div>
+              </th>
+              <th pSortableColumn="usuarioNombre">
+                <div class="flex justify-content-between align-items-center">
+                  Usuario:
+                  <p-sortIcon field="usuarioNombre" />
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Costo
+                </div>
+              </th>
+              <th>
+                <div class="flex justify-content-between align-items-center">
+                  Componente
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-purchUser>
+            <tr class="p-selectable-row">
+              <td style="display: none">
+                {{ purchUser.id }}
+              </td>
+              <td>
+                {{ purchUser.fecha }}
+              </td>
+              <td>
+                {{ purchUser.usuarioNombre }}
+              </td>
+              <td>
+                {{ purchUser.detalles[0].cantidad }}
+              </td>
+              <td>
+                {{ purchUser.detalles[0].costo }}
+              </td>
+              <td>
+                {{ purchUser.detalles[0].nombreComponente }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="cargando" class="spinner-overlay">
+        <div class="spinner-container">
+          <div class="spinner-wrapper">
+            <p-progressSpinner
+              styleClass="w-7rem h-7rem"
+              strokeWidth="6"
+              fill="var(--surface-ground)"
+              animationDuration=".8s"
+            >
+            </p-progressSpinner>
+            <img
+              src="assets/images/logo-farolito.webp"
+              alt="Logo de farolito"
+              class="spinner-logo"
+            />
+          </div>
+          <p class="spinner-message">Espere por favor...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

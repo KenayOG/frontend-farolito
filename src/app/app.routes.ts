@@ -22,13 +22,14 @@ import { AdministracionMermaComponent } from './merma/administracion-merma/admin
 import { ConfirmarCarritoComponent } from './home/confirmar-carrito/confirmar-carrito.component';
 import { AgregarLoteComponentesComponent } from './inventario/agregar-lote-componentes/agregar-lote-componentes.component';
 import { DetallePedidoClienteComponent } from './pedidos/detalle-pedido-cliente/detalle-pedido-cliente.component';
-import { AgregarPedidoClienteComponent } from './pedidos/agregar-pedido-cliente/agregar-pedido-cliente.component';
+
 import { AcercadeComponent } from './acercade/acercade.component';
 import { VerDatosPerfilComponent } from './perfil/ver-datos-perfil/ver-datos-perfil.component';
 import { FinanzasComparativoComponent } from './finanzas/finanzas-comparativo/finanzas-comparativo.component';
 import { ForgotPasswordComponent } from './autenticacion/forgot-password/forgot-password.component';
 import { GenerarProduccionComponent } from './produccion/generar-produccion/generar-produccion.component';
 import { AgregarComponenteComponent } from './inventario/agregar-componente/agregar-componente.component';
+import { AdministracionComprasComponent } from './compras/administracion-compras/administracion-compras.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -58,10 +59,10 @@ export const routes: Routes = [
   { path: 'catalogo', component: CatalogoProductosComponent },
   { path: 'pedidos', component: EstatusPedidosClientesComponent },
   { path: 'detalle-pedido/:id', component: DetallePedidoClienteComponent },
-  { path: 'agregar-pedido', component: AgregarPedidoClienteComponent },
   { path: 'merma', component: AdministracionMermaComponent },
   { path: 'mi-perfil', component: VerDatosPerfilComponent },
   { path: 'finanzas', component: FinanzasComparativoComponent },
   { path: 'generar-produccion', component: GenerarProduccionComponent },
   { path: 'catalogo-componentes', component: AgregarComponenteComponent },
+  { path: 'compras', component: AdministracionComprasComponent },
 ];

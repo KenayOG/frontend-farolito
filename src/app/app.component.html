@@ -135,6 +135,11 @@
         >
       </li>
       <li *ngIf="role === 'Administrador'" class="nav-item active">
+        <a class="nav-link" routerLink="/compras"
+          ><i class="fa-brands fa-shopify"></i><span>Compras</span></a
+        >
+      </li>
+      <li *ngIf="role === 'Administrador'" class="nav-item active">
         <a class="nav-link" routerLink="/usuarios"
           ><i class="fa-solid fa-address-book"></i><span>Usuarios</span></a
         >
