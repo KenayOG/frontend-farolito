@@ -95,4 +95,8 @@ export class EstatusPedidosClientesComponent {
       0
     );
   }
+
+  formatTotal(total: number): string {
+    return total.toFixed(2); // Formatea el número a 2 decimales
+  }
 }

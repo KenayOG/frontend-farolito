@@ -58,7 +58,7 @@
                         style="margin-right: 10px"
                       ></i>
                       {{
-                        "Precio: " + product.precioUnitario
+                        "Precio: " + formatTotal(product.precioUnitario)
                       }}
                     </ul>
                   </div>
@@ -80,7 +80,8 @@
                       >
                         <i class="fa-solid fa-file-invoice-dollar"></i
                         >&nbsp;&nbsp;{{
-                          "Total: " + calculateTotal(order.productos)
+                          "Total: " +
+                            formatTotal(calculateTotal(order.productos))
                         }}
                       </div>
                     </div>
@@ -119,80 +120,85 @@
             [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.id != 0">
-                <div class="row">
-                  <div class="col-6">
-                    <img
-                      [src]="ObtenerImagen(order.productos[0].recetaId)"
-                      alt="{{ order.productos[0].nombreProducto }}"
-                      width="160"
-                      class="img-fluid"
-                    />
-                  </div>
-                  <div class="col-6">
-                    <p-divider layout="vertical"
-                      ><i class="fa-solid fa-arrow-right"></i
-                    ></p-divider>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-5 text-center mt-3"
-                style="font-size: 18px"
-                *ngIf="order.productos[0].nombreProducto"
-              >
-                <h4 style="font-weight: bold">
-                  {{ order.productos[0].nombreProducto }}
-                </h4>
-                <ul style="margin-left: -30px">
-                  <i
-                    class="fa-solid fa-ellipsis-vertical"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Cantidad: " + order.productos[0].cantidad
-                  }}
-                  <hr />
-                  <i
-                    class="fa-solid fa-sack-dollar"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Precio: " + order.productos[0].precioUnitario
-                  }}
-                </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
-                <div class="row mt-3">
-                  <div class="col-12">
-                    <div
-                      class="text-center"
-                      style="
-                        background-color: black;
-                        border-radius: 12px;
-                        width: auto;
-                        color: white;
-                        padding: 10px;
-                      "
-                    >
-                      <i class="fa-solid fa-file-invoice-dollar"></i
-                      >&nbsp;&nbsp;{{
-                        "Total: " +
-                          order.productos[0].precioUnitario *
-                            order.productos[0].cantidad
-                      }}
+              <div class="col-9">
+                <div class="row" *ngFor="let product of order.productos">
+                  <div class="col-3" *ngIf="order.id != 0">
+                    <div class="row">
+                      <div class="col-6">
+                        <img
+                          [src]="ObtenerImagen(product.recetaId)"
+                          alt="{{ product.nombreProducto }}"
+                          width="160"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="col-6">
+                        <p-divider layout="vertical"
+                          ><i class="fa-solid fa-arrow-right"></i
+                        ></p-divider>
+                      </div>
                     </div>
                   </div>
+                  <div
+                    class="col-5 text-center mt-3"
+                    style="font-size: 18px"
+                    *ngIf="product.nombreProducto"
+                  >
+                    <h4 style="font-weight: bold">
+                      {{ product.nombreProducto }}
+                    </h4>
+                    <ul style="margin-left: -30px">
+                      <i
+                        class="fa-solid fa-ellipsis-vertical"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Cantidad: " + product.cantidad
+                      }}
+                      <hr />
+                      <i
+                        class="fa-solid fa-sack-dollar"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Precio: " + formatTotal(product.precioUnitario)
+                      }}
+                    </ul>
+                  </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <div class="text-center">
-                      <a
-                        [routerLink]="['/detalle-pedido', order.id]"
-                        class="btn btn-primary btn-lg p-2"
+              </div>
+              <div class="col-3">
+                <div class="col-12" style="font-size: 18px">
+                  <div class="row mt-3" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div
+                        class="text-center"
+                        style="
+                          background-color: black;
+                          border-radius: 12px;
+                          width: auto;
+                          color: white;
+                          padding: 10px;
+                        "
                       >
-                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
-                      </a>
+                        <i class="fa-solid fa-file-invoice-dollar"></i
+                        >&nbsp;&nbsp;{{
+                          "Total: " +
+                            formatTotal(calculateTotal(order.productos))
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <a
+                          [routerLink]="['/detalle-pedido', order.id]"
+                          class="btn btn-primary btn-lg p-2"
+                        >
+                          <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -217,81 +223,85 @@
             [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.id != 0">
-                <div class="row">
-                  <div class="col-6">
-                    <p-image
-                      [src]="ObtenerImagen(order.productos[0].recetaId)"
-                      alt="{{ order.productos[0].nombreProducto }}"
-                      width="160"
-                      class="img-fluid"
-                    >
-                    </p-image>
-                  </div>
-                  <div class="col-6">
-                    <p-divider layout="vertical"
-                      ><i class="fa-solid fa-arrow-right"></i
-                    ></p-divider>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-5 text-center mt-3"
-                style="font-size: 18px"
-                *ngIf="order.productos[0].nombreProducto"
-              >
-                <h4 style="font-weight: bold">
-                  {{ order.productos[0].nombreProducto }}
-                </h4>
-                <ul style="margin-left: -30px">
-                  <i
-                    class="fa-solid fa-ellipsis-vertical"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Cantidad: " + order.productos[0].cantidad
-                  }}
-                  <hr />
-                  <i
-                    class="fa-solid fa-sack-dollar"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Precio: " + order.productos[0].precioUnitario
-                  }}
-                </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
-                <div class="row mt-3">
-                  <div class="col-12">
-                    <div
-                      class="text-center"
-                      style="
-                        background-color: black;
-                        border-radius: 12px;
-                        width: auto;
-                        color: white;
-                        padding: 10px;
-                      "
-                    >
-                      <i class="fa-solid fa-file-invoice-dollar"></i
-                      >&nbsp;&nbsp;{{
-                        "Total: " +
-                          order.productos[0].precioUnitario *
-                            order.productos[0].cantidad
-                      }}
+              <div class="col-9">
+                <div class="row" *ngFor="let product of order.productos">
+                  <div class="col-3" *ngIf="order.id != 0">
+                    <div class="row">
+                      <div class="col-6">
+                        <img
+                          [src]="ObtenerImagen(product.recetaId)"
+                          alt="{{ product.nombreProducto }}"
+                          width="160"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="col-6">
+                        <p-divider layout="vertical"
+                          ><i class="fa-solid fa-arrow-right"></i
+                        ></p-divider>
+                      </div>
                     </div>
                   </div>
+                  <div
+                    class="col-5 text-center mt-3"
+                    style="font-size: 18px"
+                    *ngIf="product.nombreProducto"
+                  >
+                    <h4 style="font-weight: bold">
+                      {{ product.nombreProducto }}
+                    </h4>
+                    <ul style="margin-left: -30px">
+                      <i
+                        class="fa-solid fa-ellipsis-vertical"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Cantidad: " + product.cantidad
+                      }}
+                      <hr />
+                      <i
+                        class="fa-solid fa-sack-dollar"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Precio: " + formatTotal(product.precioUnitario)
+                      }}
+                    </ul>
+                  </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <div class="text-center">
-                      <a
-                        [routerLink]="['/detalle-pedido', order.id]"
-                        class="btn btn-primary btn-lg p-2"
+              </div>
+              <div class="col-3">
+                <div class="col-12" style="font-size: 18px">
+                  <div class="row mt-3" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div
+                        class="text-center"
+                        style="
+                          background-color: black;
+                          border-radius: 12px;
+                          width: auto;
+                          color: white;
+                          padding: 10px;
+                        "
                       >
-                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
-                      </a>
+                        <i class="fa-solid fa-file-invoice-dollar"></i
+                        >&nbsp;&nbsp;{{
+                          "Total: " +
+                            formatTotal(calculateTotal(order.productos))
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <a
+                          [routerLink]="['/detalle-pedido', order.id]"
+                          class="btn btn-primary btn-lg p-2"
+                        >
+                          <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -316,80 +326,85 @@
             [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.id != 0">
-                <div class="row">
-                  <div class="col-6">
-                    <img
-                      [src]="ObtenerImagen(order.productos[0].recetaId)"
-                      alt="{{ order.productos[0].nombreProducto }}"
-                      width="160"
-                      class="img-fluid"
-                    />
-                  </div>
-                  <div class="col-6">
-                    <p-divider layout="vertical"
-                      ><i class="fa-solid fa-arrow-right"></i
-                    ></p-divider>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-5 text-center mt-3"
-                style="font-size: 18px"
-                *ngIf="order.productos[0].nombreProducto"
-              >
-                <h4 style="font-weight: bold">
-                  {{ order.productos[0].nombreProducto }}
-                </h4>
-                <ul style="margin-left: -30px">
-                  <i
-                    class="fa-solid fa-ellipsis-vertical"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Cantidad: " + order.productos[0].cantidad
-                  }}
-                  <hr />
-                  <i
-                    class="fa-solid fa-sack-dollar"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Precio: " + order.productos[0].precioUnitario
-                  }}
-                </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
-                <div class="row mt-3">
-                  <div class="col-12">
-                    <div
-                      class="text-center"
-                      style="
-                        background-color: black;
-                        border-radius: 12px;
-                        width: auto;
-                        color: white;
-                        padding: 10px;
-                      "
-                    >
-                      <i class="fa-solid fa-file-invoice-dollar"></i
-                      >&nbsp;&nbsp;{{
-                        "Total: " +
-                          order.productos[0].precioUnitario *
-                            order.productos[0].cantidad
-                      }}
+              <div class="col-9">
+                <div class="row" *ngFor="let product of order.productos">
+                  <div class="col-3" *ngIf="order.id != 0">
+                    <div class="row">
+                      <div class="col-6">
+                        <img
+                          [src]="ObtenerImagen(product.recetaId)"
+                          alt="{{ product.nombreProducto }}"
+                          width="160"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="col-6">
+                        <p-divider layout="vertical"
+                          ><i class="fa-solid fa-arrow-right"></i
+                        ></p-divider>
+                      </div>
                     </div>
                   </div>
+                  <div
+                    class="col-5 text-center mt-3"
+                    style="font-size: 18px"
+                    *ngIf="product.nombreProducto"
+                  >
+                    <h4 style="font-weight: bold">
+                      {{ product.nombreProducto }}
+                    </h4>
+                    <ul style="margin-left: -30px">
+                      <i
+                        class="fa-solid fa-ellipsis-vertical"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Cantidad: " + product.cantidad
+                      }}
+                      <hr />
+                      <i
+                        class="fa-solid fa-sack-dollar"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Precio: " + formatTotal(product.precioUnitario)
+                      }}
+                    </ul>
+                  </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <div class="text-center">
-                      <a
-                        [routerLink]="['/detalle-pedido', order.id]"
-                        class="btn btn-primary btn-lg p-2"
+              </div>
+              <div class="col-3">
+                <div class="col-12" style="font-size: 18px">
+                  <div class="row mt-3" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div
+                        class="text-center"
+                        style="
+                          background-color: black;
+                          border-radius: 12px;
+                          width: auto;
+                          color: white;
+                          padding: 10px;
+                        "
                       >
-                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
-                      </a>
+                        <i class="fa-solid fa-file-invoice-dollar"></i
+                        >&nbsp;&nbsp;{{
+                          "Total: " +
+                            formatTotal(calculateTotal(order.productos))
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <a
+                          [routerLink]="['/detalle-pedido', order.id]"
+                          class="btn btn-primary btn-lg p-2"
+                        >
+                          <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -414,81 +429,85 @@
             [header]="order.estatus"
           >
             <div class="row">
-              <div class="col-3" *ngIf="order.id != 0">
-                <div class="row">
-                  <div class="col-6">
-                    <p-image
-                      [src]="ObtenerImagen(order.productos[0].recetaId)"
-                      alt="{{ order.productos[0].nombreProducto }}"
-                      width="160"
-                      class="img-fluid"
-                    >
-                    </p-image>
-                  </div>
-                  <div class="col-6">
-                    <p-divider layout="vertical"
-                      ><i class="fa-solid fa-arrow-right"></i
-                    ></p-divider>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-5 text-center mt-3"
-                style="font-size: 18px"
-                *ngIf="order.productos[0].nombreProducto"
-              >
-                <h4 style="font-weight: bold">
-                  {{ order.productos[0].nombreProducto }}
-                </h4>
-                <ul style="margin-left: -30px">
-                  <i
-                    class="fa-solid fa-ellipsis-vertical"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Cantidad: " + order.productos[0].cantidad
-                  }}
-                  <hr />
-                  <i
-                    class="fa-solid fa-sack-dollar"
-                    style="margin-right: 10px"
-                  ></i>
-                  {{
-                    "Precio: " + order.productos[0].precioUnitario
-                  }}
-                </ul>
-              </div>
-              <div class="col-4" style="font-size: 18px">
-                <div class="row mt-3">
-                  <div class="col-12">
-                    <div
-                      class="text-center"
-                      style="
-                        background-color: black;
-                        border-radius: 12px;
-                        width: auto;
-                        color: white;
-                        padding: 10px;
-                      "
-                    >
-                      <i class="fa-solid fa-file-invoice-dollar"></i
-                      >&nbsp;&nbsp;{{
-                        "Total: " +
-                          order.productos[0].precioUnitario *
-                            order.productos[0].cantidad
-                      }}
+              <div class="col-9">
+                <div class="row" *ngFor="let product of order.productos">
+                  <div class="col-3" *ngIf="order.id != 0">
+                    <div class="row">
+                      <div class="col-6">
+                        <img
+                          [src]="ObtenerImagen(product.recetaId)"
+                          alt="{{ product.nombreProducto }}"
+                          width="160"
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="col-6">
+                        <p-divider layout="vertical"
+                          ><i class="fa-solid fa-arrow-right"></i
+                        ></p-divider>
+                      </div>
                     </div>
                   </div>
+                  <div
+                    class="col-5 text-center mt-3"
+                    style="font-size: 18px"
+                    *ngIf="product.nombreProducto"
+                  >
+                    <h4 style="font-weight: bold">
+                      {{ product.nombreProducto }}
+                    </h4>
+                    <ul style="margin-left: -30px">
+                      <i
+                        class="fa-solid fa-ellipsis-vertical"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Cantidad: " + product.cantidad
+                      }}
+                      <hr />
+                      <i
+                        class="fa-solid fa-sack-dollar"
+                        style="margin-right: 10px"
+                      ></i>
+                      {{
+                        "Precio: " + formatTotal(product.precioUnitario)
+                      }}
+                    </ul>
+                  </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <div class="text-center">
-                      <a
-                        [routerLink]="['/detalle-pedido', order.id]"
-                        class="btn btn-primary btn-lg p-2"
+              </div>
+              <div class="col-3">
+                <div class="col-12" style="font-size: 18px">
+                  <div class="row mt-3" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div
+                        class="text-center"
+                        style="
+                          background-color: black;
+                          border-radius: 12px;
+                          width: auto;
+                          color: white;
+                          padding: 10px;
+                        "
                       >
-                        <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
-                      </a>
+                        <i class="fa-solid fa-file-invoice-dollar"></i
+                        >&nbsp;&nbsp;{{
+                          "Total: " +
+                            formatTotal(calculateTotal(order.productos))
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4" style="margin-left: -100px">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <a
+                          [routerLink]="['/detalle-pedido', order.id]"
+                          class="btn btn-primary btn-lg p-2"
+                        >
+                          <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
