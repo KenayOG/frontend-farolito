@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { LogisticManager } from '../interfaces/logistic-manager';
 import { OrderCustomer } from '../interfaces/customer-order';
+import { EstatusOrder } from '../interfaces/orders';
+import { ResponsePosts } from '../interfaces/response-posts';
 
 @Injectable({
   providedIn: 'root',
@@ -26,4 +28,10 @@ export class PedidosService {
   }
 
   // Metodo para modificar el estado del pedido para encargado de logistica
+  updateEstatusPedido(data: EstatusOrder): Observable<ResponsePosts> {
+    return this._http.put<ResponsePosts>(
+      `${this.apiUrl}/actualizar-estado`,
+      data
+    );
+  }
 }

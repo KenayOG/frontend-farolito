@@ -6,6 +6,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [EstatusPedidosComponent],
@@ -16,6 +17,8 @@ import { IconFieldModule } from 'primeng/iconfield';
     InputTextModule,
     IconFieldModule,
     ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class LogisticaModule {}

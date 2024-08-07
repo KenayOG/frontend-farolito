@@ -5,3 +5,7 @@ export interface Order {
   dateTime: string;
   details: string;
 }
+
+export interface EstatusOrder{
+  pedidoId: number;
+}
