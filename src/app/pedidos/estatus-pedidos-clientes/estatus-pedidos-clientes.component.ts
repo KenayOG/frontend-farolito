@@ -4,7 +4,7 @@ import { Recipe } from '../../interfaces/recipe';
 import { OrderCustomer } from '../../interfaces/customer-order';
 import { PedidosService } from '../../services/pedidos.service';
 import { RecetasService } from '../../services/recetas.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-estatus-pedidos-clientes',
   templateUrl: './estatus-pedidos-clientes.component.html',
@@ -24,7 +24,8 @@ export class EstatusPedidosClientesComponent {
 
   constructor(
     private pedidosService: PedidosService,
-    private recetasService: RecetasService
+    private recetasService: RecetasService,
+    private matSnackbar: MatSnackBar,
   ) {
     this.ObtenerPedidos();
     this.obtenerRecetas();
@@ -75,6 +76,14 @@ export class EstatusPedidosClientesComponent {
     });
   }
 
+  alertaMientras() {
+    this.matSnackbar.open('Estamos trabajando en ello', 'Cerrar', {
+      duration: 4000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
+  }
+  
   ObtenerImagen(recetaId: number): string | undefined {
     const receta = this.recipes.find((r) => r.id === recetaId);
     if (receta) {

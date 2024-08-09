@@ -90,7 +90,7 @@
                     <div class="col-12">
                       <div class="text-center">
                         <a
-                          [routerLink]="['/detalle-pedido', order.id]"
+                          (click)="alertaMientras()"
                           class="btn btn-primary btn-lg p-2"
                         >
                           <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
@@ -192,8 +192,9 @@
                   <div class="row mt-4" style="margin-left: -100px">
                     <div class="col-12">
                       <div class="text-center">
+                        <!-- [routerLink]="['/detalle-pedido', order.id]" -->
                         <a
-                          [routerLink]="['/detalle-pedido', order.id]"
+                          (click)="alertaMientras()"
                           class="btn btn-primary btn-lg p-2"
                         >
                           <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
@@ -296,7 +297,7 @@
                     <div class="col-12">
                       <div class="text-center">
                         <a
-                          [routerLink]="['/detalle-pedido', order.id]"
+                          (click)="alertaMientras()"
                           class="btn btn-primary btn-lg p-2"
                         >
                           <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
@@ -399,7 +400,7 @@
                     <div class="col-12">
                       <div class="text-center">
                         <a
-                          [routerLink]="['/detalle-pedido', order.id]"
+                          (click)="alertaMientras()"
                           class="btn btn-primary btn-lg p-2"
                         >
                           <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
@@ -502,7 +503,7 @@
                     <div class="col-12">
                       <div class="text-center">
                         <a
-                          [routerLink]="['/detalle-pedido', order.id]"
+                          (click)="alertaMientras()"
                           class="btn btn-primary btn-lg p-2"
                         >
                           <i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Detalle
