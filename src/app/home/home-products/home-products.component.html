@@ -27,10 +27,17 @@
                   </button>
                 </div>
                 <div class="col-10 mt-3">
-                  <img
+                  <!-- <img
                     [src]="getImagenProducto(product.urlImage)"
                     alt="{{ product.nombrelampara }}"
                     class="image"
+                    
+                  /> -->
+                  <p-image
+                    [src]="getImagenProducto(product.urlImage)"
+                    alt="{{ product.nombrelampara }}"
+                    class="image"
+                    [preview]="true"
                   />
                 </div>
               </div>

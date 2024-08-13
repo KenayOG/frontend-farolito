@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CarritoService } from '../services/carrito.service';
 import { VentaService } from '../services/venta.service';
 import { AppComponent } from '../app.component';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [HomeProductsComponent, ConfirmarCarritoComponent],
@@ -29,16 +30,12 @@ import { AppComponent } from '../app.component';
     ProgressSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ImageModule,
   ],
-  providers: [
-    CarritoService,
-    VentaService
-  ],
-  bootstrap: [
-    AppComponent
-  ],
-  exports: []
+  providers: [CarritoService, VentaService],
+  bootstrap: [AppComponent],
+  exports: [],
 })
 export class HomeModule {
   constructor(config: NgbPopoverConfig) {
