@@ -3,6 +3,17 @@
   color: white;
 }
 
+.card-text {
+  width: 525px;
+  height: 380px;
+  border: 1px solid black;
+}
+
+.text-light-text {
+  color: gray;
+  font-weight: bold;
+}
+
 .status-container {
   display: flex;
   justify-content: center;

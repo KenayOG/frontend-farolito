@@ -5,6 +5,8 @@ import { OrderCustomer } from '../../interfaces/customer-order';
 import { PedidosService } from '../../services/pedidos.service';
 import { RecetasService } from '../../services/recetas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-estatus-pedidos-clientes',
   templateUrl: './estatus-pedidos-clientes.component.html',
@@ -26,6 +28,7 @@ export class EstatusPedidosClientesComponent {
     private pedidosService: PedidosService,
     private recetasService: RecetasService,
     private matSnackbar: MatSnackBar,
+    private router: Router
   ) {
     this.ObtenerPedidos();
     this.obtenerRecetas();
@@ -76,14 +79,23 @@ export class EstatusPedidosClientesComponent {
     });
   }
 
-  alertaMientras() {
-    this.matSnackbar.open('Estamos trabajando en ello', 'Cerrar', {
-      duration: 4000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-    });
+  obtenerDetallePedido(pedidoId: number): void {
+    const pedidoSeleccionado = this.orders.find(order => order.id === pedidoId);
+
+    if (pedidoSeleccionado) {
+      this.router.navigate(['/detalle-pedido', pedidoId], {
+        state: { pedido: pedidoSeleccionado }
+      });
+    } else {
+      this.matSnackbar.open('Pedido no encontrado', 'Cerrar', {
+        duration: 4000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
+    }
+    
   }
-  
+
   ObtenerImagen(recetaId: number): string | undefined {
     const receta = this.recipes.find((r) => r.id === recetaId);
     if (receta) {

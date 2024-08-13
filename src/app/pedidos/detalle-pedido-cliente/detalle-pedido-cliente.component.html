@@ -3,70 +3,75 @@
     <div class="col-10 align-items-center">
       <div class="row mt-4">
         <div class="col-12">
-          <div class="card">
-            <h3 class="card-header text-center">
-              Orden&nbsp;<i class="fa-solid fa-hashtag"></i>{{ idPedido }}
-            </h3>
-            <div class="card-content m-4">
-              <h5 class="text-center">
-                <i class="fa-solid fa-lightbulb"></i>&nbsp;<b>
-                  {{ nombreProducto }}</b
-                >
-              </h5>
-            </div>
+          <div class="card" *ngIf="pedido">
+            <h3 class="card-header text-center">Orden&nbsp;{{ pedido.id }}</h3>
           </div>
         </div>
       </div>
+
       <div class="row mt-5">
+        <!-- Fechas y Estatus -->
         <div class="col-6">
-          <div class="card">
+          <div class="card-text">
+            <h3 class="card-header text-center p-1">Detalles:</h3>
             <div class="card-content m-4">
               <div class="status-container">
-                <div class="status-list">
-                  <div *ngFor="let status of estatus; let i = index">
-                    <div class="status-item">
-                      <i [ngClass]="getEstatusIcono(status)"></i>
-                      <span class="status">{{ status }}</span>
-                    </div>
+                <div class="status-list mt-5">
+                  <div class="status-item mt-5">
+                    <i
+                      [ngClass]="getEstatusIcono(pedido?.estatus)"
+                      class="mt-3"
+                    ></i>
+                    <span class="status mt-3">{{ pedido?.estatus }}</span>
                   </div>
                 </div>
                 <p-divider layout="vertical"
                   ><i class="fa-solid fa-timeline"></i
                 ></p-divider>
-                <div class="date-list mt-2">
-                  <div *ngFor="let fecha of fecha; let i = index">
-                    <ul class="date p-1">
-                      {{
-                        fecha
-                      }}
-                    </ul>
-                  </div>
+                <div class="date-list">
+                  <ul class="date">
+                    <li>
+                      <b>Fecha Pedido:</b> {{ pedido?.fechaPedido | date }}
+                    </li>
+                    <hr />
+                    <li><b>Fecha Envío:</b> {{ pedido?.fechaEnvio | date }}</li>
+                    <hr />
+                    <li>
+                      <b>Fecha Entrega Aprox:</b>
+                      {{ pedido?.fechaEntregaAprox | date }}
+                    </li>
+                    <hr />
+                    <li>
+                      <b>Fecha de Entrega:</b> {{ pedido?.fechaEntrega | date }}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Detalles del Pedido -->
         <div class="col-6">
-          <div class="card">
-            <div class="card-content m-2">
-              <div class="details-container p-2">
-                <div class="address text-center">
-                  <p class="subtitle">
-                    <i class="fa-solid fa-map-location-dot"></i>
-                    Direccion de Envio:
-                  </p>
-                  <span class="data-details">{{ direccion }}</span>
-                </div>
-                <div class="pay-method text-center mt-4">
-                  <p class="subtitle">
-                    <i [ngClass]="getMetodoPagoIcono(metodoPago)"></i
-                    >&nbsp;Metodo de Pago:
-                  </p>
-                  <span class="data-details">{{ metodoPago }}</span>
-                </div>
-              </div>
+          <div class="card-text" *ngIf="pedido">
+            <h3 class="card-header text-center p-1">Productos:</h3>
+            <div class="card-content m-4">
+              <h5 *ngFor="let product of pedido.productos">
+                <i class="fa-solid fa-lightbulb text-center"></i>&nbsp;
+                {{ product.cantidad }} {{ product.nombreProducto }}&nbsp;&nbsp;
+                <span class="text-light-text">
+                  {{ product.precioUnitario | currency }}
+                </span>
+              </h5>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Botón para volver -->
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <button (click)="goBack()" class="btn btn-secondary">Volver</button>
         </div>
       </div>
     </div>

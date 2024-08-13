@@ -1,39 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { OrderCustomer } from '../../interfaces/customer-order';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-pedido-cliente',
   templateUrl: './detalle-pedido-cliente.component.html',
   styleUrl: './detalle-pedido-cliente.component.css',
 })
-export class DetallePedidoClienteComponent {
-  idPedido: number = 21;
-  nombreProducto: string = 'Lampara Moderna';
-  estatus: string[] = ['Pedido Realizado', 'Enviado', 'Entregado'];
-  fecha: string[] = ['2023-12-09', '2023-10-10', '2023-03-27'];
-  /* metodoPago: string = 'Paypal'; */
-  metodoPago: string = 'Tarjeta';
-  direccion: string = '123 Main St.Anytown, CA 12345';
+export class DetallePedidoClienteComponent implements OnInit {
+  pedido: OrderCustomer | undefined;
 
-  getEstatusIcono(status: string): string {
-    switch (status) {
-      case 'Pedido Realizado':
-        return 'fas fa-shopping-cart';
-      case 'Enviado':
-        return 'fas fa-truck';
-      case 'Entregado':
-        return 'fas fa-check-circle';
-      default:
-        return 'fas fa-info-circle';
+  constructor(private route: ActivatedRoute, private location: Location) {}
+
+  ngOnInit(): void {
+    const state = history.state;
+    if (state && state.pedido) {
+      this.pedido = state.pedido;
+    } else {
+      const id = Number(this.route.snapshot.paramMap.get('id'));
     }
   }
 
-  getMetodoPagoIcono(metodoPago: string): string {
-    if (metodoPago === 'Paypal') {
-      return 'fa-brands fa-paypal';
-    } else if (metodoPago === 'Tarjeta') {
-      return 'fa-solid fa-credit-card';
-    } else {
-      return 'fa-solid fa-sack-dollar';
+  goBack(): void {
+    this.location.back();
+  }
+
+  getEstatusIcono(estatus: string | undefined): string {
+    switch (estatus) {
+      case 'En Proceso':
+        return 'fa-solid fa-hourglass-half';
+      case 'En Camino':
+        return 'fas fa-truck';
+      case 'Enviado':
+        return 'fa-solid fa-paper-plane';
+      case 'Finalizado':
+        return 'fa-solid fa-circle-check';
+      default:
+        return 'fa-solid fa-question'; // Ícono por defecto si el estatus no coincide
     }
   }
 }
