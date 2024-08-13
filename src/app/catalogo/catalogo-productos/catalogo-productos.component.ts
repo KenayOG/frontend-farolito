@@ -33,4 +33,15 @@ export class CatalogoProductosComponent {
   getImagenCatalogo(imagePath: string): string {
     return `${this.baseUrl}${imagePath}`;
   }
+
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '750px',
+      numVisible: 4,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 }

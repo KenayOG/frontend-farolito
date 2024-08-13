@@ -1,48 +1,52 @@
-<div class="container">
-  <div class="card flex justify-content-center mt-4">
-    <h3 class="text-center card-header">
-      <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;Productos Disponibles
-    </h3>
-    <p-carousel
-      [value]="products"
-      [numVisible]="1"
-      [numScroll]="1"
-      orientation="vertical"
-      verticalViewPortHeight="255px"
-    >
-      <ng-template let-product pTemplate="item">
-        <div class="d-flex flex-column align-items-center">
-          <div class="mb-3">
+<div class="container justify-content-center">
+  <div class="row justify-content-center">
+    <div class="card mt-3">
+      <p-galleria
+        [value]="products"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '450px', 'max-height': 'auto' }"
+        [numVisible]="5"
+        [autoPlay]="true"
+        [circular]="true"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img
+            [src]="getImagenCatalogo(item.imagen)"
+            alt="{{ item.nombrelampara }}"
+            style="width: 450px; height: auto"
+          />
+        </ng-template>
+
+        <ng-template pTemplate="caption" let-item>
+          <h4 class="title-caption">{{ item.nombrelampara }}</h4>
+          <li *ngFor="let comp of item.componentes" class="list-caption">
+            {{ comp.nombre }}
+          </li>
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid grid-nogutter justify-content-center">
+            <img [src]="getImagenCatalogo(item.imagen)" style="height: 50px" />
+          </div>
+        </ng-template>
+      </p-galleria>
+      <div *ngIf="cargando" class="spinner-overlay">
+        <div class="spinner-container">
+          <div class="spinner-wrapper">
+            <p-progressSpinner
+              styleClass="w-7rem h-7rem"
+              strokeWidth="6"
+              fill="var(--surface-ground)"
+              animationDuration=".8s"
+            >
+            </p-progressSpinner>
             <img
-              [src]="getImagenCatalogo(product.imagen)"
-              alt="{{ product.nombrelampara }}"
-              width="250"
-              class="img-fluid"
+              src="assets/images/logo-farolito.webp"
+              alt="Logo de farolito"
+              class="spinner-logo"
             />
           </div>
-          <div class="text-center font-weight-bold">
-            <b>{{ product.nombrelampara }}</b>
-          </div>
+          <p class="spinner-message">Espere por favor...</p>
         </div>
-      </ng-template>
-    </p-carousel>
-    <div *ngIf="cargando" class="spinner-overlay">
-      <div class="spinner-container">
-        <div class="spinner-wrapper">
-          <p-progressSpinner
-            styleClass="w-7rem h-7rem"
-            strokeWidth="6"
-            fill="var(--surface-ground)"
-            animationDuration=".8s"
-          >
-          </p-progressSpinner>
-          <img
-            src="assets/images/logo-farolito.webp"
-            alt="Logo de farolito"
-            class="spinner-logo"
-          />
-        </div>
-        <p class="spinner-message">Espere por favor...</p>
       </div>
     </div>
   </div>
