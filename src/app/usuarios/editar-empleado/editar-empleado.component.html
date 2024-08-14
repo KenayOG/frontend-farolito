@@ -1,82 +1,38 @@
 <div class="container">
-  <div class="row">
+  <div class="row m-5">
     <div class="col-12">
       <div class="card">
         <h3 class="card-header text-center">
           <i class="fa-solid fa-user-pen"></i>&nbsp;&nbsp;Editar Empleado
         </h3>
         <div class="card-content">
-          <form class="form-grid">
+          <form
+            class="form-grid"
+            [formGroup]="formEditEmployee"
+            (ngSubmit)="editEmployee()"
+          >
             <div class="form-section">
               <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                   <div class="form-floating mt-3">
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Nombre:"
-                      id="nombre-empresa"
+                      id="nombre"
+                      formControlName="fullName"
                     />
-                    <label for="floatingInput">Nombres:</label>
+                    <label for="nombre">Nombres:</label>
                   </div>
                 </div>
-                <div class="col-4">
-                  <div class="form-floating mt-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Apellidos:"
-                      id="apellido"
-                    />
-                    <label for="floatingInput">Apellidos:</label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-floating mt-3">
-                    <p-dropdown
-                      [options]="roles"
-                      [(ngModel)]="selectedRol"
-                      [checkmark]="true"
-                      [showClear]="true"
-                      optionLabel="name"
-                      placeholder="Selecciona un rol:"
-                      name="rol"
-                    ></p-dropdown>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                   <div class="form-floating mt-3">
                     <input
                       type="email"
                       class="form-control"
-                      placeholder="Email:"
                       id="email"
+                      formControlName="email"
                     />
-                    <label for="floatingInput">Email:</label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-floating mt-3">
-                    <input
-                      type="tel"
-                      class="form-control"
-                      placeholder="Telefono:"
-                      id="telefono"
-                    />
-                    <label for="floatingInput">Telefono:</label>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-floating mt-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Direccion:"
-                      id="direccion"
-                    />
-                    <label for="floatingInput">Direccion:</label>
+                    <label for="email">Email:</label>
                   </div>
                 </div>
               </div>
@@ -86,31 +42,33 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Username:"
-                      id="username"
+                      id="direccion"
+                      formControlName="direccion"
                     />
-                    <label for="floatingInput">Username:</label>
+                    <label for="floatingInput">Direccion:</label>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-floating mt-3">
-                    <p-password
-                      [(ngModel)]="value"
-                      [toggleMask]="true"
-                      placeholder="Password"
-                    ></p-password>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="telefono"
+                      formControlName="phoneNumber"
+                    />
+                    <label for="floatingInput">Telefono:</label>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="card-footer mt-3">
+              <div class="button-container">
+                <button class="btn btn-success btn-lg" type="submit">
+                  <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
+                </button>
+              </div>
+            </div>
           </form>
-        </div>
-        <div class="card-footer">
-          <div class="button-container">
-            <button class="btn btn-success btn-lg">
-              <i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar
-            </button>
-          </div>
         </div>
       </div>
     </div>

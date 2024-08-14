@@ -109,31 +109,13 @@
                   <p-sortIcon field="email" />
                 </div>
               </th>
-              <!-- <th pSortableColumn="tarjeta">
-                <div class="flex justify-content-between align-items-center">
-                  Tarjeta
-                  <p-sortIcon field="tarjeta" />
-                </div>
-              </th> -->
               <th pSortableColumn="roles">
                 <div class="flex justify-content-between align-items-center">
                   Rol
                   <p-sortIcon field="roles" />
                 </div>
               </th>
-              <!-- <th pSortableColumn="direccion">
-                <div class="flex justify-content-between align-items-center">
-                  Direccion
-                  <p-sortIcon field="direccion" />
-                </div>
-              </th> -->
-              <!-- <th pSortableColumn="phoneNumber">
-                <div class="flex justify-content-between align-items-center">
-                  Telefono
-                  <p-sortIcon field="phoneNumber" />
-                </div>
-              </th> -->
-              <!-- <th>&nbsp;</th> -->
+              <th>&nbsp;</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-employee>
@@ -147,23 +129,14 @@
               <td>
                 {{ employee.email }}
               </td>
-              <!-- <td>
-                {{ employee.tarjeta }}
-              </td> -->
               <td>
                 {{ employee.roles[0] }}
               </td>
-              <!-- <td>
-                {{ employee.direccion }}
-              </td> -->
-              <!-- <td>
-                {{ employee.phoneNumber }}
-              </td> -->
-              <!-- <td>
-                <a routerLink="/editar-empleado" class="btn btn-primary">
+              <td>
+                <a class="btn btn-primary" (click)="obtenerEmpleado(employee)">
                   <i class="fa-solid fa-user-pen"></i>&nbsp;Editar
                 </a>
-              </td> -->
+              </td>
             </tr>
           </ng-template>
         </p-table>

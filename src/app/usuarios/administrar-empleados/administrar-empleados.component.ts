@@ -53,8 +53,9 @@ export class AdministrarEmpleadosComponent {
     return this.usuarios.filter((usuario) => usuario.roles.includes('Cliente'));
   }
 
-  selectEmployee(user: User) {
-    localStorage.setItem('selectedEmployee', JSON.stringify(user));
+  obtenerEmpleado(employee: any) {
+    localStorage.setItem('selectedEmployee', JSON.stringify(employee));
+
     this.router.navigate(['/editar-empleado']);
   }
 
