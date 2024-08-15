@@ -71,6 +71,7 @@
                 <p-sortIcon field="precioUnitario" />
               </div>
             </th>
+            <th>&nbsp;</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-detail>
@@ -80,6 +81,16 @@
             <td>{{ detail.proveedorNombre }}</td>
             <td>{{ detail.fechaCompra }}</td>
             <td>{{ detail.precioUnitario }}</td>
+            <td>
+              <a
+                class="btn btn-danger"
+                (click)="
+                  openMermarComponenteModal(mermarComponenteModal, detail)
+                "
+              >
+                <i class="fa-solid fa-trash"></i>&nbsp;Mermar
+              </a>
+            </td>
           </tr>
         </ng-template>
       </p-table>
@@ -105,3 +116,50 @@
     </div>
   </div>
 </div>
+<ng-template #mermarComponenteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Mermar Componente</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="cantidadComponente" class="form-label">Cantidad</label>
+        <input
+          type="number"
+          id="cantidadComponente"
+          class="form-control"
+          [(ngModel)]="selectedComponent.cantidadd"
+          name="cantidad"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="descripcionComponente" class="form-label"
+          >Descripción</label
+        >
+        <textarea
+          id="descripcionComponente"
+          class="form-control"
+          [(ngModel)]="selectedComponent.descripcion"
+          name="descripcion"
+          required
+        ></textarea>
+      </div>
+      <input
+        id="inventarioComponenteId"
+        [(ngModel)]="selectedComponent.id"
+        name="inventarioComponenteId"
+      />
+      <button
+        class="btn btn-success"
+        style="margin-right: 20px"
+        (click)="mermarComponente()"
+      >
+        Confirmar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</ng-template>

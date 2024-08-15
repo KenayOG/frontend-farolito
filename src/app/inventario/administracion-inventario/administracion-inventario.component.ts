@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './administracion-inventario.component.html',
   styleUrls: ['./administracion-inventario.component.css'],
 })
+  
 export class AdministracionInventarioComponent {
   componentesInventory: ComponentInventory[] = [];
   lampsInventory: LampInventory[] = [];
