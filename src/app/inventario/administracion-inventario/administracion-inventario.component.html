@@ -130,9 +130,7 @@
               <td>
                 <a
                   class="btn btn-danger"
-                  (click)="selectLamp(lamp)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#mermarLamparaModal"
+                  (click)="openMermarLamparaModal(mermarLamparaModal, lamp)"
                 >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
@@ -200,7 +198,7 @@
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="id" hidden>
+              <th pSortableColumn="id">
                 <div class="flex justify-content-between align-items-center">
                   Id
                   <p-sortIcon field="id" />
@@ -225,7 +223,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-component>
             <tr class="p-selectable-row">
-              <td style="display: none">
+              <td>
                 {{ component.id }}
               </td>
               <td>
@@ -253,9 +251,9 @@
               <td>
                 <a
                   class="btn btn-danger"
-                  (click)="selectComponent(component)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#mermarComponentesModal"
+                  (click)="
+                    openMermarComponenteModal(mermarComponenteModal, component)
+                  "
                 >
                   <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
@@ -286,3 +284,93 @@
     </div>
   </div>
 </div>
+
+<ng-template #mermarLamparaModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Mermar Lámpara</h4>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="mermarLampara()">
+      <div class="mb-3">
+        <label for="cantidadLampara" class="form-label">Cantidad</label>
+        <input
+          type="number"
+          id="cantidadLampara"
+          class="form-control"
+          [(ngModel)]="selectedLamp.cantidad"
+          name="cantidad"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="descripcionLampara" class="form-label">Descripción</label>
+        <textarea
+          id="descripcionLampara"
+          class="form-control"
+          [(ngModel)]="selectedLamp.descripcion"
+          name="descripcion"
+          required
+        ></textarea>
+      </div>
+      <input
+        id="inventariolamparaId"
+        [(ngModel)]="selectedLamp.id"
+        name="inventariolamparaId"
+      />
+      <button type="submit" class="btn btn-success" style="margin-right: 20px">
+        Confirmar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #mermarComponenteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Mermar Componente</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="cantidadComponente" class="form-label">Cantidad</label>
+        <input
+          type="number"
+          id="cantidadComponente"
+          class="form-control"
+          [(ngModel)]="selectedComponent.cantidad"
+          name="cantidad"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="descripcionComponente" class="form-label"
+          >Descripción</label
+        >
+        <textarea
+          id="descripcionComponente"
+          class="form-control"
+          [(ngModel)]="selectedComponent.descripcion"
+          name="descripcion"
+          required
+        ></textarea>
+      </div>
+      <input
+        id="inventarioComponenteId"
+        [(ngModel)]="selectedComponent.id"
+        name="inventarioComponenteId"
+      />
+      <button
+        class="btn btn-success"
+        style="margin-right: 20px"
+        (click)="mermarComponente()"
+      >
+        Confirmar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss()">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</ng-template>

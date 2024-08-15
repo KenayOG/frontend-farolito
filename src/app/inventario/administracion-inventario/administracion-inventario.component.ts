@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ComponentInventory } from '../../interfaces/component-inventory';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
@@ -7,6 +7,7 @@ import { ComponenteDecreaseRequest } from '../../interfaces/component-decrease';
 import { LampDecreaseRequest } from '../../interfaces/lamp-decrease';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Table } from 'primeng/table';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-administracion-inventario',
@@ -29,7 +30,8 @@ export class AdministracionInventarioComponent {
   constructor(
     private inventarioService: InventarioService,
     private mermaService: MermaService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private modalService: NgbModal
   ) {
     this.obtenerInventarioComponentes();
     this.obtenerInventarioLamparas();
@@ -57,6 +59,7 @@ export class AdministracionInventarioComponent {
     this.inventarioService.getInventarioComponente().subscribe({
       next: (data) => {
         this.componentesInventory = data;
+        
       },
       error: (e) => {
         console.log(e);
@@ -68,51 +71,56 @@ export class AdministracionInventarioComponent {
     this.inventarioId = id;
     this.tipoInventario = tipo;
     if (tipo === 'lampara') {
-      (
-        document.getElementById('inventariolamparaId') as HTMLInputElement
-      ).value = id.toString();
+      this.selectedLamp.id = id;
     } else if (tipo === 'componente') {
-      (
-        document.getElementById('inventarioComponenteId') as HTMLInputElement
-      ).value = id.toString();
+      this.selectedComponent.id = id;
     }
   }
 
-  mermarLampara() {
-    const cantidad = (
-      document.getElementById('cantidadLampara') as HTMLInputElement
-    ).value;
-    const descripcion = (
-      document.getElementById('descripcionLampara') as HTMLTextAreaElement
-    ).value;
-    const id = (
-      document.getElementById('inventariolamparaId') as HTMLInputElement
-    ).value;
 
+  openMermarLamparaModal(content: TemplateRef<any>, lamp: any) {
+    this.selectedLamp = lamp;
+    this.modalService.open(content, {
+      ariaLabelledBy: 'mermarLamparaModal',
+    });
+  }
+
+  openMermarComponenteModal(content: TemplateRef<any>, component: any) {
+    this.selectedComponent = component;
+    this.modalService.open(content, {
+      ariaLabelledBy: 'mermarComponenteModal',
+    });
+  }
+
+  mermarLampara() {
     const requestData: LampDecreaseRequest = {
-      cantidad: +cantidad,
-      descripcion: descripcion,
-      inventariolamparaId: +id,
+      cantidad: this.selectedLamp.cantidad,
+      descripcion: this.selectedLamp.descripcion,
+      inventariolamparaId: this.selectedLamp.id,
     };
 
     this.mermaService.sendMermaLamparas(requestData).subscribe({
       next: (response) => {
         console.log('Respuesta de merma lámpara:', response);
-        this.limpiarModal();
+        //this.limpiarModal();
+        this.modalService.dismissAll();
         this.obtenerInventarioLamparas();
-        this.matSnackBar.open(response.message, 'Cerrar', {
+        this.matSnackBar.open('Lamparas mermadas correctamente', 'Cerrar', {
           duration: 5000,
           horizontalPosition: 'center',
+          verticalPosition: 'top',
         });
       },
       error: (err) => {
         console.log('Error al mermar lámpara:', err);
+        this.modalService.dismissAll();
         this.matSnackBar.open(
           'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
           'Cerrar',
           {
             duration: 5000,
             horizontalPosition: 'center',
+            verticalPosition: 'top',
           }
         );
       },
@@ -120,40 +128,34 @@ export class AdministracionInventarioComponent {
   }
 
   mermarComponente() {
-    const cantidad = (
-      document.getElementById('cantidadComponente') as HTMLInputElement
-    ).value;
-    const descripcion = (
-      document.getElementById('descripcionComponente') as HTMLTextAreaElement
-    ).value;
-    const id = (
-      document.getElementById('inventarioComponenteId') as HTMLInputElement
-    ).value;
-
     const requestData: ComponenteDecreaseRequest = {
-      cantidad: +cantidad,
-      descripcion: descripcion,
-      inventarioComponenteId: +id,
+      cantidad: this.selectedComponent.cantidad,
+      descripcion: this.selectedComponent.descripcion,
+      inventarioComponenteId: this.selectedComponent.id,
     };
 
     this.mermaService.sendMermaComponentes(requestData).subscribe({
       next: (response) => {
         console.log('Respuesta de merma componente:', response);
-        this.limpiarModal();
+        //this.limpiarModal();
+        this.modalService.dismissAll();
         this.obtenerInventarioComponentes();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
           horizontalPosition: 'center',
+          verticalPosition: 'top',
         });
       },
       error: (err) => {
         console.log('Error al mermar componente:', err);
+        this.modalService.dismissAll();
         this.matSnackBar.open(
           'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
           'Cerrar',
           {
             duration: 5000,
             horizontalPosition: 'center',
+            verticalPosition: 'top',
           }
         );
       },
@@ -168,22 +170,8 @@ export class AdministracionInventarioComponent {
     this.selectedComponent = component;
   }
 
-  limpiarModal() {
-    (document.getElementById('cantidadLampara') as HTMLInputElement).value = '';
-    (
-      document.getElementById('descripcionLampara') as HTMLTextAreaElement
-    ).value = '';
-    (document.getElementById('inventariolamparaId') as HTMLInputElement).value =
-      '';
-
-    (document.getElementById('cantidadComponente') as HTMLInputElement).value =
-      '';
-    (
-      document.getElementById('descripcionComponente') as HTMLTextAreaElement
-    ).value = '';
-    (
-      document.getElementById('inventarioComponenteId') as HTMLInputElement
-    ).value = '';
+  cerrarModal() {
+    this.modalService.dismissAll();
   }
 
   applyFilterGlobal(event: Event, tableId: string) {
