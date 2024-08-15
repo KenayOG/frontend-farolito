@@ -36,7 +36,7 @@ header .titulo {
 }
 
 header .subtitulo {
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 300;
   color: #fff;
 }
@@ -81,14 +81,16 @@ header .subtitulo {
   font-size: 24px;
   font-weight: 300;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 .parrafo {
-  margin-bottom: 13px;
-  font-weight: 300;
+  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: 400;
   text-align: justify;
-  line-height: 24px;
+  line-height: 26px;
   color: rgb(24, 16, 16, 16);
 }
 
@@ -102,7 +104,6 @@ header .subtitulo {
 
 .imagenes {
   width: 20%;
-  /* height: 300px; */
   height: 500px;
   overflow: hidden;
   position: relative;
@@ -178,16 +179,6 @@ header .subtitulo {
   text-align: start;
 }
 
-/* .fondo {
-  height: 950px;
-  position: relative;
-  background-image: url("../../assets/images/lampara-skewed-op2.jpg");
-  overflow: hidden;
-  background-attachment: fixed;
-  background-position: center;
-  padding-top: 130px;
-} */
-
 .sesgoabajo-unico {
   z-index: 10;
   position: absolute;
@@ -223,7 +214,7 @@ header .subtitulo {
   justify-content: space-evenly;
 }
 .desarrolladores .rol-dev {
-  margin: 15px 0 0 -15px;
+  margin: 15px 0 0 -25px;
   color: white;
   text-align: center;
 }
@@ -233,8 +224,8 @@ header .subtitulo {
 }
 
 .desarrollador img {
-  width: 180px;
-  height: auto;
+  width: 170px;
+  height: 170px;
   object-fit: cover;
   border-radius: 20%;
 }
@@ -243,7 +234,7 @@ header .subtitulo {
   color: rgb(184, 184, 184);
   text-align: center;
   font-size: 20px;
-  margin-left: -10px;
+  margin-left: -25px;
 }
 
 footer {
