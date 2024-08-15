@@ -15,7 +15,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./home-products.component.css'],
 })
 export class HomeProductsComponent {
-
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
 
   products: LampInventory[] = [];
@@ -70,7 +69,7 @@ export class HomeProductsComponent {
     this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
-        this.recipes = data;
+        this.recipes = data; // -- detalle de recetas en el popover
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -99,16 +98,16 @@ export class HomeProductsComponent {
     const cantidad = this.cantidadSeleccionada[productId];
 
     if (cantidad <= 0 || !cantidad) {
-      this.matSnackBar.open("Agrega al menos una cantidad", 'Cerrar', {
+      this.matSnackBar.open('Agrega al menos una cantidad', 'Cerrar', {
         duration: 5000,
-        horizontalPosition: 'center'
+        horizontalPosition: 'center',
       });
       return;
     }
 
     const cartRequest: CartRequest = {
       recetaId: productId,
-      cantidad: cantidad
+      cantidad: cantidad,
     };
 
     this.carritoService.addCarrito([cartRequest]).subscribe({
@@ -118,16 +117,20 @@ export class HomeProductsComponent {
         this.obtenerProductos();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
-          horizontalPosition: 'center'
+          horizontalPosition: 'center',
         });
       },
       error: (err) => {
         console.log('Error al agregar producto al carrito:', err);
-        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center'
-        });
-      }
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
+      },
     });
   }
 

@@ -20,7 +20,8 @@ export class CatalogoProductosComponent {
     this.cargando = true;
     this.catalogoRecetaService.getRecetas().subscribe({
       next: (data) => {
-        this.products = data;
+        //this.products = data; // -- todos los productos en el catalogo
+        this.products = data.filter((product) => product.estatus === true);
         this.cargando = false;
       },
       error: (e) => {
