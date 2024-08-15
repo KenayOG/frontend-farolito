@@ -54,18 +54,48 @@
                 </div>
                 <div class="row mt-3">
                   <div class="col-6 text-center">
-                    <button class="btn btn-danger btn-lg">
+                    <button
+                      class="btn btn-danger"
+                      type="submit"
+                      (click)="
+                        advertenciaEstatus(modalEstatusReceta, recipe.id)
+                      "
+                    >
                       <i class="fas fa-trash"></i>&nbsp;Eliminar
                     </button>
                   </div>
-                  <!-- <div class="col-6 text-center">
+                  <div class="col-6 text-center">
                     <button
-                      class="btn btn-primary btn-lg"
-                      click="alertaMientras()"
+                      class="btn btn-primary"
+                      (click)="editarReceta(recipe)"
                     >
-                      <i class="fa-solid fa-pen"></i>&nbsp;&nbsp;Editar
+                      <i class="fa-solid fa-pen"></i>&nbsp;Editar
                     </button>
-                  </div> -->
+                  </div>
+                </div>
+                <!-- Archivo de imagen -->
+                <div class="row mt-3">
+                  <form>
+                    <div class="form-floating mt-2">
+                      <div class="input-group-dark">
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="inputGroupFile"
+                          (change)="cargarFoto($event)"
+                          accept=".webp"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-success mt-3"
+                      type="submit"
+                      (click)="subirFoto(recipe.id)"
+                      style="margin-left: 50px"
+                    >
+                      <i class="fa-solid fa-image"></i>&nbsp;Agregar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -149,21 +179,6 @@
                 </div>
               </div>
 
-              <!-- Archivo de imagen -->
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-floating mt-2">
-                    <div class="input-group-dark">
-                      <input
-                        type="file"
-                        class="form-control"
-                        id="inputGroupFile"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <!-- Botón de guardar -->
               <div class="row mt-3">
                 <div class="col-12 text-center">
@@ -183,6 +198,19 @@
     </div>
   </div>
 </div>
+
+<ng-template #modalEstatusReceta let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-center p-2" id="exampleModalLongTitle">
+      <i class="fa-solid fa-circle-exclamation" style="color: red"></i
+      >&nbsp;&nbsp;¿Desea eliminar esta receta?
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="cancelarActualizacion()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="ActualizarEstatusReceta()">Aceptar</button>
+  </div>
+</ng-template>
 
 <div *ngIf="cargando" class="spinner-overlay">
   <div class="spinner-container">

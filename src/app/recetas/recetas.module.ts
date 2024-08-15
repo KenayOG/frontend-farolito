@@ -11,9 +11,10 @@ import { RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecetasService } from '../services/recetas.service';
 import { AppComponent } from '../app.component';
+import { EditarRecetasComponent } from './editar-recetas/editar-recetas.component';
 
 @NgModule({
-  declarations: [AdministracionRecetasComponent],
+  declarations: [AdministracionRecetasComponent, EditarRecetasComponent],
   imports: [
     CommonModule,
     AccordionModule,

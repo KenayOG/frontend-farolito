@@ -30,6 +30,7 @@ import { ForgotPasswordComponent } from './autenticacion/forgot-password/forgot-
 import { GenerarProduccionComponent } from './produccion/generar-produccion/generar-produccion.component';
 import { AgregarComponenteComponent } from './inventario/agregar-componente/agregar-componente.component';
 import { AdministracionComprasComponent } from './compras/administracion-compras/administracion-compras.component';
+import { EditarRecetasComponent } from './recetas/editar-recetas/editar-recetas.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -51,6 +52,7 @@ export const routes: Routes = [
   { path: 'logistica', component: EstatusPedidosComponent },
   { path: 'produccion', component: PedidosProduccionComponent },
   { path: 'recetas', component: AdministracionRecetasComponent },
+  { path: 'editar-receta', component: EditarRecetasComponent },
   { path: 'inventario', component: AdministracionInventarioComponent },
   { path: 'detalle-lampara/:id', component: DetalleLamparaComponent },
   { path: 'detalle-componente/:id', component: DetalleComponenteComponent },

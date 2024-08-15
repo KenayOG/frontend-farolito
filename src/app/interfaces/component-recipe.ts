@@ -17,3 +17,8 @@ export interface DetalleCompra {
   cantidad: number;
   costo: number;
 }
+
+export interface DeleteComponente{
+  componenteId: number;
+  estatusComponente: boolean;
+}

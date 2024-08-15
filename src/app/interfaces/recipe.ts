@@ -1,4 +1,4 @@
-import { ComponenteRecipe, ComponenteRecipeRequest } from './component-recipe';
+import { ComponenteRecipe, ComponenteRecipeRequest, DeleteComponente } from './component-recipe';
 
 export interface Recipe {
   id: number;
@@ -14,4 +14,11 @@ export interface RecipeRequest {
   nombrelampara: string;
   estatus: boolean;
   componentes: ComponenteRecipeRequest[];
+}
+
+
+export interface DeleteRecipe {
+  recetaId: number;
+  estatusReceta: boolean;
+  componentes: DeleteComponente[];
 }
