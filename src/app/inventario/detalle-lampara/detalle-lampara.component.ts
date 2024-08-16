@@ -1,9 +1,14 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LampDetail } from '../../interfaces/lamp-detail';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { Table } from 'primeng/table';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MermaService } from '../../services/merma.service';
+import { LampDecreaseRequest } from '../../interfaces/lamp-decrease';
+
 @Component({
   selector: 'app-detalle-lampara',
   templateUrl: './detalle-lampara.component.html',
@@ -13,13 +18,59 @@ export class DetalleLamparaComponent {
   lampDetail: LampInventory | undefined;
   nombreLampara: string = '';
   cargando: boolean = true;
+  selectedLamp: any = {};
   @ViewChild('dtDetalleLamparas') dtDetalleLamparas!: Table;
 
   constructor(
     private route: ActivatedRoute,
-    private inventarioService: InventarioService
+    private inventarioService: InventarioService,
+    private matSnackBar: MatSnackBar,
+    private modalService: NgbModal,
+    private mermaService: MermaService
   ) {
     this.obtenerDetalleLampara();
+  }
+
+  openMermarLamparaModal(content: TemplateRef<any>, lamp: any) {
+    this.selectedLamp = lamp;
+    this.modalService.open(content, {
+      ariaLabelledBy: 'mermarLamparaModal',
+    });
+  }
+
+  mermarLampara() {
+    const requestData: LampDecreaseRequest = {
+      cantidad: this.selectedLamp.cantidadd,
+      descripcion: this.selectedLamp.descripcion,
+      inventariolamparaId: this.selectedLamp.id,
+    };
+
+    this.mermaService.sendMermaLamparas(requestData).subscribe({
+      next: (response) => {
+        console.log('Respuesta de merma lámpara:', response);
+        //this.limpiarModal();
+        this.modalService.dismissAll();
+        this.obtenerDetalleLampara();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+      error: (err) => {
+        console.log('Error al mermar lámpara:', err);
+        this.modalService.dismissAll();
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          }
+        );
+      },
+    });
   }
 
   obtenerDetalleLampara() {
@@ -27,6 +78,11 @@ export class DetalleLamparaComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.inventarioService.getLamparaPorId(id).subscribe(
       (lamp) => {
+        if (lamp?.detalles) {
+          lamp.detalles = lamp.detalles.filter(
+            (detalle) => detalle.cantidad > 0
+          );
+        }
         this.lampDetail = lamp;
         this.nombreLampara =
           this.lampDetail?.nombrelampara ||
