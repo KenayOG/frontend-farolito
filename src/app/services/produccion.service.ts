@@ -7,6 +7,7 @@ import {
   ProductionHechas,
   ProductionReject,
   ProductionSolicitude,
+  ProductionSteps,
 } from '../interfaces/production';
 import { ResponsePosts } from '../interfaces/response-posts';
 @Injectable({
@@ -23,8 +24,15 @@ export class ProduccionService {
   }
 
   // Metodo para cargar producciones hechas
-  getCargarProducciones(): Observable<ProductionHechas[]> {
+  getCargarProduccionesHechas(): Observable<ProductionHechas[]> {
     return this._http.get<ProductionHechas[]>(
+      `${this.apiUrl}/CargarProduciones`
+    );
+  }
+
+  // Metodo para cargar producciones hechas
+  getCargarProducciones(): Observable<ProductionSteps[]> {
+    return this._http.get<ProductionSteps[]>(
       `${this.apiUrl}/CargarProduciones`
     );
   }

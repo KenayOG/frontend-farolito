@@ -218,7 +218,6 @@
               </th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
-              <th>&nbsp;</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-component>
@@ -246,16 +245,6 @@
                   [routerLink]="['/agregar-lote', component.id]"
                 >
                   <i class="fa-solid fa-plus"></i>&nbsp;Agregar lote
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn btn-danger"
-                  (click)="
-                    openMermarComponenteModal(mermarComponenteModal, component)
-                  "
-                >
-                  <i class="fa-solid fa-trash"></i>&nbsp;Mermar
                 </a>
               </td>
             </tr>

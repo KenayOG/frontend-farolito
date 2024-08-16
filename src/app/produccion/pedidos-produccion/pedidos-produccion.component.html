@@ -1,81 +1,43 @@
 <div class="container">
   <nav style="margin: 0 140px" class="mt-5">
     <div class="nav nav-tabs m-3 custom-tabs" id="nav-tab" role="tablist">
-      <button
-        class="nav-link active"
-        id="nav-solicitudes-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-solicitudes"
-        type="button"
-        role="tab"
-        aria-controls="nav-solicitudes"
-        aria-selected="true"
-      >
+      <button class="nav-link active" id="nav-solicitudes-tab" data-bs-toggle="tab" data-bs-target="#nav-solicitudes"
+        type="button" role="tab" aria-controls="nav-solicitudes" aria-selected="true">
         Solicitudes
       </button>
-      <button
-        class="nav-link"
-        id="nav-completadas-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#nav-completadas"
-        type="button"
-        role="tab"
-        aria-controls="nav-completadas"
-        aria-selected="false"
-      >
+      <button class="nav-link" id="nav-producciones-tab" data-bs-toggle="tab" data-bs-target="#nav-producciones"
+        type="button" role="tab" aria-controls="nav-producciones" aria-selected="false">
+        Producciones
+      </button>
+      <button class="nav-link" id="nav-completadas-tab" data-bs-toggle="tab" data-bs-target="#nav-completadas"
+        type="button" role="tab" aria-controls="nav-completadas" aria-selected="false">
         Completadas
       </button>
     </div>
   </nav>
   <div class="card align-items-center mt-5" style="border: none">
     <div class="row tab-content" id="nav-tabContent">
-      <div
-        class="col-12 tab-pane fade show active"
-        id="nav-solicitudes"
-        role="tabpanel"
-        aria-labelledby="nav-solicitudes-tab"
-      >
-        <p-table
-          #dtSolicitudesProduccion
-          [value]="solicitudesProduccion"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['nombreUsuario', 'receta.nombrelampara']"
-        >
+
+      <div class="col-12 tab-pane fade show active" id="nav-solicitudes" role="tabpanel"
+        aria-labelledby="nav-solicitudes-tab">
+        <p-table #dtSolicitudesProduccion [value]="solicitudesProduccion" [scrollable]="true" scrollHeight="270px"
+          [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['nombreUsuario', 'receta.nombreLampara']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
-                <b
-                  ><i class="fa-solid fa-screwdriver-wrench"></i
-                  >&nbsp;&nbsp;Administraci&oacute;n de Producci&oacute;n</b
-                >
+                <b><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Administración de Producción</b>
               </h3>
               <p-iconField iconPosition="left" style="margin-left: 200px">
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input
-                  pInputText
-                  type="text"
-                  placeholder="Buscar por usuario o receta:"
-                  (input)="applyFilterGlobal($event, 'dtSolicitudesProduccion')"
-                />
+                <input pInputText type="text" placeholder="Buscar por usuario o receta:"
+                  (input)="applyFilterGlobal($event, 'dtSolicitudesProduccion')" />
               </p-iconField>
-              <a
-                routerLink="/generar-produccion"
-                class="btn btn-success p-3"
-                style="margin-left: 80px"
-              >
-                <i
-                  class="fa-solid fa-circle-plus"
-                  style="margin-right: 5px"
-                ></i>
+              <a routerLink="/generar-produccion" class="btn btn-success p-3" style="margin-left: 80px">
+                <i class="fa-solid fa-circle-plus" style="margin-right: 5px"></i>
                 Solicitar Producción
               </a>
             </div>
@@ -90,7 +52,7 @@
               </th>
               <th pSortableColumn="descripcion">
                 <div class="flex justify-content-between align-items-center">
-                  Descripcion
+                  Descripción
                   <p-sortIcon field="descripcion" />
                 </div>
               </th>
@@ -106,10 +68,16 @@
                   <p-sortIcon field="nombreUsuario" />
                 </div>
               </th>
-              <th pSortableColumn="receta.nombrelampara">
+              <th pSortableColumn="receta.nombreLampara">
                 <div class="flex justify-content-between align-items-center">
                   Receta
-                  <p-sortIcon field="receta.nombrelampara" />
+                  <p-sortIcon field="receta.nombreLampara" />
+                </div>
+              </th>
+              <th pSortableColumn="estatus">
+                <div class="flex justify-content-between align-items-center">
+                  Estatus
+                  <p-sortIcon field="estatus" />
                 </div>
               </th>
               <th></th>
@@ -130,12 +98,14 @@
               <td>
                 {{ solicitud.nombreUsuario }}
               </td>
-              <td>{{ solicitud.receta?.nombrelampara }}</td>
               <td>
-                <button
-                  class="btn btn-success"
-                  (click)="aprobarSolicitud(solicitud.id)"
-                >
+                {{ solicitud.receta?.nombrelampara }}
+              </td>
+              <td>
+                {{ solicitud.estatus }}
+              </td>
+              <td>
+                <button class="btn btn-success" (click)="aprobarSolicitud(solicitud.id)">
                   <i class="fa-solid fa-check"></i>
                 </button>
               </td>
@@ -148,43 +118,139 @@
           </ng-template>
         </p-table>
       </div>
-      <div
-        class="col-12 tab-pane fade"
-        id="nav-completadas"
-        role="tabpanel"
-        aria-labelledby="nav-completadas-tab"
-      >
-        <p-table
-          #dtProduccionesHechas
-          [value]="produccionesCompletadas"
-          [scrollable]="true"
-          scrollHeight="270px"
-          [rowHover]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          [paginator]="true"
-          currentPageReportTemplate="Mostrando {first} de {last}"
-          [filterDelay]="0"
-          [globalFilterFields]="['solicitudProduccion.receta.nombrelampara']"
-        >
+
+      <div class="col-12 tab-pane fade" id="nav-producciones" role="tabpanel" aria-labelledby="nav-producciones-tab">
+        <p-table #dtProducciones [value]="producciones" [scrollable]="true" scrollHeight="270px" [rowHover]="true"
+          [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['descripcion', 'receta.nombreLampara']">
           <ng-template pTemplate="caption">
             <div class="d-flex">
               <h3 class="mt-2">
-                <b
-                  ><i class="fa-solid fa-screwdriver-wrench"></i
-                  >&nbsp;&nbsp;Producci&oacute;nes con respuesta</b
-                >
+                <b><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Producciones</b>
               </h3>
               <p-iconField iconPosition="left" style="margin-left: 200px">
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input
-                  pInputText
-                  type="text"
-                  placeholder="Buscar por receta:"
-                  (input)="applyFilterGlobal($event, 'dtProduccionesHechas')"
-                />
+                <input pInputText type="text" placeholder="Buscar por descripción o receta:"
+                  (input)="applyFilterGlobal($event, 'dtProducciones')" />
+              </p-iconField>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" hidden>
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                  <p-sortIcon field="id" />
+                </div>
+              </th>
+              <th pSortableColumn="status">
+                <div class="flex justify-content-between align-items-center">
+                  Estatus
+                  <p-sortIcon field="status" />
+                </div>
+              </th>
+              <th pSortableColumn="costo">
+                <div class="flex justify-content-between align-items-center">
+                  Costo
+                  <p-sortIcon field="costo" />
+                </div>
+              </th>
+              <th pSortableColumn="nombreUsuario">
+                <div class="flex justify-content-between align-items-center">
+                  Aceptada por:
+                  <p-sortIcon field="nombreUsuario" />
+                </div>
+              </th>
+              <th pSortableColumn="solicitudProduccion.descripcion">
+                <div class="flex justify-content-between align-items-center">
+                  Descripción
+                  <p-sortIcon field="solicitudProduccion.descripcion" />
+                </div>
+              </th>
+              <th pSortableColumn="solicitudProduccion.receta.nombreLampara">
+                <div class="flex justify-content-between align-items-center">
+                  Receta
+                  <p-sortIcon field="solicitudProduccion.receta.nombreLampara" />
+                </div>
+              </th>
+              <th pSortableColumn="solicitudProduccion.cantidad">
+                <div class="flex justify-content-between align-items-center">
+                  Cantidad
+                  <p-sortIcon field="solicitudProduccion.cantidad" />
+                </div>
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-produccion>
+            <tr class="p-selectable-row">
+              <td style="display: none">
+                {{ produccion.id }}
+              </td>
+              <td>
+                {{ produccion.solicitudProduccion.estatus }}
+              </td>
+              <td>
+                {{ produccion.costo }}
+              </td>
+              <td>
+                {{ produccion.nombreUsuario }}
+              </td>
+              <td>
+                {{ produccion.solicitudProduccion.descripcion }}
+              </td>
+              <td>
+                {{ produccion.solicitudProduccion.receta?.nombrelampara }}
+              </td>
+              <td>
+                {{ produccion.solicitudProduccion.cantidad }}
+              </td>
+              <td>
+                <ng-container [ngSwitch]="produccion.solicitudProduccion.estatus">
+                  <button *ngSwitchCase="'Autorizada'" class="btn btn-success" (click)="updateSolicitude(produccion.id)">
+                    <i class="fa-solid fa-check"></i> Mandar a Soldar
+                  </button>
+                  <button *ngSwitchCase="'Soldando'" class="btn btn-secondary" (click)="updateSolicitude(produccion.id)">
+                    <i class="fa-solid fa-spinner"></i> Armar Producto
+                  </button>
+                  <button *ngSwitchCase="'Armando'" class="btn btn-warning" (click)="updateSolicitude(produccion.id)">
+                    <i class="fa-solid fa-tools"></i> Revisión de Calidad
+                  </button>
+                  <button *ngSwitchCase="'Calidad'" class="btn btn-info" (click)="finishSolicitude(produccion.id)">
+                    <i class="fa-solid fa-check-circle"></i> Terminar Producción
+                  </button>
+                  <button *ngSwitchDefault class="btn btn-warning" (click)="updateSolicitude(produccion.id)" hidden>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </ng-container>
+                <ng-template #actionButtons>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="col-12 tab-pane fade" id="nav-completadas" role="tabpanel" aria-labelledby="nav-completadas-tab">
+        <p-table #dtProduccionesHechas [value]="produccionesCompletadas" [scrollable]="true" scrollHeight="270px"
+          [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0"
+          [globalFilterFields]="['solicitudProduccion.receta.nombreLampara']">
+          <ng-template pTemplate="caption">
+            <div class="d-flex">
+              <h3 class="mt-2">
+                <b><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Producciones con respuesta</b>
+              </h3>
+              <p-iconField iconPosition="left" style="margin-left: 200px">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input pInputText type="text" placeholder="Buscar por receta:"
+                  (input)="applyFilterGlobal($event, 'dtProduccionesHechas')" />
               </p-iconField>
             </div>
           </ng-template>
@@ -216,16 +282,14 @@
               </th>
               <th pSortableColumn="solicitudProduccion.descripcion">
                 <div class="flex justify-content-between align-items-center">
-                  Descripcion
-                  <p-sortIcon field="descripcion" />
+                  Descripción
+                  <p-sortIcon field="solicitudProduccion.descripcion" />
                 </div>
               </th>
-              <th pSortableColumn="solicitudProduccion.receta.nombrelampara">
+              <th pSortableColumn="solicitudProduccion.receta.nombreLampara">
                 <div class="flex justify-content-between align-items-center">
                   Receta
-                  <p-sortIcon
-                    field="solicitudProduccion.receta.nombrelampara"
-                  />
+                  <p-sortIcon field="solicitudProduccion.receta.nombreLampara" />
                 </div>
               </th>
               <th pSortableColumn="solicitudProduccion.cantidad">
@@ -234,8 +298,6 @@
                   <p-sortIcon field="solicitudProduccion.cantidad" />
                 </div>
               </th>
-              <th></th>
-              <th></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-prodHechas>
@@ -252,18 +314,14 @@
               <td>
                 {{ prodHechas.nombreUsuario }}
               </td>
-              <td>{{ prodHechas.solicitudProduccion.descripcion }}</td>
-              <td>{{ prodHechas.solicitudProduccion.receta.nombrelampara }}</td>
-              <td>{{ prodHechas.solicitudProduccion.cantidad }}</td>
               <td>
-                <button class="btn btn-success">
-                  <i class="fa-solid fa-check"></i>
-                </button>
+                {{ prodHechas.solicitudProduccion.descripcion }}
               </td>
               <td>
-                <button class="btn btn-danger">
-                  <i class="fa-solid fa-x"></i>
-                </button>
+                {{ prodHechas.solicitudProduccion.receta.nombrelampara }}
+              </td>
+              <td>
+                {{ prodHechas.solicitudProduccion.cantidad }}
               </td>
             </tr>
           </ng-template>
@@ -274,21 +332,11 @@
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">
         <div class="spinner-wrapper">
-          <p-progressSpinner
-            styleClass="w-7rem h-7rem"
-            strokeWidth="6"
-            fill="var(--surface-ground)"
-            animationDuration=".8s"
-          >
+          <p-progressSpinner styleClass="w-7rem h-7rem" strokeWidth="6" fill="var(--surface-ground)"
+            animationDuration=".8s">
           </p-progressSpinner>
-          <img
-            src="assets/images/logo-farolito.webp"
-            alt="Logo de farolito"
-            class="spinner-logo"
-          />
+          <img src="assets/images/logo-farolito.webp" alt="Logo de farolito" class="spinner-logo" />
         </div>
         <p class="spinner-message">Espere por favor...</p>
       </div>
     </div>
-  </div>
-</div>

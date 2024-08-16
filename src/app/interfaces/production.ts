@@ -1,10 +1,10 @@
-import { RecipeProduction } from './recipe-production';
+import { RecipeProduction, RecipeSteps } from './recipe-production';
 
 export interface Production {
   id: number;
   descripcion: string;
   cantidad: number;
-  estatus: number;
+  estatus: string;
   nombreUsuario: string;
   receta: RecipeProduction;
 }
@@ -26,4 +26,12 @@ export interface ProductionHechas {
   costo: number;
   nombreUsuario: string;
   solicitudProduccion: Production;
+}
+
+export interface ProductionSteps {
+  id: number;
+  fecha: string;
+  costo: number;
+  nombreUsuario: string;
+  solicitudProduccion: RecipeSteps;
 }

@@ -22,3 +22,8 @@ export interface DeleteRecipe {
   estatusReceta: boolean;
   componentes: DeleteComponente[];
 }
+
+export interface RecipeSolicitude {
+  id: number;
+  nombrelampara: string;
+}
