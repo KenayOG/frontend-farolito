@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {
   Production,
   ProductionHechas,
+  ProductionReject,
   ProductionSolicitude,
 } from '../interfaces/production';
 import { ResponsePosts } from '../interfaces/response-posts';
@@ -28,6 +29,11 @@ export class ProduccionService {
     );
   }
 
+  // Metodo para generar lote por nombre de lámpara
+  generateLote(): Observable<string> {
+    return this._http.get<string>(`${this.apiUrl}/GenerarLote`);
+  }
+
   // Método para agregar solicitud producción
   createProdSolicitude(data: ProductionSolicitude): Observable<ResponsePosts> {
     return this._http.post<ResponsePosts>(
@@ -42,5 +48,20 @@ export class ProduccionService {
       `${this.apiUrl}/AutorizarSolicitud`,
       data
     );
+  }
+
+  // Método para Rechazar una solicitud de producción
+  rejectSolicitude(data: ProductionReject): Observable<ResponsePosts> {
+    return this._http.patch<ResponsePosts>(`${this.apiUrl}/RechazarSolicitud`, data);
+  }
+
+  // Método para actualizar una solicitud de producción
+  updateSolicitude(data: number): Observable<ResponsePosts> {
+    return this._http.patch<ResponsePosts>(`${this.apiUrl}/ActualizarProduccion`, data);
+  }
+
+  // Método para terminar una solicitud de producción
+  finishSolicitude(data: number): Observable<ResponsePosts> {
+    return this._http.patch<ResponsePosts>(`${this.apiUrl}/TerminarProduccion`, data);
   }
 }

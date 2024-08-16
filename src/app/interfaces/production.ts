@@ -15,6 +15,11 @@ export interface ProductionSolicitude {
   recetaId: number;
 }
 
+export interface ProductionReject {
+  id: number;
+  descripcion: string;
+}
+
 export interface ProductionHechas {
   id: number;
   fecha: string;
