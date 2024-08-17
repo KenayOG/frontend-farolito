@@ -4,4 +4,5 @@ export interface LampDetail {
   usuario: string;
   cantidad: number;
   precio: number;
+  estatus: string;
 }

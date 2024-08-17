@@ -1,26 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-12 mt-5">
-      <p-table
-        #dtDetalleLamparas
-        [value]="lampDetail?.detalles || []"
-        [scrollable]="true"
-        scrollHeight="270px"
-        [rowHover]="true"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        [paginator]="true"
-        currentPageReportTemplate="Mostrando {first} de {last}"
-        [filterDelay]="0"
-        [globalFilterFields]="['usuario']"
-      >
+      <p-table #dtDetalleLamparas [value]="lampDetail?.detalles || []" [scrollable]="true" scrollHeight="270px"
+        [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} de {last}" [filterDelay]="0" [globalFilterFields]="['usuario']">
         <ng-template pTemplate="caption">
           <div class="text-center">
             <div class="d-flex justify-content-center">
               <h3 class="mt-2">
                 <b>
                   <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;{{
-                    nombreLampara
+                  nombreLampara
                   }}
                 </b>
               </h3>
@@ -28,13 +18,8 @@
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input
-                  pInputText
-                  type="text"
-                  placeholder="Buscar por lampara:"
-                  class="mt-1"
-                  (input)="applyFilterGlobal($event, 'dtDetalleLamparas')"
-                />
+                <input pInputText type="text" placeholder="Buscar por lampara:" class="mt-1"
+                  (input)="applyFilterGlobal($event, 'dtDetalleLamparas')" />
               </p-iconField>
             </div>
           </div>
@@ -65,6 +50,12 @@
                 <p-sortIcon field="cantidad" />
               </div>
             </th>
+            <th pSortableColumn="estatus">
+              <div class="flex justify-content-between align-items-center">
+                Estatus
+                <p-sortIcon field="estatus" />
+              </div>
+            </th>
             <th pSortableColumn="precio">
               <div class="flex justify-content-between align-items-center">
                 Precio
@@ -75,17 +66,15 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-detail>
-          <tr class="p-selectable-row">
+          <tr class="p-selectable-row" [ngClass]="{'calidad-bg': detail.estatus === 'Calidad'}">
             <td style="display: none">{{ detail.id }}</td>
             <td>{{ detail.fechaProduccion }}</td>
             <td>{{ detail.usuario }}</td>
             <td>{{ detail.cantidad }}</td>
+            <td>{{ detail.estatus }}</td>
             <td>{{ detail.precio }}</td>
             <td>
-              <a
-                class="btn btn-danger"
-                (click)="openMermarLamparaModal(mermarLamparaModal, detail)"
-              >
+              <a class="btn btn-danger" (click)="openMermarLamparaModal(mermarLamparaModal, detail)">
                 <i class="fa-solid fa-trash"></i>&nbsp;Mermar
               </a>
             </td>
@@ -96,18 +85,10 @@
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">
         <div class="spinner-wrapper">
-          <p-progressSpinner
-            styleClass="w-7rem h-7rem"
-            strokeWidth="6"
-            fill="var(--surface-ground)"
-            animationDuration=".8s"
-          >
+          <p-progressSpinner styleClass="w-7rem h-7rem" strokeWidth="6" fill="var(--surface-ground)"
+            animationDuration=".8s">
           </p-progressSpinner>
-          <img
-            src="assets/images/logo-farolito.webp"
-            alt="Logo de farolito"
-            class="spinner-logo"
-          />
+          <img src="assets/images/logo-farolito.webp" alt="Logo de farolito" class="spinner-logo" />
         </div>
         <p class="spinner-message">Espere por favor...</p>
       </div>
@@ -123,31 +104,15 @@
     <form>
       <div class="mb-3">
         <label for="cantidadLampara" class="form-label">Cantidad</label>
-        <input
-          type="number"
-          id="cantidadLampara"
-          class="form-control"
-          [(ngModel)]="selectedLamp.cantidadd"
-          name="cantidad"
-          required
-        />
+        <input type="number" id="cantidadLampara" class="form-control" [(ngModel)]="selectedLamp.cantidadd"
+          name="cantidad" required />
       </div>
       <div class="mb-3">
         <label for="descripcionLampara" class="form-label">Descripción</label>
-        <textarea
-          id="descripcionLampara"
-          class="form-control"
-          [(ngModel)]="selectedLamp.descripcion"
-          name="descripcion"
-          required
-        ></textarea>
+        <textarea id="descripcionLampara" class="form-control" [(ngModel)]="selectedLamp.descripcion" name="descripcion"
+          required></textarea>
       </div>
-      <input
-        id="inventariolamparaId"
-        [(ngModel)]="selectedLamp.id"
-        name="inventariolamparaId"
-        hidden
-      />
+      <input id="inventariolamparaId" [(ngModel)]="selectedLamp.id" name="inventariolamparaId" hidden />
       <button type="submit" class="btn btn-success" style="margin-right: 20px" (click)="mermarLampara()">
         Confirmar
       </button>
