@@ -21,7 +21,7 @@ export class EstatusPedidosClientesComponent {
   filtroOrdenesFinalizado: OrderCustomer[] = [];
   filtroOrdenesEntregado: OrderCustomer[] = [];
   recipes: Recipe[] = [];
-  baseUrl: string = 'https://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
   cargando: boolean = true;
 
   constructor(
@@ -80,11 +80,13 @@ export class EstatusPedidosClientesComponent {
   }
 
   obtenerDetallePedido(pedidoId: number): void {
-    const pedidoSeleccionado = this.orders.find(order => order.id === pedidoId);
+    const pedidoSeleccionado = this.orders.find(
+      (order) => order.id === pedidoId
+    );
 
     if (pedidoSeleccionado) {
       this.router.navigate(['/detalle-pedido', pedidoId], {
-        state: { pedido: pedidoSeleccionado }
+        state: { pedido: pedidoSeleccionado },
       });
     } else {
       this.matSnackbar.open('Pedido no encontrado', 'Cerrar', {
@@ -93,7 +95,6 @@ export class EstatusPedidosClientesComponent {
         horizontalPosition: 'center',
       });
     }
-    
   }
 
   ObtenerImagen(recetaId: number): string | undefined {

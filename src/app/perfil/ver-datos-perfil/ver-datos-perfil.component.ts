@@ -51,7 +51,7 @@ export class VerDatosPerfilComponent implements OnInit {
   selectedFile: File | null = null;
   message: string | null = null;
   backgroundImageUrl: string = '';
-  baseUrl: string = 'https://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
 
   constructor(
     private usuariosService: UsuariosService,

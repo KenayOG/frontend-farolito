@@ -91,7 +91,7 @@
                       class="btn btn-success mt-3"
                       type="submit"
                       (click)="subirFoto(recipe.id)"
-                      style="margin-left: 50px"
+                      style="margin-left: 130px"
                     >
                       <i class="fa-solid fa-image"></i>&nbsp;Agregar
                     </button>
@@ -207,8 +207,20 @@
     </h5>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="cancelarActualizacion()">Cancelar</button>
-    <button type="button" class="btn btn-success" (click)="ActualizarEstatusReceta()">Aceptar</button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="cancelarActualizacion()"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="ActualizarEstatusReceta()"
+    >
+      Aceptar
+    </button>
   </div>
 </ng-template>
 

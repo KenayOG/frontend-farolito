@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AdministracionRecetasComponent {
   recipes: Recipe[] = [];
   listaComponentes: Componente[] = [];
-  baseUrl: string = 'https://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
   cargando: boolean = true;
   selectedComponents = new Set<any>();
   cantidadRequerida: { [key: number]: number } = {};
@@ -63,8 +63,8 @@ export class AdministracionRecetasComponent {
     if (this.recetaIdTemp) {
       const requestBody: DeleteRecipe = {
         recetaId: this.recetaIdTemp,
-        estatusReceta: false, // Cambia el estatus a false para eliminar lógicamente la receta
-        componentes: [], // Lista vacía si no estás cambiando el estatus de los componentes
+        estatusReceta: false, 
+        componentes: [], 
       };
 
       this.recetasService.deleteRecipe(requestBody).subscribe({
@@ -74,8 +74,8 @@ export class AdministracionRecetasComponent {
             verticalPosition: 'top',
             horizontalPosition: 'center',
           });
-          this.obtenerRecetas(); // Actualiza la lista de recetas
-          this.modalService.dismissAll(); // Cierra el modal después de la eliminación
+          this.obtenerRecetas(); 
+          this.modalService.dismissAll(); 
         },
         error: (err) => {
           console.error('Error al eliminar la receta:', err);

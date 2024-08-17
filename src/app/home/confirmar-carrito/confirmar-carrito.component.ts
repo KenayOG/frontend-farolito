@@ -14,10 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./confirmar-carrito.component.css'],
 })
 export class ConfirmarCarritoComponent {
-
   cartProducts: Cart[] = [];
   products: LampInventory[] = [];
-  baseUrl: string = 'https://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
 
   constructor(
     private carritoService: CarritoService,
@@ -57,13 +56,13 @@ export class ConfirmarCarritoComponent {
   }
 
   getPrice(productId: number): number {
-    const product = this.products.find(p => p.id === productId);
+    const product = this.products.find((p) => p.id === productId);
     return product ? product.costo : 0;
   }
 
   calculateTotal(): number {
     return this.cartProducts.reduce((total, cartItem) => {
-      return total + (cartItem.cantidad * this.getPrice(cartItem.lamparaId));
+      return total + cartItem.cantidad * this.getPrice(cartItem.lamparaId);
     }, 0);
   }
 
@@ -71,28 +70,36 @@ export class ConfirmarCarritoComponent {
     const removeRequest: CartRemove[] = [{ id: productId }];
     this.carritoService.deleteCarrito(removeRequest).subscribe({
       next: () => {
-        this.cartProducts = this.cartProducts.filter(item => item.lamparaId !== productId);
+        this.cartProducts = this.cartProducts.filter(
+          (item) => item.lamparaId !== productId
+        );
         this.calculateTotal();
-        this.matSnackBar.open("Producto eliminado del carrito", 'Cerrar', {
+        this.matSnackBar.open('Producto eliminado del carrito', 'Cerrar', {
           duration: 5000,
-          horizontalPosition: 'center'
+          horizontalPosition: 'center',
         });
       },
       error: (err) => {
         console.log(err);
-        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center'
-        });
-      }
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
+      },
     });
   }
 
   confirmarPago() {
-    const saleRequestList: SaleRequestList[] = this.cartProducts.map(cartItem => ({
-      id: cartItem.lamparaId,
-      cantidad: cartItem.cantidad
-    }));
+    const saleRequestList: SaleRequestList[] = this.cartProducts.map(
+      (cartItem) => ({
+        id: cartItem.lamparaId,
+        cantidad: cartItem.cantidad,
+      })
+    );
 
     this.ventaService.createSell(saleRequestList).subscribe({
       next: (response) => {
@@ -100,17 +107,21 @@ export class ConfirmarCarritoComponent {
         this.obtenerCarrito();
         this.matSnackBar.open(response.message, 'Cerrar', {
           duration: 5000,
-          horizontalPosition: 'center'
+          horizontalPosition: 'center',
         });
         this.router.navigate(['/home']);
       },
       error: (err) => {
         console.log('Error al crear la venta:', err);
-        this.matSnackBar.open('Ocurrió un problema: ' + (err.error.message || 'Desconocido'), 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center'
-        });
-      }
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
+      },
     });
   }
 }
