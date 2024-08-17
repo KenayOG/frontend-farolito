@@ -21,7 +21,7 @@ export class HomeProductsComponent {
   recipes: Recipe[] = [];
   cartProducts: Cart[] = [];
   cargando: boolean = true;
-  baseUrl: string = 'https://localhost:5000';
+  baseUrl: string = 'http://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
 
   constructor(
