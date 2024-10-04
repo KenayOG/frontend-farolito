@@ -120,41 +120,41 @@
         </button>
       </div>
     </div>
-    <br/>
+    <br />
   </div>
   <button (click)="nextGroup()" class="carousel-control next">&#10095;</button>
 </div>
 <h3 class="title-prox">¡Proximamente a la venta!</h3>
 <div class="image-grid">
   <div class="image-item">
-    <img alt="Imagen 1" src="../../../assets/images/list/lampara-list1.jpg"/>
+    <img alt="Imagen 1" src="../../../assets/images/list/lampara-list1.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 2" src="../../../assets/images/list/lampara-list2.jpg"/>
+    <img alt="Imagen 2" src="../../../assets/images/list/lampara-list2.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 3" src="../../../assets/images/list/lampara-list3.jpg"/>
+    <img alt="Imagen 3" src="../../../assets/images/list/lampara-list3.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 4" src="../../../assets/images/list/lampara-list4.jpg"/>
+    <img alt="Imagen 4" src="../../../assets/images/list/lampara-list4.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 5" src="../../../assets/images/list/lampara-list5.jpg"/>
+    <img alt="Imagen 5" src="../../../assets/images/list/lampara-list5.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 6" src="../../../assets/images/list/lampara-list6.jpg"/>
+    <img alt="Imagen 6" src="../../../assets/images/list/lampara-list6.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 7" src="../../../assets/images/list/lampara-list7.jpg"/>
+    <img alt="Imagen 7" src="../../../assets/images/list/lampara-list7.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 8" src="../../../assets/images/list/lampara-list8.jpg"/>
+    <img alt="Imagen 8" src="../../../assets/images/list/lampara-list8.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 9" src="../../../assets/images/list/lampara-list9.jpg"/>
+    <img alt="Imagen 9" src="../../../assets/images/list/lampara-list9.jpg" />
   </div>
   <div class="image-item">
-    <img alt="Imagen 10" src="../../../assets/images/list/lampara-list10.jpg"/>
+    <img alt="Imagen 10" src="../../../assets/images/list/lampara-list10.jpg" />
   </div>
 </div>
 
@@ -211,16 +211,16 @@
 
     <div class="footer-apps">
       <a href="#"
-      ><img
-        alt="Disponible en Google Play"
-        src="../../../assets/images/footer/google-play.png"
-        style="width: 150px"
+        ><img
+          alt="Disponible en Google Play"
+          src="../../../assets/images/footer/google-play.png"
+          style="width: 150px"
       /></a>
       <a href="#"
-      ><img
-        alt="Descárgalo en App Store"
-        src="../../../assets/images/footer/app-store.jpg"
-        style="width: 150px"
+        ><img
+          alt="Descárgalo en App Store"
+          src="../../../assets/images/footer/app-store.jpg"
+          style="width: 150px"
       /></a>
     </div>
   </div>
@@ -233,15 +233,15 @@
     </div>
 
     <div class="footer-payments">
-      <img alt="Amex" src="../../../assets/images/footer/amex.jpeg"/>
+      <img alt="Amex" src="../../../assets/images/footer/amex.jpeg" />
       <img
         alt="Mastercard"
         src="../../../assets/images/footer/mastercard.png"
       />
-      <img alt="Visa" src="../../../assets/images/footer/visa.png"/>
-      <img alt="PayPal" src="../../../assets/images/footer/paypal.png"/>
-      <img alt="OXXO" src="../../../assets/images/footer/oxxo.png"/>
-      <img alt="Kueski" src="../../../assets/images/footer/kueski.png"/>
+      <img alt="Visa" src="../../../assets/images/footer/visa.png" />
+      <img alt="PayPal" src="../../../assets/images/footer/paypal.png" />
+      <img alt="OXXO" src="../../../assets/images/footer/oxxo.png" />
+      <img alt="Kueski" src="../../../assets/images/footer/kueski.png" />
     </div>
   </div>
 </footer>
@@ -254,8 +254,8 @@
 >
   <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
   <span *ngIf="cartProducts.length > 0" class="cart-count">{{
-      cartProducts.length
-    }}</span>
+    cartProducts.length
+  }}</span>
 </div>
 
 <div
@@ -290,9 +290,9 @@
         <div>
           <h6>{{ cart.lamparaNombre }}</h6>
           <p class="fw-bold">Cantidad: {{ cart.cantidad }}</p>
-          <button class="btn btn-danger btn-lg">
+          <!-- <button class="btn btn-danger btn-lg">
             <i class="fa-solid fa-trash-can"></i>
-          </button>
+          </button> -->
         </div>
       </div>
       <a
@@ -300,7 +300,7 @@
         [class.disabled]="!cartProducts.length"
         class="btn btn-success w-100"
         routerLink="/pagar-carrito"
-      >VER CARRITO Y PAGAR</a
+        >VER CARRITO Y PAGAR</a
       >
     </div>
   </div>
