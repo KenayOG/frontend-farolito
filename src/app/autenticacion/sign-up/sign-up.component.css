@@ -27,7 +27,6 @@
   left: 35%;
   text-align: center;
   transition: opacity 0.5s ease;
-  transform: trasnslate(-50%, -50%);
 }
 
 h2,
@@ -146,6 +145,42 @@ span {
   transition: background-color 0.3s;
 }
 
+.signup-button:disabled {
+  background-color: #495057;
+  color: #aaaaaa;
+  cursor: not-allowed;
+}
+
 .signup-button:hover {
   background-color: #333;
 }
+
+.signup-button:not(:disabled):hover {
+  background-color: #363b40;
+}
+
+.password-requirements {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.requirement {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #666;
+  margin: 4px 0;
+}
+
+.requirement i {
+  margin-right: 8px;
+}
+
+.valid {
+  color: green;
+}
+
+.invalid {
+  color: red;
+}
+

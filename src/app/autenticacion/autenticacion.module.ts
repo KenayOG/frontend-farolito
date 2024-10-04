@@ -8,6 +8,7 @@ import { AppComponent } from '../app.component';
 import { AuthService } from '../services/auth.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthService, provideAnimationsAsync()

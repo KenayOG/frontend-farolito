@@ -1,34 +1,58 @@
 <div class="contenido">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <div id="signup-container" class="container">
     <div class="logo">
-      <img src="assets/images/logo-farolito.webp" alt="Logo" />
+      <img ngSrc="assets/images/logo-farolito.webp" alt="Logo" height="506" width="452"/>
     </div>
     <h1 class="farolito-name">Farolito</h1>
     <div class="divider"></div>
     <form [formGroup]="form" (ngSubmit)="signUp()">
       @for (error of errors; track error) {
-      <div
-        class="bg-red-100 border mb-2 flex flex-column gap-2 border-danger text-bg-danger px-4 py-4 rounded-md relative">
-        <div class="text-xs">
-          {{error.description}}
+        <div
+          class="bg-red-100 border mb-2 flex flex-column gap-2 border-danger text-bg-danger px-4 py-4 rounded-md relative">
+          <div class="text-xs">
+            {{ error.description }}
+          </div>
         </div>
-      </div>
       }
       <div class="form-floating mt-2">
-        <input type="email" class="form-control" placeholder="Email:" id="signup-email" formControlName="email" />
-        <label for="floatingInput">Email:</label>
+        <input type="email" class="form-control" placeholder="Email:" id="signup-email" formControlName="email"/>
+        <label for="signup-email">Email:</label>
       </div>
       <div class="form-floating mt-2">
         <input type="text" class="form-control" placeholder="Username:" id="signup-username"
-          formControlName="fullName" />
-        <label for="floatingInput">Nombre Completo:</label>
+               formControlName="fullName"/>
+        <label for="signup-username">Nombre Completo:</label>
       </div>
       <div class="form-floating mt-2 mb-3">
         <input type="password" class="form-control" placeholder="Password:" id="signup-password"
-          formControlName="password" />
-        <label for="floatingInput">Password:</label>
+               formControlName="password"/>
+        <label for="signup-password">Password:</label>
       </div>
-      <button class="signup-button">Registrarse</button>
+      <div *ngIf="form.get('password')?.touched" class="password-requirements">
+        <div class="requirement" [ngClass]="{'valid': isUpperCase, 'invalid': !isUpperCase}">
+          <i class="fas" [ngClass]="{'fa-check-circle': isUpperCase, 'fa-times-circle': !isUpperCase}"></i>
+          Al menos una mayúscula
+        </div>
+        <div class="requirement" [ngClass]="{'valid': isLowerCase, 'invalid': !isLowerCase}">
+          <i class="fas" [ngClass]="{'fa-check-circle': isLowerCase, 'fa-times-circle': !isLowerCase}"></i>
+          Al menos una minúscula
+        </div>
+        <div class="requirement" [ngClass]="{'valid': isNumber, 'invalid': !isNumber}">
+          <i class="fas" [ngClass]="{'fa-check-circle': isNumber, 'fa-times-circle': !isNumber}"></i>
+          Al menos un número
+        </div>
+        <div class="requirement" [ngClass]="{'valid': isMinLength, 'invalid': !isMinLength}">
+          <i class="fas" [ngClass]="{'fa-check-circle': isMinLength, 'fa-times-circle': !isMinLength}"></i>
+          Mínimo 8 caracteres
+        </div>
+      </div>
+      <div class="form-floating mt-2 mb-3">
+        <input type="password" class="form-control" placeholder="Confirm Password:" id="signup-confirm-password"
+               formControlName="confirmPassword"/>
+        <label for="signup-confirm-password">Confirm Password:</label>
+      </div>
+      <button class="signup-button" [disabled]="form.invalid">Registrarse</button>
     </form>
     <p class="sign-in">
       ¿Ya tienes una cuenta?
