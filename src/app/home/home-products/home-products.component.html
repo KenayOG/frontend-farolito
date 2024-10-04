@@ -1,18 +1,18 @@
-<div id="heroCarousel" class="carousel slide">
+<div class="carousel slide" id="heroCarousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
-        src="../../../assets/images/lampara-skewed.webp"
-        class="d-block w-100 carousel-img"
         alt="Producto 1"
+        class="d-block w-100 carousel-img"
+        src="../../../assets/images/lampara-skewed.webp"
       />
       <div class="company-info">
         <h1 class="company-title">Farolito</h1>
         <div class="container-logo">
           <img
-            src="../../../assets/images/logo-farolito.webp"
             alt="Farolito-Logo"
             class="company-logo"
+            src="../../../assets/images/logo-farolito.webp"
           />
         </div>
       </div>
@@ -41,9 +41,9 @@
     </div> -->
     <div class="carousel-item">
       <img
-        src="../../../assets/images/lampara-skewed-op3.jpg"
-        class="d-block w-100 carousel-img"
         alt="Producto 3"
+        class="d-block w-100 carousel-img"
+        src="../../../assets/images/lampara-skewed-op3.jpg"
       />
       <!-- <div class="carousel-caption-info">
         <h2>Calidad y Elegancia para tu Hogar</h2>
@@ -57,9 +57,9 @@
         <h1 class="company-title">Farolito</h1>
         <div class="container-logo">
           <img
-            src="../../../assets/images/logo-farolito.webp"
             alt="Farolito-Logo"
             class="company-logo"
+            src="../../../assets/images/logo-farolito.webp"
           />
         </div>
       </div>
@@ -67,25 +67,25 @@
   </div>
   <button
     class="carousel-control-prev"
-    type="button"
-    data-bs-target="#heroCarousel"
     data-bs-slide="prev"
+    data-bs-target="#heroCarousel"
+    type="button"
   >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button
     class="carousel-control-next"
-    type="button"
-    data-bs-target="#heroCarousel"
     data-bs-slide="next"
+    data-bs-target="#heroCarousel"
+    type="button"
   >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span aria-hidden="true" class="carousel-control-next-icon"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>
 <div class="carousel-container">
-  <button class="carousel-control prev" (click)="prevGroup()">&#10094;</button>
+  <button (click)="prevGroup()" class="carousel-control prev">&#10094;</button>
 
   <div class="carousel-content">
     <div *ngFor="let product of displayedProducts" class="card-product">
@@ -108,52 +108,53 @@
         <div class="quantity-container">
           <label for="quantity">Cantidad:</label>
           <input
-            type="number"
-            placeholder="0"
             [(ngModel)]="cantidadSeleccionada[product.id]"
+            id="quantity"
             min="1"
+            placeholder="0"
+            type="number"
           />
         </div>
-        <button class="add-to-cart" (click)="addToCart(product.id)">
+        <button (click)="addToCart(product.id)" class="add-to-cart">
           Agregar <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
     </div>
-    <br />
+    <br/>
   </div>
-  <button class="carousel-control next" (click)="nextGroup()">&#10095;</button>
+  <button (click)="nextGroup()" class="carousel-control next">&#10095;</button>
 </div>
 <h3 class="title-prox">¡Proximamente a la venta!</h3>
 <div class="image-grid">
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list1.jpg" alt="Imagen 1" />
+    <img alt="Imagen 1" src="../../../assets/images/list/lampara-list1.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list2.jpg" alt="Imagen 2" />
+    <img alt="Imagen 2" src="../../../assets/images/list/lampara-list2.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list3.jpg" alt="Imagen 3" />
+    <img alt="Imagen 3" src="../../../assets/images/list/lampara-list3.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list4.jpg" alt="Imagen 4" />
+    <img alt="Imagen 4" src="../../../assets/images/list/lampara-list4.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list5.jpg" alt="Imagen 5" />
+    <img alt="Imagen 5" src="../../../assets/images/list/lampara-list5.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list6.jpg" alt="Imagen 6" />
+    <img alt="Imagen 6" src="../../../assets/images/list/lampara-list6.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list7.jpg" alt="Imagen 7" />
+    <img alt="Imagen 7" src="../../../assets/images/list/lampara-list7.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list8.jpg" alt="Imagen 8" />
+    <img alt="Imagen 8" src="../../../assets/images/list/lampara-list8.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list9.jpg" alt="Imagen 9" />
+    <img alt="Imagen 9" src="../../../assets/images/list/lampara-list9.jpg"/>
   </div>
   <div class="image-item">
-    <img src="../../../assets/images/list/lampara-list10.jpg" alt="Imagen 10" />
+    <img alt="Imagen 10" src="../../../assets/images/list/lampara-list10.jpg"/>
   </div>
 </div>
 
@@ -210,16 +211,16 @@
 
     <div class="footer-apps">
       <a href="#"
-        ><img
-          src="../../../assets/images/footer/google-play.png"
-          alt="Disponible en Google Play"
-          style="width: 150px"
+      ><img
+        alt="Disponible en Google Play"
+        src="../../../assets/images/footer/google-play.png"
+        style="width: 150px"
       /></a>
       <a href="#"
-        ><img
-          src="../../../assets/images/footer/app-store.jpg"
-          alt="Descárgalo en App Store"
-          style="width: 150px"
+      ><img
+        alt="Descárgalo en App Store"
+        src="../../../assets/images/footer/app-store.jpg"
+        style="width: 150px"
       /></a>
     </div>
   </div>
@@ -232,46 +233,46 @@
     </div>
 
     <div class="footer-payments">
-      <img src="../../../assets/images/footer/amex.jpeg" alt="Amex" />
+      <img alt="Amex" src="../../../assets/images/footer/amex.jpeg"/>
       <img
-        src="../../../assets/images/footer/mastercard.png"
         alt="Mastercard"
+        src="../../../assets/images/footer/mastercard.png"
       />
-      <img src="../../../assets/images/footer/visa.png" alt="Visa" />
-      <img src="../../../assets/images/footer/paypal.png" alt="PayPal" />
-      <img src="../../../assets/images/footer/oxxo.png" alt="OXXO" />
-      <img src="../../../assets/images/footer/kueski.png" alt="Kueski" />
+      <img alt="Visa" src="../../../assets/images/footer/visa.png"/>
+      <img alt="PayPal" src="../../../assets/images/footer/paypal.png"/>
+      <img alt="OXXO" src="../../../assets/images/footer/oxxo.png"/>
+      <img alt="Kueski" src="../../../assets/images/footer/kueski.png"/>
     </div>
   </div>
 </footer>
 <div
-  class="fixed-ball"
-  id="fixedBall"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
   aria-controls="offcanvasRight"
+  class="fixed-ball"
+  data-bs-target="#offcanvasRight"
+  data-bs-toggle="offcanvas"
+  id="fixedBall"
 >
-  <i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
-  <span class="cart-count" *ngIf="cartProducts.length > 0">{{
-    cartProducts.length
-  }}</span>
+  <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
+  <span *ngIf="cartProducts.length > 0" class="cart-count">{{
+      cartProducts.length
+    }}</span>
 </div>
 
 <div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="offcanvasRight"
   aria-labelledby="offcanvasRightLabel"
+  class="offcanvas offcanvas-end"
+  id="offcanvasRight"
+  tabindex="-1"
 >
   <div class="offcanvas-header">
     <h3 class="offcanvas-title" id="offcanvasRightLabel">
       Mi carrito <i class="fa-solid fa-cart-arrow-down"></i>
     </h3>
     <button
-      type="button"
+      aria-label="Close"
       class="btn-close"
       data-bs-dismiss="offcanvas"
-      aria-label="Close"
+      type="button"
     ></button>
   </div>
   <div class="offcanvas-body">
@@ -281,8 +282,8 @@
     <div *ngIf="cartProducts.length">
       <div *ngFor="let cart of cartProducts" class="d-flex mb-3">
         <img
-          [src]="getImagenProducto(cart.urlImage)"
           [alt]="cart.lamparaNombre"
+          [src]="getImagenProducto(cart.urlImage)"
           class="img-thumbnail me-2"
           style="width: 150px; height: 150px"
         />
@@ -295,11 +296,11 @@
         </div>
       </div>
       <a
-        routerLink="/pagar-carrito"
-        [class.disabled]="!cartProducts.length"
         [attr.disabled]="!cartProducts.length ? true : null"
+        [class.disabled]="!cartProducts.length"
         class="btn btn-success w-100"
-        >VER CARRITO Y PAGAR</a
+        routerLink="/pagar-carrito"
+      >VER CARRITO Y PAGAR</a
       >
     </div>
   </div>
@@ -308,16 +309,16 @@
   <div class="spinner-container">
     <div class="spinner-wrapper">
       <p-progressSpinner
-        styleClass="w-7rem h-7rem"
-        strokeWidth="6"
-        fill="var(--surface-ground)"
         animationDuration=".8s"
+        fill="var(--surface-ground)"
+        strokeWidth="6"
+        styleClass="w-7rem h-7rem"
       >
       </p-progressSpinner>
       <img
-        src="assets/images/logo-farolito.webp"
         alt="Logo de farolito"
         class="spinner-logo"
+        src="assets/images/logo-farolito.webp"
       />
     </div>
     <p class="spinner-message">Espere por favor...</p>
