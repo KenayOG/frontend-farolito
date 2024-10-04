@@ -1,66 +1,134 @@
-<nav *ngIf="showNavBar" class="navbar navbar-expand-lg navbar-light border custom-navbar justify-content-center">
+<nav
+  *ngIf="showNavBar"
+  class="navbar navbar-expand-lg navbar-light border custom-navbar justify-content-center"
+>
   <a class="navbar-brand d-flex align-items-center" href="#">
     <div class="pulse">
-      <img src="assets/images/logo-farolito.webp" alt="Logo" class="navbar-logo" />
+      <img
+        src="assets/images/logo-farolito.webp"
+        alt="Logo"
+        class="navbar-logo"
+      />
       <span style="--i: 0"></span>
       <span style="--i: 1"></span>
       <span style="--i: 2"></span>
       <span style="--i: 3"></span>
     </div>
   </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+  <div
+    class="collapse navbar-collapse justify-content-center"
+    id="navbarSupportedContent"
+  >
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a class="nav-link" routerLink="/home"
+          ><i class="fa-solid fa-house"></i><span>Home</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           !isAuthenticated || role === 'Cliente' || role === 'Administrador'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/pedidos"><i class="fa-solid fa-file-pen"></i><span>Pedidos</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/pedidos"
+          ><i class="fa-solid fa-file-pen"></i><span>Pedidos</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           !isAuthenticated || role === 'Cliente' || role === 'Administrador'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/catalogo"><i class="fa-solid fa-book"></i><span>Catálogo</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/catalogo"
+          ><i class="fa-solid fa-book"></i><span>Catálogo</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           !isAuthenticated || role === 'Cliente' || role === 'Administrador'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/acercade"><i class="fa-solid fa-circle-info"></i><span>Acerca de</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/acercade"
+          ><i class="fa-solid fa-circle-info"></i><span>Acerca de</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           !isAuthenticated || role === 'Cliente' || role === 'Administrador'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/mi-perfil"><i class="fa-solid fa-user"></i><span>Mi Perfil</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/mi-perfil"
+          ><i class="fa-solid fa-user"></i><span>Mi Perfil</span></a
+        >
       </li>
-      <li *ngIf="role === 'Administrador' || role === 'Produccion'" class="nav-item active">
-        <a class="nav-link" routerLink="/recetas"><i class="fa-solid fa-rectangle-list"></i><span>Recetas</span></a>
+      <li
+        *ngIf="role === 'Administrador' || role === 'Produccion'"
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/recetas"
+          ><i class="fa-solid fa-rectangle-list"></i><span>Recetas</span></a
+        >
       </li>
-      <li *ngIf="role === 'Administrador' || role === 'Almacen'" class="nav-item active">
-        <a class="nav-link" routerLink="/inventario"><i
-            class="fa-solid fa-boxes-stacked"></i><span>Inventario</span></a>
+      <li
+        *ngIf="role === 'Administrador' || role === 'Almacen'"
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/inventario"
+          ><i class="fa-solid fa-boxes-stacked"></i><span>Inventario</span></a
+        >
       </li>
-      <li *ngIf="role === 'Administrador' || role === 'Produccion'" class="nav-item active">
-        <a class="nav-link" routerLink="/produccion"><i
-            class="fa-solid fa-screwdriver-wrench"></i><span>Producción</span></a>
+      <li
+        *ngIf="role === 'Administrador' || role === 'Produccion'"
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/produccion"
+          ><i class="fa-solid fa-screwdriver-wrench"></i
+          ><span>Producción</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           role === 'Administrador' ||
           role === 'Produccion' ||
           role === 'Almacen'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/merma"><i class="fa-solid fa-trash-can"></i><span>Merma</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/merma"
+          ><i class="fa-solid fa-trash-can"></i><span>Merma</span></a
+        >
       </li>
-      <li *ngIf="role === 'Administrador' || role === 'Logística'" class="nav-item active">
-        <a class="nav-link" routerLink="/logistica"><i class="fa-solid fa-location-dot"></i><span>Logística</span></a>
+      <li
+        *ngIf="role === 'Administrador' || role === 'Logística'"
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/logistica"
+          ><i class="fa-solid fa-location-dot"></i><span>Logística</span></a
+        >
       </li>
-      <li *ngIf="role === 'Administrador' || role === 'Almacen'" class="nav-item active">
-        <a class="nav-link" routerLink="/proveedores"><i class="fa-solid fa-truck"></i><span>Proveedores</span></a>
+      <li
+        *ngIf="role === 'Administrador' || role === 'Almacen'"
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/proveedores"
+          ><i class="fa-solid fa-truck"></i><span>Proveedores</span></a
+        >
       </li>
       <!-- <li *ngIf="role === 'Administrador'" class="nav-item active">
         <a class="nav-link" routerLink="/ventas"
@@ -68,50 +136,71 @@
         >
       </li> -->
       <li *ngIf="role === 'Administrador'" class="nav-item active">
-        <a class="nav-link" routerLink="/finanzas"><i class="fa-solid fa-coins"></i><span>Finanzas</span></a>
+        <a class="nav-link" routerLink="/finanzas"
+          ><i class="fa-solid fa-coins"></i><span>Finanzas</span></a
+        >
       </li>
       <li *ngIf="role === 'Administrador'" class="nav-item active">
-        <a class="nav-link" routerLink="/compras"><i class="fa-brands fa-shopify"></i><span>Compras</span></a>
+        <a class="nav-link" routerLink="/compras"
+          ><i class="fa-brands fa-shopify"></i><span>Compras</span></a
+        >
       </li>
       <li *ngIf="role === 'Administrador'" class="nav-item active">
-        <a class="nav-link" routerLink="/usuarios"><i class="fa-solid fa-address-book"></i><span>Usuarios</span></a>
+        <a class="nav-link" routerLink="/usuarios"
+          ><i class="fa-solid fa-address-book"></i><span>Usuarios</span></a
+        >
       </li>
-      <li *ngIf="
+      <li
+        *ngIf="
           role === 'Administrador' ||
           role === 'Produccion' ||
           role === 'Almacen' ||
           role === 'Logística'
-        " class="nav-item active">
-        <a class="nav-link" routerLink="/dashboard"><i class="fa-solid fa-chart-simple"></i><span>Dashboard</span></a>
+        "
+        class="nav-item active"
+      >
+        <a class="nav-link" routerLink="/dashboard"
+          ><i class="fa-solid fa-chart-simple"></i><span>Dashboard</span></a
+        >
       </li>
       <li class="dropdown no-accordion">
-        <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-            class="fa-solid fa-gear"></i></a>
+        <a
+          class="nav-link"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          ><i class="fa-solid fa-gear"></i
+        ></a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li class="nav-item active">
-            <a class="nav-link no-accordion-dropdown" routerLink="/mi-perfil"><i
-                class="fa-solid fa-user-pen"></i><span>Mi Perfil</span></a>
+            <a class="nav-link no-accordion-dropdown" routerLink="/mi-perfil"
+              ><i class="fa-solid fa-user-pen"></i><span>Mi Perfil</span></a
+            >
           </li>
           <li>
             <hr class="dropdown-divider" />
           </li>
           <li class="nav-item active" *ngIf="!isAuthenticated">
-            <a class="nav-link no-accordion-dropdown" routerLink="/signup"><i
-                class="fa-solid fa-file-signature"></i><span>Sign Up</span></a>
+            <a class="nav-link no-accordion-dropdown" routerLink="/signup"
+              ><i class="fa-solid fa-file-signature"></i><span>Sign Up</span></a
+            >
           </li>
           <li>
             <hr class="dropdown-divider" />
           </li>
           <li class="nav-item active" *ngIf="!isAuthenticated">
-            <a class="nav-link no-accordion-dropdown" routerLink="/login"><i
-                class="fa-solid fa-door-open"></i><span>Login</span></a>
+            <a class="nav-link no-accordion-dropdown" routerLink="/login"
+              ><i class="fa-solid fa-door-open"></i><span>Login</span></a
+            >
           </li>
           <li>
             <hr class="dropdown-divider" />
           </li>
           <li class="nav-item active" *ngIf="isAuthenticated">
-            <a class="nav-link no-accordion-dropdown" (click)="logout()"><i
-                class="fa-solid fa-door-closed"></i><span>Logout</span></a>
+            <a class="nav-link no-accordion-dropdown" (click)="logout()"
+              ><i class="fa-solid fa-door-closed"></i><span>Logout</span></a
+            >
           </li>
         </ul>
       </li>
