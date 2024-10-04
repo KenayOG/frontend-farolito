@@ -48,7 +48,7 @@ export class SignUpComponent implements OnInit {
     this.isUpperCase = /[A-Z]/.test(password);
     this.isLowerCase = /[a-z]/.test(password);
     this.isNumber = /\d/.test(password);
-    this.isSymbol = /[!@#$%^&*]/.test(password);
+    this.isSymbol = /[.*!@#$%^&,\-_']/.test(password);
     this.isMinLength = password.length >= 8;
   }
 
@@ -103,7 +103,7 @@ export class SignUpComponent implements OnInit {
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumber = /\d/.test(password);
     const hasMinLength = password.length >= 8;
-    const hasSymbol = /[!@#$%^&*´,'.\-_+]/.test(password)
+    const hasSymbol = /[.*!@#$%^&,\-_']/.test(password)
 
     if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasMinLength || !hasSymbol) {
       return {passwordWeak: true};
