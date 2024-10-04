@@ -78,6 +78,7 @@
                 name="tipo-pago"
                 id="tipo-pago-tarjeta"
                 class="mt-2"
+                (change)="seleccionarMetodoPago('Tarjeta')"
               />
               <label for="tipo-pago-tarjeta" class="m-2"><b>Tarjeta</b></label>
             </div>
@@ -95,18 +96,19 @@
                 name="tipo-pago"
                 id="tipo-pago-paypal"
                 class="mt-2"
+                (change)="seleccionarMetodoPago('Paypal')"
               />
               <label for="tipo-pago-paypal" class="m-2"><b>PayPal</b></label>
             </div>
           </div>
           <div class="row justify-content-center mt-4">
             <div class="col-10 text-center">
-              <button class="btn btn-success btn-lg" [disabled]="!cartProducts.length || !metodoPagoSeleccionado" (click)="confirmarPago()">
+              <button class="btn btn-success btn-lg" [disabled]="!isPagoValido()" (click)="confirmarPago()">
                 <i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;Confirmar Pago
               </button>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

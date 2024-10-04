@@ -46,6 +46,10 @@
           <i class="fas" [ngClass]="{'fa-check-circle': isMinLength, 'fa-times-circle': !isMinLength}"></i>
           Mínimo 8 caracteres
         </div>
+        <div class="requirement" [ngClass]="{'valid': isSymbol, 'invalid': !isSymbol}">
+          <i class="fas" [ngClass]="{'fa-check-circle': isSymbol, 'fa-times-circle': !isSymbol}"></i>
+          Contiene carácteres especiales (!&#64;#$%^&*´,'.-_+)
+        </div>
       </div>
       <div class="form-floating mt-2 mb-3">
         <input type="password" class="form-control" placeholder="Confirm Password:" id="signup-confirm-password"
