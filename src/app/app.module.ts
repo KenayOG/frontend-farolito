@@ -32,6 +32,7 @@ import {AuthInterceptor} from './services/auth-interceptor.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ComprasModule} from './compras/compras.module';
 import {MatProgressBar} from "@angular/material/progress-bar";
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 @NgModule({
   declarations: [AppComponent, SignUpComponent, LoginComponent],
@@ -48,6 +49,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
     RouterModule.forRoot(routes),
     HomeModule,
     AutenticacionModule,
+    DashboardModule,
     UsuariosModule,
     ProveedoresModule,
     LogisticaModule,
