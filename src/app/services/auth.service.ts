@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
-import { LoginRequest } from '../interfaces/login-request';
-import { AuthResponse } from '../interfaces/auth-response';
-import { HttpClient, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
-import { map, Observable, BehaviorSubject, of } from 'rxjs';
-import { jwtDecode } from 'jwt-decode';
-import { Customer, CustomerChanger, CustomerEmployee, CustomerForgotten, CustomerReset } from '../interfaces/customer';
-import { ResponsePosts } from '../interfaces/response-posts';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment.development';
+import {LoginRequest} from '../interfaces/login-request';
+import {AuthResponse} from '../interfaces/auth-response';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, catchError, map, Observable, of, throwError} from 'rxjs';
+import {jwtDecode} from 'jwt-decode';
+import {Customer, CustomerChanger, CustomerEmployee, CustomerForgotten, CustomerReset} from '../interfaces/customer';
+import {ResponsePosts} from '../interfaces/response-posts';
 
 @Injectable({
   providedIn: 'root'
@@ -31,33 +31,67 @@ export class AuthService {
             this.authSubject.next(true);
           }
           return response;
+        }),
+        catchError(error => {
+          console.error('Login error:', error);
+          return throwError(() => new Error('Error al iniciar sesión'));
         })
       );
   }
 
   // Método para registrar usuario de tipo Cliente
   signUp(data: Customer): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerClient`, data);
+    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerClient`, data)
+      .pipe(
+        catchError(error => {
+          console.error('Error en el registro:', error);
+          return throwError(() => new Error('Error al registrar un cliente'));
+        })
+      );
   }
 
   // Método para registrar usuario de tipo Empleado
   signUpEmployee(data: CustomerEmployee): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerEmpl`, data);
+    return this.http.post<AuthResponse>(`${this.apiUrl}Usuario/registerEmpl`, data)
+      .pipe(
+        catchError(error => {
+          console.error('Error en el registro:', error);
+          return throwError(() => new Error('Error al registrar un empleado'));
+        })
+      );
   }
 
   // Método para recuperar contraseña
   forgotPassword(data: CustomerForgotten): Observable<ResponsePosts> {
-    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/forgot-password`, data);
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/forgot-password`, data)
+      .pipe(
+        catchError(error => {
+          console.error('Error al recuperar la contraseña:', error);
+          return throwError(() => new Error('Error al recuperar la contraseña'))
+        })
+      );
   }
 
   // Método para resetear la contraseña
   resetPassword(data: CustomerReset): Observable<ResponsePosts> {
-    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/reset-password`, data);
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/reset-password`, data)
+      .pipe(
+        catchError(error => {
+          console.error('Error al restablecer la contraseña:', error);
+          return throwError(() => new Error('Error al restablecer la contraseña'))
+        })
+      );
   }
 
   // Método para cambiar la contraseña
   changePassword(data: CustomerChanger): Observable<ResponsePosts> {
-    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/ChangePass`, data);
+    return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/ChangePass`, data)
+      .pipe(
+        catchError(error => {
+          console.error('Error al cambiar la contraseña:', error);
+          return throwError(() => new Error('Error al cambiar la contraseña'))
+        })
+      );
   }
 
   isAuthenticated(): Observable<boolean> {

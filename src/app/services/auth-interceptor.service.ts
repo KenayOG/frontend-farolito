@@ -1,24 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service'; 
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {catchError, Observable, throwError} from 'rxjs';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
+
     if (token) {
-      const authReq = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
+      const authReq = request.clone({
+        headers: request.headers.set('Authorization', `Bearer ${token}`),
       });
-      return next.handle(authReq);
+      return next.handle(authReq).pipe(
+        // @ts-ignore
+        catchError(error => {
+          if (error.status === 401) {
+            console.log('Token expirado');
+            this.authService.logout();
+          } else {
+            return throwError(() => error);
+          }
+        })
+      );
     } else {
-      return next.handle(req);
+      return next.handle(request);
     }
   }
 }
