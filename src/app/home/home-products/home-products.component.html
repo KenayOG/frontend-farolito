@@ -105,13 +105,6 @@
       >
         <ng-template let-product pTemplate="item">
           <div class="flex flex-wrap p-2 align-items-center gap-3">
-            <!-- 
-            <img
-                    [src]="getImagenProducto(product.urlImage)"
-                    alt="{{ product.nombrelampara }}"
-                    class="image"
-                  />
-            -->
             <img
               [src]="getImagenProducto(product.urlImage)"
               [alt]="product.lamparaNombre"
@@ -128,10 +121,15 @@
         </ng-template>
       </p-orderList>
       <div class="text-center mt-4" style="margin-left: 47px">
-        <a routerLink="/pagar-carrito" class="btn btn-success btn-lg">
+        <a
+          routerLink="/pagar-carrito"
+          class="btn btn-success btn-lg"
+          [class.disabled]="!cartProducts.length"
+          [attr.disabled]="!cartProducts.length ? true : null"
+        >
           <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Pagar
         </a>
-      </div>
+      </div>      
     </div>
     <div *ngIf="cargando" class="spinner-overlay">
       <div class="spinner-container">

@@ -17,6 +17,7 @@ export class ConfirmarCarritoComponent {
   cartProducts: Cart[] = [];
   products: LampInventory[] = [];
   baseUrl: string = 'http://localhost:5000';
+  metodoPagoSeleccionado: string | null = null;
 
   constructor(
     private carritoService: CarritoService,
@@ -94,34 +95,44 @@ export class ConfirmarCarritoComponent {
   }
 
   confirmarPago() {
-    const saleRequestList: SaleRequestList[] = this.cartProducts.map(
-      (cartItem) => ({
-        id: cartItem.lamparaId,
-        cantidad: cartItem.cantidad,
-      })
-    );
+    if (this.isPagoValido()) {
+      const saleRequestList: SaleRequestList[] = this.cartProducts.map(
+        (cartItem) => ({
+          id: cartItem.lamparaId,
+          cantidad: cartItem.cantidad,
+        })
+      );
 
-    this.ventaService.createSell(saleRequestList).subscribe({
-      next: (response) => {
-        console.log('Venta creada exitosamente:', response);
-        this.obtenerCarrito();
-        this.matSnackBar.open(response.message, 'Cerrar', {
-          duration: 5000,
-          horizontalPosition: 'center',
-        });
-        this.router.navigate(['/home']);
-      },
-      error: (err) => {
-        console.log('Error al crear la venta:', err);
-        this.matSnackBar.open(
-          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
-          'Cerrar',
-          {
+      this.ventaService.createSell(saleRequestList).subscribe({
+        next: (response) => {
+          console.log('Venta creada exitosamente:', response);
+          this.obtenerCarrito();
+          this.matSnackBar.open(response.message, 'Cerrar', {
             duration: 5000,
             horizontalPosition: 'center',
-          }
-        );
-      },
-    });
+          });
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.log('Error al crear la venta:', err);
+          this.matSnackBar.open(
+            'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+            'Cerrar',
+            {
+              duration: 5000,
+              horizontalPosition: 'center',
+            }
+          );
+        },
+      });
+    }
+  }
+
+  isPagoValido(): boolean {
+    return this.cartProducts.length > 0 && this.metodoPagoSeleccionado !== null;
+  }
+
+  seleccionarMetodoPago(tipoPago: string) {
+    this.metodoPagoSeleccionado = tipoPago;
   }
 }

@@ -33,7 +33,7 @@ import { SignUpComponent } from './autenticacion/sign-up/sign-up.component';
 import { LoginComponent } from './autenticacion/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Asegúrate de importar esto
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { ComprasModule } from './compras/compras.module';
 
 @NgModule({

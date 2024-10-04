@@ -69,7 +69,7 @@ export class HomeProductsComponent {
     this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
-        this.recipes = data; // -- detalle de recetas en el popover
+        this.recipes = data; 
         setTimeout(() => {
           this.cargando = false;
         }, 2000);

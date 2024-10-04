@@ -69,10 +69,10 @@ export class VerDatosPerfilComponent implements OnInit {
     });
 
     this.userFormEdit = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      direccion: ['', Validators.required],
+      fullName: [''],
+      email: [''],
+      phoneNumber: [''],
+      direccion: [''],
     });
   }
 
@@ -125,14 +125,37 @@ export class VerDatosPerfilComponent implements OnInit {
   }
 
   editarPerfilUsuario(): void {
-    if (this.userFormEdit.valid) {
+    if (this.userFormEdit.dirty) { 
+      
       const editUser: UpdateUserprofile = {
-        ...this.profileUser,
-        ...this.userFormEdit.value,
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        direccion: ''
       };
+  
+      if (this.userFormEdit.value.fullName !== this.userFullName) {
+        editUser.fullName = this.userFormEdit.value.fullName;
+      }
+      if (this.userFormEdit.value.email !== this.userEmail) {
+        editUser.email = this.userFormEdit.value.email;
+      }
+      if (this.userFormEdit.value.phoneNumber !== this.userPhoneNumber) {
+        editUser.phoneNumber = this.userFormEdit.value.phoneNumber;
+      }
+      if (this.userFormEdit.value.direccion !== this.userDireccion) {
+        editUser.direccion = this.userFormEdit.value.direccion;
+      }
 
-      console.log('Datos del usuario:', editUser);
-
+      if (Object.keys(editUser).length === 0) {
+        this.matSnackbar.open('No se han realizado cambios', 'Cerrar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+        return;
+      }
+  
       this.usuariosService.editarUser(editUser).subscribe({
         next: (response) => {
           this.matSnackbar.open('Usuario actualizado exitosamente', 'Cerrar', {
@@ -151,8 +174,15 @@ export class VerDatosPerfilComponent implements OnInit {
           });
         },
       });
+    } else {
+      this.matSnackbar.open('No se han realizado cambios', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
     }
-  }
+  }  
+
   actualizarTarjeta(): void {
     if (this.tarjetaForm.invalid) {
       this.matSnackbar.open(
