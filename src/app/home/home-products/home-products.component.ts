@@ -24,6 +24,10 @@ export class HomeProductsComponent {
   baseUrl: string = 'http://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
 
+  displayedProducts: LampInventory[] = [];
+  currentIndex: number = 0;
+  productPerPage: number = 4;
+
   constructor(
     config: NgbPopoverConfig,
     private productosService: InventarioService,
@@ -52,6 +56,7 @@ export class HomeProductsComponent {
     this.productosService.getInventarioLampara().subscribe({
       next: (data) => {
         this.products = data;
+        this.displayedProducts = this.products.slice(0, this.productPerPage);
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -69,7 +74,7 @@ export class HomeProductsComponent {
     this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
-        this.recipes = data; 
+        this.recipes = data;
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -141,5 +146,31 @@ export class HomeProductsComponent {
 
   getImagenProducto(imagePath: string): string {
     return `${this.baseUrl}${imagePath}`;
+  }
+  // Funcion para navegar al grupo anterior de productos vistos
+  prevGroup() {
+    if (this.currentIndex > 0) {
+      this.currentIndex -= this.productPerPage;
+      this.updateDisplayedProducts();
+    }
+  }
+
+  // Funcion para navegar al grupo siguiente de productos
+  nextGroup() {
+    if (this.currentIndex + this.productPerPage < this.products.length) {
+      this.currentIndex += this.productPerPage;
+      this.updateDisplayedProducts();
+    }
+  }
+
+  updateDisplayedProducts() {
+    this.displayedProducts = this.products.slice(
+      this.currentIndex,
+      this.currentIndex + this.productPerPage
+    );
+  }
+
+  hola() {
+    console.log('Holaaaaaaa');
   }
 }
