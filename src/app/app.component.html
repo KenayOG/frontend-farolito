@@ -157,11 +157,11 @@
           </li>
           <li *ngIf="isAuthenticated" class="nav-item show-content">
             <a class="nav-link no-accordion-dropdown" (click)="logout()">
-              <i class="fa-solid fa-door-closed"></i><span>Logout</span></a>
+              <i class="fa-solid fa-door-closed"></i><span>Cerrar sesión</span></a>
           </li>
           <li *ngIf="!isAuthenticated" class="nav-item show-content">
             <a class="nav-link no-accordion-dropdown" routerLink="/signup">
-              <i class="fa-solid fa-file-signature"></i><span>Sign Up</span>
+              <i class="fa-solid fa-file-signature"></i><span>Registrarse</span>
             </a>
           </li>
           <li *ngIf="!isAuthenticated" >
@@ -169,7 +169,7 @@
           </li>
           <li *ngIf="!isAuthenticated" class="nav-item show-content">
             <a class="nav-link no-accordion-dropdown" routerLink="/login">
-              <i class="fa-solid fa-arrow-right-to-bracket"></i><span>Login</span>
+              <i class="fa-solid fa-arrow-right-to-bracket"></i><span>Iniciar sesión</span>
             </a>
           </li>
           <li>
