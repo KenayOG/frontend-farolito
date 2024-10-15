@@ -60,6 +60,11 @@
   left: 0;
 }
 
+.show-content > .nav-link span {
+  display: block;
+  opacity: 1;
+}
+
 .no-accordion-dropdown {
   width: auto;
   margin-left: -5px;
