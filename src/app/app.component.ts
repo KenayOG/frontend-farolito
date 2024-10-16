@@ -8,10 +8,9 @@ import { UsuariosService } from './services/usuarios.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-
   showNavBar: boolean = true;
   isAuthenticated: boolean = false;
   role: string | null = null;
@@ -22,24 +21,30 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private usuariosService: UsuariosService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isAuthenticated = isAuthenticated;
-      this.updateNavBarVisibility(this.router.url);
-      if (isAuthenticated) {
-        this.role = this.usuariosService.getRoleFromToken();
-      } else {
-        this.role = null;
+    this.authSubscription = this.authService.isAuthenticated$.subscribe(
+      (isAuthenticated) => {
+        this.isAuthenticated = isAuthenticated;
+        this.updateNavBarVisibility(this.router.url);
+        if (isAuthenticated) {
+          this.role = this.usuariosService.getRoleFromToken();
+        } else {
+          this.role = null;
+        }
       }
-    });
+    );
 
-    this.routerEventsSubscription = this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.updateNavBarVisibility(event.urlAfterRedirects);
-    });
+    this.routerEventsSubscription = this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        )
+      )
+      .subscribe((event: NavigationEnd) => {
+        this.updateNavBarVisibility(event.urlAfterRedirects);
+      });
   }
 
   private updateNavBarVisibility(url: string): void {
@@ -52,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/acercade']);
   }
 
   ngOnDestroy(): void {

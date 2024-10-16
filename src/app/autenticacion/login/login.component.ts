@@ -9,15 +9,18 @@ import { LoginRequest } from '../../interfaces/login-request';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   form!: FormGroup;
   router = inject(Router);
   snackBar = inject(MatSnackBar);
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private appComponent: AppComponent) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private appComponent: AppComponent
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -30,9 +33,9 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const loginData: LoginRequest = {
         email: this.form.get('email')?.value,
-        password: this.form.get('password')?.value
+        password: this.form.get('password')?.value,
       };
-      
+
       this.authService.login(loginData).subscribe(
         (response) => {
           if (response.isSuccess) {
@@ -40,7 +43,7 @@ export class LoginComponent implements OnInit {
               duration: 3000,
             });
             this.appComponent.showNavBar = true;
-            this.router.navigate(['/home']);
+            this.router.navigate(['/acercade']);
           } else {
             this.snackBar.open('Error en el inicio de sesión', 'Cerrar', {
               duration: 3000,
