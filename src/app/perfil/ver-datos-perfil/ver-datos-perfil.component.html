@@ -6,7 +6,8 @@
           <div
             class="image"
             [ngStyle]="{
-              'background-image': 'url(' + backgroundImageUrl + ')'
+              'background-image': 'url('+ backgroundImageUrl + ')',
+              'rotate': '-5deg'
             }"
           ></div>
         </div>
@@ -140,7 +141,7 @@
   <div class="row mt-5">
     <div class="col-6 d-flex justify-content-center mt-5">
       <div class="card-password-form mb-5">
-        <h3 class="card-header text-center">Cambiar password</h3>
+        <h3 class="card-header text-center">Cambiar contraseña</h3>
         <div class="card-content">
           <form
             class="form-grid"
@@ -156,7 +157,7 @@
                   id="passwordCurrent"
                   formControlName="currentPassword"
                 />
-                <label for="floatingInput">Password Actual:</label>
+                <label for="floatingInput">Contraseña Actual:</label>
               </div>
               <div class="form-floating mt-2">
                 <input
@@ -179,7 +180,7 @@
                   id="passwordNew"
                   formControlName="newPassword"
                 />
-                <label for="floatingInput">Nuevo Password:</label>
+                <label for="floatingInput">Nueva contraseña:</label>
               </div>
               <div class="button-container">
                 <button class="btn btn-success btn-lg" type="submit">

@@ -74,6 +74,8 @@ export class VerDatosPerfilComponent implements OnInit {
       phoneNumber: [''],
       direccion: [''],
     });
+
+    //this.userUrlImage = 
   }
 
   ngOnInit(): void {
@@ -121,7 +123,7 @@ export class VerDatosPerfilComponent implements OnInit {
   }
 
   getImagen(imagePath: string): string {
-    return `${this.baseUrl}${imagePath}`;
+    return imagePath ? this.baseUrl + imagePath : "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png";
   }
 
   editarPerfilUsuario(): void {
