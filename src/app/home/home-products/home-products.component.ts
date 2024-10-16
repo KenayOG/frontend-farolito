@@ -169,8 +169,4 @@ export class HomeProductsComponent {
       this.currentIndex + this.productPerPage
     );
   }
-
-  hola() {
-    console.log('Holaaaaaaa');
-  }
 }

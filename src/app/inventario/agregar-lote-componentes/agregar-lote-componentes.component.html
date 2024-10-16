@@ -39,7 +39,10 @@
                   name="componentesId"
                   required
                 >
-                  <option *ngFor="let componente of listaComponentes" [value]="componente.id">
+                  <option
+                    *ngFor="let componente of listaComponentes"
+                    [value]="componente.id"
+                  >
                     {{ componente.nombre }}
                   </option>
                 </select>
@@ -55,7 +58,10 @@
                   name="proveedorId"
                   required
                 >
-                  <option *ngFor="let proveedor of providers" [value]="proveedor.id">
+                  <option
+                    *ngFor="let proveedor of providers"
+                    [value]="proveedor.id"
+                  >
                     {{ proveedor.nombreEmpresa }}
                   </option>
                 </select>
@@ -67,6 +73,7 @@
                   class="form-control"
                   placeholder="Cantidad:"
                   id="cantidad"
+                  min="1"
                   [(ngModel)]="cantidad"
                   name="cantidad"
                   required
@@ -79,6 +86,7 @@
                   class="form-control"
                   placeholder="Costo:"
                   id="costo"
+                  min="1"
                   [(ngModel)]="costo"
                   name="costo"
                   required
