@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
               duration: 3000,
             });
             this.appComponent.showNavBar = true;
-            this.router.navigate(['/acercade']);
+            this.router.navigate(['/home']);
           } else {
             this.snackBar.open('Error en el inicio de sesión', 'Cerrar', {
               duration: 3000,

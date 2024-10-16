@@ -20,14 +20,14 @@
         <label for="signup-email">Email:</label>
       </div>
       <div class="form-floating mt-2">
-        <input type="text" class="form-control" placeholder="Username:" id="signup-username"
+        <input type="text" class="form-control" placeholder="Nombre completo:" id="signup-username"
                formControlName="fullName"/>
-        <label for="signup-username">Nombre Completo:</label>
+        <label for="signup-username">Nombre completo:</label>
       </div>
       <div class="form-floating mt-2 mb-3">
-        <input type="password" class="form-control" placeholder="Password:" id="signup-password"
+        <input type="password" class="form-control" placeholder="Contraseña:" id="signup-password"
                formControlName="password"/>
-        <label for="signup-password">Password:</label>
+        <label for="signup-password">Contraseña:</label>
       </div>
       <div *ngIf="form.get('password')?.touched" class="password-requirements">
         <div class="requirement" [ngClass]="{'valid': isUpperCase, 'invalid': !isUpperCase}">
@@ -52,9 +52,9 @@
         </div>
       </div>
       <div class="form-floating mt-2 mb-3">
-        <input type="password" class="form-control" placeholder="Confirm Password:" id="signup-confirm-password"
+        <input type="password" class="form-control" placeholder="Confirmar contraseña:" id="signup-confirm-password"
                formControlName="confirmPassword"/>
-        <label for="signup-confirm-password">Confirm Password:</label>
+        <label for="signup-confirm-password">Confirmar contraseña:</label>
       </div>
       <button class="signup-button" [disabled]="form.invalid">Registrarse</button>
     </form>

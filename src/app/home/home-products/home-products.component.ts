@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, ElementRef, ViewChildren, QueryList, inject } from '@angular/core';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
@@ -8,6 +8,9 @@ import { ComponenteRecipe } from '../../interfaces/component-recipe';
 import { Cart, CartRequest } from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsuariosModule } from '../../usuarios/usuarios.module';
+import { UsuariosService } from '../../services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-products',
@@ -27,14 +30,24 @@ export class HomeProductsComponent {
   displayedProducts: LampInventory[] = [];
   currentIndex: number = 0;
   productPerPage: number = 4;
+  router = inject(Router)
 
   constructor(
     config: NgbPopoverConfig,
     private productosService: InventarioService,
     private recetasService: RecetasService,
     private carritoService: CarritoService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private usuariosService: UsuariosService
   ) {
+
+    const userData = this.usuariosService.getUserFromToken();
+    if(userData) {
+      if(userData.role!="Cliente") {
+        this.router.navigate(['/dashboard']);
+      }
+    }
+
     this.obtenerProductos();
     this.obtenerRecetas();
     this.obtenerCarrito();
