@@ -14,3 +14,8 @@ export interface CartRequest {
 export interface CartRemove {
   id: number
 }
+
+export interface CartUpdated{
+  recetaId: number;
+  nuevaCantidad: number;
+}
