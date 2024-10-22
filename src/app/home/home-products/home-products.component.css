@@ -311,6 +311,10 @@
   margin-left: -5px;
 }
 
+.disabled{
+  filter: opacity(0.5);
+}
+
 .offcanvas-title {
   text-align: center;
   width: 100%;
