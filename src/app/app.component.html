@@ -54,7 +54,7 @@
       </li>
 
       <!-- Acerca de -->
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!isAuthenticated || role === 'Cliente'">
         <a class="nav-link" routerLink="/acercade">
           <i class="fa-solid fa-circle-info"></i><span>Acerca de</span>
         </a>

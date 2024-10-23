@@ -19,7 +19,7 @@
       <div class="carousel-caption">
         <h3>Bienvenido</h3>
         <p>Ilumina tus espacios con nuestros</p>
-        <p style="margin-top: -30px">productos unicos</p>
+        <p style="margin-top: -30px">productos &uacute;nicos</p>
       </div>
     </div>
     <div class="carousel-item">
@@ -224,26 +224,34 @@
 </footer>
 
 <!-- Botón para el Carrito -->
-
-<ng-container *ngIf="cartProducts.length > 0; else elseTemplate">
-  <div
-    aria-controls="offcanvasRight"
-    class="fixed-ball"
-    data-bs-target="#offcanvasRight"
-    data-bs-toggle="offcanvas"
-    id="fixedBall"
-  >
-    <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
-    <span *ngIf="cartProducts.length > 0" class="cart-count">{{
-      cartProducts.length
-    }}</span>
+<div
+  class="{{ cartProducts.length > 0 ? '' : 'disabled' }} cart-button"
+>
+  <div id="cart-button-container">
+    <ng-container *ngIf="(cartProducts.length > 0); else elseTemplate">
+      <div
+        aria-controls="offcanvasRight"
+        data-bs-target="#offcanvasRight"
+        data-bs-toggle="offcanvas"
+        id="fixedBall"
+        class="fixed-ball"
+      >
+        <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
+        <span *ngIf="cartProducts.length > 0" class="cart-count">{{
+          cartProducts.length
+        }}</span>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="father">
+        <div class="charging"></div>
+      </div>
+      <div class="fixed-ball">
+        <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
+      </div>
+    </ng-template>
   </div>
-</ng-container>
-<ng-template #elseTemplate>
-  <button class="fixed-ball disabled">
-    <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
-  </button>
-</ng-template>
+</div>
 
 <!-- Carrito -->
 <div
@@ -277,29 +285,31 @@
         />
         <div>
           <h6>{{ cart.lamparaNombre }}</h6>
-          <label for="cantidad-up">Cantidad:</label>
-          <input
-            id="cantidad-up"
-            min="1"
-            type="number"
-            value="{{ cantidadActualizada[cart.lamparaId] }}"
-            placeholder="{{cantidadActualizada[cart.lamparaId]}}"
-            [(ngModel)]="cantidadActualizada[cart.lamparaId]"
-            (change)="enButton(cart.lamparaId)"
-          />
-
-          <div *ngIf="enabledButton[cart.lamparaId]">
+          <div class="quantity-container">
+            <label for="cantidad-up">Cantidad:</label>
+            <input
+              id="cantidad-up"
+              min="1"
+              max="{{getProductoByCarrito(cart.lamparaId)}}"
+              type="number"
+              value="{{ cantidadActualizada[cart.lamparaId] }}"
+              [(ngModel)]="cantidadActualizada[cart.lamparaId]"
+              (change)="enButton(cart.lamparaId)"
+            />
+          </div>
+          <div>
             <button
-              (click)="actualizarCarrito(cart.lamparaId)"
-              class="add-to-cart"
-            >
-              <i class="fa-solid fa-save"></i>
-            </button>
-            <button
-              class="btn btn-danger btn-lg"
+              class="btn btn-danger btn-lg mx-1"
               (click)="removeFromCart(cart.lamparaId)"
             >
               <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <button
+            *ngIf="enabledButton[cart.lamparaId]"
+              (click)="actualizarCarrito(cart.lamparaId)"
+              class="btn btn-lg add-to-cart"
+            >
+              <i class="fa-solid fa-save"></i>
             </button>
           </div>
         </div>

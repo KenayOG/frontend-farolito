@@ -51,6 +51,15 @@ body {
   font-size: 1.1rem;
 }
 
+.quantity-container input {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
 .cart-price-quantity {
   font-size: 1.1rem;
 }

@@ -195,17 +195,13 @@
 /* Botón agregar al carrito */
 .add-to-cart {
   background-color: #fff;
-  color: #000;
-  border: 1px solid black;
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 5px;
+  color: #333;
+  border: 1px solid #333;
   transition: background 0.3s;
 }
 
 .add-to-cart:hover {
-  background-color: #000;
+  background-color: #333;
   color: #fff;
 }
 
@@ -222,7 +218,7 @@
 }
 
 .footer a {
-  color: #000;
+  color: #333;
   text-decoration: none;
 }
 
@@ -284,21 +280,29 @@
   margin-right: 10px;
 }
 
-.fixed-ball {
+.cart-button{ 
   position: fixed;
-  top: 15px;
-  right: 15px;
+  width: 70px;
+  height: 100px;
+  top: 1rem;
+  right: 1rem;
+}
+
+.fixed-ball {
+  position: absolute;
+  top: 0;
+  right: 0;
+
   width: 60px;
   height: 60px;
   background-color: #f39c12;
   border-radius: 50%;
-  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  z-index: 1000;
   transition: background-color 0.3s;
+  display: flex;
 }
 
 .fixed-ball:hover {
@@ -311,8 +315,41 @@
   margin-left: -5px;
 }
 
-.disabled{
+.disabled {
   filter: opacity(0.5);
+}
+
+.disabled > #cart-button-container > .father {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background-color: #9e9e9e;
+  border-radius: 50%;
+  padding-top: 40%;
+  animation: rotate 2s linear infinite;
+  height: 58px;
+  width: 58px;
+  border: 2px solid #e67e22;;
+}
+
+.disabled > #cart-button-container > .fixed-ball {
+  width: 50px;
+  height: 50px;
+
+  top: 4px;
+  right: 4px;
+}
+
+.disabled > #cart-button-container {
+  position: relative;
+}
+
+.charging {
+  background-color: #333;
+  height: 30px;
+  margin-top: -52%;
+  border-radius: 30px 30px 0 0;
 }
 
 .offcanvas-title {
@@ -365,14 +402,14 @@
   font-size: 2rem;
   color: #fff;
   font-family: "Roboto", sans-serif;
-  background-color: #000;
+  background-color: #333;
   padding: 15px 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 2px solid #000;
+  border: 2px solid #333;
   margin: 15px 20px;
 }
 
@@ -400,4 +437,13 @@
   color: #fff;
   font-size: 1.2rem;
   margin-top: 5px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

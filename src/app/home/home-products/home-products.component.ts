@@ -30,12 +30,12 @@ export class HomeProductsComponent {
   baseUrl: string = 'http://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
   cantidadActualizada: { [key: number]: number } = {};
+  enabledButton: {[key:number]:boolean} = {};
 
   displayedProducts: LampInventory[] = [];
   currentIndex: number = 0;
   productPerPage: number = 4;
   router = inject(Router)
-  enabledButton: {[key:number]:boolean} = {};
 
   constructor(
     config: NgbPopoverConfig,
@@ -107,31 +107,33 @@ export class HomeProductsComponent {
   enButton(lamparaId: number){
     this.enabledButton[lamparaId]=true
   }
-
+  
   removeFromCart(productId: number) {
     const removeRequest: CartRemove[] = [{ id: productId }];
     this.carritoService.deleteCarrito(removeRequest).subscribe({
       next: (response) => {
-        console.log('Carrito actualizado:', response);
         this.obtenerCarrito();
         this.obtenerProductos();
         this.matSnackBar.open(response.message, 'Cerrar', {
-          duration: 500,
+          duration: 5000,
           horizontalPosition: 'center',
         });
       },
       error: (err) => {
-        console.log('Error al actualizar el carrito:', err);
         this.matSnackBar.open(
           'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
           'Cerrar',
           {
-            duration: 500,
+            duration: 5000,
             horizontalPosition: 'center',
           }
         );
       },
     });
+  }
+  
+  getProductoByCarrito(lamparaId: number){
+    return this.products.filter(p => p.id == lamparaId)[0].existencias
   }
 
   obtenerProductos() {
