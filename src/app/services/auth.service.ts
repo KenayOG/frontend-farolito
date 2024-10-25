@@ -74,6 +74,7 @@ export class AuthService {
 
   // Método para resetear la contraseña
   resetPassword(data: CustomerReset): Observable<ResponsePosts> {
+    console.log(data);
     return this.http.post<ResponsePosts>(`${this.apiUrl}Usuario/reset-password`, data)
       .pipe(
         catchError(error => {

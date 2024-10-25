@@ -32,6 +32,7 @@ import { AgregarComponenteComponent } from './inventario/agregar-componente/agre
 import { AdministracionComprasComponent } from './compras/administracion-compras/administracion-compras.component';
 import { EditarRecetasComponent } from './recetas/editar-recetas/editar-recetas.component';
 import { authGuard } from './guards/auth.guard';
+import {ResetPasswordComponent} from "./autenticacion/reset-password/reset-password.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/acercade', pathMatch: 'full' },
@@ -74,9 +75,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'acercade', component: AcercadeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'login', component: LoginComponent, canActivate: [authGuard] },
+  { path: 'signup', component: SignUpComponent, canActivate: [authGuard] },
+  { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [authGuard] },
+  { path: 'reset-password', component: ResetPasswordComponent, canActivate: [authGuard] },
   {
     path: 'logistica',
     component: EstatusPedidosComponent,

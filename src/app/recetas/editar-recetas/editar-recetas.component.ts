@@ -21,7 +21,7 @@ export class EditarRecetasComponent implements OnInit {
   recetaId: number = 0;
 
   recetaImagen: string = '';
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
 
   constructor(
     private recetasService: RecetasService,
