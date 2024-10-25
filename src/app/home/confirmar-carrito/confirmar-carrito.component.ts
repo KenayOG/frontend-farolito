@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
-import { Cart, CartRemove } from '../../interfaces/cart';
+import { Cart, CartRemove, CartUpdated } from '../../interfaces/cart';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,6 +18,9 @@ export class ConfirmarCarritoComponent {
   products: LampInventory[] = [];
   baseUrl: string = 'https://localhost:5000';
   metodoPagoSeleccionado: string | null = null;
+  
+  cantidadActualizada: { [key: number]: number } = {};
+  enabledButton: {[key:number]:boolean} = {};
 
   constructor(
     private carritoService: CarritoService,
@@ -34,11 +37,16 @@ export class ConfirmarCarritoComponent {
     this.carritoService.getCarrito().subscribe({
       next: (data) => {
         this.cartProducts = data;
+        this.cartProducts.map(car => this.cantidadActualizada[car.lamparaId] = car.cantidad);
       },
       error: (e) => {
         console.log(e);
       },
     });
+  }
+
+  getProductoByCarrito(lamparaId: number){
+    return this.products.filter(p => p.id == lamparaId)[0].existencias
   }
 
   obtenerProductos() {
@@ -92,6 +100,41 @@ export class ConfirmarCarritoComponent {
         );
       },
     });
+  }
+
+  actualizarCarrito(lamparaId: number){
+    const cartUpdated: CartUpdated[] = [];
+    this.cartProducts.map(car => {
+      cartUpdated.push({
+        recetaId: car.lamparaId,
+        nuevaCantidad: car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad
+      })
+      car.cantidad = car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad;
+    })    
+    console.log(this.cartProducts);
+    this.carritoService.updateCarrito(cartUpdated).subscribe({
+      next: (response) => {
+        console.log('Carrito actualizado:', response);
+        this.obtenerCarrito();
+        this.obtenerProductos();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+        this.enabledButton[lamparaId] = false;
+      },
+      error: (err) => {
+        console.log('Error al actualizar producto en el carrito:', err);
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
+      },
+    })
   }
 
   confirmarPago() {
