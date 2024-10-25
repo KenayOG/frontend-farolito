@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from '../../interfaces/user-role';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -38,24 +37,7 @@ export class EditarEmpleadoComponent implements OnInit {
         direccion: parsedEmployee.direccion,
       });
     }
-
-    //this.loadEmployeeData();
   }
-
-  /* loadEmployeeData() {
-    const employeeData = localStorage.getItem('selectedEmployee');
-    if (employeeData) {
-      const employee = JSON.parse(employeeData);
-
-      this.formEditEmployee.patchValue({
-        name: employee.fullName.split(' ')[0],
-        lastName: employee.fullName.split(' ').slice(1).join(' '),
-        email: employee.email,
-        phoneNumber: employee.phoneNumber,
-        direccion: employee.direccion,
-      })
-    }
-  } */
 
   editEmployee() {
     if (this.formEditEmployee.valid) {
@@ -83,6 +65,25 @@ export class EditarEmpleadoComponent implements OnInit {
           localStorage.removeItem('selectedEmployee');
         },
       });
+    }
+  }
+
+  validateInput(event: KeyboardEvent) {
+    const inputChar = event.key;
+    const regex = /^[a-zA-Z0-9\s]+$/;
+
+    if (!regex.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  validatePhoneNumber(event: KeyboardEvent) {
+    const inputChar = event.key;
+    const regex = /^[0-9\+\-\(\)\s]+$/;
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+
+    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
+      event.preventDefault();
     }
   }
 }

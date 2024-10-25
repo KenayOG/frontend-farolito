@@ -94,6 +94,7 @@
                     placeholder="Buscar por lampara:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtMermaLamparas')"
+                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
@@ -205,6 +206,7 @@
                     placeholder="Buscar por componente:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtMermaComponentes')"
+                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
@@ -316,9 +318,8 @@
                     type="text"
                     placeholder="Buscar por lampara:"
                     class="mt-1"
-                    (input)="
-                      applyFilterGlobal($event, 'dtMermaLamparasUsuario')
-                    "
+                    (input)="applyFilterGlobal($event, 'dtMermaLamparasUsuario')"
+                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
@@ -430,9 +431,8 @@
                     type="text"
                     placeholder="Buscar por componente:"
                     class="mt-1"
-                    (input)="
-                      applyFilterGlobal($event, 'dtMermaComponentesUsuario')
-                    "
+                    (input)="applyFilterGlobal($event, 'dtMermaComponentesUsuario')"
+                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
