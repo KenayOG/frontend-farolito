@@ -33,7 +33,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ComprasModule} from './compras/compras.module';
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {DashboardModule} from "./dashboard/dashboard.module";
-import {RECAPTCHA_V3_SITE_KEY, RecaptchaFormsModule, RecaptchaModule, RecaptchaV3Module} from "ng-recaptcha";
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
