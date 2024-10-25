@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AdministracionRecetasComponent {
   recipes: Recipe[] = [];
   listaComponentes: Componente[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
   selectedComponents = new Set<any>();
   cantidadRequerida: { [key: number]: number } = {};
