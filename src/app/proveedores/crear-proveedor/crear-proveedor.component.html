@@ -19,6 +19,7 @@
                   class="form-control"
                   placeholder="Nombre de la Empresa:"
                   id="nombre-empresa"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="nombre-empresa">Nombre de la Empresa:</label>
               </div>
@@ -29,6 +30,7 @@
                   class="form-control"
                   placeholder="Direccion:"
                   id="direccion"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="direccion">Direccion:</label>
               </div>
@@ -39,6 +41,7 @@
                   class="form-control"
                   placeholder="Telefono:"
                   id="telefono"
+                  (keydown)="validatePhoneNumber($event)"
                 />
                 <label for="telefono">Telefono:</label>
               </div>
@@ -49,6 +52,7 @@
                   class="form-control"
                   placeholder="Atendido por:"
                   id="nombreAtiende"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="nombreAtiende">Atendido por:</label>
               </div>
@@ -59,6 +63,7 @@
                   class="form-control"
                   placeholder="Primer Apellido:"
                   id="apellidoP"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="apellidoP">Primer Apellido:</label>
               </div>
@@ -69,6 +74,7 @@
                   class="form-control"
                   placeholder="Segundo Apellido:"
                   id="apellidoM"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="apellidoM">Segundo Apellido:</label>
               </div>

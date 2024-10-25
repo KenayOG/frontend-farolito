@@ -4,6 +4,7 @@ import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UsuariosService } from './services/usuarios.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private matSnackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +58,23 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/acercade']);
+    try {
+      this.authService.logout();
+      this.router.navigate(['/home']);
+      this.matSnackBar.open('Nos vemos pronto', 'Cerrar', {
+        duration: 5000,
+        horizontalPosition: 'center',
+      });
+    } catch (e) {
+      this.matSnackBar.open(
+        'Ocurrió un problema: ' + (e || 'Desconocido'),
+        'Cerrar',
+        {
+          duration: 5000,
+          horizontalPosition: 'center',
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {

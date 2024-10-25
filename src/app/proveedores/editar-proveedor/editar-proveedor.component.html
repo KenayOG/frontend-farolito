@@ -19,6 +19,7 @@
                   placeholder="Nombre:"
                   id="nombreEmpresa"
                   formControlName="nombreEmpresa"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Nombre de la Empresa:</label>
               </div>
@@ -29,6 +30,7 @@
                   id="direccion"
                   placeholder="Direccion:"
                   formControlName="direccion"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Direccion:</label>
               </div>
@@ -40,6 +42,7 @@
                   placeholder="Telefono:"
                   id="telefono"
                   formControlName="telefono"
+                  (keydown)="validatePhoneNumber($event)"
                 />
                 <label for="floatingInput">Telefono:</label>
               </div>
@@ -50,6 +53,7 @@
                   placeholder="Atendido por:"
                   id="nombreAtiende"
                   formControlName="nombreAtiende"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Atendido por:</label>
               </div>
@@ -60,6 +64,7 @@
                   placeholder="Atendido por:"
                   id="apellidoP"
                   formControlName="apellidoP"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Apellido Paterno:</label>
               </div>
@@ -70,6 +75,7 @@
                   placeholder="Atendido por:"
                   id="apellidoM"
                   formControlName="apellidoM"
+                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Apellido Materno:</label>
               </div>

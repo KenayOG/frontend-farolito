@@ -5,13 +5,15 @@ import { InventarioService } from '../../services/inventario.service';
 import { RecetasService } from '../../services/recetas.service';
 import { Recipe } from '../../interfaces/recipe';
 import { ComponenteRecipe } from '../../interfaces/component-recipe';
-import { Cart, CartRequest } from '../../interfaces/cart';
+import { Cart, CartRemove, CartRequest, CartUpdated } from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuariosModule } from '../../usuarios/usuarios.module';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
 
+/**
+ * En el carrito, el campo "lámparaId" se refiere a la receta, no al inventario. Buenas noches.
+ */
 @Component({
   selector: 'app-home-products',
   templateUrl: './home-products.component.html',
@@ -24,8 +26,10 @@ export class HomeProductsComponent {
   recipes: Recipe[] = [];
   cartProducts: Cart[] = [];
   cargando: boolean = true;
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
+  cantidadActualizada: { [key: number]: number } = {};
+  enabledButton: {[key:number]:boolean} = {};
 
   displayedProducts: LampInventory[] = [];
   currentIndex: number = 0;
@@ -62,6 +66,73 @@ export class HomeProductsComponent {
       }
       return options;
     };
+  }
+
+  actualizarCarrito(lamparaId: number){
+    const cartUpdated: CartUpdated[] = [];
+    this.cartProducts.map(car => {
+      cartUpdated.push({
+        recetaId: car.lamparaId,
+        nuevaCantidad: car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad
+      })
+      car.cantidad = car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad;
+    })    
+    console.log(this.cartProducts);
+    this.carritoService.updateCarrito(cartUpdated).subscribe({
+      next: (response) => {
+        console.log('Carrito actualizado:', response);
+        this.obtenerCarrito();
+        this.obtenerProductos();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 500,
+          horizontalPosition: 'center',
+        });
+        this.enabledButton[lamparaId] = false;
+      },
+      error: (err) => {
+        console.log('Error al actualizar producto en el carrito:', err);
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 500,
+            horizontalPosition: 'center',
+          }
+        );
+      },
+    })
+  }
+
+  enButton(lamparaId: number){
+    this.enabledButton[lamparaId]=true
+  }
+  
+  removeFromCart(productId: number) {
+    const removeRequest: CartRemove[] = [{ id: productId }];
+    this.carritoService.deleteCarrito(removeRequest).subscribe({
+      next: (response) => {
+        this.obtenerCarrito();
+        this.obtenerProductos();
+        this.matSnackBar.open(response.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+      },
+      error: (err) => {
+        this.matSnackBar.open(
+          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+          'Cerrar',
+          {
+            duration: 5000,
+            horizontalPosition: 'center',
+          }
+        );
+      },
+    });
+  }
+  
+  getProductoByCarrito(lamparaId: number){
+    return this.products.filter(p => p.id == lamparaId)[0].existencias
   }
 
   obtenerProductos() {
@@ -105,11 +176,13 @@ export class HomeProductsComponent {
     this.carritoService.getCarrito().subscribe({
       next: (data) => {
         this.cartProducts = data;
+        this.cartProducts.map(car => this.cantidadActualizada[car.lamparaId] = car.cantidad);
       },
       error: (err) => {
         console.log(err);
       },
     });
+
   }
 
   addToCart(productId: number) {
@@ -140,14 +213,18 @@ export class HomeProductsComponent {
       },
       error: (err) => {
         console.log('Error al agregar producto al carrito:', err);
-        this.matSnackBar.open(
-          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
-          'Cerrar',
-          {
-            duration: 5000,
-            horizontalPosition: 'center',
-          }
-        );
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        } else {
+          this.matSnackBar.open(
+            'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+            'Cerrar',
+            {
+              duration: 5000,
+              horizontalPosition: 'center',
+            }
+          );
+        }
       },
     });
   }

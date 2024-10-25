@@ -21,7 +21,7 @@ export class EstatusPedidosClientesComponent {
   filtroOrdenesFinalizado: OrderCustomer[] = [];
   filtroOrdenesEntregado: OrderCustomer[] = [];
   recipes: Recipe[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
 
   constructor(
@@ -68,13 +68,13 @@ export class EstatusPedidosClientesComponent {
         this.recipes = data;
         setTimeout(() => {
           this.cargando = false;
-        }, 2000);
+        },0);
       },
       error: (e) => {
         console.log(e);
         setTimeout(() => {
           this.cargando = false;
-        }, 2000);
+        }, 0);
       },
     });
   }

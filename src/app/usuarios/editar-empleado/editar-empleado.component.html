@@ -20,6 +20,7 @@
                       class="form-control"
                       id="nombre"
                       formControlName="fullName"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="nombre">Nombres:</label>
                   </div>
@@ -31,6 +32,7 @@
                       class="form-control"
                       id="email"
                       formControlName="email"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="email">Email:</label>
                   </div>
@@ -44,6 +46,7 @@
                       class="form-control"
                       id="direccion"
                       formControlName="direccion"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="floatingInput">Direccion:</label>
                   </div>
@@ -55,6 +58,7 @@
                       class="form-control"
                       id="telefono"
                       formControlName="phoneNumber"
+                      (keydown)="validatePhoneNumber($event)"
                     />
                     <label for="floatingInput">Telefono:</label>
                   </div>

@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AdministracionRecetasComponent {
   recipes: Recipe[] = [];
   listaComponentes: Componente[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
   selectedComponents = new Set<any>();
   cantidadRequerida: { [key: number]: number } = {};
@@ -39,7 +39,6 @@ export class AdministracionRecetasComponent {
   obtenerComponentes() {
     this.componentesListaService.getCatalogoComponentes().subscribe({
       next: (data) => {
-        //this.listaComponentes = data; // -- todos los componentes
         this.listaComponentes = data.filter((lista) => lista.estatus === true);
       },
       error: (e) => {
@@ -63,8 +62,8 @@ export class AdministracionRecetasComponent {
     if (this.recetaIdTemp) {
       const requestBody: DeleteRecipe = {
         recetaId: this.recetaIdTemp,
-        estatusReceta: false, 
-        componentes: [], 
+        estatusReceta: false,
+        componentes: [],
       };
 
       this.recetasService.deleteRecipe(requestBody).subscribe({
@@ -74,8 +73,8 @@ export class AdministracionRecetasComponent {
             verticalPosition: 'top',
             horizontalPosition: 'center',
           });
-          this.obtenerRecetas(); 
-          this.modalService.dismissAll(); 
+          this.obtenerRecetas();
+          this.modalService.dismissAll();
         },
         error: (err) => {
           console.error('Error al eliminar la receta:', err);
@@ -93,7 +92,6 @@ export class AdministracionRecetasComponent {
     this.cargando = true;
     this.recetasService.getRecetas().subscribe({
       next: (data) => {
-        //this.recipes = data; // -- todas las recetas
         this.recipes = data.filter((recipe) => recipe.estatus === true);
         this.cargando = false;
       },
@@ -220,5 +218,14 @@ export class AdministracionRecetasComponent {
     localStorage.setItem('recetaData', JSON.stringify(receta));
 
     this.router.navigate(['/editar-receta']);
+  }
+
+  validateInput(event: KeyboardEvent) {
+    const inputChar = event.key;
+    const regex = /^[a-zA-Z0-9\s]+$/;
+
+    if (!regex.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 }
