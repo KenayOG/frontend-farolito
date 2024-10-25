@@ -9,7 +9,7 @@ import { RecetasService } from '../../services/recetas.service';
 })
 export class CatalogoProductosComponent {
   products: Recipe[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
 
   constructor(private catalogoRecetaService: RecetasService) {

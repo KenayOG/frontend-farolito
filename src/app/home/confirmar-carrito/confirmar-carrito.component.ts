@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class ConfirmarCarritoComponent {
   cartProducts: Cart[] = [];
   products: LampInventory[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   metodoPagoSeleccionado: string | null = null;
   
   cantidadActualizada: { [key: number]: number } = {};

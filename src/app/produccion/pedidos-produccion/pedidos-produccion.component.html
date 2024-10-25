@@ -33,8 +33,12 @@
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input pInputText type="text" placeholder="Buscar por usuario o receta:"
-                  (input)="applyFilterGlobal($event, 'dtSolicitudesProduccion')" />
+                <input 
+                  pInputText type="text" 
+                  placeholder="Buscar por usuario o receta:"
+                  (input)="applyFilterGlobal($event, 'dtSolicitudesProduccion')" 
+                  (keydown)="validateInput($event)"
+                />
               </p-iconField>
               <a routerLink="/generar-produccion" class="btn btn-success p-3" style="margin-left: 80px">
                 <i class="fa-solid fa-circle-plus" style="margin-right: 5px"></i>
@@ -133,8 +137,12 @@
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input pInputText type="text" placeholder="Buscar por descripción o receta:"
-                  (input)="applyFilterGlobal($event, 'dtProducciones')" />
+                <input 
+                  pInputText type="text" 
+                  placeholder="Buscar por descripción o receta:"
+                  (input)="applyFilterGlobal($event, 'dtProducciones')" 
+                  (keydown)="validateInput($event)"  
+                />
               </p-iconField>
             </div>
           </ng-template>
@@ -249,8 +257,12 @@
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input pInputText type="text" placeholder="Buscar por receta:"
-                  (input)="applyFilterGlobal($event, 'dtProduccionesHechas')" />
+                <input 
+                  pInputText type="text" 
+                  placeholder="Buscar por receta:"
+                  (input)="applyFilterGlobal($event, 'dtProduccionesHechas')"
+                  (keydown)="validateInput($event)"
+                />
               </p-iconField>
             </div>
           </ng-template>

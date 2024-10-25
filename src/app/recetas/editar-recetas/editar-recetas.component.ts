@@ -21,7 +21,7 @@ export class EditarRecetasComponent implements OnInit {
   recetaId: number = 0;
 
   recetaImagen: string = '';
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
 
   constructor(
     private recetasService: RecetasService,
@@ -124,5 +124,14 @@ export class EditarRecetasComponent implements OnInit {
         this.route.navigate(['/recetas']);
       },
     });
+  }
+
+  validateInput(event: KeyboardEvent) {
+    const inputChar = event.key;
+    const regex = /^[a-zA-Z0-9\s]+$/;
+
+    if (!regex.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 }

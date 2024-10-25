@@ -8,7 +8,6 @@ import { ComponenteRecipe } from '../../interfaces/component-recipe';
 import { Cart, CartRemove, CartRequest, CartUpdated } from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuariosModule } from '../../usuarios/usuarios.module';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
 
@@ -27,7 +26,7 @@ export class HomeProductsComponent {
   recipes: Recipe[] = [];
   cartProducts: Cart[] = [];
   cargando: boolean = true;
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
   cantidadActualizada: { [key: number]: number } = {};
   enabledButton: {[key:number]:boolean} = {};
@@ -214,14 +213,18 @@ export class HomeProductsComponent {
       },
       error: (err) => {
         console.log('Error al agregar producto al carrito:', err);
-        this.matSnackBar.open(
-          'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
-          'Cerrar',
-          {
-            duration: 5000,
-            horizontalPosition: 'center',
-          }
-        );
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        } else {
+          this.matSnackBar.open(
+            'Ocurrió un problema: ' + (err.error.message || 'Desconocido'),
+            'Cerrar',
+            {
+              duration: 5000,
+              horizontalPosition: 'center',
+            }
+          );
+        }
       },
     });
   }

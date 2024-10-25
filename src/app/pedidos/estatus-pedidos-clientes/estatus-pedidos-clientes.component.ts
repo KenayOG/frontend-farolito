@@ -21,7 +21,7 @@ export class EstatusPedidosClientesComponent {
   filtroOrdenesFinalizado: OrderCustomer[] = [];
   filtroOrdenesEntregado: OrderCustomer[] = [];
   recipes: Recipe[] = [];
-  baseUrl: string = 'http://localhost:5000';
+  baseUrl: string = 'https://localhost:5000';
   cargando: boolean = true;
 
   constructor(
