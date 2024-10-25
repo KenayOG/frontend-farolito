@@ -33,6 +33,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ComprasModule} from './compras/compras.module';
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {DashboardModule} from "./dashboard/dashboard.module";
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaFormsModule, RecaptchaModule, RecaptchaV3Module} from "ng-recaptcha";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
   declarations: [AppComponent, SignUpComponent, LoginComponent],
@@ -65,6 +67,8 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     ComprasModule,
     NgOptimizedImage,
     MatProgressBar,
+    RecaptchaV3Module,
+    ProgressSpinnerModule
   ],
   providers: [
     AuthService,
@@ -74,6 +78,7 @@ import {DashboardModule} from "./dashboard/dashboard.module";
       multi: true,
     },
     provideAnimationsAsync(),
+    {provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LeURWsqAAAAAJxfecp0HzYl3sS_HSwdFvwojT0S'}
   ],
   bootstrap: [AppComponent],
   exports: [CommonModule, FormsModule, ReactiveFormsModule],

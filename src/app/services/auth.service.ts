@@ -2,11 +2,12 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment.development';
 import {LoginRequest} from '../interfaces/login-request';
 import {AuthResponse} from '../interfaces/auth-response';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, catchError, map, Observable, of, throwError} from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import {Customer, CustomerChanger, CustomerEmployee, CustomerForgotten, CustomerReset} from '../interfaces/customer';
 import {ResponsePosts} from '../interfaces/response-posts';
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,9 @@ export class AuthService {
           }
           return response;
         }),
-        catchError(error => {
+        catchError((error: HttpErrorResponse) => {
           console.error('Login error:', error);
-          return throwError(() => new Error('Error al iniciar sesión'));
+          return throwError(() => error);
         })
       );
   }
