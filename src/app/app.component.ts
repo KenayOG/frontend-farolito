@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   showNavBar: boolean = true;
   isAuthenticated: boolean = false;
   role: string | null = null;
+  username: string = '';
   private routerEventsSubscription!: Subscription;
   private authSubscription!: Subscription;
 
@@ -32,8 +33,11 @@ export class AppComponent implements OnInit, OnDestroy {
         this.updateNavBarVisibility(this.router.url);
         if (isAuthenticated) {
           this.role = this.usuariosService.getRoleFromToken();
+          let user = this.usuariosService.getUserFromToken();
+          this.username = user.name;
         } else {
           this.role = null;
+          this.username = '';
         }
       }
     );

@@ -180,7 +180,14 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <i class="fa-solid fa-gear"></i>
+          <ng-container *ngIf="isAuthenticated; else iconTemplate">
+            <div class="user-initial">
+              {{ username ? username.charAt(0).toUpperCase() : '?'}}
+            </div>
+          </ng-container>
+          <ng-template #iconTemplate>
+            <i class="fa-solid fa-gear"></i>
+          </ng-template>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
@@ -221,5 +228,7 @@
       </li>
     </ul>
   </div>
+
+
 </nav>
 <router-outlet></router-outlet>
