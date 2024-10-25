@@ -16,6 +16,7 @@
                       class="form-control"
                       id="nombre"
                       formControlName="name"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="nombre">Nombres:</label>
                   </div>
@@ -27,6 +28,7 @@
                       class="form-control"
                       id="apellido"
                       formControlName="lastName"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="apellido">Apellidos:</label>
                   </div>
@@ -53,6 +55,7 @@
                       class="form-control"
                       id="email"
                       formControlName="email"
+                      (keydown)="validateEmailInput($event)"
                     />
                     <label for="email">Email:</label>
                   </div>
@@ -63,6 +66,7 @@
                       type="tel"
                       class="form-control"
                       id="telefono"
+                      (keydown)="validatePhoneNumber($event)"
                     />
                     <label for="telefono">Telefono:</label>
                   </div>
@@ -73,6 +77,7 @@
                       type="text"
                       class="form-control"
                       id="direccion"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="direccion">Direccion:</label>
                   </div>
@@ -85,6 +90,7 @@
                       type="text"
                       class="form-control"
                       id="username"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="username">Username:</label>
                   </div>

@@ -124,6 +124,7 @@
                       id="nombre-receta"
                       [(ngModel)]="nombreReceta"
                       name="nombreReceta"
+                      (keydown)="validateInput($event)"
                     />
                     <label for="nombre-receta">Nombre:</label>
                   </div>
