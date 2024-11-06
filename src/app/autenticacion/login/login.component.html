@@ -27,22 +27,3 @@
     <a routerLink="/signup">Registrate</a>
   </p>
 </div>
-<div *ngIf="cargando" class="spinner-overlay">
-  <div class="spinner-container">
-    <div class="spinner-wrapper">
-      <p-progressSpinner
-        animationDuration=".8s"
-        fill="var(--surface-ground)"
-        strokeWidth="6"
-        styleClass="w-7rem h-7rem"
-      >
-      </p-progressSpinner>
-      <img
-        alt="Logo de farolito"
-        class="spinner-logo"
-        src="assets/images/logo-farolito.webp"
-      />
-    </div>
-    <p class="spinner-message">Espere por favor...</p>
-  </div>
-</div>

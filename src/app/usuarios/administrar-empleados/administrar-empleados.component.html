@@ -73,7 +73,6 @@
                     placeholder="Buscar Empleado:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtEmpleados')"
-                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
                 <a
@@ -184,7 +183,6 @@
                     placeholder="Buscar Cliente:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtClientes')"
-                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>

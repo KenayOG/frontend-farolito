@@ -21,7 +21,7 @@ export class EditarProveedorComponent implements OnInit {
   proveedor!: Provider;
   formProvider!: FormGroup;
   listaComponentes: Componente[] = [];
-  componentesSeleccionados: { [key: number]: boolean } = {};
+  componentesSeleccionados: { [key: number]: boolean } = {}; // Para almacenar el estado de los checkboxes
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +43,7 @@ export class EditarProveedorComponent implements OnInit {
     this.componentesService.getCatalogoComponentes().subscribe({
       next: (data) => {
         this.listaComponentes = data;
-        console.log('Lista de Componentes:', this.listaComponentes);
+        console.log('Lista de Componentes:', this.listaComponentes); // Verifica que los datos estén presentes
 
         const storedProvider = localStorage.getItem('selectedProvider');
         if (storedProvider) {
@@ -116,25 +116,6 @@ export class EditarProveedorComponent implements OnInit {
           });
         },
       });
-    }
-  }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-  validatePhoneNumber(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[0-9\+\-\(\)\s]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
     }
   }
 }

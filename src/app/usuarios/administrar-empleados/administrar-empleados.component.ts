@@ -67,13 +67,4 @@ export class AdministrarEmpleadosComponent {
       this.dtEmpleados.filterGlobal(filterValue, 'contains');
     }
   }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
 }

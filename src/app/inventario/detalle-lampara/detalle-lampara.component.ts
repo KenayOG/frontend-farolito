@@ -1,5 +1,6 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LampDetail } from '../../interfaces/lamp-detail';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { Table } from 'primeng/table';
@@ -103,15 +104,6 @@ export class DetalleLamparaComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     if (tableId === 'dtDetalleLamparas' && this.dtDetalleLamparas) {
       this.dtDetalleLamparas.filterGlobal(filterValue, 'contains');
-    }
-  }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
     }
   }
 }

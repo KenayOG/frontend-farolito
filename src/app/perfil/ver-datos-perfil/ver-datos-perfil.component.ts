@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
-import {User, UpdateUserprofile,} from '../../interfaces/user';
+
+import {
+  User,
+  UpdateCreditCard,
+  UpdateUserprofile,
+} from '../../interfaces/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthResponse } from '../../interfaces/auth-response';
 
 @Component({
   selector: 'app-ver-datos-perfil',
@@ -16,6 +22,7 @@ export class VerDatosPerfilComponent implements OnInit {
     role: '',
   };
 
+  // Detalle de usuario
   userId: string = '';
   userFullName: string = '';
   userEmail: string = '';
@@ -27,16 +34,20 @@ export class VerDatosPerfilComponent implements OnInit {
   userUrlImage: string | null = null;
   userDireccion: string | null = null;
 
+  // Cambio de contraseña
   currentPassword: string = '';
   newPassword: string = '';
   email: string = '';
   profileFormPass: FormGroup;
 
+  // Actualizar tarjeta de credito
   tarjetaForm: FormGroup;
 
+  // Editar usuario
   userFormEdit: FormGroup;
   profileUser!: UpdateUserprofile;
 
+  // Agregar imagen del usuario
   selectedFile: File | null = null;
   message: string | null = null;
   backgroundImageUrl: string = '';
@@ -49,7 +60,7 @@ export class VerDatosPerfilComponent implements OnInit {
   ) {
     this.profileFormPass = this.fb.group({
       currentPassword: ['', Validators.required],
-      userEmail: [{ value: '', disabled: false }],
+      userEmail: [{ value: '', disabled: false }], // El email no se puede editar, pero se incluye en el formulario
       newPassword: ['', Validators.required],
     });
 
@@ -64,6 +75,7 @@ export class VerDatosPerfilComponent implements OnInit {
       direccion: [''],
     });
 
+    //this.userUrlImage = 
   }
 
   ngOnInit(): void {
@@ -217,6 +229,7 @@ export class VerDatosPerfilComponent implements OnInit {
         this.userFullName = data.fullName;
         this.userEmail = data.email;
         this.userTarjeta = data.tarjeta;
+        //console.log(this.userTarjeta);
         this.userPhoneNumber = data.phoneNumber;
         this.userTwoFactorEnabled = data.twoFactorEnabled;
         this.userPhoneNumberConfirmed = data.phoneNumberConfirmed;
@@ -224,6 +237,7 @@ export class VerDatosPerfilComponent implements OnInit {
         this.userUrlImage = data.urlImage;
         this.userDireccion = data.direccion;
 
+        // Actualiza el valor del campo userEmail en el formulario
         this.profileFormPass.patchValue({
           userEmail: this.userEmail,
         });
@@ -273,45 +287,6 @@ export class VerDatosPerfilComponent implements OnInit {
             );
           },
         });
-    }
-  }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-  validateNumberInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[0-9]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-  }
-
-  validatePhoneNumber(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[0-9\+\-\(\)\s]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-  }
-
-  validateEmailInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9@._-]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
     }
   }
 }

@@ -58,23 +58,4 @@ export class AdministracionComprasComponent {
       this.dtComprasUsuario.filterGlobal(filterValue, 'contains');
     }
   }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-  validateDateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[0-9-]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-  }
 }

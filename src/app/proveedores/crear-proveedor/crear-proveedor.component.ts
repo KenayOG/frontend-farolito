@@ -126,23 +126,4 @@ export class CrearProveedorComponent implements OnInit {
     this.errors = [];
     this.obtenerComponentes();
   }
-
-  validateInput(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[a-zA-Z0-9\s]+$/;
-
-    if (!regex.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-  validatePhoneNumber(event: KeyboardEvent) {
-    const inputChar = event.key;
-    const regex = /^[0-9\+\-\(\)\s]+$/;
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (!regex.test(inputChar) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-  }
 }
