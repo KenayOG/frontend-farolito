@@ -68,13 +68,13 @@ export class EstatusPedidosClientesComponent {
         this.recipes = data;
         setTimeout(() => {
           this.cargando = false;
-        }, 2000);
+        },0);
       },
       error: (e) => {
         console.log(e);
         setTimeout(() => {
           this.cargando = false;
-        }, 2000);
+        }, 0);
       },
     });
   }

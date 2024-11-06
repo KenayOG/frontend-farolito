@@ -1,0 +1,24 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.logs-table table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.logs-table th,
+.logs-table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

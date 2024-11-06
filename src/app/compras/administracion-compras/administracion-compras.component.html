@@ -70,6 +70,7 @@
                     placeholder="Buscar por usuario:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtCompras')"
+                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
@@ -176,6 +177,7 @@
                     placeholder="Buscar por fecha:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtComprasUsuario')"
+                    (keydown)="validateDateInput($event)"
                   />
                 </p-iconField>
               </div>
