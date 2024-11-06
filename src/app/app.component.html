@@ -54,7 +54,7 @@
       </li>
 
       <!-- Acerca de -->
-      <li class="nav-item" *ngIf="!isAuthenticated || role === 'Cliente'">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/acercade">
           <i class="fa-solid fa-circle-info"></i><span>Acerca de</span>
         </a>
@@ -121,13 +121,6 @@
         </a>
       </li>
 
-      <!-- Logs -->
-      <li *ngIf="isAuthenticated && role === 'Administrador'" class="nav-item">
-        <a class="nav-link" routerLink="/logs-actividad">
-          <i class="fa-solid fa-file-signature"></i><span>Logs</span>
-        </a>
-      </li>
-
       <!-- Logística -->
       <li
         *ngIf="
@@ -187,14 +180,7 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <ng-container *ngIf="isAuthenticated; else iconTemplate">
-            <div class="user-initial">
-              {{ username ? username.charAt(0).toUpperCase() : "?" }}
-            </div>
-          </ng-container>
-          <ng-template #iconTemplate>
-            <i class="fa-solid fa-gear"></i>
-          </ng-template>
+          <i class="fa-solid fa-gear"></i>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>

@@ -35,7 +35,6 @@
                   id="nombre"
                   [value]="userFullName"
                   formControlName="fullName"
-                  (keydown)="validateInput($event)"
                 />
                 <label for="floatingInput">Nombre:</label>
               </div>
@@ -60,7 +59,6 @@
                   id="email"
                   [value]="userEmail"
                   formControlName="email"
-                  (keydown)="validateEmailInput($event)"
                 />
                 <label for="floatingInput">Email:</label>
               </div>
@@ -72,7 +70,6 @@
                   id="telefono"
                   [value]="userPhoneNumber"
                   formControlName="phoneNumber"
-                  (keydown)="validatePhoneNumber($event)"
                 />
                 <label for="floatingInput">Telefono:</label>
               </div>
@@ -109,7 +106,6 @@
                     placeholder="Tarjeta:"
                     id="tarjeta"
                     formControlName="cardNumber"
-                    (keydown)="validateNumberInput($event)"
                   />
                   <label for="floatingInput">Ingresa tu tarjeta:</label>
                   <div

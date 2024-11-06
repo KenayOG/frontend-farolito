@@ -18,14 +18,8 @@
                 <p-inputIcon>
                   <i class="pi pi-search"></i>
                 </p-inputIcon>
-                <input 
-                  pInputText 
-                  type="text" 
-                  placeholder="Buscar por lampara:" 
-                  class="mt-1"
-                  (input)="applyFilterGlobal($event, 'dtDetalleLamparas')" 
-                  (keydown)="validateInput($event)"
-                />
+                <input pInputText type="text" placeholder="Buscar por lampara:" class="mt-1"
+                  (input)="applyFilterGlobal($event, 'dtDetalleLamparas')" />
               </p-iconField>
             </div>
           </div>

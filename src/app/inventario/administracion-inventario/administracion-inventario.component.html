@@ -70,7 +70,6 @@
                     placeholder="Buscar por lampara:"
                     class="mt-1"
                     (input)="applyFilterGlobal($event, 'dtInventarioLamparas')"
-                    (keydown)="validateInput($event)"
                   />
                 </p-iconField>
               </div>
@@ -174,8 +173,9 @@
                     type="text"
                     placeholder="Buscar por componente:"
                     class="mt-1"
-                    (input)="applyFilterGlobal($event, 'dtInventarioComponentes')"
-                    (keydown)="validateInput($event)"
+                    (input)="
+                      applyFilterGlobal($event, 'dtInventarioComponentes')
+                    "
                   />
                 </p-iconField>
                 <a

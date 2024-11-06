@@ -36,20 +36,7 @@
                     </div>
                     <hr />
                     <div class="cart-price-quantity">
-                      <div class="quantity-container">
-                        <label for="cantidad-up"><b>Cantidad:&nbsp;</b></label>
-                        <input
-                          id="cantidad-up"
-                          min="1"
-                          max="{{getProductoByCarrito(cart.lamparaId)}}"
-                          type="number"
-                          value="{{ cantidadActualizada[cart.lamparaId] }}"
-                          [(ngModel)]="cantidadActualizada[cart.lamparaId]"
-                          (input)="actualizarCarrito(cart.lamparaId)"
-                        />
-                      </div>
-                      <br>
-
+                      <b>Cantidad:&nbsp;</b> {{ cart.cantidad }} &nbsp;&nbsp;
                       <b>Precio:&nbsp;&nbsp;</b>
                       {{
                         "$" +
