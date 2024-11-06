@@ -121,6 +121,13 @@
         </a>
       </li>
 
+      <!-- Logs -->
+      <li *ngIf="isAuthenticated && role === 'Administrador'" class="nav-item">
+        <a class="nav-link" routerLink="/logs-actividad">
+          <i class="fa-solid fa-file-signature"></i><span>Logs</span>
+        </a>
+      </li>
+
       <!-- Logística -->
       <li
         *ngIf="
@@ -182,7 +189,7 @@
         >
           <ng-container *ngIf="isAuthenticated; else iconTemplate">
             <div class="user-initial">
-              {{ username ? username.charAt(0).toUpperCase() : '?'}}
+              {{ username ? username.charAt(0).toUpperCase() : "?" }}
             </div>
           </ng-container>
           <ng-template #iconTemplate>
@@ -228,7 +235,5 @@
       </li>
     </ul>
   </div>
-
-
 </nav>
 <router-outlet></router-outlet>
