@@ -1,11 +1,19 @@
 <div class="carousel slide" id="heroCarousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img alt="Producto 1" class="d-block w-100 carousel-img" src="../../../assets/images/lampara-skewed.webp" />
+      <img
+        alt="Producto 1"
+        class="d-block w-100 carousel-img"
+        src="../../../assets/images/lampara-skewed.webp"
+      />
       <div class="company-info">
         <h1 class="company-title">Farolito</h1>
         <div class="container-logo">
-          <img alt="Farolito-Logo" class="company-logo" src="../../../assets/images/logo-farolito.webp" />
+          <img
+            alt="Farolito-Logo"
+            class="company-logo"
+            src="../../../assets/images/logo-farolito.webp"
+          />
         </div>
       </div>
       <div class="carousel-caption">
@@ -15,20 +23,38 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img alt="Producto 3" class="d-block w-100 carousel-img" src="../../../assets/images/lampara-skewed-op3.jpg" />
+      <img
+        alt="Producto 3"
+        class="d-block w-100 carousel-img"
+        src="../../../assets/images/lampara-skewed-op3.jpg"
+      />
       <div class="company-info">
         <h1 class="company-title">Farolito</h1>
         <div class="container-logo">
-          <img alt="Farolito-Logo" class="company-logo" src="../../../assets/images/logo-farolito.webp" />
+          <img
+            alt="Farolito-Logo"
+            class="company-logo"
+            src="../../../assets/images/logo-farolito.webp"
+          />
         </div>
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#heroCarousel" type="button">
+  <button
+    class="carousel-control-prev"
+    data-bs-slide="prev"
+    data-bs-target="#heroCarousel"
+    type="button"
+  >
     <span aria-hidden="true" class="carousel-control-prev-icon"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#heroCarousel" type="button">
+  <button
+    class="carousel-control-next"
+    data-bs-slide="next"
+    data-bs-target="#heroCarousel"
+    type="button"
+  >
     <span aria-hidden="true" class="carousel-control-next-icon"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -39,14 +65,24 @@
   <div class="carousel-content">
     <div *ngFor="let product of displayedProducts" class="card-product">
       <div class="product-image-container">
-        <img [src]="getImagenProducto(product.urlImage)" alt="{{ product.nombrelampara }}" class="product-image" />
+        <img
+          [src]="getImagenProducto(product.urlImage)"
+          alt="{{ product.nombrelampara }}"
+          class="product-image"
+        />
       </div>
       <div class="product-info">
         <p class="product-name">{{ product.nombrelampara }}</p>
         <p class="product-price">${{ product.costo | number : "1.2-2" }}</p>
         <div class="quantity-container">
           <label for="quantity">Cantidad:</label>
-          <input [(ngModel)]="cantidadSeleccionada[product.id]" id="quantity" min="1" placeholder="0" type="number" />
+          <input
+            [(ngModel)]="cantidadSeleccionada[product.id]"
+            id="quantity"
+            min="1"
+            placeholder="0"
+            type="number"
+          />
         </div>
         <button (click)="addToCart(product.id)" class="add-to-cart">
           Agregar <i class="fas fa-shopping-cart"></i>
@@ -144,10 +180,18 @@
     </div>
 
     <div class="footer-apps">
-      <a href="#"><img alt="Disponible en Google Play" src="../../../assets/images/footer/google-play.png"
-          style="width: 150px" /></a>
-      <a href="#"><img alt="Descárgalo en App Store" src="../../../assets/images/footer/app-store.jpg"
-          style="width: 150px" /></a>
+      <a href="#"
+        ><img
+          alt="Disponible en Google Play"
+          src="../../../assets/images/footer/google-play.png"
+          style="width: 150px"
+      /></a>
+      <a href="#"
+        ><img
+          alt="Descárgalo en App Store"
+          src="../../../assets/images/footer/app-store.jpg"
+          style="width: 150px"
+      /></a>
     </div>
   </div>
 
@@ -160,7 +204,10 @@
 
     <div class="footer-payments">
       <img alt="Amex" src="../../../assets/images/footer/amex.jpeg" />
-      <img alt="Mastercard" src="../../../assets/images/footer/mastercard.png" />
+      <img
+        alt="Mastercard"
+        src="../../../assets/images/footer/mastercard.png"
+      />
       <img alt="Visa" src="../../../assets/images/footer/visa.png" />
       <img alt="PayPal" src="../../../assets/images/footer/paypal.png" />
       <img alt="OXXO" src="../../../assets/images/footer/oxxo.png" />
@@ -168,12 +215,19 @@
     </div>
   </div>
 </footer>
+
 <!-- Botón para el Carrito -->
-<div
-  class="{{ cartProducts.length > 0 ? '' : 'disabled' }} cart-button"
->
+<div class="{{ cartCargando ? 'disabled' : '' }} cart-button">
   <div id="cart-button-container">
-    <ng-container *ngIf="(cartProducts.length > 0); else elseTemplate">
+    <ng-container *ngIf="cartCargando; else elseTemplate">
+      <div class="father">
+        <div class="charging"></div>
+      </div>
+      <div class="fixed-ball">
+        <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
       <div
         aria-controls="offcanvasRight"
         data-bs-target="#offcanvasRight"
@@ -182,24 +236,15 @@
         class="fixed-ball"
       >
         <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
-        <span *ngIf="cartProducts.length > 0" class="cart-count">{{
-          cartProducts.length
-        }}</span>
-      </div>
-    </ng-container>
-    <ng-template #elseTemplate>
-      <div class="father">
-        <div class="charging"></div>
-      </div>
-      <div class="fixed-ball">
-        <i aria-hidden="true" class="fa-solid fa-cart-plus"></i>
+        <span class="cart-count">{{ cartProducts.length }}</span>
       </div>
     </ng-template>
   </div>
 </div>
 
-<!-- Carrito -->
+<!-- popup del Carrito -->
 <div
+  #offcanvasRight
   aria-labelledby="offcanvasRightLabel"
   class="offcanvas offcanvas-end"
   id="offcanvasRight"
@@ -209,7 +254,12 @@
     <h3 class="offcanvas-title" id="offcanvasRightLabel">
       Mi carrito <i class="fa-solid fa-cart-arrow-down"></i>
     </h3>
-    <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+    <button
+      aria-label="Close"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      type="button"
+    ></button>
   </div>
   <div class="offcanvas-body">
     <div *ngIf="!cartProducts.length" class="text-center">
@@ -217,8 +267,12 @@
     </div>
     <div *ngIf="cartProducts.length">
       <div *ngFor="let cart of cartProducts" class="d-flex mb-3">
-        <img [alt]="cart.lamparaNombre" [src]="getImagenProducto(cart.urlImage)" class="img-thumbnail me-2"
-          style="width: 150px; height: 150px" />
+        <img
+          [alt]="cart.lamparaNombre"
+          [src]="getImagenProducto(cart.urlImage)"
+          class="img-thumbnail me-2"
+          style="width: 150px; height: 150px"
+        />
         <div>
           <h6>{{ cart.lamparaNombre }}</h6>
           <div class="quantity-container">
@@ -226,7 +280,7 @@
             <input
               id="cantidad-up"
               min="1"
-              max="{{getProductoByCarrito(cart.lamparaId)}}"
+              max="{{ getProductoByCarrito(cart.lamparaId) }}"
               type="number"
               value="{{ cantidadActualizada[cart.lamparaId] }}"
               [(ngModel)]="cantidadActualizada[cart.lamparaId]"
@@ -241,7 +295,7 @@
               <i class="fa-solid fa-trash-can"></i>
             </button>
             <button
-            *ngIf="enabledButton[cart.lamparaId]"
+              *ngIf="enabledButton[cart.lamparaId]"
               (click)="actualizarCarrito(cart.lamparaId)"
               class="btn btn-lg add-to-cart"
             >
@@ -250,8 +304,13 @@
           </div>
         </div>
       </div>
-      <a [attr.disabled]="!cartProducts.length ? true : null" [class.disabled]="!cartProducts.length"
-        class="btn btn-success w-100" routerLink="/pagar-carrito">VER CARRITO Y PAGAR</a>
+      <a
+        [attr.disabled]="!cartProducts.length ? true : null"
+        [class.disabled]="!cartProducts.length"
+        class="btn btn-success w-100"
+        routerLink="/pagar-carrito"
+        >VER CARRITO Y PAGAR</a
+      >
     </div>
   </div>
 </div>
@@ -260,10 +319,18 @@
 <div *ngIf="cargando" class="spinner-overlay">
   <div class="spinner-container">
     <div class="spinner-wrapper">
-      <p-progressSpinner animationDuration=".8s" fill="var(--surface-ground)" strokeWidth="6"
-        styleClass="w-7rem h-7rem">
+      <p-progressSpinner
+        animationDuration=".8s"
+        fill="var(--surface-ground)"
+        strokeWidth="6"
+        styleClass="w-7rem h-7rem"
+      >
       </p-progressSpinner>
-      <img alt="Logo de farolito" class="spinner-logo" src="assets/images/logo-farolito.webp" />
+      <img
+        alt="Logo de farolito"
+        class="spinner-logo"
+        src="assets/images/logo-farolito.webp"
+      />
     </div>
     <p class="spinner-message">Espere por favor...</p>
   </div>
