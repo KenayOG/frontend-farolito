@@ -1,11 +1,23 @@
-import { Component, ElementRef, ViewChildren, QueryList, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChildren,
+  QueryList,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LampInventory } from '../../interfaces/lamp-inventory';
 import { InventarioService } from '../../services/inventario.service';
 import { RecetasService } from '../../services/recetas.service';
 import { Recipe } from '../../interfaces/recipe';
 import { ComponenteRecipe } from '../../interfaces/component-recipe';
-import { Cart, CartRemove, CartRequest, CartUpdated } from '../../interfaces/cart';
+import {
+  Cart,
+  CartRemove,
+  CartRequest,
+  CartUpdated,
+} from '../../interfaces/cart';
 import { CarritoService } from '../../services/carrito.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -21,20 +33,22 @@ import { Router } from '@angular/router';
 })
 export class HomeProductsComponent {
   @ViewChildren('cartButton') cartbuttons!: QueryList<ElementRef>;
+  @ViewChild('offcanvasRight', { static: false }) offcanvasRight!: ElementRef;
 
   products: LampInventory[] = [];
   recipes: Recipe[] = [];
   cartProducts: Cart[] = [];
   cargando: boolean = true;
+  cartCargando: boolean = true;
   baseUrl: string = 'https://localhost:5000';
   cantidadSeleccionada: { [key: number]: number } = {};
   cantidadActualizada: { [key: number]: number } = {};
-  enabledButton: {[key:number]:boolean} = {};
+  enabledButton: { [key: number]: boolean } = {};
 
   displayedProducts: LampInventory[] = [];
   currentIndex: number = 0;
   productPerPage: number = 4;
-  router = inject(Router)
+  router = inject(Router);
 
   constructor(
     config: NgbPopoverConfig,
@@ -44,10 +58,9 @@ export class HomeProductsComponent {
     private matSnackBar: MatSnackBar,
     private usuariosService: UsuariosService
   ) {
-
     const userData = this.usuariosService.getUserFromToken();
-    if(userData) {
-      if(userData.role!="Cliente") {
+    if (userData) {
+      if (userData.role != 'Cliente') {
         this.router.navigate(['/dashboard']);
       }
     }
@@ -68,15 +81,21 @@ export class HomeProductsComponent {
     };
   }
 
-  actualizarCarrito(lamparaId: number){
+  actualizarCarrito(lamparaId: number) {
     const cartUpdated: CartUpdated[] = [];
-    this.cartProducts.map(car => {
+    this.cartProducts.map((car) => {
       cartUpdated.push({
         recetaId: car.lamparaId,
-        nuevaCantidad: car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad
-      })
-      car.cantidad = car.lamparaId == lamparaId ? this.cantidadActualizada[car.lamparaId] : car.cantidad;
-    })    
+        nuevaCantidad:
+          car.lamparaId == lamparaId
+            ? this.cantidadActualizada[car.lamparaId]
+            : car.cantidad,
+      });
+      car.cantidad =
+        car.lamparaId == lamparaId
+          ? this.cantidadActualizada[car.lamparaId]
+          : car.cantidad;
+    });
     console.log(this.cartProducts);
     this.carritoService.updateCarrito(cartUpdated).subscribe({
       next: (response) => {
@@ -100,13 +119,13 @@ export class HomeProductsComponent {
           }
         );
       },
-    })
+    });
   }
 
-  enButton(lamparaId: number){
-    this.enabledButton[lamparaId]=true
+  enButton(lamparaId: number) {
+    this.enabledButton[lamparaId] = true;
   }
-  
+
   removeFromCart(productId: number) {
     const removeRequest: CartRemove[] = [{ id: productId }];
     this.carritoService.deleteCarrito(removeRequest).subscribe({
@@ -130,9 +149,9 @@ export class HomeProductsComponent {
       },
     });
   }
-  
-  getProductoByCarrito(lamparaId: number){
-    return this.products.filter(p => p.id == lamparaId)[0].existencias
+
+  getProductoByCarrito(lamparaId: number) {
+    return this.products.filter((p) => p.id == lamparaId)[0].existencias;
   }
 
   obtenerProductos() {
@@ -173,19 +192,34 @@ export class HomeProductsComponent {
   }
 
   obtenerCarrito() {
+    this.cartCargando = true;
     this.carritoService.getCarrito().subscribe({
       next: (data) => {
         this.cartProducts = data;
-        this.cartProducts.map(car => this.cantidadActualizada[car.lamparaId] = car.cantidad);
+        if (this.cartProducts.length < 1) {
+        } else {
+          this.cartProducts.map(
+            (car) => (this.cantidadActualizada[car.lamparaId] = car.cantidad)
+          );
+        }
+
+        this.cartCargando = false;
+        this.cargando = false;
       },
       error: (err) => {
         console.log(err);
+        this.cartCargando = false;
       },
     });
-
+  }
+  closeCartPopup() {
+    const offcanvasElement = this.offcanvasRight.nativeElement;
+    offcanvasElement.classList.remove('show');
+    offcanvasElement.style.display = 'none';
   }
 
   addToCart(productId: number) {
+    this.cargando = true;
     const cantidad = this.cantidadSeleccionada[productId];
 
     if (cantidad <= 0 || !cantidad) {
@@ -210,6 +244,7 @@ export class HomeProductsComponent {
           duration: 5000,
           horizontalPosition: 'center',
         });
+        this.cargando = false;
       },
       error: (err) => {
         console.log('Error al agregar producto al carrito:', err);

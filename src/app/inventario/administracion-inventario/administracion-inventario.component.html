@@ -222,7 +222,7 @@
                 {{ component.nombre }}
               </td>
               <td>
-                {{ component.existencia }}
+                {{ component.nombre != "cable" ? component.existencia + " unidades" : component.existencia + " metros" }}
               </td>
               <td>
                 <a
