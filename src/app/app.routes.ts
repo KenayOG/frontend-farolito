@@ -184,4 +184,5 @@ export const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: ['Administrador'] },
   },
+  { path: '**', redirectTo: '/acercade', pathMatch: 'full' }
 ];
