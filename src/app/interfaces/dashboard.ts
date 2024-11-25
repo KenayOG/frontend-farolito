@@ -36,6 +36,6 @@ export interface LamparasCliente {
 }
 
 export interface MejorCliente {
-    cliente: string,
+    mejorCliente: string,
     totalGastado: number
 }
