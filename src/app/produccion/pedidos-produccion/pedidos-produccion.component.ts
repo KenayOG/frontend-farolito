@@ -1,5 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Production, ProductionHechas, ProductionSteps } from '../../interfaces/production';
+import {
+  Production,
+  ProductionHechas,
+  ProductionSteps,
+} from '../../interfaces/production';
 import { ProduccionService } from '../../services/produccion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecipeProduction } from '../../interfaces/recipe-production';
@@ -33,7 +37,7 @@ export class PedidosProduccionComponent {
     this.cargando = true;
     this.produccionService.getSolicitudesProduccion().subscribe({
       next: (data) => {
-        this.solicitudesProduccion = data;
+        this.solicitudesProduccion = data.sort((a, b) => b.id - a.id);
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
@@ -50,7 +54,9 @@ export class PedidosProduccionComponent {
   obtenerProduccionesHechas() {
     this.produccionService.getCargarProduccionesHechas().subscribe({
       next: (data) => {
-        this.produccionesCompletadas = data;
+        this.produccionesCompletadas = data.sort(
+          (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+        );
       },
       error: (e) => {
         console.log(e);
@@ -61,9 +67,19 @@ export class PedidosProduccionComponent {
   obtenerProducciones() {
     this.produccionService.getCargarProducciones().subscribe({
       next: (data) => {
-        this.producciones = data.filter(produccion => 
-          ['Rechazada', 'Autorizada', 'Soldando', 'Armando', 'Calidad'].includes(produccion.solicitudProduccion.estatus)
-        );
+        this.producciones = data
+          .filter((produccion) =>
+            [
+              'Rechazada',
+              'Autorizada',
+              'Soldando',
+              'Armando',
+              'Calidad',
+            ].includes(produccion.solicitudProduccion.estatus)
+          )
+          .sort(
+            (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+          );
       },
       error: (e) => {
         console.log(e);

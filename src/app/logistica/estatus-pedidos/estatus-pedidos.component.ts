@@ -66,7 +66,7 @@ export class EstatusPedidosComponent implements OnInit {
     this.cargando = true;
     this.pedidosService.getTodosLosPedidos().subscribe({
       next: (data) => {
-        this.orders = data;
+        this.orders = data.sort((a, b) => b.id - a.id);
         setTimeout(() => {
           this.cargando = false;
         }, 2000);
